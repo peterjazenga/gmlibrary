@@ -1,0 +1,141 @@
+{
+unit RegisterComp
+
+  ES: unidad para registrar los componentes VCL
+  EN: unit to register the VCL components
+
+=========================================================================
+History:
+
+ver 0.1.9
+  ES:
+    nuevo: documentación
+    nuevo: se hace compatible con FireMonkey
+  EN:
+    new: documentation
+    new: now compatible with FireMonkey
+
+ver 0.1.8
+  ES:
+    nuevo: se registra la clase TGMElevation
+  EN:
+    new: TGMElevation class is registered
+
+ver 0.1.6
+  ES:
+    nuevo: se registra la clase TGMDirection
+  EN:
+    new: TGMDirection class is registered
+
+ver 0.1.5
+  ES:
+    nuevo: se registra la clase TGMGeoCode
+  EN:
+    new: TGMGeoCode class is registered
+
+ver 0.1.4
+  ES:
+    nuevo: se registra la clase TGMCircle
+  EN:
+    new: TGMCircle class is registered
+
+ver 0.1.3
+  ES:
+    nuevo: se registra la clase TGMRectangle
+  EN:
+    new: TGMRectangle class is registered
+
+ver 0.1.2
+  ES:
+    nuevo: se registra la clase TGMPolygon
+  EN:
+    new: TGMPolygon class is registered
+
+ver 0.1.1
+  ES:
+    nuevo: se registra la clase TGMPolyline
+  EN:
+    new: TGMPolyline class is registered
+
+ver 0.1:
+  ES: primera versión
+  EN: first version
+=========================================================================
+IMPORTANTE PROGRAMADORES: Por favor, si tienes comentarios, mejoras,
+  ampliaciones, errores y/o cualquier otro tipo de sugerencia, envíame un correo a:
+  gmlib@cadetill.com
+
+IMPORTANT PROGRAMMERS: please, if you have comments, improvements, enlargements,
+  errors and/or any another type of suggestion, please send me a mail to:
+  gmlib@cadetill.com
+=========================================================================
+
+Copyright (©) 2011, by Xavier Martinez (cadetill)
+
+@author Xavier Martinez (cadetill)
+@web  http://www.cadetill.com
+}
+{*------------------------------------------------------------------------------
+  Unit to register the VCL components.
+
+  @author Xavier Martinez (cadetill)
+  @version 0.1.9
+-------------------------------------------------------------------------------}
+{=------------------------------------------------------------------------------
+  Unidad para registrar los componentes VCL.
+
+  @author Xavier Martinez (cadetill)
+  @version 0.1.9
+-------------------------------------------------------------------------------}
+unit RegisterCompVCL;
+
+{.$DEFINE CHROMIUM}
+{$I ..\gmlib.inc}
+
+interface
+
+  {*------------------------------------------------------------------------------
+    The Register procedure register the VCL components.
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    El procedimiento Register registra los componentes VCL.
+  -------------------------------------------------------------------------------}
+  procedure Register;
+
+implementation
+
+uses
+  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
+  Classes,
+  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  System.Classes, Vcl.Controls,
+  {$IFEND}
+
+  GMMapVCL, GMMarkerVCL, GMPolylineVCL, GMPolygonVCL, GMRectangleVCL,
+  GMCircleVCL, GMDirectionVCL, GMElevationVCL,
+
+  GMGeoCode;
+
+procedure Register;
+begin
+{$IF CompilerVersion > 22}  // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  GroupDescendentsWith(TGMMap, Vcl.Controls.TControl);
+  {$IFDEF CHROMIUM}GroupDescendentsWith(TGMMapChr, Vcl.Controls.TControl);{$ENDIF}
+  GroupDescendentsWith(TGMMarker, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMPolyline, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMPolygon, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMRectangle, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMCircle, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMDirection, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMElevation, Vcl.Controls.TControl);
+  GroupDescendentsWith(TGMGeoCode, Vcl.Controls.TControl);
+{$IFEND}
+  RegisterComponents('GoogleMaps', [TGMMap, {$IFDEF CHROMIUM}TGMMapChr,{$ENDIF} TGMMarker,
+                                    TGMPolyline, TGMPolygon,
+                                    TGMRectangle, TGMCircle,
+                                    TGMDirection, TGMElevation,
+
+                                    TGMGeoCode]);
+end;
+
+end.

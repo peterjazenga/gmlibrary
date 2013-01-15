@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2013/01/03 11:21:25.000.232,=rtl.dcp</Transaction>
+    <Transaction>2013/01/03 11:23:13.000.960,D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_DXE3_VCL.dproj=D:\Docs\RAD Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.130,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMCircleVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.205,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMFunctionsVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.342,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMRectangleVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.259,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMMarkerVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.231,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.396,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.158,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMDirectionVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.285,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMPolygonVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.368,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.182,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMElevationVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:40.000.314,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMPolylineVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:54.000.037,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMGeoCode.pas</Transaction>
+    <Transaction>2013/01/03 11:42:41.000.357,=dclfmxstd.dcp</Transaction>
+    <Transaction>2013/01/03 11:42:41.000.124,=vcl.dcp</Transaction>
+    <Transaction>2013/01/03 11:42:41.000.176,=xmlrtl.dcp</Transaction>
+    <Transaction>2013/01/03 11:42:41.000.074,=vclimg.dcp</Transaction>
+    <Transaction>2013/01/03 11:42:41.000.226,=vclie.dcp</Transaction>
+    <Transaction>2013/01/03 11:42:41.000.288,=dbrtl.dcp</Transaction>
+    <Transaction>2013/01/03 11:43:27.000.785,=dclfmxstd.dcp</Transaction>
+    <Transaction>2013/01/03 12:27:48.000.080,=GMLib_DXE3.dcp</Transaction>
+  </Transactions>
+</BorlandProject>

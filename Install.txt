@@ -1,0 +1,157 @@
+GMLib - Google Maps Library
+
+Send suggestions to gmlib@cadetill.com
+
+Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE2, XE3
+Tested Windows Versions: XP, 2003, Vista, 7
+
+If you have installed TChromium browser, you can activate it at gmlib.inc file.
+
+The installation is quite easy:
+
+
+Delphi 6 Installation
+~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_D6.bpg"
+2. Select package (doble click) "GMLib_D6.bpl" and click "Compile" and "Install" buttons
+3. Select package (doble click) "GMLibEdit_D6.bpl" and click "Compile" and "Install" buttons
+4. Go to "Tools > Environment Options > Library > Library Path > [...]"
+   Browse to the "lib\D6" folder and press "OK", "Add"
+   Browse to the "src" folder and press "OK", "Add"
+   Browse to the "src\VCL" folder and press "OK", "Add", "OK", "OK"
+
+
+Delphi 7 Installation
+~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_D7.bpg"
+2. Select package (doble click) "GMLib_D7.bpl" and click "Compile" and "Install" buttons
+3. Select package (doble click) "GMLibEdit_D7.bpl" and click "Compile" and "Install" buttons
+4. Go to "Tools > Environment Options > Library > Library Path > [...]"
+   Browse to the "lib\D7" folder and press "OK", "Add"
+   Browse to the "src" folder and press "OK", "Add"
+   Browse to the "src\VCL" folder and press "OK", "Add", "OK", "OK"
+
+
+Delphi 2007 Installation
+~~~~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_D2007.groupproj"
+2. Right click on "GMLib_D2007.bpl" and click "Compile" and "Install"
+3. Right click on "GMLibEdit_D2007.bpl" and click "Compile" and "Install"
+4. Go to "Tools > Options > Environment Options > Delphi Options > Library-Win32 > Library Path > [...]"
+   Browse to the "lib\D2007" folder and press "OK", "Add"
+   Browse to the "src" folder and press "OK", "Add"
+   Browse to the "src\VCL" folder and press "OK", "Add", "OK", "OK"
+
+
+Delphi 2009 Installation
+~~~~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_D2009.groupproj"
+2. Right click on "GMLib_D2009.bpl" and click "Compile" and "Install"
+3. Right click on "GMLibEdit_D2009.bpl" and click "Compile" and "Install"
+4. Go to "Tools > Options > Environment Options > Delphi Options > Library-Win32 > Library Path > [...]"
+   Browse to the "lib\D2009" folder and press "OK", "Add"
+   Browse to the "src" folder and press "OK", "Add"
+   Browse to the "src\VCL" folder and press "OK", "Add", "OK", "OK"
+
+
+Delphi 2010 Installation
+~~~~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_D2010.groupproj"
+2. Right click on "GMLib_D2010.bpl" and click "Compile" and "Install"
+3. Right click on "GMLibEdit_D2010.bpl" and click "Compile" and "Install"
+4. Go to "Tools > Options > Environment Options > Delphi Options > Library-Win32 > Library Path > [...]"
+   Browse to the "lib\D2010" folder and press "OK", "Add"
+   Browse to the "src" folder and press "OK", "Add"
+   Browse to the "src\VCL" folder and press "OK", "Add", "OK", "OK"
+
+
+Delphi/C++ XE2 Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_DXE2.groupproj"
+2. Select package (doble click) "GMLib_DXE2.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE2.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE2.bpl" and click "Compile"
+3. Select package (doble click) "GMLib_DXE2_VCL.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE2_VCL.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE2_VCL.bpl" and click "Compile"
+4. Select package (doble click) "GMLib_DXE2_FMX.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE2_FMX.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE2_FMX.bpl" and click "Compile"
+5. Right click on "GMLibEdit_DXE2.bpl" and click "Compile" and "Install"
+6. Go to "Tools > Options > Environment Options > Delphi Options > Library"
+   Select "32-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\DXE2" folder and press "OK", "Add"
+     Browse to the "lib\DXE2\VCL" folder and press "OK", "Add"
+     Browse to the "lib\DXE2\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+   Select "64-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\DXE2_64" folder and press "OK", "Add"
+     Browse to the "lib\DXE2_64\VCL" folder and press "OK", "Add"
+     Browse to the "lib\DXE2_64\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+7. Go to "Tools > Options > Environment Options > C++ Options > Path and Directories"
+     Click "Library Path > [...]" button
+     Browse to the "lib\CXE2" folder and press "OK", "Add"
+     Browse to the "lib\CXE2\VCL" folder and press "OK", "Add"
+     Browse to the "lib\CXE2\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+
+
+Delphi/C++ XE3 Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_DXE3.groupproj"
+2. Select package (doble click) "GMLib_DXE3.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE3.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE3.bpl" and click "Compile"
+3. Select package (doble click) "GMLib_DXE3_VCL.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE3_VCL.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE3_VCL.bpl" and click "Compile"
+4. Select package (doble click) "GMLib_DXE3_FMX.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE3_FMX.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE3_FMX.bpl" and click "Compile"
+5. Right click on "GMLibEdit_DXE3.bpl" and click "Compile" and "Install"
+6. Go to "Tools > Options > Environment Options > Delphi Options > Library"
+   Select "32-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\DXE3" folder and press "OK", "Add"
+     Browse to the "lib\DXE3\VCL" folder and press "OK", "Add"
+     Browse to the "lib\DXE3\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+   Select "64-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\DXE3_64" folder and press "OK", "Add"
+     Browse to the "lib\DXE3_64\VCL" folder and press "OK", "Add"
+     Browse to the "lib\DXE3_64\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+7. Go to "Tools > Options > Environment Options > C++ Options > Path and Directories"
+     Click "Library Path > [...]" button
+     Browse to the "lib\CXE3" folder and press "OK", "Add"
+     Browse to the "lib\CXE3\VCL" folder and press "OK", "Add"
+     Browse to the "lib\CXE3\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
