@@ -3603,7 +3603,6 @@ var
   end;
 begin
   if FXMLData.Text = '' then Exit;
-  FXMLData.SaveToFile('d:\lolo.txt');
 
   FRoutes.Clear;
   XML := TXMLDocument.Create(nil);
