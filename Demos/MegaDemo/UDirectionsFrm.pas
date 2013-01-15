@@ -681,7 +681,8 @@ var
   Node1, Node2,
   Node3, Node4,
   Node5, Node6: TTreeNode;
-  Sec, Met: Integer;
+  Sec: TTime;
+  Met: Integer;
   MetStr: string;
 begin
   if lbResults.ItemIndex = -1 then Exit;
@@ -720,7 +721,7 @@ begin
       Met := 0;
       for j := 0 to Routes[i].CountLeg - 1 do
       begin
-        Sec := Sec + Routes[i].Leg[j].Duration.Value;
+        Sec := Sec + Trunc(Routes[i].Leg[j].Duration.Value);
         Met := Met + Routes[i].Leg[j].Distance.Value;
       end;
       MetStr := IntToStr((Trunc(Sec / 60 / 60))) + 'h';
@@ -741,10 +742,10 @@ begin
       Node2 := tvItems.Items.AddChild(Node1, 'Leg (' + IntToStr(Routes[i].CountLeg) + ')');
       for j := 0 to Routes[i].CountLeg - 1 do
       begin
-        tvItems.Items.AddChild(Node2, 'ArrivalTime: ' + Routes[i].Leg[j].ArrivalTime.Text + ' - ' + IntToStr(Routes[i].Leg[j].ArrivalTime.Value) + 's');
-        tvItems.Items.AddChild(Node2, 'DepartureTime: ' + Routes[i].Leg[j].DepartureTime.Text + ' - ' + IntToStr(Routes[i].Leg[j].DepartureTime.Value) + 's');
+        tvItems.Items.AddChild(Node2, 'ArrivalTime: ' + Routes[i].Leg[j].ArrivalTime.Text + ' - ' + FormatDateTime('dd/mm/yyyy hh:nn:ss', Routes[i].Leg[j].ArrivalTime.Value) + 's');
+        tvItems.Items.AddChild(Node2, 'DepartureTime: ' + Routes[i].Leg[j].DepartureTime.Text + ' - ' + FormatDateTime('dd/mm/yyyy hh:nn:ss', Routes[i].Leg[j].DepartureTime.Value) + 's');
         tvItems.Items.AddChild(Node2, 'Distance: ' + Routes[i].Leg[j].Distance.Text + ' - ' + IntToStr(Routes[i].Leg[j].Distance.Value) + 'm');
-        tvItems.Items.AddChild(Node2, 'Duration: ' + Routes[i].Leg[j].Duration.Text + ' - ' + IntToStr(Routes[i].Leg[j].Duration.Value) + 's');
+        tvItems.Items.AddChild(Node2, 'Duration: ' + Routes[i].Leg[j].Duration.Text + ' - ' + FormatDateTime('dd/mm/yyyy hh:nn:ss', Routes[i].Leg[j].Duration.Value) + 's');
         tvItems.Items.AddChild(Node2, 'EndAddress: ' + Routes[i].Leg[j].EndAddress);
         tvItems.Items.AddChild(Node2, 'StartAddress: ' + Routes[i].Leg[j].StartAddress);
         tvItems.Items.AddChild(Node2, 'EndLocation: ' + Routes[i].Leg[j].EndLocation.ToStr(FGMDir.Map.Precision));
@@ -761,7 +762,7 @@ begin
           Node4 := tvItems.Items.AddChild(Node3, 'Step ' + IntToStr(k) + ': ' + Routes[i].Leg[j].Step[k].Instructions);
           tvItems.Items.AddChild(Node4, 'TravelMode: ' + TTransform.TravelModeToStr(Routes[i].Leg[j].Step[k].TravelMode));
           tvItems.Items.AddChild(Node4, 'Distance: ' + Routes[i].Leg[j].Step[k].Distance.Text + ' - ' + IntToStr(Routes[i].Leg[j].Step[k].Distance.Value) + 's');
-          tvItems.Items.AddChild(Node4, 'Duration: ' + Routes[i].Leg[j].Step[k].Duration.Text + ' - ' + IntToStr(Routes[i].Leg[j].Step[k].Duration.Value) + 's');
+          tvItems.Items.AddChild(Node4, 'Duration: ' + Routes[i].Leg[j].Step[k].Duration.Text + ' - ' + FormatDateTime('dd/mm/yyyy hh:nn:ss', Routes[i].Leg[j].Step[k].Duration.Value) + 's');
           tvItems.Items.AddChild(Node4, 'EndLocation: ' + Routes[i].Leg[j].Step[k].EndLocation.ToStr(FGMDir.Map.Precision));
           tvItems.Items.AddChild(Node4, 'StartLocation: ' + Routes[i].Leg[j].Step[k].StartLocation.ToStr(FGMDir.Map.Precision));
           Node5 := tvItems.Items.AddChild(Node4, 'TransitDetails');

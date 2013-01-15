@@ -295,7 +295,7 @@ type
     {=------------------------------------------------------------------------------
       Hora de esta salida o llegada.
     -------------------------------------------------------------------------------}
-    FValue: TTime;
+    FValue: TDateTime;
     {*------------------------------------------------------------------------------
       The time zone in which this stop lies. The value is the name of the time zone as defined in the IANA Time Zone Database.
     -------------------------------------------------------------------------------}
@@ -331,7 +331,7 @@ type
 
     property Text: string read FText;
     property TimeZone: string read FTimeZone;
-    property Value: TTime read FValue;
+    property Value: TDateTime read FValue;
   end;
 
   {*------------------------------------------------------------------------------
@@ -740,19 +740,19 @@ type
   TDirectionsLeg = class
   private
     {*------------------------------------------------------------------------------
-      An estimated departure time for this leg. Only applicable for TRANSIT requests.
+      An estimated departure date/time for this leg. Only applicable for TRANSIT requests.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Hora estima de salida para esta etapa. Sólo aplicable para peticiones TRANSIT.
+      Día/Hora estima de salida para esta etapa. Sólo aplicable para peticiones TRANSIT.
     -------------------------------------------------------------------------------}
-    FDepartureTime: TDuration;
+    FDepartureTime: TTimeClass;
     {*------------------------------------------------------------------------------
       An estimated arrival time for this leg. Only applicable for TRANSIT requests.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Hora de llegada estimada para esta etapa. Sólo aplicable para peticiones TRANSIT.
     -------------------------------------------------------------------------------}
-    FArrivalTime: TDuration;
+    FArrivalTime: TTimeClass;
     {*------------------------------------------------------------------------------
       The total distance covered by this leg. This property may be undefined as the distance may be unknown.
     -------------------------------------------------------------------------------}
@@ -827,8 +827,8 @@ type
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TObject); virtual;
 
-    property ArrivalTime: TDuration read FArrivalTime;
-    property DepartureTime: TDuration read FDepartureTime;
+    property ArrivalTime: TTimeClass read FArrivalTime;
+    property DepartureTime: TTimeClass read FDepartureTime;
     property Distance: TDistance read FDistance;
     property Duration: TDuration read FDuration;
     property EndAddress: string read FEndAddress;
@@ -2267,11 +2267,19 @@ const
   StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
+  Dep, Arr: string;
 begin
   if not Assigned(Map) then
     raise Exception.Create(GetTranslateText('Mapa no asignado', Language));
 
   Inc(FCountDirResult);
+  Dep := '';
+  Arr := '';
+  if EncodeDate(1970, 1, 1) <> DirectionsRequest.TransitOpt.ArrivalDate then
+    Arr := FormatDateTime('mm/dd/yyyy hh:nn:ss', Trunc(DirectionsRequest.TransitOpt.ArrivalDate) + (DirectionsRequest.TransitOpt.ArrivalTime - Trunc(DirectionsRequest.TransitOpt.ArrivalTime)));
+  if EncodeDate(1970, 1, 1) <> DirectionsRequest.TransitOpt.DepartureDate then
+    Dep := FormatDateTime('mm/dd/yyyy hh:nn:ss', Trunc(DirectionsRequest.TransitOpt.DepartureDate) + (DirectionsRequest.TransitOpt.DepartureTime - Trunc(DirectionsRequest.TransitOpt.DepartureTime)));
+
   Params := Format(StrParams, [
                   LowerCase(TCustomTransform.GMBoolToStr(DirectionsRequest.AvoidHighways, True)),
                   LowerCase(TCustomTransform.GMBoolToStr(DirectionsRequest.AvoidTolls, True)),
@@ -2284,8 +2292,10 @@ begin
                   DirectionsRequest.Origin.LatLng.LngToStr(GetMapPrecision),
                   LowerCase(TCustomTransform.GMBoolToStr(DirectionsRequest.ProvideRouteAlt, True)),
                   QuotedStr(TCustomTransform.RegionToStr(DirectionsRequest.Region)),
-                  IntToStr(MilliSecondsBetween(DirectionsRequest.TransitOpt.ArrivalDate + DirectionsRequest.TransitOpt.ArrivalTime, EncodeDateTime(1970, 1, 1, 0, 0, 0, 1))),
-                  IntToStr(MilliSecondsBetween(DirectionsRequest.TransitOpt.DepartureDate + DirectionsRequest.TransitOpt.DepartureTime, EncodeDateTime(1970, 1, 1, 0, 0, 0, 1))),
+                  QuotedStr(Arr),
+                  QuotedStr(Dep),
+                  //IntToStr(MilliSecondsBetween(DirectionsRequest.TransitOpt.ArrivalDate + DirectionsRequest.TransitOpt.ArrivalTime, EncodeDateTime(1970, 1, 1, 0, 0, 0, 1))),
+                  //IntToStr(MilliSecondsBetween(DirectionsRequest.TransitOpt.DepartureDate + DirectionsRequest.TransitOpt.DepartureTime, EncodeDateTime(1970, 1, 1, 0, 0, 0, 1))),
                   QuotedStr(TCustomTransform.TravelModeToStr(DirectionsRequest.TravelMode)),
                   QuotedStr(TCustomTransform.UnitSystemToStr(DirectionsRequest.UnitSystem)),
                   QuotedStr(WaypointsToStr),
@@ -2721,7 +2731,8 @@ begin
     FStartLocation.Assign(TDirectionsStep(Source).StartLocation);
     FTransit.Assign(TDirectionsStep(Source).Transit);
     FTravelMode := TDirectionsStep(Source).TravelMode;
-    FSteps.Assign(TDirectionsStep(Source).FSteps);
+    if Assigned(TDirectionsStep(Source).FSteps) then
+      FSteps.Assign(TDirectionsStep(Source).FSteps);
   end;
 end;
 
@@ -3248,6 +3259,43 @@ var
       end;
     end;
 
+    function GetADateTime(Value: string): TDateTime;
+    var
+      L: TStringList;
+      D,M,Y,H,N,S: Integer;
+    begin
+      L := TStringList.Create;
+      try
+        L.CommaText := Value;
+        Result := EncodeDateTime(1970,1,1,0,0,0,0);
+        if L.Count = 6 then
+        begin
+          if TryStrToInt(L[0], D) and TryStrToInt(L[1], M) and TryStrToInt(L[2], Y) and
+             TryStrToInt(L[3], H) and TryStrToInt(L[4], N) and TryStrToInt(L[5], S) then
+            Result := EncodeDateTime(Y,M,D,H,N,S,0);
+        end;
+      finally
+        FreeAndNil(L);
+      end;
+    end;
+
+    procedure GetTTime(Time: TTimeClass; Node: IXMLNode);
+    begin
+      while Assigned(Node) do
+      begin
+        // ES: etiqueta "text" (sólo una)   // EN: "text" tag (only one)
+        if Node.NodeName = LBL_D_TEXT then Time.FText := Node.NodeValue;
+
+        // ES: etiqueta "time_zone" (sólo una)   // EN: "time_zone" tag (only one)
+        if Node.NodeName = LBL_D_TIMEZONE then Time.FTimeZone := Node.NodeValue;
+
+        // ES: etiqueta "value" (sólo una)   // EN: "value" tag (only one)
+        if Node.NodeName = LBL_D_VALUE then Time.FValue := GetADateTime(Node.NodeValue);
+
+        Node := Node.NextSibling;
+      end;
+    end;
+
     function ParseRouteNode(Node: IXMLNode): TDirectionsRoute;
       function ParseLegNode(Node: IXMLNode): TDirectionsLeg;
         procedure GetDuration(Duration: TDuration; Node: IXMLNode);
@@ -3283,22 +3331,6 @@ var
 
                 // ES: etiqueta "name" (sólo una)   // EN: "name" tag (only one)
                 if Node.NodeName = LBL_D_NAME then TStop.FName := Node.NodeValue;
-
-                Node := Node.NextSibling;
-              end;
-            end;
-            procedure GetTTime(Time: TTimeClass; Node: IXMLNode);
-            begin
-              while Assigned(Node) do
-              begin
-                // ES: etiqueta "text" (sólo una)   // EN: "text" tag (only one)
-                if Node.NodeName = LBL_D_TEXT then Time.FText := Node.NodeValue;
-
-                // ES: etiqueta "time_zone" (sólo una)   // EN: "time_zone" tag (only one)
-                if Node.NodeName = LBL_D_TIMEZONE then Time.FTimeZone := Node.NodeValue;
-
-                // ES: etiqueta "value" (sólo una)   // EN: "value" tag (only one)
-                if Node.NodeName = LBL_D_VALUE then Time.FValue := Node.NodeValue;
 
                 Node := Node.NextSibling;
               end;
@@ -3467,11 +3499,11 @@ var
         begin
           // ES: etiqueta "arrival_time" (sólo una)   // EN: "arrival_time" tag (only one)
           if (Node.NodeName = LBL_D_ARRIVALTIME) and (Node.ChildNodes.Count = 2) then
-            GetDuration(Result.FArrivalTime, Node.ChildNodes.First);
+            GetTTime(Result.FArrivalTime, Node.ChildNodes.First);
 
           // ES: etiqueta "departure_time" (sólo una)   // EN: "departure_time" tag (only one)
           if (Node.NodeName = LBL_D_DEPARTURETIME) and (Node.ChildNodes.Count = 2) then
-            GetDuration(Result.FDepartureTime, Node.ChildNodes.First);
+            GetTTime(Result.FDepartureTime, Node.ChildNodes.First);
 
           // ES: etiqueta "distance" (sólo una)   // EN: "distance" tag (only one)
           if (Node.NodeName = LBL_D_DISTANCE) and (Node.ChildNodes.Count = 2) then
@@ -3571,6 +3603,7 @@ var
   end;
 begin
   if FXMLData.Text = '' then Exit;
+  FXMLData.SaveToFile('d:\lolo.txt');
 
   FRoutes.Clear;
   XML := TXMLDocument.Create(nil);
@@ -3632,8 +3665,8 @@ end;
 
 constructor TDirectionsLeg.Create;
 begin
-  FArrivalTime := TDuration.Create;
-  FDepartureTime := TDuration.Create;
+  FArrivalTime := TTimeClass.Create;
+  FDepartureTime := TTimeClass.Create;
   FDistance := TDistance.Create;
   FDuration := TDuration.Create;
   FEndAddress := '';

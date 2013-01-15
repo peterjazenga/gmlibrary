@@ -206,6 +206,12 @@
     }
   }
   
+  /* GetStrDate */  
+  function GetStrDate(aDate) {
+    Result = aDate.getDate() + ',' + (aDate.getMonth() + 1) + ',' + aDate.getFullYear() + ',' +
+             aDate.getHours() + ',' + aDate.getMinutes() + ',' + aDate.getSeconds();
+  }
+  
   /* DirectionsProcessLine */  
   function DirectionsProcessLine(Line) {
     var Tmp = '';
@@ -220,7 +226,7 @@
     Tmp += '<local_icon>' + Line.vehicle.local_icon + '</local_icon>\n';
     Tmp += '<name>' + Line.vehicle.name + '</name>\n';
     Tmp += '<type>vt' + Line.vehicle.type + '</type>\n';
-    Tmp += '<\vehicle>\n';
+    Tmp += '</vehicle>\n';
     for (var i = 0; i < Line.agencies.length; i++)
       Tmp += '<agencies>\n<name>' + Line.agencies[i].name + '</name>\n<phone>' + Line.agencies[i].phone + '</phone>\n<url>' + Line.agencies[i].url + '</url>\n</agencies>\n';
     return Tmp;
@@ -232,23 +238,23 @@
     Tmp += '<arrival_stop>\n';
     Tmp += '<location>\n<lat>' + Transit.arrival_stop.location.lat() + '</lat>\n<lng>' + Transit.arrival_stop.location.lng() + '</lng>\n</location>\n';
     Tmp += '<name>' + Transit.arrival_stop.name + '</name>\n';
-    Tmp += '<\arrival_stop>\n';
+    Tmp += '</arrival_stop>\n';
     Tmp += '<arrival_time>\n';
     Tmp += '<text>' + Transit.arrival_time.text + '</text>\n';
     Tmp += '<time_zone>' + Transit.arrival_time.time_zone + '</time_zone>\n';
-    Tmp += '<value>' + Transit.arrival_time.value + '</value>\n';
-    Tmp += '<\arrival_time>\n';
+    Tmp += '<value>' + GetStrDate(Transit.arrival_time.value) + '</value>\n';
+    Tmp += '</arrival_time>\n';
     Tmp += '<departure_stop>\n';
     Tmp += '<location>\n<lat>' + Transit.departure_stop.location.lat() + '</lat>\n<lng>' + Transit.departure_stop.location.lng() + '</lng>\n</location>\n';
     Tmp += '<name>' + Transit.departure_stop.name + '</name>\n';
-    Tmp += '<\departure_stop>\n';
+    Tmp += '</departure_stop>\n';
     Tmp += '<departure_time>\n';
     Tmp += '<text>' + Transit.departure_time.text + '</text>\n';
     Tmp += '<time_zone>' + Transit.departure_time.time_zone + '</time_zone>\n';
-    Tmp += '<value>' + Transit.departure_time.value + '</value>\n';
-    Tmp += '<\departure_time>\n';
+    Tmp += '<value>' + GetStrDate(Transit.departure_time.value) + '</value>\n';
+    Tmp += '</departure_time>\n';
     Tmp += '<headsign>' + Transit.headsign + '</headsign>\n';
-    Tmp += '<headway>' + Transit.headway + '</headway>\n';
+    if (Transit.headway) Tmp += '<headway>' + Transit.headway + '</headway>\n';
     Tmp += '<num_stops>' + Transit.num_stops + '</num_stops>\n';
     Tmp += '<line>\n' + DirectionsProcessLine(Transit.line) + '</line>\n';
     return Tmp;
@@ -275,12 +281,12 @@
   /* DirectionsProcessLeg */  
   function DirectionsProcessLeg(Leg) {
     var Tmp = '';
-    if (Leg.arrival_time != null) Tmp += '<arrival_time>\n<text>' + Leg.arrival_time.text + '</text>\n<value>' + Leg.arrival_time.value + '</value>\n</arrival_time>\n';
-    if (Leg.departure_time != null) Tmp += '<departure_time>\n<text>' + Leg.departure_time.text + '</text>\n<value>' + Leg.departure_time.value + '</value>\n</departure_time>\n';
+    if (Leg.arrival_time != null) Tmp += '<arrival_time>\n<text>' + Leg.arrival_time.text + '</text>\n<time_zone>' + Leg.arrival_time.time_zone + '</time_zone>\n<value>' + GetStrDate(Leg.arrival_time.value) + '</value>\n</arrival_time>\n';
+    if (Leg.departure_time != null) Tmp += '<departure_time>\n<text>' + Leg.departure_time.text + '</text>\n<time_zone>' + Leg.departure_time.time_zone + '</time_zone>\n<value>' + GetStrDate(Leg.departure_time.value) + '</value>\n</departure_time>\n';
     Tmp += '<distance>\n<text>' + Leg.distance.text + '</text>\n<value>' + Leg.distance.value + '</value>\n</distance>\n';
     Tmp += '<duration>\n<text>' + Leg.duration.text + '</text>\n<value>' + Leg.duration.value + '</value>\n</duration>\n';
-    Tmp += '<end_address>' + Leg.end_address + '</end_address>\n';
-    Tmp += '<start_address>' + Leg.start_address + '</start_address>\n';
+    Tmp += '<end_address>' + Leg.end_address.replace(/&/igm, 'at') + '</end_address>\n';
+    Tmp += '<start_address>' + Leg.start_address.replace(/&/igm, 'at') + '</start_address>\n';
     Tmp += '<end_location>\n<lat>' + Leg.end_location.lat() + '</lat>\n<lng>' + Leg.end_location.lng() + '</lng>\n</end_location>\n';
     Tmp += '<start_location>\n<lat>' + Leg.end_location.lat() + '</lat>\n<lng>' + Leg.end_location.lng() + '</lng>\n</start_location>\n';
     for (var i = 0; i < Leg.via_waypoints.length; i++)
@@ -307,8 +313,8 @@
     return Tmp;
   }
   
-  /* DirectionsDoXMLData */
-  function DirectionsDoXMLData(result, status) {
+  /* DirectionsToXMLData */
+  function DirectionsToXMLData(result, status) {
     var Tmp = '<?xml version="1.0" encoding="UTF-8"?>\n';
     Tmp += '<DirectionsResponse>\n';
     Tmp += '<status>ds' + status + '</status>\n';
@@ -353,15 +359,15 @@
     var TMode = StrToTravelMode(TravelMode);
     var USystem = StrToUnitSystem(UnitSystem);
     
-    if ((TranDep == 0) && (TranArr == 0)) var Transit = null;
+    if ((TranDep == '') && (TranArr == '')) var Transit = null;
     else {
-      if ((TranDep != 0) && (TranArr != 0))
-        var Transit = {arrivalTime: TranArr, departureTime: TranDep}
+      if ((TranDep != '') && (TranArr != ''))
+        var Transit = {arrivalTime: new Date(TranArr), departureTime: new Date(TranDep)}
       else {
-        if ((TranDep == 0) && (TranArr != 0))
-          var Transit = {arrivalTime: TranArr}
+        if ((TranDep == '') && (TranArr != ''))
+          var Transit = {arrivalTime: new Date(TranArr)}
         else 
-          var Transit = {departureTime: TranDep}
+          var Transit = {departureTime: new Date(TranDep)}
       }
     }
     
@@ -383,7 +389,7 @@
     };
     
     Dir.route(request, function(result, status) {
-      document.directionsdata.xml.value = DirectionsDoXMLData(result, status);
+      document.directionsdata.xml.value = DirectionsToXMLData(result, status);
       
 	  if (HiddePrevious) 
         for (var i = 0; i < linkedCompList.length; i++) 
@@ -410,7 +416,7 @@
       linkedCompList.push(directionsDisplay);
 
       google.maps.event.addListener(directionsDisplay, "directions_changed", function() {
-            document.eventsDirection.xml.value = DirectionsDoXMLData(directionsDisplay.directions, directionsDisplay.DirectionsStatus);
+            document.eventsDirection.xml.value = DirectionsToXMLData(directionsDisplay.directions, directionsDisplay.DirectionsStatus);
             document.eventsDirection.linkCompId.value = directionsDisplay.GMLibId; 
             document.eventsDirection.linkCompZIndex.value = directionsDisplay.GMLibZIndex;
             document.eventsDirection.directions_changed.value = "1"; 

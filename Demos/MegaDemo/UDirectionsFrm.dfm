@@ -26,6 +26,10 @@ object DirectionsFrm: TDirectionsFrm
     TabOrder = 0
     object tsDirection: TTabSheet
       Caption = 'Direction'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cbAutoShow: TCheckBox
         Left = 56
         Top = 72
@@ -57,6 +61,10 @@ object DirectionsFrm: TDirectionsFrm
     object tsRequest: TTabSheet
       Caption = 'Request Opt.'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label5: TLabel
         Left = 16
         Top = 256
@@ -625,6 +633,10 @@ object DirectionsFrm: TDirectionsFrm
     object tsRenderer: TTabSheet
       Caption = 'Renderer Opt.'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cbDraggable: TCheckBox
         Left = 32
         Top = 40
@@ -808,6 +820,10 @@ object DirectionsFrm: TDirectionsFrm
     object tsResults: TTabSheet
       Caption = 'Results'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PageControl1: TPageControl
         Left = 0
         Top = 0
@@ -819,6 +835,10 @@ object DirectionsFrm: TDirectionsFrm
         object TabSheet1: TTabSheet
           Caption = 'TabSheet1'
           TabVisible = False
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label14: TLabel
             Left = 7
             Top = 16
@@ -856,6 +876,10 @@ object DirectionsFrm: TDirectionsFrm
         TabOrder = 1
         object tsGeneral: TTabSheet
           Caption = 'General'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label15: TLabel
             Left = 16
             Top = 19
@@ -930,6 +954,10 @@ object DirectionsFrm: TDirectionsFrm
         object tsXML: TTabSheet
           Caption = 'XMLData'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object mXMLData: TMemo
             Left = 0
             Top = 0
@@ -943,6 +971,10 @@ object DirectionsFrm: TDirectionsFrm
         object tsOptions: TTabSheet
           Caption = 'Render Opt.'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object cbResDraggable: TCheckBox
             Left = 16
             Top = 14
@@ -1126,6 +1158,10 @@ object DirectionsFrm: TDirectionsFrm
         object tsElevation: TTabSheet
           Caption = 'Elevation'
           ImageIndex = 3
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Panel1: TPanel
             Left = 0
             Top = 0

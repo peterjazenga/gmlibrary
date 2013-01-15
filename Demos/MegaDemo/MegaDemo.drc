@@ -916,13 +916,13 @@ BEGIN
 	SysConst_SZeroDivide,	"Floating point division by zero"
 END
 
-/* c:\archivos de programa\embarcadero\rad studio\7.0\lib\character.res */
-/* c:\archivos de programa\embarcadero\rad studio\7.0\lib\Controls.res */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\..\Resources\gmmapres.RES */
-/* c:\archivos de programa\embarcadero\rad studio\7.0\lib\Buttons.res */
-/* c:\archivos de programa\embarcadero\rad studio\7.0\lib\ExtDlgs.res */
-/* c:\archivos de programa\embarcadero\rad studio\7.0\lib\TeeResou.res */
-/* c:\archivos de programa\embarcadero\rad studio\7.0\lib\SPIN.RES */
+/* c:\program files (x86)\embarcadero\rad studio\7.0\lib\character.res */
+/* c:\program files (x86)\embarcadero\rad studio\7.0\lib\Controls.res */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\..\Resources\gmmapres.RES */
+/* c:\program files (x86)\embarcadero\rad studio\7.0\lib\Buttons.res */
+/* c:\program files (x86)\embarcadero\rad studio\7.0\lib\ExtDlgs.res */
+/* c:\program files (x86)\embarcadero\rad studio\7.0\lib\TeeResou.res */
+/* c:\program files (x86)\embarcadero\rad studio\7.0\lib\SPIN.RES */
 /* UWaypointFrm.dfm */
 /* UDirectionsFrm.dfm */
 /* UGeoCodeFrm.dfm */
@@ -931,7 +931,7 @@ END
 /* UPolylinesFrm.dfm */
 /* UPolygonFrm.dfm */
 /* UMarkersFrm.dfm */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMapFrm.dfm */
+/* UMapFrm.dfm */
 /* UMainFrm.dfm */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.res */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.drf */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.res */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.drf */
