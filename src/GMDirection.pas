@@ -16,6 +16,16 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: Error corregido en algunos tipos de datos (TTimeClass.Value,
+      TDirectionsLeg.DepartureTime, TDirectionsLeg.ArrivalTime).
+    cambio: Error corregido cuando se usaba la opción de DirectionsRequest.TravelMode=tmTRANSIT
+  EN:
+    change: bug fixed in some data types (TTimeClass.Value,
+      TDirectionsLeg.DepartureTime, TDirectionsLeg.ArrivalTime).
+    change: bug fixed when using the option DirectionsRequest.TravelMode=tmTRANSIT
+
 ver 0.1.9
   ES:
     nuevo: documentación
