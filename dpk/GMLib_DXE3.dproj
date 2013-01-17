@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{92735A9A-134F-4543-96B6-5884FBE35526}</ProjectGuid>
         <MainSource>GMLib_DXE3.dpk</MainSource>
-        <ProjectVersion>14.3</ProjectVersion>
+        <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>

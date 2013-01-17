@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{D1CC8858-C46C-426B-B7AC-1E512549BBE8}</ProjectGuid>
         <MainSource>GMLib_DXE3_VCL.dpk</MainSource>
-        <ProjectVersion>14.3</ProjectVersion>
+        <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>

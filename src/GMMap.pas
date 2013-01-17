@@ -2162,12 +2162,12 @@ type
     {*------------------------------------------------------------------------------
       Returns true if the given lat/lng is in the bounds.
       @param LatLng lat/lng to check
-      @return True if the given lat/lng is in the bounds
+      @return True if the given TLatLng is in the bounds
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve true si la lat/lng dada está dentro de los límites.
       @param LatLng lat/lng a comprobar
-      @return True si la lat/lng dada está dentro de los límites
+      @return True si la TLatLng dada está dentro de los límites
     -------------------------------------------------------------------------------}
     function LatLngBoundsContains(LatLng: TLatLng): Boolean; overload;
     {*------------------------------------------------------------------------------

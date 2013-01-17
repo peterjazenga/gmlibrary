@@ -1,23 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2013/01/03 11:24:08.000.744,=rtl.dcp</Transaction>
     <Transaction>2013/01/03 11:24:47.000.541,D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_DXE3_FMX.dproj=D:\Docs\RAD Studio\Projects\Package1.dproj</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.528,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMMarkerFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.441,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMFunctionsFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.376,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMDirectionFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.696,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\WebControlFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.479,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMMapFMX.pas</Transaction>
     <Transaction>2013/01/03 11:25:19.000.564,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMPolygonFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.631,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMRectangleFMX.pas</Transaction>
+    <Transaction>2013/01/03 11:25:19.000.441,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMFunctionsFMX.pas</Transaction>
     <Transaction>2013/01/03 11:25:19.000.665,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\RegisterCompFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.236,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMCircleFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.602,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMPolylineFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:25:19.000.406,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMElevationFMX.pas</Transaction>
-    <Transaction>2013/01/03 11:46:09.000.769,=dbrtl.dcp</Transaction>
+    <Transaction>2013/01/03 11:25:19.000.528,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMMarkerFMX.pas</Transaction>
     <Transaction>2013/01/03 11:46:09.000.811,=dclfmxstd.dcp</Transaction>
-    <Transaction>2013/01/03 11:46:09.000.741,=xmlrtl.dcp</Transaction>
-    <Transaction>2013/01/03 11:46:09.000.789,=fmx.dcp</Transaction>
-    <Transaction>2013/01/03 12:28:56.000.192,=GMLib_DXE3.dcp</Transaction>
   </Transactions>
 </BorlandProject>

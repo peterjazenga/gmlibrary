@@ -541,40 +541,40 @@ type
   protected
     {*------------------------------------------------------------------------------
       Returns the url to the Google Maps API.
-      @return String containing the url
+      @return String containing the url.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve la url a la API de Google Maps.
-      @return Cadena conteniendo la url
+      @return Cadena conteniendo la url.
     -------------------------------------------------------------------------------}
     function GetAPIUrl: string; virtual;
     {*------------------------------------------------------------------------------
       Round Value with Prec number of decimal digits. If Prec is 0 does nothing
-      @param Value decimal value to round
-      @param Prec precision to round
-      @return Real rounded to the specified precision
+      @param Value Decimal value to round.
+      @param Prec Precision to round.
+      @return Real rounded to the specified precision.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Redondea Value con Prec número de decimales. Si Prec es 0 no hace nada.
-      @param Value valor decimal a redondear
-      @param Prec precisión a la que redondear
-      @return Real redondeado a la precisión especificada
+      @param Value Valor decimal a redondear.
+      @param Prec Precisión a la que redondear.
+      @return Real redondeado a la precisión especificada.
     -------------------------------------------------------------------------------}
     function ControlPrecision(Value: Real; Prec: Integer): Real; virtual;
     {*------------------------------------------------------------------------------
       Replaces ' caracter by the string .#%#: to avoid problems at the moment of sending the string to JavaScript.
-      @param Value string where do replacement
-      @return String with replaced character
+      @param Value String where do replacement.
+      @return String with replaced character.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Reemplaza el caracter ' por la cadena .#%#: para evitar problemas en el momento de enviar la cadena a JavaScript.
-      @param Value cadena donde hacer el reemplazo
-      @return Cadena con el caracter reemplazado
+      @param Value Cadena donde hacer el reemplazo.
+      @return Cadena con el caracter reemplazado.
     -------------------------------------------------------------------------------}
     function GetConvertedString(Value: string): string;
   public
     {*------------------------------------------------------------------------------
-      Constructor of the class.
+      Class constructor.
       @param AOwner Component owner.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -585,11 +585,11 @@ type
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source object to copy content
+      @param Source Object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source objeto a copiar el contenido
+      @param Source Objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
   published
