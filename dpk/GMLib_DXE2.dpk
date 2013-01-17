@@ -36,7 +36,9 @@ requires
   vcl,
   xmlrtl,
   dbrtl,
+  {$IFDEF WIN32}
   DCEF_XE2,
+  {$ENDIF}
   fmx;
 
 contains

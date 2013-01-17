@@ -517,7 +517,7 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    Base class for all components of GMLib.
+    Base class for all GMLib components.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase base para todos los componentes de la GMLib.
@@ -525,17 +525,17 @@ type
   TGMBase = class(TComponent)
   private
     {*------------------------------------------------------------------------------
-      AboutGMLib property shows an about form with info of the GMLib.
+      AboutGMLib property shows an "About" form with info of the GMLib.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      La propiedad AboutGMLib muestra un formulario Acerca de con información de las GMLib.
+      La propiedad AboutGMLib muestra un formulario "Acerca de" con información de la GMLib.
     -------------------------------------------------------------------------------}
     FAboutGMLib: string;
     {*------------------------------------------------------------------------------
-      Language property specifies the language in which messages are displayed in the possible exceptions shown by the class/component.
+      Language property specifies the language in which messages are displayed the exceptions shown by the class/component.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      La propiedad Language especifica el idioma en que se mostrarán los mensajes de las posibles excepciones mostradas por la clase/componente.
+      La propiedad Language especifica el idioma en que se mostrarán los mensajes de las excepciones mostradas por la clase/componente.
     -------------------------------------------------------------------------------}
     FLanguage: TLang;
   protected
@@ -574,12 +574,12 @@ type
     function GetConvertedString(Value: string): string;
   public
     {*------------------------------------------------------------------------------
-      Constructor of the class
-      @param AOwner Component owner
+      Constructor of the class.
+      @param AOwner Component owner.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param AOwner Propietario del componente
+      Constructor de la clase.
+      @param AOwner Propietario del componente.
     -------------------------------------------------------------------------------}
     constructor Create(AOwner: TComponent); override;
 

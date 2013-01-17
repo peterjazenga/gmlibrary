@@ -35,7 +35,9 @@ requires
   vclimg,
   xmlrtl,
   dbrtl,
+  {$IFDEF WIN32}
   DCEF_XE2,
+  {$ENDIF}
   GMLib_DXE2;
 
 contains
