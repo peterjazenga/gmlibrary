@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2012/12/26 19:40:37.000.664,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMap.pas</Transaction>
-    <Transaction>2012/12/26 19:40:37.000.744,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMarker.pas</Transaction>
-    <Transaction>2012/12/26 19:40:38.000.039,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\WebControl.pas</Transaction>
-    <Transaction>2012/12/26 19:41:40.000.589,D:\Docs\RAD Studio\Projects\Package1.dproj=D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_DXE3.dproj</Transaction>
-    <Transaction>2012/12/26 19:51:15.000.311,=xmlrtl.dcp</Transaction>
-    <Transaction>2013/01/03 11:15:18.000.838,D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMarker.pas=</Transaction>
-    <Transaction>2013/01/03 11:15:18.000.183,D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMap.pas=</Transaction>
-    <Transaction>2013/01/03 11:15:22.000.176,D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\WebControl.pas=</Transaction>
-    <Transaction>2013/01/03 11:20:05.000.456,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMarker.pas</Transaction>
-    <Transaction>2013/01/03 11:20:05.000.410,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMap.pas</Transaction>
-    <Transaction>2013/01/03 11:20:05.000.654,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\WebControl.pas</Transaction>
+    <Transaction>2012/12/26 19:41:40.000.589,D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_DXE3.dproj=D:\Docs\RAD Studio\Projects\Package1.dproj</Transaction>
   </Transactions>
 </BorlandProject>

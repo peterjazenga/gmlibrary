@@ -346,7 +346,7 @@ type
     @param X coordenada X
     @param Y coordenada Y
   -------------------------------------------------------------------------------}
-  TLatLngEvent = procedure(Sender: TObject; LatLng: TLatLng; X, Y: Real) of object;
+  TLatLngEvent = procedure(Sender: TObject; LatLng: TLatLng; X, Y: Double) of object;
   {*------------------------------------------------------------------------------
     TMapTypeIdChanged event is fired when MapTypeId property change.
     @param Sender the object that belongs to
@@ -870,10 +870,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    Internal class containing the required properties of Google Maps map.
+    Class that contain the required properties of Google Maps map.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase interna que contendrá las propiedades requeridas de un mapa de Google Maps.
+    Clase que contiene las propiedades requeridas de un mapa de Google Maps.
   -------------------------------------------------------------------------------}
   TRequiredProp = class(TPersistent)
   private
@@ -949,10 +949,10 @@ type
   -------------------------------------------------------------------------------}
   TBoolOptions = set of TBoolOption;
   {*------------------------------------------------------------------------------
-    Internal class containing the non visual properties of Google Maps map.
+    Class that contain the non visual properties of Google Maps map.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase interna que contendrá las propiedades no visuales de un mapa de Google Maps.
+    Clase que contiene las propiedades no visuales de un mapa de Google Maps.
   -------------------------------------------------------------------------------}
   TNonVisualProp = class(TPersistent)
   private
@@ -2137,12 +2137,12 @@ type
     procedure LatLngBoundsGetBounds(LLB: TLatLngBounds);
     {*------------------------------------------------------------------------------
       Extends the bounds to contain the given point.
-      @param LatLng lat/lng to contain.
+      @param LatLng TLatLng to contain.
       @param LLB TLatLngBounds to store the information.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Extiende los límites hasta contener el punto dado.
-      @param LatLng lat/lng a contener.
+      @param LatLng TLatLng a contener.
       @param LLB TLatLngBounds donde se almacenará la información.
     -------------------------------------------------------------------------------}
     procedure LatLngBoundsExtend(LatLng: TLatLng; LLB: TLatLngBounds); overload;
@@ -2160,45 +2160,45 @@ type
     -------------------------------------------------------------------------------}
     procedure LatLngBoundsExtend(Lat, Lng: Real; LLB: TLatLngBounds); overload;
     {*------------------------------------------------------------------------------
-      Returns true if the given lat/lng is in the bounds.
-      @param LatLng lat/lng to check
-      @return True if the given TLatLng is in the bounds
+      Returns true if the given TLatLng is in the bounds.
+      @param LatLng TLatLng to check.
+      @return True if the given TLatLng is in the bounds.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Devuelve true si la lat/lng dada está dentro de los límites.
-      @param LatLng lat/lng a comprobar
-      @return True si la TLatLng dada está dentro de los límites
+      Devuelve true si la TLatLng dada está dentro de los límites.
+      @param LatLng TLatLng a comprobar.
+      @return True si la TLatLng dada está dentro de los límites.
     -------------------------------------------------------------------------------}
     function LatLngBoundsContains(LatLng: TLatLng): Boolean; overload;
     {*------------------------------------------------------------------------------
       Returns true if the given lat/lng is in the bounds.
-      @param Lat Latitude to check
-      @param Lng Longitude to check
-      @return True if the given lat/lng is in the bounds
+      @param Lat Latitude to check .
+      @param Lng Longitude to check.
+      @return True if the given lat/lng is in the bounds.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve true si la lat/lng dada está dentro de los límites.
-      @param Lat Latitud a comprobar
-      @param Lng Longitud a comprobar
-      @return True si la lat/lng dada está dentro de los límites
+      @param Lat Latitud a comprobar.
+      @param Lng Longitud a comprobar.
+      @return True si la lat/lng dada está dentro de los límites.
     -------------------------------------------------------------------------------}
     function LatLngBoundsContains(Lat, Lng: Real): Boolean; overload;
     {*------------------------------------------------------------------------------
-      Computes the center of the LatLngBounds.
-      @param LL Lat/lng representing the center
+      Computes the center of the TLatLngBounds.
+      @param LL TLatLng representing the center.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Calcula el centro del LatLngBounds.
-      @param LL Lat/lng que representa el centro
+      Calcula el centro del TLatLngBounds.
+      @param LL TLatLng que representa el centro.
     -------------------------------------------------------------------------------}
     procedure LatLngBoundsGetCenter(LL: TLatLng);
     {*------------------------------------------------------------------------------
-      Converts the given map bounds to a lat/lng span.
-      @param LL Lat/lng
+      Converts the given map bounds to a TLatLng span.
+      @param LL TLatLng.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Convierte los límites del mapa en una extensión lat/lng
-      @param LL Lat/lng
+      Convierte los límites del mapa en una extensión TLatLng
+      @param LL TLatLng.
     -------------------------------------------------------------------------------}
     procedure LatLngBoundsToSpan(LL: TLatLng);
 
@@ -2311,19 +2311,19 @@ type
     procedure PrintPageSetup; virtual;
     {*------------------------------------------------------------------------------
       SaveToJPGFile method create a JPG image with de page loaded.
-      @param FileName is the JPG file name
+      @param FileName Is the JPG file name.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método SaveToJPGFile crea una imagen JPG de la página cargada.
-      @param FileName es el nombre del archivo JPG
+      @param FileName Es el nombre del archivo JPG.
     -------------------------------------------------------------------------------}
     procedure SaveToJPGFile(FileName: TFileName = ''); virtual; abstract;
 
     {*------------------------------------------------------------------------------
-      create the map with the specified features
+      Create the map with the specified features.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      crea el mapa con las opciones especificadas.
+      Crea el mapa con las opciones especificadas.
     -------------------------------------------------------------------------------}
     procedure DoMap; virtual;
   published

@@ -65,15 +65,15 @@ type
     procedure GMMap1PrecisionChange(Sender: TObject);
     procedure GMMap1ZoomChanged(Sender: TObject; NewZoom: Integer);
     procedure GMMap1MapTypeIdChanged(Sender: TObject; NewMapTypeId: TMapTypeId);
-    procedure GMMap1MouseMove(Sender: TObject; LatLng: TLatLng; X, Y: Real);
-    procedure GMMap1Click(Sender: TObject; LatLng: TLatLng; X, Y: Real);
-    procedure GMMap1DblClick(Sender: TObject; LatLng: TLatLng; X, Y: Real);
+    procedure GMMap1MouseMove(Sender: TObject; LatLng: TLatLng; X, Y: Double);
+    procedure GMMap1Click(Sender: TObject; LatLng: TLatLng; X, Y: Double);
+    procedure GMMap1DblClick(Sender: TObject; LatLng: TLatLng; X, Y: Double);
     procedure GMMap1Drag(Sender: TObject);
     procedure GMMap1DragEnd(Sender: TObject);
     procedure GMMap1DragStart(Sender: TObject);
-    procedure GMMap1MouseOut(Sender: TObject; LatLng: TLatLng; X, Y: Real);
-    procedure GMMap1MouseOver(Sender: TObject; LatLng: TLatLng; X, Y: Real);
-    procedure GMMap1RightClick(Sender: TObject; LatLng: TLatLng; X, Y: Real);
+    procedure GMMap1MouseOut(Sender: TObject; LatLng: TLatLng; X, Y: Double);
+    procedure GMMap1MouseOver(Sender: TObject; LatLng: TLatLng; X, Y: Double);
+    procedure GMMap1RightClick(Sender: TObject; LatLng: TLatLng; X, Y: Double);
     procedure GMMap1BoundsChanged(Sender: TObject; NewBounds: TLatLngBounds);
     procedure Markers1Click(Sender: TObject);
     procedure GMMarker1Click(Sender: TObject; LatLng: TLatLng; Index: Integer;
@@ -157,7 +157,7 @@ type
     procedure GMMap1PanoramioClick(Sender: TObject; LatLng: TLatLng;
       PanoramioFeature: TPanoramioFeature);
     procedure GMMap1CenterChanged(Sender: TObject; LatLng: TLatLng;
-      X, Y: Real);
+      X, Y: Double);
     procedure GMDirection1DirectionsChanged(Sender: TObject);
     procedure Elevation1Click(Sender: TObject);
   private
@@ -342,7 +342,7 @@ begin
 end;
 
 procedure TMainFrm.GMMap1CenterChanged(Sender: TObject; LatLng: TLatLng;
-  X, Y: Real);
+  X, Y: Double);
 const
   Txt = 'Map OnCenterChange fired: lat %s - lng %s';
 begin
@@ -350,7 +350,7 @@ begin
   mEvents.Lines.Add(Format(Txt, [LatLng.LatToStr(GMMap1.Precision), LatLng.LngToStr(GMMap1.Precision)]));
 end;
 
-procedure TMainFrm.GMMap1Click(Sender: TObject; LatLng: TLatLng; X, Y: Real);
+procedure TMainFrm.GMMap1Click(Sender: TObject; LatLng: TLatLng; X, Y: Double);
 const
   Txt = 'Map OnClick fired: lat %s - lng %s';
 begin
@@ -359,7 +359,7 @@ begin
 end;
 
 procedure TMainFrm.GMMap1DblClick(Sender: TObject; LatLng: TLatLng;
-  X, Y: Real);
+  X, Y: Double);
 const
   Txt = 'Map OnDblClick fired: lat %s - lng %s';
 begin
@@ -403,7 +403,7 @@ begin
 end;
 
 procedure TMainFrm.GMMap1MouseMove(Sender: TObject; LatLng: TLatLng;
-  X, Y: Real);
+  X, Y: Double);
 begin
   sbStatus.Panels[1].Text := 'Lat: ' + LatLng.LatToStr(GMMap1.Precision);
   sbStatus.Panels[2].Text := 'Lng: ' + LatLng.LngToStr(GMMap1.Precision);;
@@ -414,7 +414,7 @@ begin
 end;
 
 procedure TMainFrm.GMMap1MouseOut(Sender: TObject; LatLng: TLatLng;
-  X, Y: Real);
+  X, Y: Double);
 const
   Txt = 'Map OnMouseOut fired: lat %s - lng %s';
 begin
@@ -423,7 +423,7 @@ begin
 end;
 
 procedure TMainFrm.GMMap1MouseOver(Sender: TObject; LatLng: TLatLng;
-  X, Y: Real);
+  X, Y: Double);
 const
   Txt = 'Map OnMouseOver fired: lat %s - lng %s';
 begin
@@ -456,7 +456,7 @@ begin
 end;
 
 procedure TMainFrm.GMMap1RightClick(Sender: TObject; LatLng: TLatLng;
-  X, Y: Real);
+  X, Y: Double);
 const
   Txt = 'Map OnRightClick fired: lat %s - lng %s';
 begin

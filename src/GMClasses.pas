@@ -215,7 +215,7 @@ type
     {=------------------------------------------------------------------------------
       Devuelve True si la LatLng es igual a la pasada por parámetro.
       @param Other LatLng a comparar
-      @return True si es cierto, False en caso contrario
+      @return True si son iguales, False en caso contrario
     -------------------------------------------------------------------------------}
     function IsEqual(Other: TLatLng): Boolean; virtual;
     {*------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ type
       @return String with the formatted latlng
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Devuelve una cadena con el formato "lat,lng" para la actual LatLng. Por defecto se redondea a 6 decimales los valores lat/lng.
+      Devuelve una cadena con el formato "lat,lng" para la actual LatLng. Por defecto se redondean a 6 decimales los valores lat/lng.
       @param Precision Precisión de los valores. Por defecto 6
       @return Cadena con la latlng formateada
     -------------------------------------------------------------------------------}
@@ -615,44 +615,44 @@ type
   TLatLngBounds = class(TPersistent)
   private
     {*------------------------------------------------------------------------------
-      northeast coordinates
+      Northeast coordinates.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      coordenadas noreste
+      Coordenadas noreste.
     -------------------------------------------------------------------------------}
     FNE: TLatLng;
     {*------------------------------------------------------------------------------
-      southwest coordinates
+      Southwest coordinates.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      coordenadas suroeste
+      Coordenadas suroeste.
     -------------------------------------------------------------------------------}
     FSW: TLatLng;
   public
     {*------------------------------------------------------------------------------
-      Constructor class
-      @param SWLat southwest latitude. Default 0
-      @param SWLng southwest longitude. Default 0
-      @param NELat northeast latitude. Default 0
-      @param NELng northeast longitude. Default 0
+      Class constructor.
+      @param SWLat Southwest latitude. Default 0.
+      @param SWLng Southwest longitude. Default 0.
+      @param NELat Northeast latitude. Default 0.
+      @param NELng Northeast longitude. Default 0.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param SWLat latitud suroeste. Por defecto 0
-      @param SWLng longitud suroeste. Por defecto 0
-      @param NELat latitud noreste. Por defecto 0
-      @param NELng longitud noreste. Por defecto 0
+      Constructor de la clase.
+      @param SWLat Latitud suroeste. Por defecto 0.
+      @param SWLng Longitud suroeste. Por defecto 0.
+      @param NELat Latitud noreste. Por defecto 0.
+      @param NELng Longitud noreste. Por defecto 0.
     -------------------------------------------------------------------------------}
     constructor Create(SWLat: Real = 0; SWLng: Real = 0; NELat: Real = 0; NELng: Real = 0); overload; virtual;
     {*------------------------------------------------------------------------------
-      Constructor class
-      @param SW southwest corner
-      @param NE northeast corner
+      Class constructor.
+      @param SW Southwest corner.
+      @param NE Northeast corner.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param SW esquena suroeste
-      @param NE esquena noreste
+      Constructor de la clase.
+      @param SW Esquena suroeste.
+      @param NE Esquena noreste.
     -------------------------------------------------------------------------------}
     constructor Create(SW, NE: TLatLng); overload; virtual;
     {*------------------------------------------------------------------------------
@@ -665,45 +665,45 @@ type
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source object to copy content
+      @param Source Object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source objeto a copiar el contenido
+      @param Source Objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
 
     {*------------------------------------------------------------------------------
       Returns True if this bounds is equals the given bounds.
-      @param Other bounds to compare
+      @param Other Bounds to compare
       @return True if equals, otherwise False
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve True si los límites son iguales a los pasados por parámetro.
-      @param Other límites a comparar
-      @return True si es cierto, False en caso contrario
+      @param Other Límites a comparar
+      @return True si son iguales, False en caso contrario
     -------------------------------------------------------------------------------}
     function IsEqual(Other: TLatLngBounds): Boolean;
     {*------------------------------------------------------------------------------
       Convert bounds to string representation.
-      @param Precision precision of values. Default 6
-      @return string with the bounds
+      @param Precision Precision of values. Default 6
+      @return String with the bounds
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Combierte los límites en una cadena.
-      @param Precision precisión de los valores. Por defecto 6
-      @return cadena con los límites
+      @param Precision Precisión de los valores. Por defecto 6
+      @return Cadena con los límites
     -------------------------------------------------------------------------------}
     function ToStr(Precision: Integer = 6): string;
     {*------------------------------------------------------------------------------
       Returns a string of the form "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, where "lo" corresponds to the southwest corner of the bounding box and "hi" corresponds to the northeast corner of that box.
-      @param Precision precision of values. Default 6
-      @return formatted string
+      @param Precision Precision of values. Default 6
+      @return Formatted string
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve una cadena con el formato "lat_lo,lng_lo,lat_hi,lng_hi" para los límites actuales, donde "lo" corresponde a la esquena suroeste de los límites y "hi" corresponde a la esquina noreste de los límites.
-      @param Precision precisión de los valores. Por defecto 6
-      @return cadena formateada
+      @param Precision Precisión de los valores. Por defecto 6
+      @return Cadena formateada
     -------------------------------------------------------------------------------}
     function ToUrlValue(Precision: Integer = 6): string;
   published

@@ -1,12 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2013/01/03 11:23:13.000.960,D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_DXE3_VCL.dproj=D:\Docs\RAD Studio\Projects\Package1.dproj</Transaction>
-    <Transaction>2013/01/03 11:23:40.000.396,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas</Transaction>
-    <Transaction>2013/01/03 11:23:40.000.130,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMCircleVCL.pas</Transaction>
-    <Transaction>2013/01/03 11:23:40.000.314,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMPolylineVCL.pas</Transaction>
-    <Transaction>2013/01/03 11:23:40.000.285,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMPolygonVCL.pas</Transaction>
+    <Transaction>2013/01/03 11:23:13.000.960,D:\Docs\RAD Studio\Projects\Package1.dproj=D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_DXE3_VCL.dproj</Transaction>
     <Transaction>2013/01/03 11:42:41.000.288,=dbrtl.dcp</Transaction>
-    <Transaction>2013/01/03 12:27:48.000.080,=GMLib_DXE3.dcp</Transaction>
   </Transactions>
 </BorlandProject>
