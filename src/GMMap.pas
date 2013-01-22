@@ -7,6 +7,14 @@ GMMap unit
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: TLatLngEvent -> los parámetros X y Y pasan de Real a Double para
+      evitar problemas en C++ XE3
+  EN:
+    change: TLatLngEvent -> params X and Y are changed from Real to Double to
+      avoid problems in C++ XE3
+
 ver 0.1.9
   ES:
     nuevo: documentación
