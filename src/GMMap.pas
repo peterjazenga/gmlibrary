@@ -320,87 +320,87 @@ type
 
   {*------------------------------------------------------------------------------
     AfterPageLoaded event is fired when the base HTML code es loaded (First param is true) and after the all map is loaded (First param is false).
-    @param Sender the object that belongs to
-    @param First true when HTML code loaded. False when Google Maps map loaded
+    @param Sender The object that belongs to.
+    @param First True when HTML code loaded. False when Google Maps map loaded.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento AfterPageLoaded se dispara cuando se carga el código HTML base (parámetro First a true) y cada vez que se carga el mapa (parámetro First a false).
-    @param Sender objeto al que pertenece
-    @param First a true cuando se carga el código HTML base. A false cuando se carga el mapa de Google Maps
+    @param Sender Objeto al que pertenece.
+    @param First A true cuando se carga el código HTML base. A false cuando se carga el mapa de Google Maps.
   -------------------------------------------------------------------------------}
   TAfterPageLoaded = procedure(Sender: TObject; First: Boolean) of object;
   {*------------------------------------------------------------------------------
     OnBoundsChanged event is fired when the bounds of map changed.
-    @param Sender the object that belongs to
-    @param NewBounds new map bounds
+    @param Sender The object that belongs to.
+    @param NewBounds New map bounds.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento OnBoundsChanged se dispara cuando cambia el límite del mapa.
-    @param Sender objeto al que pertenece
-    @param NewBounds nuevos límites del mapa
+    @param Sender Objeto al que pertenece.
+    @param NewBounds Nuevos límites del mapa.
   -------------------------------------------------------------------------------}
   TBoundsChanged = procedure(Sender: TObject; NewBounds: TLatLngBounds) of object;
   {*------------------------------------------------------------------------------
-    TLatLngEvent is used for events that return a LatLng and a reals X and Y.
-    @param Sender the object that belongs to
-    @param LatLng lat/lng coordinates
-    @param X X coordinate
-    @param Y Y coordinate
+    TLatLngEvent is used for events that return a lat/lng formatted in LatLng and a X and Y.
+    @param Sender The object that belongs to.
+    @param LatLng Lat/lng coordinates.
+    @param X X Coordinate.
+    @param Y Y Coordinate.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    El evento OnBoundsChanged se dispara cuando cambia el límite del mapa.
-    @param Sender objeto al que pertenece
-    @param LatLng coordenadas lat/lng
-    @param X coordenada X
-    @param Y coordenada Y
+    El evento TLatLngEvent se usa para los eventos que devuelven una lat/lng en formato de TLatLng y X e Y.
+    @param Sender Objeto al que pertenece.
+    @param LatLng Coordenadas lat/lng.
+    @param X Coordenada X.
+    @param Y Coordenada Y.
   -------------------------------------------------------------------------------}
   TLatLngEvent = procedure(Sender: TObject; LatLng: TLatLng; X, Y: Double) of object;
   {*------------------------------------------------------------------------------
     TMapTypeIdChanged event is fired when MapTypeId property change.
-    @param Sender the object that belongs to
-    @param NewMapTypeId the new MapTypeId
+    @param Sender The object that belongs to.
+    @param NewMapTypeId The new MapTypeId.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento TMapTypeIdChanged se dispara cuando la propiedad MapTypeId cambia.
-    @param Sender objeto al que pertenece
-    @param NewMapTypeId el nuevo MapTypeId
+    @param Sender Objeto al que pertenece.
+    @param NewMapTypeId El nuevo MapTypeId.
   -------------------------------------------------------------------------------}
   TMapTypeIdChanged = procedure(Sender: TObject; NewMapTypeId: TMapTypeId) of object;
   {*------------------------------------------------------------------------------
     TZoomChanged event is fired when Zoom property change.
-    @param Sender the object that belongs to
-    @param NewZoom the new zoom
+    @param Sender The object that belongs to.
+    @param NewZoom The new zoom.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento TZoomChanged se dispara cuando la propiedad Zoom cambia.
-    @param Sender objeto al que pertenece
-    @param NewZoom el nuevo zoom
+    @param Sender Objeto al que pertenece.
+    @param NewZoom El nuevo zoom.
   -------------------------------------------------------------------------------}
   TZoomChanged = procedure(Sender: TObject; NewZoom: Integer) of object;
   {*------------------------------------------------------------------------------
     OnWeatherClick event is fired when a feature in the weather layer is clicked.
-    @param Sender the object that belongs to
-    @param LatLng lat/lng coordinates
-    @param FeatureDetails a WeatherFeature object containing information about the clicked feature.
+    @param Sender The object that belongs to.
+    @param LatLng Lat/lng coordinates.
+    @param FeatureDetails A TWeatherFeature object containing information about the clicked feature.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento OnWeatherClick se dispara cuando se pulsa alguna característica de la capa del tiempo.
-    @param Sender objeto al que pertenece
-    @param LatLng coordenadas lat/lng
-    @param FeatureDetails objeto WeatherFeature que contiene información acerca de la característica pulsada
+    @param Sender Objeto al que pertenece.
+    @param LatLng Coordenadas lat/lng.
+    @param FeatureDetails Objeto TWeatherFeature que contiene información acerca de la característica pulsada.
   -------------------------------------------------------------------------------}
   TWeatherClick = procedure(Sender: TObject; LatLng: TLatLng; FeatureDetails: TWeatherFeature) of object;
   {*------------------------------------------------------------------------------
     OnPanoramioClick event is fired when a feature in the layer is clicked.
-    @param Sender the object that belongs to
-    @param LatLng lat/lng coordinates
-    @param PanoramioFeature a PanoramioFeature object containing information about the clicked feature.
+    @param Sender The object that belongs to.
+    @param LatLng Lat/lng coordinates.
+    @param PanoramioFeature A TPanoramioFeature object containing information about the clicked feature.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento OnPanoramioClick se dispara cuando se pulsa alguna característica de la capa.
-    @param Sender objeto al que pertenece
-    @param LatLng coordenadas lat/lng
-    @param PanoramioFeature objeto PanoramioFeature que contiene información acerca de la característica pulsada
+    @param Sender Objeto al que pertenece.
+    @param LatLng Coordenadas lat/lng.
+    @param PanoramioFeature Objeto TPanoramioFeature que contiene información acerca de la característica pulsada.
   -------------------------------------------------------------------------------}
   TPanoramioClick = procedure(Sender: TObject; LatLng: TLatLng; PanoramioFeature: TPanoramioFeature) of object;
 
@@ -1588,17 +1588,17 @@ type
     -------------------------------------------------------------------------------}
     property Location: string read FLocation;
     {*------------------------------------------------------------------------------
-      The temperature units being used.
+      The temperature units used.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Unidad de temperatura a usar.
+      Unidad de temperatura usada.
     -------------------------------------------------------------------------------}
     property TemperatureUnit: TTemperatureUnit read FTemperatureUnit;
     {*------------------------------------------------------------------------------
-      The wind speed units being used.
+      The wind speed units used.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Unidades de velocidad a usar.
+      Unidades de velocidad usada.
     -------------------------------------------------------------------------------}
     property WindSpeedUnit: TWindSpeedUnit read FWindSpeedUnit;
     {*------------------------------------------------------------------------------
@@ -1612,7 +1612,7 @@ type
       Count of Forecast.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Contador de los pronósticos.
+      Cantidad de Forecast.
     -------------------------------------------------------------------------------}
     property Count: Integer read GetCount;
   end;
