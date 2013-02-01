@@ -80,10 +80,12 @@ type
   TInfoWindow = class;
 
   {*------------------------------------------------------------------------------
-    Class for InfoWindows.
+    Class management of InfoWindows.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#InfoWindow
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase para las ventanas de información.
+    Clase para la gestión de ventanas de información.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#InfoWindow
   -------------------------------------------------------------------------------}
   TInfoWindow = class(TLinkedComponent)
   private
@@ -131,7 +133,7 @@ type
       Shows or hides the InfoWindows.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Muestro o oculta la ventana de información.
+      Muestra o oculta la ventana de información.
     -------------------------------------------------------------------------------}
     procedure OpenClose;
   published
@@ -200,12 +202,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    Class for GMInfoWindow component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#InfoWindow
+    Class management of InfoWindow.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase para el componente GMInfoWindow.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#InfoWindow
+    Clase para la gestión de InfoWindow.
   -------------------------------------------------------------------------------}
   TGMInfoWindow = class(TGMLinkedComponent)
   private
@@ -221,23 +221,23 @@ type
 
     function GetItems(I: Integer): TInfoWindow;
 
-    procedure ShowElements; override;
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
+    procedure ShowElements; override;
     {*------------------------------------------------------------------------------
-      Creates a new TInfoWindow instance and adds it to the Items array..
-      @param Lat InfoWindow latitude
-      @param Lng InfoWindow longitude
-      @param HTMLContent InfoWindow content in HTML format
-      @return New InfoWindow
+      Creates a new TInfoWindow instance and adds it to the Items array.
+      @param Lat InfoWindow latitude.
+      @param Lng InfoWindow longitude.
+      @param HTMLContent InfoWindow content in HTML format.
+      @return New InfoWindow.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TInfoWindow y la añade en el array de Items.
-      @param Lat Latitud del InfoWindow
-      @param Lng Longitud del InfoWindow
-      @param HTMLContent Contenido del InfoWindow en formato HTML
-      @return Nuevo InfoWindow
+      @param Lat Latitud del InfoWindow.
+      @param Lng Longitud del InfoWindow.
+      @param HTMLContent Contenido del InfoWindow en formato HTML.
+      @return Nuevo InfoWindow.
     -------------------------------------------------------------------------------}
     function Add(Lat: Real = 0; Lng: Real = 0; HTMLContent: string = ''): TInfoWindow;
 

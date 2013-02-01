@@ -600,9 +600,11 @@ type
 
   {*------------------------------------------------------------------------------
     Base class for markers.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase base para los marcadores.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
   -------------------------------------------------------------------------------}
   TCustomMarker = class(TLinkedComponent)
   private
@@ -610,7 +612,7 @@ type
       Style animation for marker.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Animation style for marker.
+      Tipo de animación para los marcadores.
     -------------------------------------------------------------------------------}
     FAnimation: TAnimation;
     {*------------------------------------------------------------------------------
@@ -792,42 +794,40 @@ type
 
   {*------------------------------------------------------------------------------
     TLinkedComponentChange is fired when a property of collection item changes.
-    @param Sender Owner object of the collection item
-    @param Marker New marker
-    @param Current Current Row
-    @param Count Number of rows
-    @param Stop If we want to stop the process
+    @param Sender Owner object of the collection item.
+    @param Marker New marker.
+    @param Current Current Row.
+    @param Count Number of rows.
+    @param Stop True to stop the process.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento TOnLoadFile se dispara al cargar cada una de las filas del archivo CSV.
-    @param Sender Objecto propietario del elemento de la colección
-    @param Marker Nueva marcador
-    @param Current Fila actual
-    @param Count Cantidad de filas
-    @param Stop Si queremos detener el proceso
+    @param Sender Objecto propietario del elemento de la colección.
+    @param Marker Nuevo marcador.
+    @param Current Fila actual.
+    @param Count Cantidad de filas.
+    @param Stop True para detener el proceso.
   -------------------------------------------------------------------------------}
   TOnLoadFile = procedure (Sender: TCustomGMMarker; Marker: TCustomMarker; Current, Count: Integer; var Stop: Boolean) of object;
   {*------------------------------------------------------------------------------
     This event is fired when TAfterLoadFile finish loading the CSV file.
-    @param Sender Owner object of the collection item
-    @param Loaded Number of rows loaded
-    @param Count Number of rows
+    @param Sender Owner object of the collection item.
+    @param Loaded Number of rows loaded.
+    @param Count Number of rows.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     El evento TAfterLoadFile se dispara al terminar de cargar el archivo CSV.
-    @param Sender Objecto propietario del elemento de la colección
-    @param Loaded Número de filas cargadas
-    @param Count Cantidad de filas
+    @param Sender Objecto propietario del elemento de la colección.
+    @param Loaded Número de filas cargadas.
+    @param Count Cantidad de filas.
   -------------------------------------------------------------------------------}
   TAfterLoadFile = procedure (Sender: TCustomGMMarker; Loaded, Count: Integer) of object;
 
   {*------------------------------------------------------------------------------
-    Base class for GMMarker component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
+    Base class management of markers.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase base para el componente GMMarker.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
+    Clase base para la gestión de marcadores.
   -------------------------------------------------------------------------------}
   TCustomGMMarker  = class(TGMLinkedComponent)
   private
@@ -989,24 +989,24 @@ type
   public
     procedure ShowElements; override;
     {*------------------------------------------------------------------------------
-      Creates a new TMarker instance and adds it to the Items array..
-      @param LatColumn Column with latitude information
-      @param LngColumn Column with longitude information
-      @param FileName File name
-      @param TitleColumn Column with title information
-      @param Delimiter Field delimiter
-      @param DeleteBeforeLoad Delete markers before load file
-      @param WithRownTitle If the file have a first row with title columns
+      Creates TMarker instances and adds them to the Items array.
+      @param LatColumn Column with latitude information.
+      @param LngColumn Column with longitude information.
+      @param FileName File name.
+      @param TitleColumn Column with title information.
+      @param Delimiter Field delimiter.
+      @param DeleteBeforeLoad To true, delete markers before load file.
+      @param WithRownTitle If the file have a first row with title columns.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Crea una nueva instancia de TMarker y la añade en el array de Items.
-      @param LatColumn Columna con la información de la latitud
-      @param LngColumn Columna con información de la longitud
-      @param FileName Nombre del fichero
-      @param TitleColumn Columna con información del título
-      @param Delimiter Delimitador de campos
-      @param DeleteBeforeLoad Borra los marcadores antes de cargar el fichero
-      @param WithRownTitle Si el fichero tiene una primera fila con el título de las columnas
+      Crea instancias de TMarker y las añade en el array de Items.
+      @param LatColumn Columna con la información de la latitud.
+      @param LngColumn Columna con información de la longitud.
+      @param FileName Nombre del fichero.
+      @param TitleColumn Columna con información del título.
+      @param Delimiter Delimitador de campos.
+      @param DeleteBeforeLoad A true, borra los marcadores antes de cargar el fichero.
+      @param WithRownTitle Si el fichero tiene una primera fila con el título de las columnas.
     -------------------------------------------------------------------------------}
     procedure LoadFromCSV(LatColumn, LngColumn: Integer; FileName: string;
       TitleColumn: Integer = -1; Delimiter: Char = ','; DeleteBeforeLoad: Boolean = True;
@@ -1014,17 +1014,17 @@ type
 
     {*------------------------------------------------------------------------------
       Creates a new TMarker instance and adds it to the Items array.
-      @param Lat Marker latitude
-      @param Lng Marker longitude
-      @param Title Marker title
-      @return New merker
+      @param Lat Marker latitude.
+      @param Lng Marker longitude.
+      @param Title Marker title.
+      @return New merker.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TMarker y la añade en el array de Items.
-      @param Lat Latitud del marcador
-      @param Lng Longitud del marcador
-      @param Title Título del marcador
-      @return Nuevo marcador
+      @param Lat Latitud del marcador.
+      @param Lng Longitud del marcador.
+      @param Title Título del marcador.
+      @return Nuevo marcador.
     -------------------------------------------------------------------------------}
     function Add(Lat: Real = 0; Lng: Real = 0; Title: string = ''): TCustomMarker;
 

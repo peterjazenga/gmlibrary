@@ -114,12 +114,14 @@ type
   public
     {*------------------------------------------------------------------------------
       Encodes a sequence of LatLngs into an encoded path string.
+      The points must be separated by semicolon (;) and the Lat/Lng of a point by a pipe (|).
       @param Map Map to access JavaScript functions.
       @param PointsStr String with the points to encode.
       @return Encoded string.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Codifica una secuencia de LatLng en un string codificado.
+      Los puntos tiene que estar separados por punto y coma (;) y la Lat/Lng de un punto por una barra vertical (|).
       @param Map Mapa para acceder a las funciones JavaScript.
       @param PointsStr String con los puntos a codificar.
       @return String codificado.
@@ -158,15 +160,17 @@ type
       LatLng: TLatLng; Tolerance: Integer): Boolean;
     {*------------------------------------------------------------------------------
       Returns the area of a closed path. The computed area uses the same units as the Radius. The radius defaults to the Earth's radius in meters, in which case the area is in square meters.
+      The points must be separated by semicolon (;) and the Lat/Lng of a point by a pipe (|).
       @param Map Map to access JavaScript functions.
-      @param PointsStr String with the points to encode.
+      @param PointsStr String with the points.
       @param Radius Radius. -1 default radius.
       @return Area.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve el area de una ruta cerrada. El area calculada usa las mismas unidades que Radius. El radio por defecto es el radio de la Tierra en metros, en cuyo caso el área es en metros cuadrados.
+      Los puntos tiene que estar separados por punto y coma (;) y la Lat/Lng de un punto por una barra vertical (|).
       @param Map Mapa para acceder a las funciones JavaScript.
-      @param PointsStr String con los puntos a codificar.
+      @param PointsStr String con los puntos.
       @param Radius Radio. -1 radio por defecto.
       @return Area.
     -------------------------------------------------------------------------------}
@@ -190,6 +194,113 @@ type
     -------------------------------------------------------------------------------}
     class function ComputeDistanceBetween(Map: TCustomGMMap; Origin, Dest: TLatLng;
       Radius: Real = -1): Real;
+    {*------------------------------------------------------------------------------
+      Returns the degree between two LatLng.
+      @param Map Map to access JavaScript functions.
+      @param Origin LatLng origin.
+      @param Dest LatLng destination.
+      @return Degree between points.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve los grados entre dos LatLng.
+      @param Map Mapa para acceder a las funciones JavaScript.
+      @param Origin LatLng origen.
+      @param Dest LatLng destino.
+      @return Grados entre los puntos.
+    -------------------------------------------------------------------------------}
+    class function ComputeHeading(Map: TCustomGMMap; Origin, Dest: TLatLng): Real;
+    {*------------------------------------------------------------------------------
+      Returns the length of the given path.
+      The points must be separated by semicolon (;) and the Lat/Lng of a point by a pipe (|).
+      @param Map Map to access JavaScript functions.
+      @param PointsStr String with the points.
+      @param Radius Radius. -1 default radius.
+      @return Length.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve la longitud del camino dado.
+      Los puntos tiene que estar separados por punto y coma (;) y la Lat/Lng de un punto por una barra vertical (|).
+      @param Map Mapa para acceder a las funciones JavaScript.
+      @param PointsStr String con los puntos.
+      @param Radius Radio. -1 radio por defecto.
+      @return Longitud.
+    -------------------------------------------------------------------------------}
+    class function ComputeLength(Map: TCustomGMMap; PointsStr: string;
+      Radius: Real = -1): Real;
+    {*------------------------------------------------------------------------------
+      Returns the TLatLng resulting from moving a distance from an origin in the specified heading.
+      @param Map Map to access JavaScript functions.
+      @param Origin LatLng origin.
+      @param Distance Distance to move.
+      @param Heading Degree.
+      @param Radius Radius. -1 default radius.
+      @param Result Resulting TLatLng.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve la TLatLng resultante de desplazarse una distancia desde un origen en unos grados específicos.
+      @param Map Mapa para acceder a las funciones JavaScript.
+      @param Origin LatLng origen.
+      @param Distance Distancia a desplazarse.
+      @param Heading Grados.
+      @param Radius Radio. -1 radio por defecto.
+      @param Result TLatLng resultante.
+    -------------------------------------------------------------------------------}
+    class procedure ComputeOffset(Map: TCustomGMMap; Origin: TLatLng; Distance,
+      Heading: Real; Result: TLatLng; Radius: Real = -1);
+    {*------------------------------------------------------------------------------
+      Returns the TLatLng of origin when provided with a LatLng destination, meters travelled and original heading.
+      @param Map Map to access JavaScript functions.
+      @param Dest LatLng destination.
+      @param Distance Distance moved.
+      @param Heading Degree.
+      @param Radius Radius. -1 default radius.
+      @param Result Resulting TLatLng.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve la TLatLng del origen sabiendo la TLatLng destino, los metros desplazados y los grados iniciales.
+      @param Map Mapa para acceder a las funciones JavaScript.
+      @param Dest LatLng destino.
+      @param Distance Distancia desplazada.
+      @param Heading Grados.
+      @param Radius Radio. -1 radio por defecto.
+      @param Result TLatLng resultante.
+    -------------------------------------------------------------------------------}
+    class procedure ComputeOffsetOrigin(Map: TCustomGMMap; Dest: TLatLng; Distance,
+      Heading: Real; Result: TLatLng; Radius: Real = -1);
+    {*------------------------------------------------------------------------------
+      Returns the signed area of a closed path.
+      The points must be separated by semicolon (;) and the Lat/Lng of a point by a pipe (|).
+      @param Map Map to access JavaScript functions.
+      @param PointsStr String with the points.
+      @param Radius Radius. -1 default radius.
+      @return Length.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve el area de una ruta cerrada.
+      Los puntos tiene que estar separados por punto y coma (;) y la Lat/Lng de un punto por una barra vertical (|).
+      @param Map Mapa para acceder a las funciones JavaScript.
+      @param PointsStr String con los puntos.
+      @param Radius Radio. -1 radio por defecto.
+      @return Longitud.
+    -------------------------------------------------------------------------------}
+    class function ComputeSignedArea(Map: TCustomGMMap; PointsStr: string;
+      Radius: Real = -1): Real;
+    {*------------------------------------------------------------------------------
+      Returns the LatLng which lies the given fraction of the way between the origin LatLng and the destination LatLng.
+      @param Map Map to access JavaScript functions.
+      @param Origin LatLng origin.
+      @param Dest LatLng destination.
+      @return Degree between points.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve el LatLng que se encuentra la fracción dada del camino entre el origen y el LatLng LatLng destino.
+      @param Map Mapa para acceder a las funciones JavaScript.
+      @param Origin LatLng origen.
+      @param Dest LatLng destino.
+      @return Grados entre los puntos.
+    -------------------------------------------------------------------------------}
+    class procedure Interpolate(Map: TCustomGMMap; Origin, Dest: TLatLng;
+      Fraction: Real; Result: TLatLng);
   end;
 
   {*------------------------------------------------------------------------------
@@ -1467,20 +1578,14 @@ const
   StrParams = '%s,%s';
 var
   Params: string;
-  LatLng: TLatLng;
 begin
   Result := 0;
   if not TGeometry.CheckPointsStr(PointsStr) then Exit;
 
-  LatLng := TLatLng.Create(Radius);
-  try
-    Params := Format(StrParams, [
-                  QuotedStr(PointsStr),
-                  LatLng.LatToStr(0)
-                  ]);
-  finally
-    FreeAndNil(LatLng);
-  end;
+  Params := Format(StrParams, [
+                QuotedStr(PointsStr),
+                StringReplace(FloatToStr(Radius), ',', '.', [rfReplaceAll])
+                ]);
   THackMap(Map).ExecuteScript('ComputeArea', Params);
   Result := THackMap(Map).FWC.GetFloatField(GeometryForm, GeometryFormComputeArea);
 end;
@@ -1491,22 +1596,111 @@ const
   StrParams = '%s,%s,%s,%s,%s';
 var
   Params: string;
-  LatLng: TLatLng;
 begin
-  LatLng := TLatLng.Create(Radius);
-  try
-    Params := Format(StrParams, [
-                  Origin.LatToStr(Map.Precision),
-                  Origin.LngToStr(Map.Precision),
-                  Dest.LatToStr(Map.Precision),
-                  Dest.LngToStr(Map.Precision),
-                  LatLng.LatToStr(0)
-                ]);
-  finally
-    FreeAndNil(LatLng);
-  end;
+  Params := Format(StrParams, [
+                Origin.LatToStr(Map.Precision),
+                Origin.LngToStr(Map.Precision),
+                Dest.LatToStr(Map.Precision),
+                Dest.LngToStr(Map.Precision),
+                StringReplace(FloatToStr(Radius), ',', '.', [rfReplaceAll])
+              ]);
   THackMap(Map).ExecuteScript('ComputeDistanceBetween', Params);
   Result := THackMap(Map).FWC.GetFloatField(GeometryForm, GeometryFormComputeDist);
+end;
+
+class function TGeometry.ComputeHeading(Map: TCustomGMMap; Origin,
+  Dest: TLatLng): Real;
+const
+  StrParams = '%s,%s,%s,%s';
+var
+  Params: string;
+begin
+  Params := Format(StrParams, [
+                Origin.LatToStr(Map.Precision),
+                Origin.LngToStr(Map.Precision),
+                Dest.LatToStr(Map.Precision),
+                Dest.LngToStr(Map.Precision)
+              ]);
+  THackMap(Map).ExecuteScript('ComputeHeading', Params);
+  Result := THackMap(Map).FWC.GetFloatField(GeometryForm, GeometryFormComputeHea);
+end;
+
+class function TGeometry.ComputeLength(Map: TCustomGMMap; PointsStr: string;
+  Radius: Real): Real;
+const
+  StrParams = '%s,%s';
+var
+  Params: string;
+begin
+  Result := 0;
+  if not TGeometry.CheckPointsStr(PointsStr) then Exit;
+
+  Params := Format(StrParams, [
+                QuotedStr(PointsStr),
+                StringReplace(FloatToStr(Radius), ',', '.', [rfReplaceAll])
+                ]);
+  THackMap(Map).ExecuteScript('ComputeLength', Params);
+  Result := THackMap(Map).FWC.GetFloatField(GeometryForm, GeometryFormComputeLength);
+end;
+
+class procedure TGeometry.ComputeOffset(Map: TCustomGMMap; Origin: TLatLng;
+  Distance, Heading: Real; Result: TLatLng; Radius: Real);
+const
+  StrParams = '%s,%s,%s,%s,%s';
+var
+  Params: string;
+begin
+  if not Assigned(Result) then Exit;
+
+  Params := Format(StrParams, [
+                Origin.LatToStr(Map.Precision),
+                Origin.LngToStr(Map.Precision),
+                StringReplace(FloatToStr(Distance), ',', '.', [rfReplaceAll]),
+                StringReplace(FloatToStr(Heading), ',', '.', [rfReplaceAll]),
+                StringReplace(FloatToStr(Radius), ',', '.', [rfReplaceAll])
+              ]);
+  THackMap(Map).ExecuteScript('ComputeOffset', Params);
+  Result.Lat := Result.StringToReal(THackMap(Map).FWC.GetStringField(GeometryForm, GeometryFormComputeOffLat));
+  Result.Lng := Result.StringToReal(THackMap(Map).FWC.GetStringField(GeometryForm, GeometryFormComputeOffLng));
+end;
+
+class procedure TGeometry.ComputeOffsetOrigin(Map: TCustomGMMap; Dest: TLatLng;
+  Distance, Heading: Real; Result: TLatLng; Radius: Real);
+const
+  StrParams = '%s,%s,%s,%s,%s';
+var
+  Params: string;
+begin
+  if not Assigned(Result) then Exit;
+
+  Params := Format(StrParams, [
+                Dest.LatToStr(Map.Precision),
+                Dest.LngToStr(Map.Precision),
+                StringReplace(FloatToStr(Distance), ',', '.', [rfReplaceAll]),
+                StringReplace(FloatToStr(Heading), ',', '.', [rfReplaceAll]),
+                StringReplace(FloatToStr(Radius), ',', '.', [rfReplaceAll])
+              ]);
+  THackMap(Map).ExecuteScript('ComputeOffsetOrigin', Params);
+  Result.Lat := Result.StringToReal(THackMap(Map).FWC.GetStringField(GeometryForm, GeometryFormComputeOffLat));
+  Result.Lng := Result.StringToReal(THackMap(Map).FWC.GetStringField(GeometryForm, GeometryFormComputeOffLng));
+end;
+
+class function TGeometry.ComputeSignedArea(Map: TCustomGMMap; PointsStr: string;
+  Radius: Real): Real;
+const
+  StrParams = '%s,%s';
+var
+  Params: string;
+begin
+  Result := 0;
+  if not TGeometry.CheckPointsStr(PointsStr) then Exit;
+
+  Params := Format(StrParams, [
+                QuotedStr(PointsStr),
+                StringReplace(FloatToStr(Radius), ',', '.', [rfReplaceAll])
+                ]);
+  THackMap(Map).ExecuteScript('ComputeSignedArea', Params);
+  Result := THackMap(Map).FWC.GetFloatField(GeometryForm, GeometryFormComputeSigA);
 end;
 
 class function TGeometry.DecodePath(Map: TCustomGMMap; EncodedPath: string): string;
@@ -1523,6 +1717,12 @@ begin
     Result := THackMap(Map).FWC.GetStringField(GeometryForm, GeometryFormEncodedPath);
   end
   else Result := '';
+end;
+
+class procedure TGeometry.Interpolate(Map: TCustomGMMap; Origin, Dest: TLatLng;
+  Fraction: Real; Result: TLatLng);
+begin
+
 end;
 
 class function TGeometry.IsLocationOnEdge(GMPoly: TGMBasePolyline;

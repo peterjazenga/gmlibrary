@@ -211,10 +211,18 @@ type
 
     function GetItems(I: Integer): TPolyline;
 
-    procedure ShowElements; override;
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
+    procedure ShowElements; override;
+    {*------------------------------------------------------------------------------
+      Creates a new TPolyline instance and adds it to the Items array.
+      @return New TPolyline
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea una nueva instancia de TPolyline y la añade en el array de Items.
+      @return Nuevo TPolyline
+    -------------------------------------------------------------------------------}
     function Add: TPolyline;
 
     {*------------------------------------------------------------------------------

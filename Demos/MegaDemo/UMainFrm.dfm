@@ -309,7 +309,16 @@ object MainFrm: TMainFrm
     OnMaxWidthChange = GMMarker1MaxWidthChange
     OnPixelOffsetChange = GMMarker1PixelOffsetChange
     OnCloseOtherBeforeOpenChange = GMMarker1CloseOtherBeforeOpenChange
-    VisualObjects = <>
+    VisualObjects = <
+      item
+        Tag = 0
+        DisableAutoPan = False
+        MaxWidth = 0
+        PixelOffset.Height = 0
+        PixelOffset.Width = 0
+        CloseOtherBeforeOpen = True
+        AutoOpen = True
+      end>
     OnPositionChange = GMMarker1PositionChange
     Left = 104
     Top = 40

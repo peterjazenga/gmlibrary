@@ -15,6 +15,9 @@
         <Projects Include="dpk\GMLibEdit_DXE3.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Demos\MegaDemo\MegaDemo.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="GMLibEdit_DXE3:Make">
         <MSBuild Projects="dpk\GMLibEdit_DXE3.dproj" Targets="Make"/>
     </Target>
+    <Target Name="MegaDemo">
+        <MSBuild Projects="Demos\MegaDemo\MegaDemo.dproj"/>
+    </Target>
+    <Target Name="MegaDemo:Clean">
+        <MSBuild Projects="Demos\MegaDemo\MegaDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MegaDemo:Make">
+        <MSBuild Projects="Demos\MegaDemo\MegaDemo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="GMLib_DXE3;GMLib_DXE3_VCL;GMLib_DXE3_FMX;GMLibEdit_DXE3"/>
+        <CallTarget Targets="GMLib_DXE3;GMLib_DXE3_VCL;GMLib_DXE3_FMX;GMLibEdit_DXE3;MegaDemo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="GMLib_DXE3:Clean;GMLib_DXE3_VCL:Clean;GMLib_DXE3_FMX:Clean;GMLibEdit_DXE3:Clean"/>
+        <CallTarget Targets="GMLib_DXE3:Clean;GMLib_DXE3_VCL:Clean;GMLib_DXE3_FMX:Clean;GMLibEdit_DXE3:Clean;MegaDemo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="GMLib_DXE3:Make;GMLib_DXE3_VCL:Make;GMLib_DXE3_FMX:Make;GMLibEdit_DXE3:Make"/>
+        <CallTarget Targets="GMLib_DXE3:Make;GMLib_DXE3_VCL:Make;GMLib_DXE3_FMX:Make;GMLibEdit_DXE3:Make;MegaDemo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

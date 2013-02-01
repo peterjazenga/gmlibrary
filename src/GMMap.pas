@@ -2319,11 +2319,11 @@ type
     procedure PrintPageSetup; virtual;
     {*------------------------------------------------------------------------------
       SaveToJPGFile method create a JPG image with de page loaded.
-      @param FileName Is the JPG file name.
+      @param FileName JPG file name.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método SaveToJPGFile crea una imagen JPG de la página cargada.
-      @param FileName Es el nombre del archivo JPG.
+      @param FileName Nombre del archivo JPG.
     -------------------------------------------------------------------------------}
     procedure SaveToJPGFile(FileName: TFileName = ''); virtual; abstract;
 

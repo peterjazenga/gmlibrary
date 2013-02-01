@@ -291,7 +291,7 @@ type
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Constructor de la clase
-      @param Collection Colección identifica la instancia TCollection a la que pertenece el nuevo elemento.
+      @param Collection Collection identifica la instancia TCollection a la que pertenece el nuevo elemento.
     -------------------------------------------------------------------------------}
     constructor Create(Collection: TCollection); override;
     {*------------------------------------------------------------------------------
@@ -455,18 +455,18 @@ type
   -------------------------------------------------------------------------------}
   TLinkedComponentChange = procedure(Sender: TObject; Index: Integer; LinkedComponent: TLinkedComponent) of object;
   {*------------------------------------------------------------------------------
-    TLinkedComponentChange is fired when a property of collection item changes.
-    @param Sender Owner object of the collection item
-    @param LatLng New LatLng of the collection item
-    @param Index Index into the array of Items
-    @param LinkedComponent Collection Item that changes
+    TLatLngIdxEvent is fired when a property of collection item changes relevant to a TLatLng.
+    @param Sender Owner object of the collection item.
+    @param LatLng New LatLng of the collection item.
+    @param Index Index into the array of Items.
+    @param LinkedComponent Collection Item that changes.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    El evento TLinkedComponentChange se dispara cuando cambia una propiedad de un elemento de la colección.
-    @param Sender Objecto propietario del elemento de la colección
-    @param LatLng Nueva LatLng del elemento de la colección
-    @param Index Índice dentro del array de elementos
-    @param LinkedComponent Elemento de la colección que cambia
+    El evento TLatLngIdxEvent se dispara cuando cambia una propiedad de un elemento de la colección relacionado a una TLatLng.
+    @param Sender Objecto propietario del elemento de la colección.
+    @param LatLng Nueva LatLng del elemento de la colección.
+    @param Index Índice dentro del array de elementos.
+    @param LinkedComponent Elemento de la colección que cambia.
   -------------------------------------------------------------------------------}
   TLatLngIdxEvent = procedure(Sender: TObject; LatLng: TLatLng; Index: Integer; LinkedComponent: TLinkedComponent) of object;
 
@@ -571,22 +571,22 @@ type
     function Add: TLinkedComponent;
     {*------------------------------------------------------------------------------
       Deletes a single item from the collection.
-      @param Index Position to delete
+      @param Index Position to delete.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Borra un elemento de la colección.
-      @param Index Posición a borrar
+      @param Index Posición a borrar.
     -------------------------------------------------------------------------------}
     procedure Delete(Index: Integer);
     {*------------------------------------------------------------------------------
       Moves a item to a new position into Items array.
-      @param CurIndex Index of Item to move
-      @param NewIndex Destination index
+      @param CurIndex Index of Item to move.
+      @param NewIndex Destination index.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Mueve un item a una nueva posición dentro del array de Items.
-      @param CurIndex Índice del elemento a mover
-      @param NewIndex Índice destino
+      @param CurIndex Índice del elemento a mover.
+      @param NewIndex Índice destino.
     -------------------------------------------------------------------------------}
     procedure Move(CurIndex, NewIndex: Integer);
     {*------------------------------------------------------------------------------

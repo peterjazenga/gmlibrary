@@ -136,6 +136,13 @@ const
   GeometryFormIsLocationOnEdge = 'isLoc';
   GeometryFormComputeArea = 'comArea';
   GeometryFormComputeDist = 'comDist';
+  GeometryFormComputeHea = 'comHea';
+  GeometryFormComputeLength = 'comLength';
+  GeometryFormComputeOffLat = 'comOffLat';
+  GeometryFormComputeOffLng = 'comOffLng';
+  GeometryFormComputeSigA = 'comSigA';
+  GeometryFormInterLat = 'interLat';
+  GeometryFormInterLng = 'interLng';
 
   // Properties Error Form
   ErrorFormErrorCode = 'errorCode';

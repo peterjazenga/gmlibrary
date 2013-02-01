@@ -114,8 +114,64 @@
     else
       document.geometrydata.comDist.value = google.maps.geometry.spherical.computeDistanceBetween(From, To, Radius);
   }
+  
+  /* ComputeHeading */
+  function ComputeHeading(FromLat, FromLng, ToLat, ToLng) {
+    var From = new  google.maps.LatLng(FromLat, FromLng);
+    var To = new  google.maps.LatLng(ToLat, ToLng);
+	document.geometrydata.comHea.value = google.maps.geometry.spherical.computeHeading(From, To);
+  }
+  
+  /* ComputeLength */
+  function ComputeLength(PointsStr, Radius) {
+    var Points = PointsStrToLatLngArray(PointsStr);
+    if (Radius == -1)
+      document.geometrydata.comLength.value = google.maps.geometry.spherical.computeLength(Points);
+    else
+      document.geometrydata.comLength.value = google.maps.geometry.spherical.computeLength(Points, Radius);
+  }
+  
+  /* ComputeOffset */
+  function ComputeOffset(FromLat, FromLng, Distance, Heading, Radius) {
+    var From = new  google.maps.LatLng(FromLat, FromLng);
+    if (Radius == -1)
+      From = google.maps.geometry.spherical.computeOffset(From, Distance, Heading);
+    else
+      From = google.maps.geometry.spherical.computeOffset(From, Distance, Heading, Radius);
+    document.geometrydata.comOffLat.value = From.lat();
+    document.geometrydata.comOffLng.value = From.lng();
+  }
 
-  /******************************************************************************
+  /* ComputeOffsetOrigin */
+  function ComputeOffsetOrigin(FromLat, FromLng, Distance, Heading, Radius) {
+    var From = new  google.maps.LatLng(FromLat, FromLng);
+    if (Radius == -1)
+      From = google.maps.geometry.spherical.computeOffsetOrigin(From, Distance, Heading);
+    else
+      From = google.maps.geometry.spherical.computeOffsetOrigin(From, Distance, Heading, Radius);
+    document.geometrydata.comOffLat.value = From.lat();
+    document.geometrydata.comOffLng.value = From.lng();
+  }
+
+  /* ComputeSignedArea */
+  function ComputeSignedArea(PointsStr, Radius) {
+    var Points = PointsStrToLatLngArray(PointsStr);
+    if (Radius == -1)
+      document.geometrydata.comSigA.value = google.maps.geometry.spherical.computeSignedArea(Points);
+    else
+      document.geometrydata.comSigA.value = google.maps.geometry.spherical.computeSignedArea(Points, Radius);
+  }
+  
+  /* Interpolate */
+  function Interpolate(FromLat, FromLng, ToLat, ToLng, Fraction) {
+    var From = new  google.maps.LatLng(FromLat, FromLng);
+    var To = new  google.maps.LatLng(ToLat, ToLng);
+	From =  = google.maps.geometry.spherical.interpolate(From, To, Fraction);
+    document.geometrydata.interLat.value = From.lat();
+    document.geometrydata.interLng.value = From.lng();
+  }
+  
+/******************************************************************************
      Funciones de la clase Elevation
      Elevation functions
   *******************************************************************************/
@@ -2171,6 +2227,13 @@
     <input type="hidden" name="isLoc" value="0"/> 
     <input type="hidden" name="comArea" value="0"/> 
     <input type="hidden" name="comDist" value="0"/> 
+    <input type="hidden" name="comHea" value="0"/> 
+    <input type="hidden" name="comLength" value="0"/> 
+    <input type="hidden" name="comOffLat" value="0"/> 
+    <input type="hidden" name="comOffLng" value="0"/> 
+    <input type="hidden" name="comSigA" value="0"/> 
+    <input type="hidden" name="interLat" value="0"/> 
+    <input type="hidden" name="interLng" value="0"/> 
   </form> 
   <!--******************************************************************************
      Resultados para la clase Direction

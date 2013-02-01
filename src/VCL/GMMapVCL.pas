@@ -140,10 +140,12 @@ type
   {*------------------------------------------------------------------------------
     Class to access to Google Maps map specialized for TWebBrowser browser.
     See the TCustomGMMap class for properties and events description.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Map
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase para el acceso al mapa de Google Maps especializada para el navegador TWebBrowser.
     Ver la clase TCustomGMMap para la descripción de las propiedades y eventos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Map
   -------------------------------------------------------------------------------}
   TGMMap = class(TCustomGMMapVCL)
   private
@@ -187,10 +189,10 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Browser where display the Google Maps map
+      Browser where display the Google Maps map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Navegador donde se mostrará el mapa de Google Maps
+      Navegador donde se mostrará el mapa de Google Maps.
     -------------------------------------------------------------------------------}
     property WebBrowser: TWebBrowser read GetWebBrowser write SetWebBrowser;
   end;

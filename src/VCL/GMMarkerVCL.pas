@@ -279,9 +279,11 @@ type
 
   {*------------------------------------------------------------------------------
     Class for markers.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase para los marcadores.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
   -------------------------------------------------------------------------------}
   TMarker = class(TCustomMarker)
   public
@@ -314,14 +316,12 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    Base class for GMMarker component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
+    Class management of markers.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase base para el componente GMMarker.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
+    Clase para la gestión de marcadores.
   -------------------------------------------------------------------------------}
-  TGMMarker  = class(TCustomGMMarker)
+  TGMMarker = class(TCustomGMMarker)
   protected
     function GetItems(I: Integer): TMarker;
 
