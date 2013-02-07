@@ -166,7 +166,7 @@
   function Interpolate(FromLat, FromLng, ToLat, ToLng, Fraction) {
     var From = new  google.maps.LatLng(FromLat, FromLng);
     var To = new  google.maps.LatLng(ToLat, ToLng);
-	From =  = google.maps.geometry.spherical.interpolate(From, To, Fraction);
+	From = google.maps.geometry.spherical.interpolate(From, To, Fraction);
     document.geometrydata.interLat.value = From.lat();
     document.geometrydata.interLng.value = From.lng();
   }
@@ -603,6 +603,7 @@
      Funciones para manipular la ventana InfoWindow
      Functions to control InfoWindow window
   *******************************************************************************/
+  /* InfoWindowsCreate */
   function InfoWindowsCreate(IdObj, ZIndex, Content, DisAutopan, MaxW, PixelOffW, PixelOffH, Lat, Lng, CloseAll) {
     var Idx = IndexOf(IdObj, ZIndex);
     if (Content != '')
@@ -719,7 +720,10 @@
   function InfoWindowSetHTMLContent(Id, Content, ZIndex) {
     var Idx = IndexOf(Id, ZIndex);
     if (Idx != -1) {
-      if (linkedCompList[Idx] instanceof google.maps.InfoWindow) linkedCompList[Idx].setContent(Content);
+      if (linkedCompList[Idx] instanceof google.maps.InfoWindow) {
+        linkedCompList[Idx].setContent(Content);
+		alert(linkedCompList[Idx].getPosition().toString());
+      }
       else linkedCompList[Idx].GMLibInfoWin.setContent(Content);
     }
   }
@@ -768,7 +772,10 @@
   function InfoWindowSetPosition(Id, ZIndex, Lat, Lng) {
     var Idx = IndexOf(Id, ZIndex);
     if (Idx != -1) {
-      if (linkedCompList[Idx] instanceof google.maps.InfoWindow) linkedCompList[Idx].setPosition(new google.maps.LatLng(Lat,Lng));
+      if (linkedCompList[Idx] instanceof google.maps.InfoWindow) {
+        linkedCompList[Idx].setPosition(new google.maps.LatLng(Lat,Lng));
+		alert(linkedCompList[Idx].getPosition().toString());
+      }
       else linkedCompList[Idx].GMLibInfoWin.setPosition(new google.maps.LatLng(Lat,Lng));
     }
   }
@@ -1353,8 +1360,29 @@
   /* MakeInfoWindow */
   function MakeInfoWindow(IdObj, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, 
             IWPixelOffW, Lat, Lng, CloseOther) {
-    var InfoWin = InfoWindowsCreate(IdObj, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, Lat, Lng, CloseOther);
-    linkedCompList.push(InfoWin);
+    if (map == null) throw new Error('map is null');
+    var Idx = IndexOf(IdObj, ZIndex);
+    if (Idx == -1) {
+      document.errordata.errorCode.value = "0";
+      var InfoWin = InfoWindowsCreate(IdObj, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, Lat, Lng, CloseOther);
+      Idx = linkedCompList.push(InfoWin);
+      Idx--;
+    }
+    
+    var aSize = new google.maps.Size(IWPixelOffW, IWPixelOffH);
+    if ((IWPixelOffH == 0) && (IWPixelOffW == 0)) aSize = null;
+    if (IWMaxW == 0) IWMaxW = null;
+    if (IWContent != '') IWContent = ReplaceString(IWContent, ".#%#:", "'"); 
+    linkedCompList[Idx].close();
+    linkedCompList[Idx].setOptions({
+        content: IWContent,
+        disableAutoPan: IWDisAutopan,
+        maxWidth: IWMaxW,
+        pixelOffset: aSize,
+        position: new google.maps.LatLng(Lat,Lng),
+        GMLibIWIsOpen: false,
+        GMLibIWCloseAll: CloseOther
+        });
   }
   
   /******************************************************************************
@@ -2141,7 +2169,7 @@
 <!-- table for test only -->
 <!--
   <table border=1 align=center>
-    <tr>
+    <tr>                                       
       <td align=center width=70 onClick="DoMap(41.39963248,2.16794777,'mtROADMAP',10,false,true,true,true, true,0,0,false,'#ECE9D8',true,'mtHYBRID;mtROADMAP;mtSATELLITE;mtTERRAIN','cpTOP_RIGHT','mtcDEFAULT',true,true,true,'cpTOP_LEFT',true,'cpTOP_LEFT',true,'cpBOTTOM_LEFT','scDEFAULT',true,'cpTOP_LEFT',true,'cpTOP_LEFT','zcDEFAULT',false,false,false,false,true,false,'','',false,true,false,'lcWHITE','tuCELSIUS','wsKILOMETERS_PER_HOUR')">
         Map
       </td>

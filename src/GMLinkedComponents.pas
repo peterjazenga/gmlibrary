@@ -731,11 +731,19 @@ begin
 end;
 
 procedure TLinkedComponent.OnCloseOtherBeforeOpenChange(Sender: TObject);
-const
+{const
   StrParams = '%s,%s,%s';
 var
-  Params: string;
+  Params: string;}
 begin
+  ChangeProperties;
+  if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange) then
+    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange(
+                     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
+                     Index,
+                     Self);
+
+{
   if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
@@ -752,16 +760,23 @@ begin
     // ES/EN: evento/event
     if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange) then
       TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;
+  end;}
 end;
 
 procedure TLinkedComponent.OnDisableAutoPanChange(Sender: TObject);
-const
+{const
   StrParams = '%s,%s,%s';
 var
-  Params: string;
+  Params: string;}
 begin
-  if Assigned(Collection) and (Collection is TLinkedComponents) and
+  ChangeProperties;
+  if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange) then
+    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange(
+                    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
+                    Index,
+                    Self);
+
+{  if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
   begin
@@ -777,16 +792,23 @@ begin
     // ES/EN: evento/event
     if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange) then
       TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;
+  end;}
 end;
 
 procedure TLinkedComponent.OnHTMLContentChange(Sender: TObject);
-const
+{const
   StrParams = '%s,%s,%s';
 var
-  Params: string;
+  Params: string;}
 begin
-  if Assigned(Collection) and (Collection is TLinkedComponents) and
+  ChangeProperties;
+  if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange) then
+    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange(
+                    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
+                    Index,
+                    Self);
+
+{  if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
   begin
@@ -802,16 +824,23 @@ begin
     // ES/EN: evento/event
     if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange) then
       TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;
+  end;}
 end;
 
 procedure TLinkedComponent.OnMaxWidthChange(Sender: TObject);
-const
+{const
   StrParams = '%s,%s,%s';
 var
-  Params: string;
+  Params: string;}
 begin
-  if Assigned(Collection) and (Collection is TLinkedComponents) and
+  ChangeProperties;
+  if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange) then
+    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange(
+                    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
+                    Index,
+                    Self);
+
+{  if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
   begin
@@ -827,16 +856,23 @@ begin
     // ES/EN: evento/event
     if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange) then
       TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;
+  end;}
 end;
 
 procedure TLinkedComponent.OnPixelOffsetChange(Sender: TObject);
-const
+{const
   StrParams = '%s,%s,%s,%s';
 var
-  Params: string;
+  Params: string;}
 begin
-  if Assigned(Collection) and (Collection is TLinkedComponents) and
+  ChangeProperties;
+  if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange) then
+    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange(
+                    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
+                    Index,
+                    Self);
+
+{  if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
   begin
@@ -853,7 +889,7 @@ begin
     // ES/EN: evento/event
     if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange) then
       TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;
+  end;}
 end;
 
 procedure TLinkedComponent.SetIdxList(const Value: Cardinal);

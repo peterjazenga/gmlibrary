@@ -116,6 +116,7 @@ type
     procedure OnPositionChange(Sender: TObject);
   protected
     function GetDisplayName: string; override;
+    function ChangeProperties: Boolean; override;
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
@@ -297,33 +298,13 @@ begin
 end;
 
 procedure TGMInfoWindow.ShowElements;
-const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
-  Params: string;
   i: Integer;
 begin
   if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
 
   for i:= 0 to VisualObjects.Count - 1 do
-  begin
-    Params := Format(StrParams, [
-                    IntToStr(IdxList),
-                    IntToStr(Items[i].Index),
-                    QuotedStr(Items[i].InfoWindow.GetConvertedString),
-                    LowerCase(TCustomTransform.GMBoolToStr(Items[i].DisableAutoPan, True)),
-                    IntToStr(Items[i].MaxWidth),
-                    IntToStr(Items[i].PixelOffset.Height),
-                    IntToStr(Items[i].PixelOffset.Width),
-                    Items[i].Position.LatToStr(GetMapPrecision),
-                    Items[i].Position.LngToStr(GetMapPrecision),
-                    LowerCase(TCustomTransform.GMBoolToStr(Items[i].CloseOtherBeforeOpen, True))
-                    ]);
-
-    ExecuteScript('MakeInfoWindow', Params);
-
-    if Items[i].AutoOpen then Items[i].OpenClose;
-  end;
+    Items[i].ChangeProperties;
 end;
 
 { TInfoWindows }
@@ -372,6 +353,41 @@ begin
      Assigned(TInfoWindows(Collection).FGMLinkedComponent) and
      Assigned(TInfoWindows(Collection).FGMLinkedComponent.Map) then
     TInfoWindows(Collection).FGMLinkedComponent.Map.SetCenter(Position.Lat, Position.Lng);
+end;
+
+function TInfoWindow.ChangeProperties: Boolean;
+const
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+var
+  Params: string;
+begin
+  inherited;
+
+  Result := False;
+
+  if not Assigned(Collection) or not(Collection is TInfoWindows) or
+     not Assigned(TInfoWindows(Collection).FGMLinkedComponent) or
+     not TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).AutoUpdate or
+     not Assigned(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).Map) or
+     (csDesigning in TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).ComponentState) then
+    Exit;
+
+  Params := Format(StrParams, [
+                  IntToStr(IdxList),
+                  IntToStr(Index),
+                  QuotedStr(InfoWindow.GetConvertedString),
+                  LowerCase(TCustomTransform.GMBoolToStr(DisableAutoPan, True)),
+                  IntToStr(MaxWidth),
+                  IntToStr(PixelOffset.Height),
+                  IntToStr(PixelOffset.Width),
+                  Position.LatToStr(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).GetMapPrecision),
+                  Position.LngToStr(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).GetMapPrecision),
+                  LowerCase(TCustomTransform.GMBoolToStr(CloseOtherBeforeOpen, True))
+                  ]);
+
+  TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).ExecuteScript('MakeInfoWindow', Params);
+
+  if AutoOpen then OpenClose;
 end;
 
 constructor TInfoWindow.Create(Collection: TCollection);
@@ -429,12 +445,20 @@ begin
 end;
 
 procedure TInfoWindow.OnPositionChange(Sender: TObject);
-const
+{const
   StrParams = '%s,%s,%s,%s';
 var
-  Params: String;
+  Params: string;}
 begin
-  if Assigned(Collection) and (Collection is TInfoWindows) and
+  ChangeProperties;
+  if Assigned(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).OnPositionChange) then
+    TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).OnPositionChange(
+                TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent),
+                FPosition,
+                Index,
+                Self);
+
+{  if Assigned(Collection) and (Collection is TInfoWindows) and
      Assigned(TInfoWindows(Collection).FGMLinkedComponent) and
      TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).AutoUpdate and
      Assigned(TInfoWindows(Collection).FGMLinkedComponent.Map) then
@@ -450,7 +474,7 @@ begin
     // ES/EN: evento/event
     if Assigned(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).OnPositionChange) then
       TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).OnPositionChange(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent), FPosition, Index, Self);
-  end;
+  end;}
 end;
 
 procedure TInfoWindow.OpenClose;
