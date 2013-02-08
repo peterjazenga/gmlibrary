@@ -290,14 +290,16 @@ type
       @param Map Map to access JavaScript functions.
       @param Origin LatLng origin.
       @param Dest LatLng destination.
-      @return Degree between points.
+      @param Fraction Fraction.
+      @param Result Resulting TLatLng.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Devuelve el LatLng que se encuentra la fracción dada del camino entre el origen y el LatLng LatLng destino.
+      Devuelve la LatLng que se encuentra en la fracción dada del camino entre la LatLng origen y la LatLng destino.
       @param Map Mapa para acceder a las funciones JavaScript.
       @param Origin LatLng origen.
       @param Dest LatLng destino.
-      @return Grados entre los puntos.
+      @param Fraction Fracción.
+      @param Result TLatLng resultante.
     -------------------------------------------------------------------------------}
     class procedure Interpolate(Map: TCustomGMMap; Origin, Dest: TLatLng;
       Fraction: Real; Result: TLatLng);

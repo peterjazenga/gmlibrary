@@ -24,6 +24,9 @@
         <Projects Include="Demos\SimpleGMInfoWin\SimpleGMInfoWin.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Demos\TGeometryClass\TGeometryClassDemo.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +98,23 @@
     <Target Name="SimpleGMInfoWin:Make">
         <MSBuild Projects="Demos\SimpleGMInfoWin\SimpleGMInfoWin.dproj" Targets="Make"/>
     </Target>
+    <Target Name="TGeometryClassDemo">
+        <MSBuild Projects="Demos\TGeometryClass\TGeometryClassDemo.dproj"/>
+    </Target>
+    <Target Name="TGeometryClassDemo:Clean">
+        <MSBuild Projects="Demos\TGeometryClass\TGeometryClassDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TGeometryClassDemo:Make">
+        <MSBuild Projects="Demos\TGeometryClass\TGeometryClassDemo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="GMLib_DXE3;GMLib_DXE3_VCL;GMLib_DXE3_FMX;GMLibEdit_DXE3;MegaDemo;GMInfoWin_Demo;SimpleGMInfoWin"/>
+        <CallTarget Targets="GMLib_DXE3;GMLib_DXE3_VCL;GMLib_DXE3_FMX;GMLibEdit_DXE3;MegaDemo;GMInfoWin_Demo;SimpleGMInfoWin;TGeometryClassDemo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="GMLib_DXE3:Clean;GMLib_DXE3_VCL:Clean;GMLib_DXE3_FMX:Clean;GMLibEdit_DXE3:Clean;MegaDemo:Clean;GMInfoWin_Demo:Clean;SimpleGMInfoWin:Clean"/>
+        <CallTarget Targets="GMLib_DXE3:Clean;GMLib_DXE3_VCL:Clean;GMLib_DXE3_FMX:Clean;GMLibEdit_DXE3:Clean;MegaDemo:Clean;GMInfoWin_Demo:Clean;SimpleGMInfoWin:Clean;TGeometryClassDemo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="GMLib_DXE3:Make;GMLib_DXE3_VCL:Make;GMLib_DXE3_FMX:Make;GMLibEdit_DXE3:Make;MegaDemo:Make;GMInfoWin_Demo:Make;SimpleGMInfoWin:Make"/>
+        <CallTarget Targets="GMLib_DXE3:Make;GMLib_DXE3_VCL:Make;GMLib_DXE3_FMX:Make;GMLibEdit_DXE3:Make;MegaDemo:Make;GMInfoWin_Demo:Make;SimpleGMInfoWin:Make;TGeometryClassDemo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
