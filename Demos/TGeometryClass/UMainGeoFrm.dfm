@@ -15,7 +15,7 @@ object MainGeoFrm: TMainGeoFrm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 147
+    Top = 140
     Width = 742
     Height = 3
     Cursor = crVSplit
@@ -27,7 +27,7 @@ object MainGeoFrm: TMainGeoFrm
     Left = 0
     Top = 0
     Width = 742
-    Height = 147
+    Height = 140
     Align = alTop
     Caption = ' '
     TabOrder = 0
@@ -35,7 +35,7 @@ object MainGeoFrm: TMainGeoFrm
       Left = 409
       Top = 1
       Width = 332
-      Height = 145
+      Height = 138
       Align = alRight
       Lines.Strings = (
         'uses GMFunctionsVCL'
@@ -54,19 +54,19 @@ object MainGeoFrm: TMainGeoFrm
       ReadOnly = True
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitHeight = 127
+      ExplicitHeight = 145
     end
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
       Width = 408
-      Height = 145
+      Height = 138
       Align = alClient
       TabOrder = 1
-      ExplicitHeight = 359
+      ExplicitHeight = 145
       DesignSize = (
         387
-        141)
+        134)
       object Label1: TLabel
         Left = 16
         Top = 48
@@ -161,7 +161,7 @@ object MainGeoFrm: TMainGeoFrm
       object eEncodePath: TEdit
         Left = 24
         Top = 64
-        Width = 315
+        Width = 273
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
@@ -170,7 +170,7 @@ object MainGeoFrm: TMainGeoFrm
       object eDecodePath: TEdit
         Left = 24
         Top = 104
-        Width = 315
+        Width = 273
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
@@ -211,7 +211,7 @@ object MainGeoFrm: TMainGeoFrm
       object eOriginal: TEdit
         Left = 24
         Top = 21
-        Width = 315
+        Width = 273
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 6
@@ -285,16 +285,16 @@ object MainGeoFrm: TMainGeoFrm
   end
   object WebBrowser1: TWebBrowser
     Left = 0
-    Top = 150
+    Top = 143
     Width = 742
-    Height = 294
+    Height = 301
     Align = alClient
     TabOrder = 1
     ExplicitTop = 129
     ExplicitWidth = 619
     ExplicitHeight = 298
     ControlData = {
-      4C000000B04C0000631E00000000000000000000000000000000000000000000
+      4C000000B04C00001C1F00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000

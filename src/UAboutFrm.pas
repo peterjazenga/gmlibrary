@@ -46,7 +46,14 @@ type
     lWeb: TLabel;
     Image2: TImage;
     Label6: TLabel;
+    lWeb2: TLabel;
     Label7: TLabel;
+    lBugs: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     procedure lMailClick(Sender: TObject);
     procedure lWebClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -87,7 +94,9 @@ end;
 
 procedure TAboutFrm.lWebClick(Sender: TObject);
 begin
-  ShellExecute(Handle, 'open', PChar(lWeb.Caption), nil, nil, SW_SHOW);
+  if not (Sender is TLabel) then Exit;
+
+  ShellExecute(Handle, 'open', PChar(TLabel(Sender).Caption), nil, nil, SW_SHOW);
 end;
 
 procedure TAboutFrm.lMailClick(Sender: TObject);

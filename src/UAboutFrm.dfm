@@ -3,7 +3,7 @@ object AboutFrm: TAboutFrm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Acerca de...'
-  ClientHeight = 288
+  ClientHeight = 339
   ClientWidth = 428
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -15,9 +15,6 @@ object AboutFrm: TAboutFrm
   OldCreateOrder = False
   Position = poScreenCenter
   OnKeyPress = FormKeyPress
-  DesignSize = (
-    428
-    288)
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
@@ -251,8 +248,8 @@ object AboutFrm: TAboutFrm
     Width = 288
     Height = 26
     Caption = 
-      'ES: Componentes de acceso a la API (v3.9) de Google Maps'#13#10'EN: Co' +
-      'mponents to access to Google Maps API (v3.9)'
+      'ES: Componentes de acceso a la API (v3.x) de Google Maps'#13#10'EN: Co' +
+      'mponents to access to Google Maps API (v3.x)'
   end
   object Label4: TLabel
     Left = 32
@@ -283,12 +280,11 @@ object AboutFrm: TAboutFrm
   end
   object lMail: TLabel
     Left = 32
-    Top = 250
+    Top = 251
     Width = 91
     Height = 13
     Cursor = crHandPoint
     Hint = 'gmlib@cadetill.com'
-    Anchors = [akLeft, akBottom]
     Caption = 'gmlib@cadetill.com'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
@@ -302,13 +298,12 @@ object AboutFrm: TAboutFrm
   end
   object lWeb: TLabel
     Left = 32
-    Top = 265
-    Width = 83
+    Top = 266
+    Width = 114
     Height = 13
     Cursor = crHandPoint
     Hint = 'www.cadetill.com'
-    Anchors = [akLeft, akBottom]
-    Caption = 'www.cadetill.com'
+    Caption = 'http://www.cadetill.com'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
     Font.Height = -11
@@ -318,8 +313,8 @@ object AboutFrm: TAboutFrm
     OnClick = lWebClick
   end
   object Image2: TImage
-    Left = 313
-    Top = 247
+    Left = 332
+    Top = 292
     Width = 88
     Height = 31
     Cursor = crHandPoint
@@ -457,24 +452,97 @@ object AboutFrm: TAboutFrm
     OnClick = Image2Click
   end
   object Label6: TLabel
-    Left = 122
-    Top = 265
+    Left = 150
+    Top = 266
     Width = 10
     Height = 13
     Caption = 'or'
   end
-  object Label7: TLabel
-    Left = 135
-    Top = 265
-    Width = 118
+  object lWeb2: TLabel
+    Left = 163
+    Top = 266
+    Width = 175
     Height = 13
     Cursor = crHandPoint
-    Caption = 'gmlibrary.sourceforge.net'
+    Caption = 'http://code.google.com/p/gmlibrary/'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
     Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsUnderline]
     ParentFont = False
+    OnClick = lWebClick
+  end
+  object Label7: TLabel
+    Left = 32
+    Top = 284
+    Width = 56
+    Height = 13
+    Caption = 'Bugs report'
+  end
+  object lBugs: TLabel
+    Left = 94
+    Top = 284
+    Width = 221
+    Height = 13
+    Cursor = crHandPoint
+    Caption = 'http://code.google.com/p/gmlibrary/issues/list'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = lWebClick
+  end
+  object Label8: TLabel
+    Left = 32
+    Top = 300
+    Width = 19
+    Height = 13
+    Caption = 'SVN'
+  end
+  object Label9: TLabel
+    Left = 62
+    Top = 300
+    Width = 210
+    Height = 13
+    Cursor = crHandPoint
+    Caption = 'https://gmlibrary.googlecode.com/svn/trunk'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 32
+    Top = 316
+    Width = 48
+    Height = 13
+    Caption = 'Questions'
+  end
+  object Label11: TLabel
+    Left = 86
+    Top = 316
+    Width = 125
+    Height = 13
+    Cursor = crHandPoint
+    Caption = 'http://stackoverflow.com/'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = lWebClick
+  end
+  object Label12: TLabel
+    Left = 216
+    Top = 316
+    Width = 66
+    Height = 13
+    Caption = 'with gmlib tag'
   end
 end
