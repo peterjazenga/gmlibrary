@@ -14,9 +14,9 @@
     <Transaction>2012/03/16 10:52:29.000.108,=D:\Docs\Fonts\GoogleMaps\Components\src\GMSize.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.077,=D:\Docs\Fonts\GoogleMaps\Components\src\GMLatLng.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.046,=D:\Docs\Fonts\GoogleMaps\Components\src\GMBase.pas</Transaction>
-    <Transaction>2012/03/16 10:52:29.000.124,=D:\Docs\Fonts\GoogleMaps\Components\src\Lang.pas</Transaction>
-    <Transaction>2012/03/16 10:52:29.000.108,=D:\Docs\Fonts\GoogleMaps\Components\src\GMMarker.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.061,=D:\Docs\Fonts\GoogleMaps\Components\src\GMEditors.pas</Transaction>
+    <Transaction>2012/03/16 10:52:29.000.108,=D:\Docs\Fonts\GoogleMaps\Components\src\GMMarker.pas</Transaction>
+    <Transaction>2012/03/16 10:52:29.000.124,=D:\Docs\Fonts\GoogleMaps\Components\src\Lang.pas</Transaction>
     <Transaction>2012/03/16 10:57:05.000.148,=designide.dcp</Transaction>
     <Transaction>2012/03/16 10:57:10.000.163,=vclimg.dcp</Transaction>
     <Transaction>2012/03/16 10:57:10.000.163,=vclie.dcp</Transaction>
@@ -92,6 +92,14 @@
     <Transaction>2013/01/03 23:09:18.000.682,D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMGeoCode.pas=</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="dbrtl.dcp"/>
+    <File Path="DCEF_XE2.dcp"/>
+    <File Path="fmx.dcp"/>
+    <File Path="rtl.dcp"/>
+    <File Path="vcl.dcp"/>
+    <File Path="vclie.dcp"/>
+    <File Path="vclimg.dcp"/>
+    <File Path="xmlrtl.dcp"/>
     <File Path="..\..\Components"/>
     <File Path="..\Resources"/>
     <File Path="..\Resources\gmlibres.RES"/>
@@ -111,13 +119,5 @@
     <File Path="..\src\Lang.pas"/>
     <File Path="..\src\RegisterComp.pas"/>
     <File Path="..\src\WebControl.pas"/>
-    <File Path="dbrtl.dcp"/>
-    <File Path="DCEF_XE2.dcp"/>
-    <File Path="fmx.dcp"/>
-    <File Path="rtl.dcp"/>
-    <File Path="vcl.dcp"/>
-    <File Path="vclie.dcp"/>
-    <File Path="vclimg.dcp"/>
-    <File Path="xmlrtl.dcp"/>
   </ProjectSortOrder>
 </BorlandProject>

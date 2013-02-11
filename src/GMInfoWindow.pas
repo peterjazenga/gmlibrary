@@ -194,10 +194,10 @@ type
     function Insert(Index: Integer): TInfoWindow;
 
     {*------------------------------------------------------------------------------
-      Lists the rectangles in the collection.
+      Lists the infowindow in the collection.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Lista de rectángulos en la colección.
+      Lista de infowindow en la colección.
     -------------------------------------------------------------------------------}
     property Items[I: Integer]: TInfoWindow read GetItems write SetItems; default;
   end;

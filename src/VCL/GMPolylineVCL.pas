@@ -101,10 +101,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    VCL class to determine the icon and repetition to show.
+    VCL class to determine the icon and repetition to show in the polyline.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para determinar el icono y la repetición a mostrar.
+    Clase VCL para determinar el icono y la repetición a mostrar en la polilínea.
   -------------------------------------------------------------------------------}
   TIconSequence = class(TCustomIconSequence)
   public
@@ -139,9 +139,11 @@ type
 
   {*------------------------------------------------------------------------------
     VCL class for polylines.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para los polilineas.
+    Clase VCL para las polilineas.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
   -------------------------------------------------------------------------------}
   TPolyline = class(TBasePolylineVCL)
   private
@@ -191,11 +193,9 @@ type
 
   {*------------------------------------------------------------------------------
     VCL class for GMPolyline component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase VCL para el componente GMPolyline.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
   -------------------------------------------------------------------------------}
   TGMPolyline = class(TGMBasePolyline)
   private

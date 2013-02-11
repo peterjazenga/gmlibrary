@@ -428,7 +428,7 @@ type
       If set to true, the user can edit this shape by dragging the control points shown at the vertices and on each segment.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Si se establece a treu, el usuario puede editar la figura arrastrando los puntos de control mostrados en los vertices y en cada segmento.
+      Si se establece a true, el usuario puede editar la figura arrastrando los puntos de control mostrados en los vertices y en cada segmento.
     -------------------------------------------------------------------------------}
     FEditable: Boolean;
     {*------------------------------------------------------------------------------
@@ -439,10 +439,10 @@ type
     -------------------------------------------------------------------------------}
     FLinePoints: TLinePoints;
     {*------------------------------------------------------------------------------
-      If set to true, each time you change the route on the map will update the array of LinePoints
+      If set to true, each time you change the route on the map will update the array of LinePoints.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Si se establece a true, cada vez que se modifique el recorrido en el mapa, se actualizará el array de LinePoints
+      Si se establece a true, cada vez que se modifique el recorrido en el mapa, se actualizará el array de LinePoints.
     -------------------------------------------------------------------------------}
     FAutoUpdatePath: Boolean;
 
@@ -496,20 +496,20 @@ type
     function QueryInterface(const IID: TGUID; out Obj): HResult; virtual; stdcall;
     {*------------------------------------------------------------------------------
       Increments the reference count for this interface.
-      @return Number of references
+      @return Number of references.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Incrementa el contador de referencia para esta interfaz.
-      @return Numero de referencias
+      @return Numero de referencias.
     -------------------------------------------------------------------------------}
     function _AddRef: Integer; stdcall;
     {*------------------------------------------------------------------------------
       Decrements the reference count for this interface.
-      @return Number of references
+      @return Number of references.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Decrementa el contador de referencia para esta interfaz.
-      @return Numero de referencias
+      @return Numero de referencias.
     -------------------------------------------------------------------------------}
     function _Release: Integer; stdcall;
   public
@@ -627,63 +627,63 @@ type
 
     {*------------------------------------------------------------------------------
       Creates a new polyline point.
-      @param Lat Point latitude
-      @param Lng Point longitude
-      @return New TLinePoint
+      @param Lat Point latitude.
+      @param Lng Point longitude.
+      @return New TLinePoint.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea un nuevo punto en la polilinea.
-      @param Lat Latitud del punto
-      @param Lng Longitud del punto
-      @return Nuevo TLinePoint
+      @param Lat Latitud del punto.
+      @param Lng Longitud del punto.
+      @return Nuevo TLinePoint.
     -------------------------------------------------------------------------------}
     function AddLinePoint(Lat: Real = 0; Lng: Real = 0): TLinePoint; overload;
     {*------------------------------------------------------------------------------
       Creates a new polyline point.
-      @param Lat Point latitude
-      @param Lng Point longitude
-      @return New TLinePoint
+      @param Lat Point latitude.
+      @param Lng Point longitude.
+      @return New TLinePoint.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea un nuevo punto en la polilinea.
-      @param Lat Latitud del punto
-      @param Lng Longitud del punto
-      @return Nuevo TLinePoint
+      @param Lat Latitud del punto.
+      @param Lng Longitud del punto.
+      @return Nuevo TLinePoint.
     -------------------------------------------------------------------------------}
     function AddLinePoint(Lat, Lng: string): TLinePoint; overload;
     {*------------------------------------------------------------------------------
       Inserts a new polyline point at specified index.
-      @param Index Position to insert
-      @param Lat Point latitude
-      @param Lng Point longitude
-      @return New TLinePoint
+      @param Index Position to insert.
+      @param Lat Point latitude.
+      @param Lng Point longitude.
+      @return New TLinePoint.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Inserta un nuevo punto en la polilinea en el índice especificado.
-      @param Index Posición en la que insertar
-      @param Lat Latitud del punto
-      @param Lng Longitud del punto
-      @return Nuevo TLinePoint
+      @param Index Posición en la que insertar.
+      @param Lat Latitud del punto.
+      @param Lng Longitud del punto.
+      @return Nuevo TLinePoint.
     -------------------------------------------------------------------------------}
     function InsertLinePoint(Index: Integer; Lat, Lng: Real): TLinePoint;
     {*------------------------------------------------------------------------------
       Deletes a single point.
-      @param Index Position to delete
+      @param Index Position to delete.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Borra un punto.
-      @param Index Posición a borrar
+      @param Index Posición a borrar.
     -------------------------------------------------------------------------------}
     procedure DeleteLinePoint(Index: Integer);
     {*------------------------------------------------------------------------------
       Moves a point to a new position into LinePoints array.
-      @param CurIndex Index of Item to move
-      @param NewIndex Destination index
+      @param CurIndex Index of Item to move.
+      @param NewIndex Destination index.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Mueve un punto a una nueva posición dentro del array de LinePoints.
-      @param CurIndex Índice del elemento a mover
-      @param NewIndex Índice destino
+      @param CurIndex Índice del elemento a mover.
+      @param NewIndex Índice destino.
     -------------------------------------------------------------------------------}
     procedure MoveLinePoint(CurIndex, NewIndex: Integer);
     {*------------------------------------------------------------------------------
@@ -1170,8 +1170,6 @@ var
 begin
   if not Add then ClearLinePoints;
 
-//  TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).ExecuteScript('DecodePath', QuotedStr(EncodedPath));
-//  Points := TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetStringField(PolylineForm, PolylineFormDecodedPath);
   Points := TGeometry.DecodePath(TBasePolylines(Collection).FGMLinkedComponent.Map, EncodedPath);
   if Points = '' then Exit;
 
@@ -1209,8 +1207,6 @@ end;
 function TBasePolyline.EncodePath: string;
 begin
   Result := TGeometry.EncodePath(TBasePolylines(Collection).FGMLinkedComponent.Map, PolylineToStr);
-//  TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).ExecuteScript('EncodePath', QuotedStr(PolylineToStr));
-//  Result := TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetStringField(PolylineForm, PolylineFormEncodedPath);
 end;
 
 function TBasePolyline.GetCountLinePoints: Integer;
@@ -1311,20 +1307,7 @@ end;
 
 function TBasePolyline.IsLocationOnEdge(LatLng: TLatLng;
   Tolerance: Integer): Boolean;
-//const
-//  StrParams = '%s,%s,%s,%s,%s';
-//var
-//  Params: string;
 begin
-//  Params := Format(StrParams, [
-//                  IntToStr(IdxList),
-//                  IntToStr(Index),
-//                  LatLng.LatToStr(TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetMapPrecision),
-//                  LatLng.LngToStr(TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetMapPrecision),
-//                  IntToStr(Tolerance)
-//                  ]);
-//  TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).ExecuteScript('IsLocationOnEdge', Params);
-//  Result := TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetBoolField(PolylineForm, PolylineFormIsLocationOnEdge);
   Result := TGeometry.IsLocationOnEdge(TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent), Index, LatLng, Tolerance);
 end;
 

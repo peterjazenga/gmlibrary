@@ -297,93 +297,93 @@ type
     procedure OnChangeFLatLng(Sender: TObject);
   public
     {*------------------------------------------------------------------------------
-      Constructor class
+      Constructor class.
       @param Collection Collection identifies the TCollection instance to which the new item belongs.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
+      Constructor de la clase.
       @param Collection Colección identifica la instancia TCollection a la que pertenece el nuevo elemento.
     -------------------------------------------------------------------------------}
     constructor Create(Collection: TCollection); override;
     {*------------------------------------------------------------------------------
-      Destructor class
+      Destructor class.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Destructor de la clase
+      Destructor de la clase.
     -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source Object to copy content
+      @param Source Object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source Objeto a copiar el contenido
+      @param Source Objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
 
     {*------------------------------------------------------------------------------
       Set the position point.
-      @param LatLng New position
+      @param LatLng New position.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Establece la posición del punto.
-      @param LatLng Nueva posición
+      @param LatLng Nueva posición.
     -------------------------------------------------------------------------------}
     procedure SetLatLng(LatLng: TLatLng);
 
     {*------------------------------------------------------------------------------
       Convert Lat value to a string.
-      @param Precision Precision of value. Default 6
-      @return String with the latitude
+      @param Precision Precision of value. Default 6.
+      @return String with the latitude.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Combierte el valor de Lat en una cadena.
-      @param Precision Precisión del valor. Por defecto 6
-      @return Cadena con la latitud
+      @param Precision Precisión del valor. Por defecto 6.
+      @return Cadena con la latitud.
     -------------------------------------------------------------------------------}
     function LatToStr(Precision: Integer = 6): string;
     {*------------------------------------------------------------------------------
       Convert Lng value to a string.
-      @param Precision Precision of value. Default 6
-      @return String with the longitude
+      @param Precision Precision of value. Default 6.
+      @return String with the longitude.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Combierte el valor de Lng en una cadena.
-      @param Precision Precisión del valor. Por defecto 6
-      @return Cadena con la longitud
+      @param Precision Precisión del valor. Por defecto 6.
+      @return Cadena con la longitud.
     -------------------------------------------------------------------------------}
     function LngToStr(Precision: Integer = 6): string;
     {*------------------------------------------------------------------------------
       Convert LatLng to string representation.
-      @param Precision Precision of values. Default 6
-      @return String with the latlng
+      @param Precision Precision of values. Default 6.
+      @return String with the latlng.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Combierte la LatLng en una cadena.
-      @param Precision Precisión de los valores. Por defecto 6
-      @return Cadena con la latlng
+      @param Precision Precisión de los valores. Por defecto 6.
+      @return Cadena con la latlng.
     -------------------------------------------------------------------------------}
     function ToStr(Precision: Integer = 6): string;
     {*------------------------------------------------------------------------------
       Given a string, converts it to a real value considering the locale.
-      @param Value String to convert to real
-      @return Real with the conversion
+      @param Value String to convert to real.
+      @return Real with the conversion.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Dado una cadena, la convierte en un valor real teniendo en cuenta la configuración regional.
-      @param Value Cadena a convertir a real
-      @return Real con la conversión
+      @param Value Cadena a convertir a real.
+      @return Real con la conversión.
     -------------------------------------------------------------------------------}
     function StringToReal(Value: string): Real;
     {*------------------------------------------------------------------------------
       Return the point position.
-      @return TLatLng with the point position
+      @return TLatLng with the point position.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve la posición del punto.
-      @return TLatLng con la posición del punto
+      @return TLatLng con la posición del punto.
     -------------------------------------------------------------------------------}
     function GetLatLng: TLatLng;
   published
