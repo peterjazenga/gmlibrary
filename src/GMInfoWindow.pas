@@ -225,7 +225,6 @@ type
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
-    procedure ShowElements; override;
     {*------------------------------------------------------------------------------
       Creates a new TInfoWindow instance and adds it to the Items array.
       @param Lat InfoWindow latitude.
@@ -295,16 +294,6 @@ end;
 function TGMInfoWindow.GetItems(I: Integer): TInfoWindow;
 begin
   Result := TInfoWindow(inherited Items[i]);
-end;
-
-procedure TGMInfoWindow.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 { TInfoWindows }

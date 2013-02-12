@@ -418,7 +418,7 @@ type
   protected
     {*------------------------------------------------------------------------------
       Return the owner of the collection.
-      @return Owner of collection
+      @return Owner of collection.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve el propietario de la colección.
@@ -435,55 +435,55 @@ type
     property Items[I: Integer]: TLinePoint read GetItems write SetItems; default;
   public
     {*------------------------------------------------------------------------------
-      Constructor class
-      @param Owner Owner of collection
-      @param ItemClass Class of new Items
+      Constructor class.
+      @param Owner Owner of collection.
+      @param ItemClass Class of new Items.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param Owner Propietario de la colección
-      @param ItemClass Clase de los nuevos elementos
+      Constructor de la clase.
+      @param Owner Propietario de la colección.
+      @param ItemClass Clase de los nuevos elementos.
     -------------------------------------------------------------------------------}
-    constructor Create(Owner: TObject; ItemClass: TCollectionItemClass);
+    constructor Create(Owner: TObject; ItemClass: TCollectionItemClass); virtual;
 
     {*------------------------------------------------------------------------------
       Creates a new TLinePoint instance and adds it to the Items array.
-      @return New item
+      @return New item.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TLinePoint y la añade en el array de Items.
-      @return Nuevo elemento
+      @return Nuevo elemento.
     -------------------------------------------------------------------------------}
     function Add: TLinePoint;
     {*------------------------------------------------------------------------------
       Creates a new TLinePoint instance and adds it to the Items array.
-      @param Index Position to insert
-      @return New item
+      @param Index Position to insert.
+      @return New item.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TLinePoint y la añade en el array de Items.
-      @param Index Posición en la que insertar
-      @return Nuevo elemento
+      @param Index Posición en la que insertar.
+      @return Nuevo elemento.
     -------------------------------------------------------------------------------}
     function Insert(Index: Integer): TLinePoint;
     {*------------------------------------------------------------------------------
       Deletes a single item from the collection.
-      @param Index Position to delete
+      @param Index Position to delete.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Borra un elemento de la colección.
-      @param Index Posición a borrar
+      @param Index Posición a borrar.
     -------------------------------------------------------------------------------}
     procedure Delete(Index: Integer);
     {*------------------------------------------------------------------------------
       Moves a item to a new position into Items array.
-      @param CurIndex Index of Item to move
-      @param NewIndex Destination index
+      @param CurIndex Index of Item to move.
+      @param NewIndex Destination index.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Mueve un item a una nueva posición dentro del array de Items.
-      @param CurIndex Índice del elemento a mover
-      @param NewIndex Índice destino
+      @param CurIndex Índice del elemento a mover.
+      @param NewIndex Índice destino.
     -------------------------------------------------------------------------------}
     procedure Move(CurIndex, NewIndex: Integer);
     {*------------------------------------------------------------------------------
@@ -495,23 +495,23 @@ type
     procedure Clear;
     {*------------------------------------------------------------------------------
       Converts to string the set of items in the collection. The elements are separated by semicolon (;) and the coordinates (lat/lng) by a pipe (|).
-      @param Precision Precisión de los valores. Por defecto 6
-      @return String with conversion
+      @param Precision Precisión de los valores. Por defecto 6.
+      @return String with conversion.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Convierte en una cadena el conjunto de elementos de la colección. Los elementos están separados por punto y coma (;) y las coordenadas (lat/lng) separados por una barra vertical (|).
-      @param Precision Precisión de los valores. Por defecto 6
-      @return Cadena con la conversión
+      @param Precision Precisión de los valores. Por defecto 6.
+      @return Cadena con la conversión.
     -------------------------------------------------------------------------------}
     function PointsToStr(Precision: Integer = 6): string;
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source Object to copy content
+      @param Source Object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source Objeto a copiar el contenido
+      @param Source Objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
   end;

@@ -527,7 +527,6 @@ type
 
     function GetItems(I: Integer): TCustomCircle;
 
-    procedure ShowElements; override;
     procedure EventFired(EventType: TEventType; Params: array of const); override;
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
@@ -714,16 +713,6 @@ end;
 function TCustomGMCircle.GetItems(I: Integer): TCustomCircle;
 begin
   Result := TCustomCircle(inherited Items[i]);
-end;
-
-procedure TCustomGMCircle.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 { TCustomCircles }

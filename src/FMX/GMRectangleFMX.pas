@@ -62,9 +62,11 @@ uses
 type
   {*------------------------------------------------------------------------------
     FMX class for rectangles.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase FMX para los rectángulos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   TRectangle = class(TCustomRectangle)
   private
@@ -122,12 +124,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    FMX class for GMRectangle component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
+    Class management of polygons.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase FMX para el componente GMRectangle.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
+    Clase para la gestión de polígonos.
   -------------------------------------------------------------------------------}
   TGMRectangle = class(TCustomGMRectangle)
   protected

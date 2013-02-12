@@ -66,9 +66,11 @@ uses
 type
   {*------------------------------------------------------------------------------
     VCL class for rectangles.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase VCL para los rectángulos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   TRectangle = class(TCustomRectangle)
   private
@@ -127,11 +129,9 @@ type
 
   {*------------------------------------------------------------------------------
     VCL class for GMRectangle component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase VCL para el componente GMRectangle.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   TGMRectangle = class(TCustomGMRectangle)
   protected

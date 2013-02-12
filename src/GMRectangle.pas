@@ -89,9 +89,11 @@ uses
 type
   {*------------------------------------------------------------------------------
     Base class for rectangles.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase base para los rectángulos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   TCustomRectangle = class(TLinkedComponent)
   private
@@ -267,11 +269,9 @@ type
 
   {*------------------------------------------------------------------------------
     Base class for GMRectangle component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase base para el componente GMRectangle.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Rectangle
   -------------------------------------------------------------------------------}
   TCustomGMRectangle = class(TGMLinkedComponent)
   private
@@ -399,7 +399,6 @@ type
 
     function GetItems(I: Integer): TCustomRectangle;
 
-    procedure ShowElements; override;
     procedure EventFired(EventType: TEventType; Params: array of const); override;
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
@@ -578,16 +577,6 @@ end;
 function TCustomGMRectangle.GetItems(I: Integer): TCustomRectangle;
 begin
   Result := TCustomRectangle(inherited Items[i]);
-end;
-
-procedure TCustomGMRectangle.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 { TCustomRectangles }

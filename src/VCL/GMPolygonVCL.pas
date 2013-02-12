@@ -66,9 +66,11 @@ uses
 type
   {*------------------------------------------------------------------------------
     VCL class for polygons.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polygon
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase VCL para los polígonos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polygon
   -------------------------------------------------------------------------------}
   TPolygon = class(TBasePolylineVCL)
   private
@@ -154,12 +156,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    VCL class for GMPolygon component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polygon
+    Class management of polygons.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para el componente GMPolygon.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polygon
+    Clase para la gestión de polígonos.
   -------------------------------------------------------------------------------}
   TGMPolygon = class(TGMBasePolyline)
   private
@@ -182,10 +182,17 @@ type
 
     function GetItems(I: Integer): TPolygon;
 
-    procedure ShowElements; override;
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
+    {*------------------------------------------------------------------------------
+      Creates a new TPolygon instance and adds it to the Items array.
+      @return New TPolygon
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea una nueva instancia de TPolygon y la añade en el array de Items.
+      @return Nuevo TPolygon
+    -------------------------------------------------------------------------------}
     function Add: TPolygon;
 
     {*------------------------------------------------------------------------------
@@ -234,16 +241,6 @@ end;
 function TGMPolygon.GetItems(I: Integer): TPolygon;
 begin
   Result := TPolygon(inherited Items[i]);
-end;
-
-procedure TGMPolygon.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 { TPolygons }

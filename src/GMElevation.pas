@@ -566,8 +566,6 @@ end;
 
 procedure TCustomGMElevation.ShowElements;
 begin
-  inherited;
-
 end;
 
 { TElevationResults }

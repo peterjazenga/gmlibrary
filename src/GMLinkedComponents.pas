@@ -550,6 +550,8 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
 
+    procedure ShowElements; override;
+
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
       @param Source object to copy content
@@ -1149,6 +1151,16 @@ begin
   if Assigned(FVisualObjects) then
     for i := 0 to FVisualObjects.Count - 1 do
       Items[i].IdxList := IdxList;
+end;
+
+procedure TGMLinkedComponent.ShowElements;
+var
+  i: Integer;
+begin
+  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
+
+  for i:= 0 to VisualObjects.Count - 1 do
+    Items[i].ChangeProperties;
 end;
 
 end.

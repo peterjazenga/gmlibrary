@@ -987,7 +987,6 @@ type
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
-    procedure ShowElements; override;
     {*------------------------------------------------------------------------------
       Creates TMarker instances and adds them to the Items array.
       @param LatColumn Column with latitude information.
@@ -1173,16 +1172,6 @@ begin
     if Assigned(L1) then FreeAndNil(L1);
     if Assigned(L2) then FreeAndNil(L2);
   end;
-end;
-
-procedure TCustomGMMarker.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 procedure TCustomGMMarker.ZoomMapToAllMarkers;

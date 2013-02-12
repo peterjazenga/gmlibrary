@@ -183,19 +183,19 @@ type
     function Insert(Index: Integer): TPolyline;
 
     {*------------------------------------------------------------------------------
-      Lists the rectangles in the collection.
+      Lists the polylines in the collection.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Lista de rectángulos en la colección.
+      Lista de polilíneas en la colección.
     -------------------------------------------------------------------------------}
     property Items[I: Integer]: TPolyline read GetItems write SetItems; default;
   end;
 
   {*------------------------------------------------------------------------------
-    VCL class for GMPolyline component.
+    Class management of polylines.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para el componente GMPolyline.
+    Clase para la gestión de polilíneas.
   -------------------------------------------------------------------------------}
   TGMPolyline = class(TGMBasePolyline)
   private
@@ -214,7 +214,6 @@ type
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
-    procedure ShowElements; override;
     {*------------------------------------------------------------------------------
       Creates a new TPolyline instance and adds it to the Items array.
       @return New TPolyline
@@ -490,16 +489,6 @@ end;
 function TGMPolyline.GetItems(I: Integer): TPolyline;
 begin
   Result := TPolyline(inherited Items[i]);
-end;
-
-procedure TGMPolyline.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 end.

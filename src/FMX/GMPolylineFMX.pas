@@ -135,9 +135,11 @@ type
 
   {*------------------------------------------------------------------------------
     FMX class for polylines.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase FMX para los polilineas.
+    Clase FMX para las polilineas.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
   -------------------------------------------------------------------------------}
   TPolyline = class(TBasePolylineFMX)
   private
@@ -186,12 +188,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    FMX class for GMPolyline component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
+    Class management of polylines.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase FMX para el componente GMPolyline.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Polyline
+    Clase para la gestión de polilíneas.
   -------------------------------------------------------------------------------}
   TGMPolyline = class(TGMBasePolyline)
   private
@@ -207,10 +207,17 @@ type
 
     function GetItems(I: Integer): TPolyline;
 
-    procedure ShowElements; override;
     function GetCollectionItemClass: TLinkedComponentClass; override;
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
+    {*------------------------------------------------------------------------------
+      Creates a new TPolyline instance and adds it to the Items array.
+      @return New TPolyline
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea una nueva instancia de TPolyline y la añade en el array de Items.
+      @return Nuevo TPolyline
+    -------------------------------------------------------------------------------}
     function Add: TPolyline;
 
     {*------------------------------------------------------------------------------
@@ -474,16 +481,6 @@ end;
 function TGMPolyline.GetItems(I: Integer): TPolyline;
 begin
   Result := TPolyline(inherited Items[i]);
-end;
-
-procedure TGMPolyline.ShowElements;
-var
-  i: Integer;
-begin
-  if not ExecuteScript('DeleteObjects', IntToStr(IdxList)) then Exit;
-
-  for i:= 0 to VisualObjects.Count - 1 do
-    Items[i].ChangeProperties;
 end;
 
 end.
