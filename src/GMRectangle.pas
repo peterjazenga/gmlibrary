@@ -204,13 +204,13 @@ type
     function ComputeArea(Radius: Real = -1): Real;
     {*------------------------------------------------------------------------------
       Returns the center of the rectangle.
-      @return A TLatLng with the center of the rectangle.
+      @param LL TLatLng with the center of the rectangle.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve el centro del rectángulo.
-      @return Un TLatLng con el centro del rectángulo.
+      @param LL TLatLng con el centro del rectángulo.
     -------------------------------------------------------------------------------}
-    function GetCenter: TLatLng;
+    procedure GetCenter(LL: TLatLng);
     {*------------------------------------------------------------------------------
       Center the map on the rectangle.
     -------------------------------------------------------------------------------}
@@ -714,14 +714,13 @@ begin
   inherited;
 end;
 
-function TCustomRectangle.GetCenter: TLatLng;
+procedure TCustomRectangle.GetCenter(LL: TLatLng);
 const
   StrParams = '%s,%s';
 var
-  LL: TLatLng;
   Params: string;
 begin
-  Result := nil;
+  if not Assigned(LL) then Exit;
 
   if not Assigned(Collection) or not (Collection is TCustomRectangles) or
      not Assigned(TCustomRectangles(Collection).FGMLinkedComponent) or
@@ -732,14 +731,8 @@ begin
   if not TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).ExecuteScript('RectangleGetCenter', Params) then
     Exit;
 
-  LL := TLatLng.Create;
-  try
-    Result := LL;
-    Result.Lat := TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).GetFloatField(RectangleForm, RectangleFormLat);
-    Result.Lng := TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).GetFloatField(RectangleForm, RectangleFormLng);
-  finally
-    if Assigned(LL) then FreeAndNil(LL);
-  end;
+  LL.Lat := TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).GetFloatField(RectangleForm, RectangleFormLat);
+  LL.Lng := TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).GetFloatField(RectangleForm, RectangleFormLng);
 end;
 
 function TCustomRectangle.GetStrPath: string;

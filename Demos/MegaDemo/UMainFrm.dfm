@@ -178,6 +178,7 @@ object MainFrm: TMainFrm
       Anchors = [akTop, akRight]
       Caption = 'Clear Log'
       TabOrder = 1
+      OnClick = bClearLogClick
     end
   end
   object MainMenu1: TMainMenu

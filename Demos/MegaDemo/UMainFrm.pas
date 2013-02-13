@@ -160,6 +160,7 @@ type
       X, Y: Double);
     procedure GMDirection1DirectionsChanged(Sender: TObject);
     procedure Elevation1Click(Sender: TObject);
+    procedure bClearLogClick(Sender: TObject);
   private
   public
     constructor Create(aOwner: TComponent); override;
@@ -196,6 +197,11 @@ begin
         Break;
       end;
     end;
+end;
+
+procedure TMainFrm.bClearLogClick(Sender: TObject);
+begin
+  mEvents.Clear;
 end;
 
 procedure TMainFrm.Circles1Click(Sender: TObject);
