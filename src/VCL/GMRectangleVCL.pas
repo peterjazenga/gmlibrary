@@ -128,10 +128,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    VCL class for GMRectangle component.
+    Class management of rectangles.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para el componente GMRectangle.
+     Clase para la gestión de rectángulos.
   -------------------------------------------------------------------------------}
   TGMRectangle = class(TCustomGMRectangle)
   protected

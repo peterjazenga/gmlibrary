@@ -214,9 +214,11 @@ type
 
   {*------------------------------------------------------------------------------
     Base class for circles.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
     Clase base para los círculos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
   -------------------------------------------------------------------------------}
   TCustomCircle = class(TLinkedComponent)
   private
@@ -328,13 +330,13 @@ type
     procedure CenterMapTo;
     {*------------------------------------------------------------------------------
       Gets the LatLngBounds of this circle.
-      @return The LatLngBounds
+      @param LLB The LatLngBounds.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve el LatLngBounds del círculo.
-      @return El LatLngBounds
+      @param LLB La LatLngBounds.
     -------------------------------------------------------------------------------}
-    function GetBounds: TLatLngBounds;
+    procedure GetBounds(LLB: TLatLngBounds);
   published
     property Center: TLatLng read FCenter write FCenter;
     property Clickable: Boolean read FClickable write SetClickable;
@@ -387,12 +389,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    Base class for GMCircle component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
+    Class management of circles.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase base para el componente GMCircle.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
+     Clase para la gestión de círculos.
   -------------------------------------------------------------------------------}
   TCustomGMCircle = class(TGMLinkedComponent)
   private
@@ -533,17 +533,17 @@ type
   public
     {*------------------------------------------------------------------------------
       Creates a new TCustomCircle instance and adds it to the Items array.
-      @param Lat The circle's latitude
-      @param Lng The circle's longitude
-      @param Radius The circle's radius
-      @return A new instance of TCustomCircle
+      @param Lat The circle's latitude.
+      @param Lng The circle's longitude.
+      @param Radius The circle's radius.
+      @return A new instance of TCustomCircle.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TCustomCircle y la añade en el array de Items.
-      @param Lat Latitud del círculo
-      @param Lng Longitud del círculo
-      @param Radius Radio del círculo
-      @return Una nueva instancia de TCustomCircle
+      @param Lat Latitud del círculo.
+      @param Lng Longitud del círculo.
+      @param Radius Radio del círculo.
+      @return Una nueva instancia de TCustomCircle.
     -------------------------------------------------------------------------------}
     function Add(Lat: Real = 0; Lng: Real = 0; Radius: Integer = 0): TCustomCircle;
 
@@ -836,14 +836,13 @@ begin
   inherited;
 end;
 
-function TCustomCircle.GetBounds: TLatLngBounds;
+procedure TCustomCircle.GetBounds(LLB: TLatLngBounds);
 const
   StrParams = '%s,%s';
 var
   Params: string;
-  LLB: TLatLngBounds;
 begin
-  Result := nil;
+  if not Assigned(LLB) then Exit;
 
   if not Assigned(Collection) or not (Collection is TCustomCircles) or
      not Assigned(TCustomCircles(Collection).FGMLinkedComponent) or
@@ -854,16 +853,10 @@ begin
   if not TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).ExecuteScript('CircleGetBounds', Params) then
     Exit;
 
-  LLB := TLatLngBounds.Create;
-  try
-    Result := LLB;
-    Result.NE.Lat := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormNELat);
-    Result.NE.Lng := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormNELng);
-    Result.SW.Lat := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormSWLat);
-    Result.SW.Lng := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormSWLng);
-  finally
-    if Assigned(LLB) then FreeAndNil(LLB);
-  end;
+  LLB.NE.Lat := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormNELat);
+  LLB.NE.Lng := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormNELng);
+  LLB.SW.Lat := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormSWLat);
+  LLB.SW.Lng := TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).GetFloatField(CircleForm, CircleFormSWLng);
 end;
 
 procedure TCustomCircle.OnChangeLatLng(Sender: TObject);

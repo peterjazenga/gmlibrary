@@ -99,9 +99,11 @@ type
 
   {*------------------------------------------------------------------------------
     VCL class for circles.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para los circles.
+    Clase VCL para los círculos.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
   -------------------------------------------------------------------------------}
   TCircle = class(TCustomCircle)
   private
@@ -159,12 +161,10 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    VCL class for GMCircle component.
-    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
+    Class management of circles.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para el componente GMCircle.
-    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Circle
+     Clase para la gestión de círculos.
   -------------------------------------------------------------------------------}
   TGMCircle = class(TCustomGMCircle)
   protected

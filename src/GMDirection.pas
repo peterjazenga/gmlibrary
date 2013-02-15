@@ -1019,38 +1019,38 @@ type
     FOwner: TCustomGMDirection;
     FRoutes: TObjectList;
     {*------------------------------------------------------------------------------
-      XML response
+      XML response.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      XML de la respuesta
+      XML de la respuesta.
     -------------------------------------------------------------------------------}
     FXMLData: TStringList;
     {*------------------------------------------------------------------------------
-      DirectionsResult Index identifier into the results array
+      DirectionsResult Index identifier into the results array.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Índice identificador del DirectionsResult dentro del array de resultados
+      Índice identificador del DirectionsResult dentro del array de resultados.
     -------------------------------------------------------------------------------}
     FIndex: Integer;
     {*------------------------------------------------------------------------------
-      State of the query
+      State of the query.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Estado de la consulta
+      Estado de la consulta.
     -------------------------------------------------------------------------------}
     FStatus: TDirectionsStatus;
     {*------------------------------------------------------------------------------
-      String that contains the request in format "From to To"
+      String that contains the request in format "From to To".
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Cadena que contiene la busqueda realizada en formato "Desde a Hasta"
+      Cadena que contiene la búsqueda realizada en formato "Desde a Hasta".
     -------------------------------------------------------------------------------}
     FFromTo: string;
     {*------------------------------------------------------------------------------
-      Query conditions
+      Query conditions.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Condiciones de la consulta
+      Condiciones de la consulta.
     -------------------------------------------------------------------------------}
     FDirectionsRender: TCustomDirectionsRenderer;
     function GetCount: Integer;
@@ -1086,31 +1086,31 @@ type
     procedure CreateDirectionsRenderObject; virtual; abstract;
   public
     {*------------------------------------------------------------------------------
-      Constructor class
-      @param aOwner Owner of the object
-      @param Index DirectionsResult Index identifier into the results array
+      Constructor class.
+      @param aOwner Owner of the object.
+      @param Index DirectionsResult Index identifier into the results array.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param aOwner Propietario del objeto
-      @param Index Índice identificador del DirectionsResult dentro del array de resultados
+      Constructor de la clase.
+      @param aOwner Propietario del objeto.
+      @param Index Índice identificador del DirectionsResult dentro del array de resultados.
     -------------------------------------------------------------------------------}
     constructor Create(aOwner: TCustomGMDirection; Index: Integer); virtual;
     {*------------------------------------------------------------------------------
-      Destructor class
+      Destructor class.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Destructor de la clase
+      Destructor de la clase.
     -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source object to copy content
+      @param Source object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source objeto a copiar el contenido
+      @param Source objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TObject); virtual;
 
@@ -1363,62 +1363,62 @@ type
   protected
     {*------------------------------------------------------------------------------
       Return the owner of the collection.
-      @return Owner
+      @return Owner.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve el propietario de la colección.
-      @return Propietario
+      @return Propietario.
     -------------------------------------------------------------------------------}
     function GetOwner: TPersistent; override;
   public
     {*------------------------------------------------------------------------------
-      Constructor class
-      @param AOwner Owner
+      Constructor class.
+      @param AOwner Owner.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param AOwner Propietario
+      Constructor de la clase.
+      @param AOwner Propietario.
     -------------------------------------------------------------------------------}
     constructor Create(aOwner: TPersistent); virtual;
 
     {*------------------------------------------------------------------------------
       Creates a new TWaypoint instance and adds it to the Items array.
-      @return New item
+      @return New item.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TWaypoint y la añade en el array de Items.
-      @return Nuevo elemento
+      @return Nuevo elemento.
     -------------------------------------------------------------------------------}
     function Add: TWaypoint;
     {*------------------------------------------------------------------------------
       Creates a new TWaypoint instance and adds it to the Items array.
-      @param Index Position to insert
-      @return New item
+      @param Index Position to insert.
+      @return New item.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TWaypoint y la añade en el array de Items.
-      @param Index Posición en la que insertar
-      @return Nuevo elemento
+      @param Index Posición en la que insertar.
+      @return Nuevo elemento.
     -------------------------------------------------------------------------------}
     function Insert(Index: Integer): TWaypoint;
     {*------------------------------------------------------------------------------
       Deletes a single item from the collection.
-      @param Index Position to delete
+      @param Index Position to delete.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Borra un elemento de la colección.
-      @param Index Posición a borrar
+      @param Index Posición a borrar.
     -------------------------------------------------------------------------------}
     procedure Delete(Index: Integer);
     {*------------------------------------------------------------------------------
       Moves a item to a new position into Items array.
-      @param CurIndex Index of Item to move
-      @param NewIndex Destination index
+      @param CurIndex Index of Item to move.
+      @param NewIndex Destination index.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Mueve un item a una nueva posición dentro del array de Items.
-      @param CurIndex Índice del elemento a mover
-      @param NewIndex Índice destino
+      @param CurIndex Índice del elemento a mover.
+      @param NewIndex Índice destino.
     -------------------------------------------------------------------------------}
     procedure Move(CurIndex, NewIndex: Integer);
     {*------------------------------------------------------------------------------
@@ -1452,7 +1452,7 @@ type
       Location of destination. This can be specified as either a string to be geocoded or a LatLng.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Localización del destino. Puede especificarse como una cadena que será ggeocodificada o un LatLng.
+      Localización del destino. Puede especificarse como una cadena que será geocodificada o un LatLng.
     -------------------------------------------------------------------------------}
     FDestination: TLatLngStr;
     {*------------------------------------------------------------------------------
@@ -1466,7 +1466,7 @@ type
       Location of origin. This can be specified as either a string to be geocoded or a LatLng.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Localización del origen. Puede especificarse como una cadena que será ggeocodificada o un LatLng.
+      Localización del origen. Puede especificarse como una cadena que será geocodificada o un LatLng.
     -------------------------------------------------------------------------------}
     FOrigin: TLatLngStr;
     {*------------------------------------------------------------------------------
@@ -1515,7 +1515,7 @@ type
       If true, instructs the Directions service to avoid toll roads where possible.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Si se establece a true, el servicio Directions evitará las carreteras de peage siempre que sea posible.
+      Si se establece a true, el servicio Directions evitará las carreteras de peaje siempre que sea posible.
     -------------------------------------------------------------------------------}
     FAvoidTolls: Boolean;
     {*------------------------------------------------------------------------------
@@ -2017,31 +2017,31 @@ type
 
     {*------------------------------------------------------------------------------
       Creates a new TWaypoint instance and adds it to the DirectionsRequest.Waypoints array.
-      @return New item
+      @return New item.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TWaypoint y la añade en el array de DirectionsRequest.Waypoints.
-      @return Nuevo elemento
+      @return Nuevo elemento.
     -------------------------------------------------------------------------------}
     function AddWaypoint: TWaypoint;
     {*------------------------------------------------------------------------------
       Deletes a single item from the collection DirectionsRequest.Waypoints.
-      @param Index Position to delete
+      @param Index Position to delete.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Borra un elemento de la colección DirectionsRequest.Waypoints.
-      @param Index Posición a borrar
+      @param Index Posición a borrar.
     -------------------------------------------------------------------------------}
     procedure DeleteWaypoint(Index: Integer);
     {*------------------------------------------------------------------------------
       Moves a item to a new position into DirectionsRequest.Waypoints array.
-      @param CurIndex Index of Item to move
-      @param NewIndex Destination index
+      @param CurIndex Index of Item to move.
+      @param NewIndex Destination index.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Mueve un item a una nueva posición dentro del array de DirectionsRequest.Waypoints.
-      @param CurIndex Índice del elemento a mover
-      @param NewIndex Índice destino
+      @param CurIndex Índice del elemento a mover.
+      @param NewIndex Índice destino.
     -------------------------------------------------------------------------------}
     procedure MoveWaypoint(CurIndex, NewIndex: Integer);
     {*------------------------------------------------------------------------------
@@ -2066,11 +2066,11 @@ type
     -------------------------------------------------------------------------------}
     procedure ShowRoute(ResultIndex, RouteIndex: Integer; HiddeOthers: Boolean = True);
     {*------------------------------------------------------------------------------
-      Shows a specific route.
+      Delete a specific route.
       @param ResultIndex Index of the DirectionsResult array.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Muestra una ruta especificada.
+      Borra una ruta especificada.
       @param ResultIndex Índice dentro del array DirectionsResult.
     -------------------------------------------------------------------------------}
     procedure Delete(ResultIndex: Integer);

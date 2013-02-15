@@ -108,11 +108,11 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    The directions response retrieved from the directions server. Base class.
+    The directions response retrieved from the directions server.
     More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#DirectionsResult
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Respuesta Directions devuelta por el servidor de direcciones. Clase base.
+    Respuesta Directions devuelta por el servidor de direcciones.
     Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#DirectionsResult
   -------------------------------------------------------------------------------}
   TDirectionsResult = class(TCustomDirectionsResult)
