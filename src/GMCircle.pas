@@ -781,7 +781,7 @@ begin
 
   if not Assigned(Collection) or not(Collection is TCustomCircles) or
      not Assigned(TCustomCircles(Collection).FGMLinkedComponent) or
-     not TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).AutoUpdate or
+     //not TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).AutoUpdate or
      not Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).Map) or
      (csDesigning in TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).ComponentState) then
     Exit;

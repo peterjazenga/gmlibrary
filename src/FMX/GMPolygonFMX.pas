@@ -291,7 +291,7 @@ begin
 
   if not Assigned(Collection) or not(Collection is TPolygons) or
      not Assigned(TPolygons(Collection).FGMLinkedComponent) or
-     not TGMPolygon(TPolygons(Collection).FGMLinkedComponent).AutoUpdate or
+     //not TGMPolygon(TPolygons(Collection).FGMLinkedComponent).AutoUpdate or
      not Assigned(TGMPolygon(TPolygons(Collection).FGMLinkedComponent).Map) or
      (csDesigning in TGMPolygon(TPolygons(Collection).FGMLinkedComponent).ComponentState) then
     Exit;

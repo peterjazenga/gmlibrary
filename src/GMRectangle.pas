@@ -634,7 +634,7 @@ begin
   begin
     LL := TLatLng.Create;
     try
-      LL.Assign(GetCenter);
+      GetCenter(LL);
       TCustomRectangles(Collection).FGMLinkedComponent.Map.SetCenter(LL.Lat, LL.Lng);
     finally
       if Assigned(LL) then FreeAndNil(LL);
@@ -654,7 +654,7 @@ begin
 
   if not Assigned(Collection) or not(Collection is TCustomRectangles) or
      not Assigned(TCustomRectangles(Collection).FGMLinkedComponent) or
-     not TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).AutoUpdate or
+     //not TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).AutoUpdate or
      not Assigned(TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).Map) or
      (csDesigning in TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent).ComponentState) then
     Exit;

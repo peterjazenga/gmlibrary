@@ -435,9 +435,9 @@ type
   { ****************************************************************************
   https://developers.google.com/maps/documentation/javascript/directions#TransitInformation
   **************************************************************************** }
-  TVehicleType = (vtRAIL, vtMETRO_RAIL, vtSUBWAY, vtTRAM, vtMONORAIL, vtHEAVY_RAIL, vtCOMMUTER_TRAIN,
-          vtHIGH_SPEED_TRAIN, vtBUS, vtINTERCITY_BUS, vtTROLLEYBUS, vtSHARE_TAXI, vtFERRY, vtCABLE_CAR,
-          vtGONDOLA_LIFT, vtFUNICULAR, vtOTHER);
+  TVehicleType = (vtRAIL, vtMETRO_RAIL, vtSUBWAY, vtTRAM, vtMONORAIL, vtHEAVY_RAIL,
+          vtCOMMUTER_TRAIN, vtHIGH_SPEED_TRAIN, vtBUS, vtINTERCITY_BUS, vtTROLLEYBUS,
+          vtSHARE_TAXI, vtFERRY, vtCABLE_CAR, vtGONDOLA_LIFT, vtFUNICULAR, vtOTHER);
   { ****************************************************************************
   https://developers.google.com/maps/documentation/javascript/reference#DirectionsStatus
   **************************************************************************** }

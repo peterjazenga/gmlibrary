@@ -356,7 +356,7 @@ begin
 
   if not Assigned(Collection) or not(Collection is TInfoWindows) or
      not Assigned(TInfoWindows(Collection).FGMLinkedComponent) or
-     not TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).AutoUpdate or
+     //not TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).AutoUpdate or
      not Assigned(TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).Map) or
      (csDesigning in TGMInfoWindow(TInfoWindows(Collection).FGMLinkedComponent).ComponentState) then
     Exit;

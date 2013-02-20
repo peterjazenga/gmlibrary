@@ -108,7 +108,7 @@ type
       A string representation of the distance value, using the UnitSystem specified in the request.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Representación del valor de la distancia, usando la UnitSystem especificada en la solucitud.
+      Representación del valor de la distancia, usando la UnitSystem especificada en la solicitud.
     -------------------------------------------------------------------------------}
     FText: string;
   public
@@ -143,6 +143,7 @@ type
     Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Duration
   -------------------------------------------------------------------------------}
   TDuration = class
+  private
     {*------------------------------------------------------------------------------
       The duration in seconds.
     -------------------------------------------------------------------------------}
@@ -849,7 +850,7 @@ type
       An array of waypoints along this leg that were not specified in the original request, either as a result of a user dragging the polyline or selecting an alternate route.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Array de puntos de paso a lo largo de esta etapa que no fueron especificado en la petición incial, resultado del desplazamiento por parte del usuario de la polilinea o por la selección de una ruta alternativa.
+      Array de puntos de paso a lo largo de esta etapa que no fueron especificado en la petición inicial, resultado del desplazamiento por parte del usuario de la polilinea o por la selección de una ruta alternativa.
     -------------------------------------------------------------------------------}
     property ViaWaypoints[Index: Integer]: TLatLng read GetViaWaypoints;
     {*------------------------------------------------------------------------------
@@ -903,7 +904,7 @@ type
       Copyrights text to be displayed for this route.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Texto del Copyrights a mistrar para esta ruta.
+      Texto del Copyrights a mostrar para esta ruta.
     -------------------------------------------------------------------------------}
     FCopyrights: string;
     FWarning: TStringList;
@@ -1156,51 +1157,51 @@ type
   TLatLngStr = class(TPersistent)
   private
     {*------------------------------------------------------------------------------
-      Point in geographical coordinates
+      Point in geographical coordinates.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Punto de coordenadas geográficas
+      Punto de coordenadas geográficas.
     -------------------------------------------------------------------------------}
     FLatLng: TLatLng;
     {*------------------------------------------------------------------------------
-      String with the address of a place
+      String with the address of a place.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Cadena con la dirección de un lugar
+      Cadena con la dirección de un lugar.
     -------------------------------------------------------------------------------}
     FAddress: string;
   public
     {*------------------------------------------------------------------------------
-      Constructor class
+      Constructor class.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
+      Constructor de la clase.
     -------------------------------------------------------------------------------}
     constructor Create; virtual;
     {*------------------------------------------------------------------------------
-      Destructor class
+      Destructor class.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Destructor de la clase
+      Destructor de la clase.
     -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source object to copy content
+      @param Source object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source objeto a copiar el contenido
+      @param Source objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
     {*------------------------------------------------------------------------------
       This method returns Address if it is informed, otherwise LatLng.
-      @return String with Address or LatLng
+      @return String with Address or LatLng.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Este método devuelve Address si está informado o LatLng en caso contrario.
-      @return Cadena con Adress o LatLng
+      @return Cadena con Adress o LatLng.
     -------------------------------------------------------------------------------}
     function ToString: string; {$IF CompilerVersion < 19}virtual;{$ELSE}override;{$IFEND}
   published
@@ -1703,7 +1704,7 @@ type
       Indicates whether this Polyline handles mouse events.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Indica si la Polilinea controla los eventos del ratón.
+      Indica si la Polilinea recibirá los eventos del ratón.
     -------------------------------------------------------------------------------}
     FClickable: Boolean;
     {*------------------------------------------------------------------------------

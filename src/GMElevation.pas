@@ -182,14 +182,14 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    Base class for GMElevation component.
+    Base class for calculating elevations.
     More information at:
     https://developers.google.com/maps/documentation/javascript/reference?hl=en#ElevationService
     https://developers.google.com/maps/documentation/javascript/elevation
     https://developers.google.com/maps/documentation/elevation/index
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase base para el componente GMElevation.
+    Clase base para el cálculo de elevaciones.
     Más información en:
     https://developers.google.com/maps/documentation/javascript/reference?hl=en#ElevationService
     https://developers.google.com/maps/documentation/javascript/elevation

@@ -359,7 +359,7 @@ begin
 
   if not Assigned(Collection) or not(Collection is TPolylines) or
      not Assigned(TPolylines(Collection).FGMLinkedComponent) or
-     not TGMPolyline(TPolylines(Collection).FGMLinkedComponent).AutoUpdate or
+     //not TGMPolyline(TPolylines(Collection).FGMLinkedComponent).AutoUpdate or
      not Assigned(TGMPolyline(TPolylines(Collection).FGMLinkedComponent).Map) or
      (csDesigning in TGMPolyline(TPolylines(Collection).FGMLinkedComponent).ComponentState) then
     Exit;

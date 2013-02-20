@@ -59,14 +59,14 @@ uses
 
 type
   {*------------------------------------------------------------------------------
-    VCL class for GMElevation component.
+    Class for calculating elevations.
     More information at:
     https://developers.google.com/maps/documentation/javascript/reference?hl=en#ElevationService
     https://developers.google.com/maps/documentation/javascript/elevation
     https://developers.google.com/maps/documentation/elevation/index
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Clase VCL para el componente GMElevation.
+    Clase para el cálculo de elevaciones.
     Más información en:
     https://developers.google.com/maps/documentation/javascript/reference?hl=en#ElevationService
     https://developers.google.com/maps/documentation/javascript/elevation

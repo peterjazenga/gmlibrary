@@ -1381,7 +1381,7 @@ begin
 
   if not Assigned(Collection) or not(Collection is TCustomMarkers) or
      not Assigned(TCustomMarkers(Collection).FGMLinkedComponent) or
-     not TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).AutoUpdate or
+     //not TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).AutoUpdate or
      not Assigned(TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).Map) or
      (csDesigning in TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).ComponentState) then
     Exit;
