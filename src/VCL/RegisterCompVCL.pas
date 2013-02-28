@@ -112,9 +112,7 @@ uses
   {$IFEND}
 
   GMMapVCL, GMMarkerVCL, GMPolylineVCL, GMPolygonVCL, GMRectangleVCL,
-  GMCircleVCL, GMDirectionVCL, GMElevationVCL,
-
-  GMGeoCode;
+  GMCircleVCL, GMDirectionVCL, GMElevationVCL;
 
 procedure Register;
 begin
@@ -128,14 +126,11 @@ begin
   GroupDescendentsWith(TGMCircle, Vcl.Controls.TControl);
   GroupDescendentsWith(TGMDirection, Vcl.Controls.TControl);
   GroupDescendentsWith(TGMElevation, Vcl.Controls.TControl);
-  GroupDescendentsWith(TGMGeoCode, Vcl.Controls.TControl);
 {$IFEND}
   RegisterComponents('GoogleMaps', [TGMMap, {$IFDEF CHROMIUM}TGMMapChr,{$ENDIF} TGMMarker,
                                     TGMPolyline, TGMPolygon,
                                     TGMRectangle, TGMCircle,
-                                    TGMDirection, TGMElevation,
-
-                                    TGMGeoCode]);
+                                    TGMDirection, TGMElevation]);
 end;
 
 end.

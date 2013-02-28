@@ -66,11 +66,11 @@ uses
   System.Classes,
   {$IFEND}
 
-  GMInfoWindow;
+  GMInfoWindow, GMGeoCode;
 
 procedure Register;
 begin
-  RegisterComponents('GoogleMaps', [TGMInfoWindow]);
+  RegisterComponents('GoogleMaps', [TGMInfoWindow, TGMGeoCode]);
 end;
 
 end.

@@ -28,6 +28,7 @@ package GMLib_DXE2;
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD ON}
+{$I ..\gmlib.inc}
 
 requires
   rtl,
@@ -36,8 +37,8 @@ requires
   vcl,
   xmlrtl,
   dbrtl,
-  {$IFDEF WIN32}
-  DCEF_XE2,
+  {$IFDEF CHROMIUM or CHROMIUMFMX}
+  {$IFDEF WIN32}DCEF_XE2,{$ENDIF}
   {$ENDIF}
   fmx;
 
@@ -56,6 +57,7 @@ contains
   GMClasses in '..\src\GMClasses.pas',
   GMLinkedComponents in '..\src\GMLinkedComponents.pas',
   GMElevation in '..\src\GMElevation.pas',
-  RegisterComp in '..\src\RegisterComp.pas';
+  RegisterComp in '..\src\RegisterComp.pas',
+  GMGeoCode in '..\src\GMGeoCode.pas';
 
 end.

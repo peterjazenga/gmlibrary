@@ -153,6 +153,12 @@ type
 implementation
 
 uses
+  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
+  Contnrs,
+  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  System.Contnrs,
+  {$IFEND}
+
   GMFunctionsVCL, GMConstants;
 
 { TPolylineOptions }

@@ -171,7 +171,107 @@
     document.geometrydata.interLng.value = From.lng();
   }
   
-/******************************************************************************
+  /******************************************************************************
+     Funciones de la clase Geocoder
+     Geocoder functions
+  *******************************************************************************/
+  /* GeocoderGeometry */
+  function GeocoderGeometry(Geo) {
+    var Tmp = '<location>\n';
+    Tmp += '<lat>' + Geo.location.lat() + '</lat>\n';
+    Tmp += '<lng>' + Geo.location.lng() + '</lng>\n';
+    Tmp += '</location>\n';
+    
+    Tmp += '<location_type>glt' + Geo.location_type + '</location_type>';
+    
+    Tmp += '<viewport>\n';
+    Tmp += '<southwest>\n';
+    Tmp += '<lat>' + Geo.viewport.getSouthWest().lat() + '</lat>\n';
+    Tmp += '<lng>' + Geo.viewport.getSouthWest().lng() + '</lng>\n';
+    Tmp += '</southwest>\n';
+    Tmp += '<northeast>\n';
+    Tmp += '<lat>' + Geo.viewport.getNorthEast().lat() + '</lat>\n';
+    Tmp += '<lng>' + Geo.viewport.getNorthEast().lng() + '</lng>\n';
+    Tmp += '</northeast>\n';
+    Tmp += '</viewport>\n';
+    
+    if (Geo.bounds != null) {
+      Tmp += '<bounds>\n';
+      Tmp += '<southwest>\n';
+      Tmp += '<lat>' + Geo.bounds.getSouthWest().lat() + '</lat>\n';
+      Tmp += '<lng>' + Geo.bounds.getSouthWest().lng() + '</lng>\n';
+      Tmp += '</southwest>\n';
+      Tmp += '<northeast>\n';
+      Tmp += '<lat>' + Geo.bounds.getNorthEast().lat() + '</lat>\n';
+      Tmp += '<lng>' + Geo.bounds.getNorthEast().lng() + '</lng>\n';
+      Tmp += '</northeast>\n';
+      Tmp += '</bounds>\n';
+    }
+    return Tmp;
+  }
+  
+  /* GeocoderAddressComponent */
+  function GeocoderAddressComponent(AddrComp) {
+    var Tmp = '<long_name>' + AddrComp.long_name + '</long_name>\n';
+    Tmp += '<short_name>' + AddrComp.short_name + '</short_name>\n';
+    for (var i = 0; i < AddrComp.types.length; i++) {
+      Tmp += '<type>\n' + AddrComp.types[i] + '</type>\n';
+    }
+    return Tmp;
+  }
+  
+  /* GeocoderParseResult */
+  function GeocoderParseResult(Result) {
+    var Tmp = '<formatted_address>' + Result.formatted_address + '</formatted_address>\n';
+    for (var i = 0; i < Result.types.length; i++) {
+      Tmp += '<type>' + Result.types[i] + '</type>\n';
+    }
+    for (var i = 0; i < Result.address_components.length; i++) {
+      Tmp += '<address_component>\n' + GeocoderAddressComponent(Result.address_components[i]) + '</address_component>\n';
+    }
+	Tmp += '<geometry>\n' + GeocoderGeometry(Result.geometry) + '</geometry>\n';
+    return Tmp;
+  }
+  
+  /* GeocoderToXMLData */
+  function GeocoderToXMLData(result, status) {
+    var Tmp = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    Tmp += '<GeocodeResponse>\n';
+    Tmp += '<status>gs' + status + '</status>\n';
+    
+    for (var i = 0; i < result.length; i++) {
+	  Tmp += '<result>\n' + GeocoderParseResult(result[i]) + '</result>\n';
+    }
+	
+    Tmp += '</GeocodeResponse>\n';
+    return Tmp;
+  }
+  
+/* GetGeocoder */
+  function GetGeocoder(Address, Lat, Lng, Region, SWLat, SWLng, NELat, NELng, Lang) {
+    document.geocoderdata.xml.value = '';
+    if (Address == '') Address = null;
+    if ((Lat == -1) || (Lng == -1)) LL = null;
+    else LL = new google.maps.LatLng(Lat, Lng);
+    if (Region == '') Region = null;
+    if ((SWLat == -1) || (SWLng == -1) || (NELat == -1) || (NELng == -1)) LLB = null;
+    else LLB = new google.maps.LatLngBounds(new google.maps.LatLng(SWLat, SWLng), new google.maps.LatLng(NELat, NELng));
+    
+    var geocoderRequest = {
+          address: Address,
+          bounds: LLB,
+          location: LL,
+          region: Region,
+          language: Lang
+    }
+    
+    var Geo = new google.maps.Geocoder;
+    Geo.geocode(geocoderRequest, function(result, status) {
+      document.geocoderdata.xml.value = GeocoderToXMLData(result, status);
+	});
+  }
+  
+  /******************************************************************************
      Funciones de la clase Elevation
      Elevation functions
   *******************************************************************************/
@@ -722,7 +822,6 @@
     if (Idx != -1) {
       if (linkedCompList[Idx] instanceof google.maps.InfoWindow) {
         linkedCompList[Idx].setContent(Content);
-		alert(linkedCompList[Idx].getPosition().toString());
       }
       else linkedCompList[Idx].GMLibInfoWin.setContent(Content);
     }
@@ -774,7 +873,6 @@
     if (Idx != -1) {
       if (linkedCompList[Idx] instanceof google.maps.InfoWindow) {
         linkedCompList[Idx].setPosition(new google.maps.LatLng(Lat,Lng));
-		alert(linkedCompList[Idx].getPosition().toString());
       }
       else linkedCompList[Idx].GMLibInfoWin.setPosition(new google.maps.LatLng(Lat,Lng));
     }
@@ -2193,6 +2291,7 @@
       <td align=center width=90 onClick="GetDirections(false, false, 'Barcelona', 0, 0, false, 'Tarragona', 0, 0, true, 'es', 0, 0, 'DRIVING', 'METRIC', '', true)">do Direction 3</td>
       <td align=center width=90 onClick="CreateAllCircles()">do Circles</td>
       <td align=center width=90 onClick="EncodePath('}~kvHmzrr@ba\hnc@jiu@r{Zqx~@hjp@pwEhnc@zhu@zflAbxn@fhjBvqHroaAgcnAp}gAeahAtqGkngAinc@_h|@r{Zad\y|_D}_y@swg@ysg@}llBpoZqa{@xrw@~eBaaX}{uAero@uqGadY}nr@`dYs_NquNgbjAf{l@|yh@bfc@}nr@z}q@i|i@zgz@r{ZhjFr}gApob@ff}@laIsen@dgYhdPvbIren@')">Encode</td>
+	  <td onClick="GetGeocoder('c\ reial, 60, tarragona', -1, -1, 'es', -1, -1, -1, -1, 'es')">Geocode</td>
     </tr>
   </table>
 -->
@@ -2268,6 +2367,13 @@
      Results for Direction class
   *******************************************************************************-->
   <form action="#" id="directionsdata" name="directionsdata"> 
+    <input type="hidden" name="xml" value=""/> 
+  </form> 
+  <!--******************************************************************************
+     Resultados para la clase Geocoder
+     Results for Geocoder class
+  *******************************************************************************-->
+  <form action="#" id="geocoderdata" name="geocoderdata"> 
     <input type="hidden" name="xml" value=""/> 
   </form> 
   <!--******************************************************************************

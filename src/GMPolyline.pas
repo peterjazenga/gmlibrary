@@ -745,10 +745,10 @@ type
     function Insert(Index: Integer): TBasePolyline;
 
     {*------------------------------------------------------------------------------
-      Lists the rectangles in the collection.
+      Lists the polylines in the collection.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Lista de rectángulos en la colección.
+      Lista de polilineas en la colección.
     -------------------------------------------------------------------------------}
     property Items[I: Integer]: TBasePolyline read GetItems write SetItems; default;
   end;

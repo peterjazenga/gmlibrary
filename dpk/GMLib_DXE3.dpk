@@ -49,6 +49,7 @@ contains
   GMRectangle in '..\src\GMRectangle.pas',
   Lang in '..\src\Lang.pas',
   RegisterComp in '..\src\RegisterComp.pas',
-  WebControl in '..\src\WebControl.pas';
+  WebControl in '..\src\WebControl.pas',
+  GMGeoCode in '..\src\GMGeoCode.pas';
 
 end.

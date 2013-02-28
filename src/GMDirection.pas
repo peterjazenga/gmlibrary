@@ -3246,10 +3246,10 @@ var
     begin
       while Assigned(Node) do
       begin
-        if Node.NodeName = LBL_D_LAT then
+        if SameText(Node.NodeName, LBL_D_LAT) then
           LatLng.Lat := LatLng.StringToReal(Node.NodeValue);
 
-        if Node.NodeName = LBL_D_LNG then
+        if SameText(Node.NodeName, LBL_D_LNG) then
           LatLng.Lng := LatLng.StringToReal(Node.NodeValue);
 
         Node := Node.NextSibling;
@@ -3260,10 +3260,10 @@ var
     begin
       while Assigned(Node) do
       begin
-        if (Node.NodeName = LBL_D_SOUTHWEST) and (Node.ChildNodes.Count = 2) then
+        if SameText(Node.NodeName, LBL_D_SOUTHWEST) and (Node.ChildNodes.Count = 2) then
           GetLatLng(LatLngBounds.SW, Node.ChildNodes.First);
 
-        if (Node.NodeName = LBL_D_NORTHEAST) and (Node.ChildNodes.Count = 2) then
+        if SameText(Node.NodeName, LBL_D_NORTHEAST) and (Node.ChildNodes.Count = 2) then
           GetLatLng(LatLngBounds.NE, Node.ChildNodes.First);
 
         Node := Node.NextSibling;
@@ -3295,13 +3295,13 @@ var
       while Assigned(Node) do
       begin
         // ES: etiqueta "text" (sólo una)   // EN: "text" tag (only one)
-        if Node.NodeName = LBL_D_TEXT then Time.FText := Node.NodeValue;
+        if SameText(Node.NodeName, LBL_D_TEXT) then Time.FText := Node.NodeValue;
 
         // ES: etiqueta "time_zone" (sólo una)   // EN: "time_zone" tag (only one)
-        if Node.NodeName = LBL_D_TIMEZONE then Time.FTimeZone := Node.NodeValue;
+        if SameText(Node.NodeName, LBL_D_TIMEZONE) then Time.FTimeZone := Node.NodeValue;
 
         // ES: etiqueta "value" (sólo una)   // EN: "value" tag (only one)
-        if Node.NodeName = LBL_D_VALUE then Time.FValue := GetADateTime(Node.NodeValue);
+        if SameText(Node.NodeName, LBL_D_VALUE) then Time.FValue := GetADateTime(Node.NodeValue);
 
         Node := Node.NextSibling;
       end;
@@ -3313,8 +3313,8 @@ var
         begin
           while Assigned(Node) do
           begin
-            if Node.NodeName = LBL_D_TEXT then Duration.FText := Node.NodeValue;
-            if Node.NodeName = LBL_D_VALUE then Duration.FValue := Node.NodeValue;
+            if SameText(Node.NodeName, LBL_D_TEXT) then Duration.FText := Node.NodeValue;
+            if SameText(Node.NodeName, LBL_D_VALUE) then Duration.FValue := Node.NodeValue;
 
             Node := Node.NextSibling;
           end;
@@ -3323,8 +3323,8 @@ var
         begin
           while Assigned(Node) do
           begin
-            if Node.NodeName = LBL_D_TEXT then Distance.FText := Node.NodeValue;
-            if Node.NodeName = LBL_D_VALUE then Distance.FValue := Node.NodeValue;
+            if SameText(Node.NodeName, LBL_D_TEXT) then Distance.FText := Node.NodeValue;
+            if SameText(Node.NodeName, LBL_D_VALUE) then Distance.FValue := Node.NodeValue;
 
             Node := Node.NextSibling;
           end;
@@ -3337,11 +3337,11 @@ var
               while Assigned(Node) do
               begin
                 // ES: etiqueta "location" (sólo una)   // EN: "location" tag (only one)
-                if (Node.NodeName = LBL_D_LOCATION) and (Node.ChildNodes.Count = 2) then
+                if SameText(Node.NodeName, LBL_D_LOCATION) and (Node.ChildNodes.Count = 2) then
                   GetLatLng(TStop.Location, Node.ChildNodes.First);
 
                 // ES: etiqueta "name" (sólo una)   // EN: "name" tag (only one)
-                if Node.NodeName = LBL_D_NAME then TStop.FName := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_NAME) then TStop.FName := Node.NodeValue;
 
                 Node := Node.NextSibling;
               end;
@@ -3352,16 +3352,16 @@ var
                 while Assigned(Node) do
                 begin
                   // ES: etiqueta "icon" (sólo una)   // EN: "icon" tag (only one)
-                  if Node.NodeName = LBL_D_ICON then TVehicle.FIcon := Node.NodeValue;
+                  if SameText(Node.NodeName, LBL_D_ICON) then TVehicle.FIcon := Node.NodeValue;
 
                   // ES: etiqueta "local_icon" (sólo una)   // EN: "local_icon" tag (only one)
-                  if Node.NodeName = LBL_D_LOCALICON then TVehicle.FLocalIcon := Node.NodeValue;
+                  if SameText(Node.NodeName, LBL_D_LOCALICON) then TVehicle.FLocalIcon := Node.NodeValue;
 
                   // ES: etiqueta "name" (sólo una)   // EN: "name" tag (only one)
-                  if Node.NodeName = LBL_D_NAME then TVehicle.FName := Node.NodeValue;
+                  if SameText(Node.NodeName, LBL_D_NAME) then TVehicle.FName := Node.NodeValue;
 
                   // ES: etiqueta "type" (sólo una)   // EN: "type" tag (only one)
-                  if Node.NodeName = LBL_D_TYPE then TVehicle.FVehicleType := TCustomTransform.StrToVehicleType(Node.NodeValue);
+                  if SameText(Node.NodeName, LBL_D_TYPE) then TVehicle.FVehicleType := TCustomTransform.StrToVehicleType(Node.NodeValue);
 
                   Node := Node.NextSibling;
                 end;
@@ -3373,13 +3373,13 @@ var
                 while Assigned(Node) do
                 begin
                   // ES: etiqueta "name" (sólo una)   // EN: "name" tag (only one)
-                  if Node.NodeName = LBL_D_NAME then Result.FName := Node.NodeValue;
+                  if SameText(Node.NodeName, LBL_D_NAME) then Result.FName := Node.NodeValue;
 
                   // ES: etiqueta "phone" (sólo una)   // EN: "phone" tag (only one)
-                  if Node.NodeName = LBL_D_PHONE then Result.FPhone := Node.NodeValue;
+                  if SameText(Node.NodeName, LBL_D_PHONE) then Result.FPhone := Node.NodeValue;
 
                   // ES: etiqueta "url" (sólo una)   // EN: "url" tag (only one)
-                  if Node.NodeName = LBL_D_URL then Result.FUrl := Node.NodeValue;
+                  if SameText(Node.NodeName, LBL_D_URL) then Result.FUrl := Node.NodeValue;
 
                   Node := Node.NextSibling;
                 end;
@@ -3388,29 +3388,29 @@ var
               while Assigned(Node) do
               begin
                 // ES: etiqueta "color" (sólo una)   // EN: "color" tag (only one)
-                if Node.NodeName = LBL_D_COLOR then TLine.FColor := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_COLOR) then TLine.FColor := Node.NodeValue;
 
                 // ES: etiqueta "icon" (sólo una)   // EN: "icon" tag (only one)
-                if Node.NodeName = LBL_D_ICON then TLine.FIcon := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_ICON) then TLine.FIcon := Node.NodeValue;
 
                 // ES: etiqueta "name" (sólo una)   // EN: "name" tag (only one)
-                if Node.NodeName = LBL_D_NAME then TLine.FName := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_NAME) then TLine.FName := Node.NodeValue;
 
                 // ES: etiqueta "short_name" (sólo una)   // EN: "short_name" tag (only one)
-                if Node.NodeName = LBL_D_SHORTNAME then TLine.FShortName := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_SHORTNAME) then TLine.FShortName := Node.NodeValue;
 
                 // ES: etiqueta "text_color" (sólo una)   // EN: "text_color" tag (only one)
-                if Node.NodeName = LBL_D_TEXTCOLOR then TLine.FTextColor := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_TEXTCOLOR) then TLine.FTextColor := Node.NodeValue;
 
                 // ES: etiqueta "url" (sólo una)   // EN: "url" tag (only one)
-                if Node.NodeName = LBL_D_URL then TLine.FUrl := Node.NodeValue;
+                if SameText(Node.NodeName, LBL_D_URL) then TLine.FUrl := Node.NodeValue;
 
                 // ES: etiqueta "vehicle" (sólo una)   // EN: "vehicle" tag (only one)
-                if (Node.NodeName = LBL_D_VEHICLE) and (Node.ChildNodes.Count > 0) then
+                if SameText(Node.NodeName, LBL_D_VEHICLE) and (Node.ChildNodes.Count > 0) then
                   GetTransitVehicle(TLine.FVehicle, Node.ChildNodes.First);
 
                 // ES: etiqueta "agencies" (ninguna, una o varias)  // EN: "agencies" (none, one or more)
-                if (Node.NodeName = LBL_D_AGENCIES) and (Node.ChildNodes.Count > 0) then
+                if SameText(Node.NodeName, LBL_D_AGENCIES) and (Node.ChildNodes.Count > 0) then
                   TLine.FAgencie.Add(GetTransitAgency(Node.ChildNodes.First));
 
                 Node := Node.NextSibling;
@@ -3420,32 +3420,32 @@ var
             while Assigned(Node) do
             begin
               // ES: etiqueta "arrival_stop" (sólo una)   // EN: "arrival_stop" tag (only one)
-              if (Node.NodeName = LBL_D_ARRIVALSTOP) and (Node.ChildNodes.Count > 0) then
+              if SameText(Node.NodeName, LBL_D_ARRIVALSTOP) and (Node.ChildNodes.Count > 0) then
                 GetTransitStop(Transit.FArribalStop, Node.ChildNodes.First);
 
               // ES: etiqueta "arrival_time" (sólo una)   // EN: "arrival_time" tag (only one)
-              if (Node.NodeName = LBL_D_ARRIVALTIME) and (Node.ChildNodes.Count > 0) then
+              if SameText(Node.NodeName, LBL_D_ARRIVALTIME) and (Node.ChildNodes.Count > 0) then
                 GetTTime(Transit.FArribalTime, Node.ChildNodes.First);
 
               // ES: etiqueta "departure_stop" (sólo una)   // EN: "departure_stop" tag (only one)
-              if (Node.NodeName = LBL_D_DEPARTURESTOP) and (Node.ChildNodes.Count > 0) then
+              if SameText(Node.NodeName, LBL_D_DEPARTURESTOP) and (Node.ChildNodes.Count > 0) then
                 GetTransitStop(Transit.FDepartureStop, Node.ChildNodes.First);
 
               // ES: etiqueta "departure_time" (sólo una)   // EN: "departure_time" tag (only one)
-              if (Node.NodeName = LBL_D_DEPARTURETIME) and (Node.ChildNodes.Count > 0) then
+              if SameText(Node.NodeName, LBL_D_DEPARTURETIME) and (Node.ChildNodes.Count > 0) then
                 GetTTime(Transit.FDepartureTime, Node.ChildNodes.First);
 
               // ES: etiqueta "headsign" (sólo una)   // EN: "headsign" tag (only one)
-              if Node.NodeName = LBL_D_HEADSIGN then Transit.FHeadsign := Node.NodeValue;
+              if SameText(Node.NodeName, LBL_D_HEADSIGN) then Transit.FHeadsign := Node.NodeValue;
 
               // ES: etiqueta "headway" (sólo una)   // EN: "headway" tag (only one)
-              if Node.NodeName = LBL_D_HEADWAY then Transit.FHeadway := Node.NodeValue;
+              if SameText(Node.NodeName, LBL_D_HEADWAY) then Transit.FHeadway := Node.NodeValue;
 
               // ES: etiqueta "num_stops" (sólo una)   // EN: "num_stops" tag (only one)
-              if Node.NodeName = LBL_D_NUMSTOPS then Transit.FNumStops := Node.NodeValue;
+              if SameText(Node.NodeName, LBL_D_NUMSTOPS) then Transit.FNumStops := Node.NodeValue;
 
               // ES: etiqueta "line" (sólo una)   // EN: "line" tag (only one)
-              if (Node.NodeName = LBL_D_LINE) and (Node.ChildNodes.Count > 0) then
+              if SameText(Node.NodeName, LBL_D_LINE) and (Node.ChildNodes.Count > 0) then
                 GetTransitLine(Transit.FLine, Node.ChildNodes.First);
 
               Node := Node.NextSibling;
@@ -3458,26 +3458,26 @@ var
           while Assigned(Node) do
           begin
             // ES: etiqueta "distance" (sólo una)   // EN: "distance" tag (only one)
-            if (Node.NodeName = LBL_D_DISTANCE) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_D_DISTANCE) and (Node.ChildNodes.Count = 2) then
               GetDistance(Result.FDistance, Node.ChildNodes.First);
 
             // ES: etiqueta "duration" (sólo una)   // EN: "duration" tag (only one)
-            if (Node.NodeName = LBL_D_DURATION) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_D_DURATION) and (Node.ChildNodes.Count = 2) then
               GetDuration(Result.FDuration, Node.ChildNodes.First);
 
             // ES: etiqueta "end_location" (sólo una)   // EN: "end_location" tag (only one)
-            if (Node.NodeName = LBL_D_ENDLOCATION) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_D_ENDLOCATION) and (Node.ChildNodes.Count = 2) then
               GetLatLng(Result.FEndLocation, Node.ChildNodes.First);
 
             // ES: etiqueta "start_location" (sólo una)   // EN: "start_location" tag (only one)
-            if (Node.NodeName = LBL_D_STARTLOCATION) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_D_STARTLOCATION) and (Node.ChildNodes.Count = 2) then
               GetLatLng(Result.FStartLocation, Node.ChildNodes.First);
 
             // ES: etiqueta "instructions" (sólo una)   // EN: "instructions" tag (only one)
-            if Node.NodeName = LBL_D_INSTRUCTIONS then Result.FInstructions := Node.NodeValue;
+            if SameText(Node.NodeName, LBL_D_INSTRUCTIONS) then Result.FInstructions := Node.NodeValue;
 
             // ES: etiqueta "path" (ninguna, una o varias)   // EN: "path" tag (ninguna, una o varias)
-            if (Node.NodeName = LBL_D_PATH) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_D_PATH) and (Node.ChildNodes.Count = 2) then
             begin
               LL := TLatLng.Create;
               GetLatLng(LL, Node.ChildNodes.First);
@@ -3485,17 +3485,17 @@ var
             end;
 
             // ES: etiqueta "steps" (sólo una)  // EN: "steps" (only one)
-            if (Node.NodeName = LBL_D_STEPS) and (Node.ChildNodes.Count > 0) then
+            if SameText(Node.NodeName, LBL_D_STEPS) and (Node.ChildNodes.Count > 0) then
             begin
               Result.FSteps := TDirectionsStep.Create;
               Result.FSteps.Assign(ParseStepNode(Node.ChildNodes.First));
             end;
 
             // ES: etiqueta "travel_mode" (sólo una)   // EN: "travel_mode" tag (only one)
-            if Node.NodeName = LBL_D_TRAVELMODE then Result.FTravelMode := TCustomTransform.StrToTravelMode(Node.NodeValue);
+            if SameText(Node.NodeName, LBL_D_TRAVELMODE) then Result.FTravelMode := TCustomTransform.StrToTravelMode(Node.NodeValue);
 
             // ES: etiqueta "transit" (ninguna, una o varias)  // EN: "transit" (none, one or more)
-            if (Node.NodeName = LBL_D_TRANSIT) and (Node.ChildNodes.Count > 0) then
+            if SameText(Node.NodeName, LBL_D_TRANSIT) and (Node.ChildNodes.Count > 0) then
               ParseTransit(Result.FTransit, Node.ChildNodes.First);
 
             Node := Node.NextSibling;
@@ -3509,37 +3509,37 @@ var
         while Assigned(Node) do
         begin
           // ES: etiqueta "arrival_time" (sólo una)   // EN: "arrival_time" tag (only one)
-          if (Node.NodeName = LBL_D_ARRIVALTIME) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_ARRIVALTIME) and (Node.ChildNodes.Count = 2) then
             GetTTime(Result.FArrivalTime, Node.ChildNodes.First);
 
           // ES: etiqueta "departure_time" (sólo una)   // EN: "departure_time" tag (only one)
-          if (Node.NodeName = LBL_D_DEPARTURETIME) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_DEPARTURETIME) and (Node.ChildNodes.Count = 2) then
             GetTTime(Result.FDepartureTime, Node.ChildNodes.First);
 
           // ES: etiqueta "distance" (sólo una)   // EN: "distance" tag (only one)
-          if (Node.NodeName = LBL_D_DISTANCE) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_DISTANCE) and (Node.ChildNodes.Count = 2) then
             GetDistance(Result.FDistance, Node.ChildNodes.First);
 
           // ES: etiqueta "duration" (sólo una)   // EN: "duration" tag (only one)
-          if (Node.NodeName = LBL_D_DURATION) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_DURATION) and (Node.ChildNodes.Count = 2) then
             GetDuration(Result.FDuration, Node.ChildNodes.First);
 
           // ES: etiqueta "end_address" (sólo una)   // EN: "end_address" tag (only one)
-          if Node.NodeName = LBL_D_ENDADDRESS then Result.FEndAddress := Node.NodeValue;
+          if SameText(Node.NodeName, LBL_D_ENDADDRESS) then Result.FEndAddress := Node.NodeValue;
 
           // ES: etiqueta "start_address" (sólo una)   // EN: "start_address" tag (only one)
-          if Node.NodeName = LBL_D_STARTADDRESS then Result.FStartAddress := Node.NodeValue;
+          if SameText(Node.NodeName, LBL_D_STARTADDRESS) then Result.FStartAddress := Node.NodeValue;
 
           // ES: etiqueta "end_location" (sólo una)   // EN: "end_location" tag (only one)
-          if (Node.NodeName = LBL_D_ENDLOCATION) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_ENDLOCATION) and (Node.ChildNodes.Count = 2) then
             GetLatLng(Result.FEndLocation, Node.ChildNodes.First);
 
           // ES: etiqueta "start_location" (sólo una)   // EN: "start_location" tag (only one)
-          if (Node.NodeName = LBL_D_STARTLOCATION) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_STARTLOCATION) and (Node.ChildNodes.Count = 2) then
             GetLatLng(Result.FStartLocation, Node.ChildNodes.First);
 
           // ES: etiqueta "via_waypoints" (ninguna, una o varias)   // EN: "via_waypoints" tag (ninguna, una o varias)
-          if (Node.NodeName = LBL_D_VIAWAYPOINTS) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_D_VIAWAYPOINTS) and (Node.ChildNodes.Count = 2) then
           begin
             LL := TLatLng.Create;
             GetLatLng(LL, Node.ChildNodes.First);
@@ -3547,7 +3547,7 @@ var
           end;
 
           // ES: etiqueta "step" (ninguna, una o varias)  // EN: "step" (none, one or more)
-          if (Node.NodeName = LBL_D_STEP) and (Node.ChildNodes.Count > 0) then
+          if SameText(Node.NodeName, LBL_D_STEP) and (Node.ChildNodes.Count > 0) then
             Result.FStep.Add(ParseStepNode(Node.ChildNodes.First));
 
           Node := Node.NextSibling;
@@ -3561,23 +3561,23 @@ var
       while Assigned(Node) do
       begin
         // ES: etiqueta "summary" (sólo una)   // EN: "summary" tag (only one)
-        if Node.NodeName = LBL_D_SUMMARY then Result.FSumary := Node.NodeValue;
+        if SameText(Node.NodeName, LBL_D_SUMMARY) then Result.FSumary := Node.NodeValue;
 
         // ES: etiqueta "copyrights" (sólo una)   // EN: "copyrights" tag (only one)
-        if Node.NodeName = LBL_D_COPYRIGHTS then Result.FCopyrights := Node.NodeValue;
+        if SameText(Node.NodeName, LBL_D_COPYRIGHTS) then Result.FCopyrights := Node.NodeValue;
 
         // ES: etiqueta "bounds" (sólo una)   // EN: "bounds" tag (only one)
-        if (Node.NodeName = LBL_D_BOUNDS) and (Node.ChildNodes.Count = 2) then
+        if SameText(Node.NodeName, LBL_D_BOUNDS) and (Node.ChildNodes.Count = 2) then
           GetLatLngBounds(Result.Bounds, Node.ChildNodes.First);
 
         // ES: etiqueta "warning" (ninguna, una o varias)   // EN: "warning" tag (ninguna, una o varias)
-        if Node.NodeName = LBL_D_WARNING then Result.FWarning.Add(Node.NodeValue);
+        if SameText(Node.NodeName, LBL_D_WARNING) then Result.FWarning.Add(Node.NodeValue);
 
         // ES: etiqueta "waypoint_order" (ninguna, una o varias)   // EN: "waypoint_order" tag (ninguna, una o varias)
-        if Node.NodeName = LBL_D_WAYPOINTORDER then Result.FWaypointOrder.Add(Node.NodeValue);
+        if SameText(Node.NodeName, LBL_D_WAYPOINTORDER) then Result.FWaypointOrder.Add(Node.NodeValue);
 
         // ES: etiqueta "overview_path" (ninguna, una o varias)   // EN: "overview_path" tag (ninguna, una o varias)
-        if (Node.NodeName = LBL_D_OVERVIEWPATH) and (Node.ChildNodes.Count = 2) then
+        if SameText(Node.NodeName, LBL_D_OVERVIEWPATH) and (Node.ChildNodes.Count = 2) then
         begin
           LL := TLatLng.Create;
           GetLatLng(LL, Node.ChildNodes.First);
@@ -3585,7 +3585,7 @@ var
         end;
 
         // ES: etiqueta "leg" (ninguna, una o varias)  // EN: "leg" (none, one or more)
-        if (Node.NodeName = LBL_D_LEG) and (Node.ChildNodes.Count > 0) then
+        if SameText(Node.NodeName, LBL_D_LEG) and (Node.ChildNodes.Count > 0) then
           Result.FLeg.Add(ParseLegNode(Node.ChildNodes.First));
 
         Node := Node.NextSibling;
@@ -3593,7 +3593,7 @@ var
     end;
   begin
     // ES: nos posicionamos en "DirectionsResponse" // EN: go to "DirectionsResponse" tag
-    while Assigned(Node) and (Node.NodeName <> LBL_D_DIRECTIONSRESPONSE) do
+    while Assigned(Node) and not SameText(Node.NodeName, LBL_D_DIRECTIONSRESPONSE) do
       Node := Node.NextSibling;
 
     if not Assigned(Node) or (Node.ChildNodes.Count = 0) then Exit;
@@ -3602,11 +3602,11 @@ var
     while Assigned(Node) do
     begin
       // ES: etiqueta "status" (sólo una)   // EN: "status" tag (only one)
-      if Node.NodeName = LBL_D_STATUS then
+      if SameText(Node.NodeName, LBL_D_STATUS) then
         FStatus := TCustomTransform.StrToDirectionsStatus(Node.NodeValue);
 
       // ES: etiqueta "route" (ninguna, una o varias)  // EN: "route" (none, one or more)
-      if (Node.NodeName = LBL_D_ROUTE) and (Node.ChildNodes.Count > 0) then
+      if SameText(Node.NodeName, LBL_D_ROUTE) and (Node.ChildNodes.Count > 0) then
         FRoutes.Add(ParseRouteNode(Node.ChildNodes.First));
 
       Node := Node.NextSibling;
@@ -3616,16 +3616,17 @@ begin
   if FXMLData.Text = '' then Exit;
 
   FRoutes.Clear;
-  XML := TXMLDocument.Create(nil);
+  XML := LoadXMLData(FXMLData.Text);
+//  XML := TXMLDocument.Create(nil);
   try
-    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
-    XML.XML.Text := Utf8ToAnsi(FXMLData.Text);
-    {$ELSE}
-    XML.XML.Text := FXMLData.Text;
-    {$IFEND}
+//    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
+//    XML.XML.Text := Utf8ToAnsi(FXMLData.Text);
+//    {$ELSE}
+//    XML.XML.Text := FXMLData.Text;
+//    {$IFEND}
     XML.Active := True;
-    XML.Version := '1.0';
-    XML.Encoding := 'utf-8';
+//    XML.Version := '1.0';
+//    XML.Encoding := 'utf-8';
 
     ParseNodes(XML.ChildNodes.First);
   finally

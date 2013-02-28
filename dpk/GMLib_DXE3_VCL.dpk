@@ -48,7 +48,6 @@ contains
   GMPolylineVCL in '..\src\VCL\GMPolylineVCL.pas',
   GMRectangleVCL in '..\src\VCL\GMRectangleVCL.pas',
   RegisterCompVCL in '..\src\VCL\RegisterCompVCL.pas',
-  WebControlVCL in '..\src\VCL\WebControlVCL.pas',
-  GMGeoCode in '..\src\GMGeoCode.pas';
+  WebControlVCL in '..\src\VCL\WebControlVCL.pas';
 
 end.

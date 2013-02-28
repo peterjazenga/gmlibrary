@@ -208,7 +208,7 @@ type
       The number of equidistant points along the given path for which to retrieve elevation data, including the endpoints. The number of samples must be a value between 2 and 512 inclusive. Valid only for ElevationType = etAlongPath.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Numero de puntos equidistantes a lo largo del camino dado para los que recuperar el valor de la elevación, incluido el punto final. El numero de muestras debe ser un valor entre 2 y 512 incluidos. Sólo válido para ElevationType = etAlongPath.
+      Número de puntos equidistantes a lo largo del camino dado para los que recuperar el valor de la elevación, incluido el punto final. El numero de muestras debe ser un valor entre 2 y 512 incluidos. Sólo aplicable a ElevationType = etAlongPath.
     -------------------------------------------------------------------------------}
     FSamples: Integer;
     {*------------------------------------------------------------------------------
@@ -300,12 +300,12 @@ type
     procedure AddLatLngFromDataSet(DataSet: TDataSet; LatField, LngField: string;
       DeleteBeforeLoad: Boolean = True);
     {*------------------------------------------------------------------------------
-      Adds points from TBasePolyline.
+      Adds points from TBasePolyline (TPolygon or TPolyline).
       @param Poly TBasePolyline where get the data.
       @param DeleteBeforeLoad If true, delete all existing points before load TBasePolyline.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Añade puntos desde un TBasePolyline.
+      Añade puntos desde un TBasePolyline (TPolygon o TPolyline).
       @param Poly TBasePolyline de donde obtener los datos.
       @param DeleteBeforeLoad Si true, elimina todos los puntos existentes antes de cargar el TBasePolyline.
     -------------------------------------------------------------------------------}

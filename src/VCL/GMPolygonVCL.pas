@@ -136,7 +136,7 @@ type
   {=------------------------------------------------------------------------------
     Clase VCL para la colección de polígonos.
   -------------------------------------------------------------------------------}
-  TPolygons = class(TPolylines)
+  TPolygons = class(TBasePolylines)
   private
     procedure SetItems(I: Integer; const Value: TPolygon);
     function GetItems(I: Integer): TPolygon;
@@ -147,10 +147,10 @@ type
     function Insert(Index: Integer): TPolygon;
 
     {*------------------------------------------------------------------------------
-      Lists the rectangles in the collection.
+      Lists the polygons in the collection.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Lista de rectángulos en la colección.
+      Lista de polígonos en la colección.
     -------------------------------------------------------------------------------}
     property Items[I: Integer]: TPolygon read GetItems write SetItems; default;
   end;

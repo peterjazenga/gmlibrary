@@ -617,6 +617,7 @@ object MainFrm: TMainFrm
   end
   object GMGeoCode1: TGMGeoCode
     Language = Espanol
+    Map = GMMap1
     Marker = GMMarker1
     Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
     Region = rSPAIN

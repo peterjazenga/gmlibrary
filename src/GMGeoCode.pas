@@ -98,7 +98,7 @@ uses
   System.Classes, System.Contnrs,
   {$IFEND}
 
-  GMClasses, GMMarker, GMConstants;
+  GMMap, GMClasses, GMMarker, GMConstants;
 
 type
   { ****************************************************************************
@@ -205,7 +205,7 @@ type
     https://developers.google.com/maps/documentation/javascript/geocoding
     https://developers.google.com/maps/documentation/geocoding/index
   **************************************************************************** }
-  TGMGeoCode = class(TGMBase)
+  TGMGeoCode = class(TGMObjects)
   private
     FMarker: TCustomGMMarker;
     FGBusiness: TGoogleBusiness;
@@ -231,6 +231,9 @@ type
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
 
     function GetAPIUrl: string; override;
+    procedure DeleteMapObjects; override;
+    procedure ShowElements; override;
+    procedure EventFired(EventType: TEventType; Params: array of const); override;
 
     function StrToGeocoderLocationType(GeocoderLocationType: string): TGeocoderLocationType;
   public
@@ -269,12 +272,12 @@ implementation
 
 uses
   {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils, ExtActns, XMLIntf, XMLDoc, StrUtils,
+  SysUtils, {ExtActns, }XMLIntf, XMLDoc, StrUtils,
   {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
-  System.SysUtils, Vcl.ExtActns, Xml.XMLIntf, Xml.XMLDoc, System.StrUtils,
+  System.SysUtils, {Vcl.ExtActns, }Xml.XMLIntf, Xml.XMLDoc, System.StrUtils,
   {$IFEND}
-
-  GMFunctions;
+           Winapi.Windows,
+  GMFunctions, Lang;
 
 { TGMGeoCode }
 
@@ -282,10 +285,10 @@ procedure TGMGeoCode.Geocode(Address: string);
 var
   Tmp: string;
 begin
-  Tmp := Trim(Address);
-  Tmp := StringReplace(Tmp, CHAR_SPACE, CHAR_PLUS, [rfReplaceAll]);
-  Tmp := StringReplace(Tmp, CHAR_RETURN, CHAR_COMMA, [rfReplaceAll]);
-  Tmp := STR_ADDRESS + Tmp;
+  Tmp := QuotedStr(Trim(Address)) + ',-1, -1';
+//  Tmp := StringReplace(Tmp, CHAR_SPACE, CHAR_PLUS, [rfReplaceAll]);
+//  Tmp := StringReplace(Tmp, CHAR_RETURN, CHAR_COMMA, [rfReplaceAll]);
+//  Tmp := STR_ADDRESS + Tmp;
 
   GeocodeData(Tmp);
 end;
@@ -323,6 +326,11 @@ begin
   FGeoStatus := gsWithoutState;
 end;
 
+procedure TGMGeoCode.DeleteMapObjects;
+begin
+  inherited;
+end;
+
 destructor TGMGeoCode.Destroy;
 begin
   if Assigned(FGBusiness) then FreeAndNil(FGBusiness);
@@ -338,7 +346,7 @@ var
   i: Integer;
   Marker: TCustomMarker;
 begin
-  if not Assigned(FMarker) and not FPaintMarkerFound then Exit;
+  if not Assigned(FMarker) or not FPaintMarkerFound then Exit;
 
   for i := 0 to FGeoResults.Count - 1 do
   begin
@@ -349,11 +357,17 @@ begin
   end;
 end;
 
+procedure TGMGeoCode.EventFired(EventType: TEventType; Params: array of const);
+begin
+  inherited;
+end;
+
 procedure TGMGeoCode.Geocode(LatLng: TLatLng);
 var
   Tmp: string;
 begin
-  Tmp := STR_LATLNG + LatLng.ToUrlValue(0);
+//  Tmp := STR_LATLNG + LatLng.ToUrlValue(0);
+  Tmp := QuotedStr('') + ',' + LatLng.LatToStr(0) + LatLng.LngToStr(0);
 
   GeocodeData(Tmp);
 end;
@@ -362,8 +376,11 @@ procedure TGMGeoCode.GeocodeData(Data: string);
 var
   Tmp: string;
   TmpFile: string;
-  Download: TDownLoadURL;
+  T: TTime;
+  Msg: TMsg;
+//  Download: TDownLoadURL;
 begin
+(*
   {$IF CompilerVersion > 20}
   Tmp := STR_WEB + string(UTF8EncodeToShortString(Data)) + STR_SENSOR;
   {$ELSE}
@@ -397,10 +414,35 @@ begin
   FXMLData.LoadFromFile(TmpFile);
   DeleteFile(PChar(TmpFile));
   if Assigned(FAfterGetData) then FAfterGetData(Self);
+*)
+  if not Assigned(Map) then
+    raise Exception.Create(GetTranslateText('Mapa no asignado', Language));
+
+  Tmp := Data + ',' + QuotedStr(TCustomTransform.RegionToStr(FRegion));
+  if (Bounds.NE.Lat <> 0) or (Bounds.NE.Lng <> 0) or
+     (Bounds.SW.Lat <> 0) or (Bounds.SW.Lng <> 0) then
+    Tmp := Tmp + ',' +  Bounds.SW.ToUrlValue(0) + ',' + Bounds.NE.ToUrlValue(0)
+  else
+    Tmp := Tmp + ',-1,-1,-1,-1';
+
+  Tmp := Tmp + ',' + QuotedStr(TCustomTransform.LangCodeToStr(FLangCode));
+  ExecuteScript('GetGeocoder', Tmp);
+  T := Time + EncodeTime(0, 0, 1, 0);
+  repeat
+    FXMLData.Text := GetStringField(GeocoderForm, GeocoderFormXML);
+    Sleep(1);
+    while PeekMessage(msg, 0, 0, 0, PM_REMOVE) do
+      DispatchMessage(msg);
+    //if GetMessage(Msg,0,0,0) then
+    //begin
+    //  TranslateMessage(Msg);
+    //  DispatchMessage(Msg);
+    //end;
+  until (T < Time) or (FXMLData.Text <> '');
 
   ParseData;
 
-  DeleteFile(TmpFile);
+  System.SysUtils.DeleteFile(TmpFile);
 end;
 
 function TGMGeoCode.GetAPIUrl: string;
@@ -436,15 +478,15 @@ var
         while Assigned(Node) do
         begin
           // ES: etiqueta "long_name" (sólo una)   // EN: "long_name" tag (only one)
-          if UpperCase(Node.NodeName) = LBL_LONG_NAME then
+          if SameStr(Node.NodeName, LBL_LONG_NAME) then
             Result.FLongName := Node.NodeValue;
 
           // ES: etiqueta "short_name" (sólo una)   // EN: "short_name" tag (only one)
-          if UpperCase(Node.NodeName) = LBL_SHORT_NAME then
+          if SameStr(Node.NodeName, LBL_SHORT_NAME) then
             Result.FShortName := Node.NodeValue;
 
           // ES: etiqueta "type" (una o más)   // EN: "type" tag (one or more)
-          if UpperCase(Node.NodeName) = LBL_TYPE then
+          if SameStr(Node.NodeName, LBL_TYPE) then
             Result.AddrCompTypeList.Add(Node.NodeValue);
 
           Node := Node.NextSibling;
@@ -456,10 +498,10 @@ var
         begin
           while Assigned(Node) do
           begin
-            if UpperCase(Node.NodeName) = LBL_LAT then
+            if SameStr(Node.NodeName, LBL_LAT) then
               LatLng.Lat := LatLng.StringToReal(Node.NodeValue);
 
-            if UpperCase(Node.NodeName) = LBL_LNG then
+            if SameStr(Node.NodeName, LBL_LNG) then
               LatLng.Lng := LatLng.StringToReal(Node.NodeValue);
 
             Node := Node.NextSibling;
@@ -470,10 +512,10 @@ var
         begin
           while Assigned(Node) do
           begin
-            if (UpperCase(Node.NodeName) = LBL_SOUTHWEST) and (Node.ChildNodes.Count = 2) then
+            if SameStr(Node.NodeName, LBL_SOUTHWEST) and (Node.ChildNodes.Count = 2) then
               GetLatLng(LatLngBounds.SW, Node.ChildNodes.First);
 
-            if (UpperCase(Node.NodeName) = LBL_NORTHEAST) and (Node.ChildNodes.Count = 2) then
+            if SameStr(Node.NodeName, LBL_NORTHEAST) and (Node.ChildNodes.Count = 2) then
               GetLatLng(LatLngBounds.NE, Node.ChildNodes.First);
 
             Node := Node.NextSibling;
@@ -483,19 +525,19 @@ var
         while Assigned(Node) do
         begin
           // ES: etiqueta "location" (sólo una)   // EN: "location" tag (only one)
-          if (UpperCase(Node.NodeName) = LBL_LOCATION) and (Node.ChildNodes.Count = 2) then
+          if SameStr(Node.NodeName, LBL_LOCATION) and (Node.ChildNodes.Count = 2) then
             GetLatLng(Result.Geometry.Location, Node.ChildNodes.First);
 
           // ES: etiqueta "location_type" (sólo una)   // EN: "location_type" tag (only one)
-          if UpperCase(Node.NodeName) = LBL_LOCATION_TYPE then
+          if SameStr(Node.NodeName, LBL_LOCATION_TYPE) then
             Result.Geometry.FLocationType := StrToGeocoderLocationType(Node.NodeValue);
 
           // ES: etiqueta "viewport" (sólo una)   // EN: "viewport" tag (only one)
-          if (UpperCase(Node.NodeName) = LBL_VIEWPORT) and (Node.ChildNodes.Count = 2) then
+          if SameStr(Node.NodeName, LBL_VIEWPORT) and (Node.ChildNodes.Count = 2) then
             GetLatLngBounds(Result.Geometry.Viewport, Node.ChildNodes.First);
 
           // ES: etiqueta "bounds" (sólo una)   // EN: "bounds" tag (only one)
-          if (UpperCase(Node.NodeName) = LBL_BOUNDS) and (Node.ChildNodes.Count = 2) then
+          if SameStr(Node.NodeName, LBL_BOUNDS) and (Node.ChildNodes.Count = 2) then
             GetLatLngBounds(Result.Geometry.Bounds, Node.ChildNodes.First);
 
           Node := Node.NextSibling;
@@ -506,21 +548,21 @@ var
 
       while Assigned(Node) do
       begin
-        // ES: etiqueta "type" (una o varias, normalmente sólouna)
+        // ES: etiqueta "type" (una o varias, normalmente sólo una)
         // EN: "type" tag (one or more, normally only one)
-        if UpperCase(Node.NodeName) = LBL_TYPE then
+        if SameStr(Node.NodeName, LBL_TYPE) then
           Result.TypeList.Add(Node.NodeValue);
 
         // ES: etiqueta "formatted_address" (sólo una)   // EN: "formatted_address" tag (only one)
-        if UpperCase(Node.NodeName) = LBL_FORMATTED_ADDRESS then
+        if SameStr(Node.NodeName, LBL_FORMATTED_ADDRESS) then
           Result.FFormatedAddr := Node.NodeValue;
 
         // ES: etiqueta "address_component" (una o varias)   // EN: "address_component" tag (one or more)
-        if (UpperCase(Node.NodeName) = LBL_ADDRCOMPONENT) and (Node.ChildNodes.Count > 0) then
+        if SameStr(Node.NodeName, LBL_ADDRCOMPONENT) and (Node.ChildNodes.Count > 0) then
           Result.AddrCompList.Add(ParseAddrComponent(Node.ChildNodes.First));
 
         // ES: etiqueta "geometry" (sólo una)   // EN: "geometry" tag (only one)
-        if (UpperCase(Node.NodeName) = LBL_GEOMETRY) and (Node.ChildNodes.Count > 0) then
+        if SameStr(Node.NodeName, LBL_GEOMETRY) and (Node.ChildNodes.Count > 0) then
           ParseGeometry(Result, Node.ChildNodes.First);
 
         Node := Node.NextSibling;
@@ -532,7 +574,7 @@ var
     Continue: Boolean;
   begin
     // ES: nos posicionamos en "GeocodeResponse" // EN: go to "GeocodeResponse" tag
-    while Assigned(Node) and (UpperCase(Node.NodeName) <> LBL_GEOCODERESPONSE) do
+    while Assigned(Node) and not SameStr(Node.NodeName, LBL_GEOCODERESPONSE) do
       Node := Node.NextSibling;
 
     if not Assigned(Node) or (Node.ChildNodes.Count = 0) then Exit;
@@ -548,39 +590,42 @@ var
       Inc(ActualNode);
 
       // ES: etiqueta "status" (sólo una)   // EN: "status" tag (only one)
-      if UpperCase(Node.NodeName) = LBL_STATUS then
-        FGeoStatus := TCustomTransform.StrToGeocoderStatus('gs' + Node.NodeValue);
+      if SameStr(Node.NodeName, LBL_STATUS) then
+        FGeoStatus := TCustomTransform.StrToGeocoderStatus(Node.NodeValue);
 
       // ES: etiqueta "result" (ninguna, una o varias)  // EN: "result" (none, one or more)
-      if (UpperCase(Node.NodeName) = LBL_RESULT) and (Node.ChildNodes.Count > 0) then
+      if SameStr(Node.NodeName, LBL_RESULT) and (Node.ChildNodes.Count > 0) then
         FGeoResults.Add(ParseResultNode(Node.ChildNodes.First));
 
       Node := Node.NextSibling;
     end;
   end;
-var
-  Stream: TMemoryStream;
 begin
   if Assigned(FBeforeParseData) then FBeforeParseData(Self);
 
-  if Assigned(FMarker) and FPaintMarkerFound then FMarker.Clear;
-  FGeoResults.Clear;
+  if FXMLData.Text <> '' then
+  begin
+    if Assigned(FMarker) and FPaintMarkerFound then FMarker.Clear;
+    FGeoResults.Clear;
 
-  XML := TXMLDocument.Create(nil);
-  Stream := TMemoryStream.Create;
-  try
-    FXMLData.SaveToStream(Stream);
-    XML.LoadFromStream(Stream);
-    XML.Active := True;
+    XML := LoadXMLData(FXMLData.Text);
+    try
+      XML.Active := True;
 
-    ParseNodes(XML.ChildNodes.First);
-  finally
-    XML := nil;
+      ParseNodes(XML.ChildNodes.First);
+    finally
+      XML := nil;
+    end;
+
+    DoMarkers;
   end;
 
-  DoMarkers;
-
   if Assigned(FBeforeParseData) then FBeforeParseData(Self);
+end;
+
+procedure TGMGeoCode.ShowElements;
+begin
+  inherited;
 end;
 
 function TGMGeoCode.StrToGeocoderLocationType(

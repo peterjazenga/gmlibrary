@@ -81,6 +81,8 @@
 			<DCC_RemoteDebug>true</DCC_RemoteDebug>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.1.9;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
+			<VerInfo_MinorVer>1</VerInfo_MinorVer>
 			<VerInfo_Build>9</VerInfo_Build>
 			<VerInfo_MajorVer>0</VerInfo_MajorVer>
 			<VerInfo_Release>1</VerInfo_Release>
@@ -104,7 +106,6 @@
 			<DCCReference Include="..\Resources\gmlibres.RES"/>
 			<DCCReference Include="rtl.dcp"/>
 			<DCCReference Include="fmx.dcp"/>
-			<DCCReference Include="DCEF_XE2.dcp"/>
 			<DCCReference Include="xmlrtl.dcp"/>
 			<DCCReference Include="GMLib_DXE2.dcp"/>
 			<DCCReference Include="..\src\FMX\WebControlFMX.pas"/>
@@ -166,7 +167,7 @@
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Excluded_Packages>
-						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\9.0\Bpl\GMLib_FMX_DXE2.bpl">File C:\Users\Public\Documents\RAD Studio\9.0\Bpl\GMLib_FMX_DXE2.bpl not found</Excluded_Packages>
+						<Excluded_Packages Name="C:\Documents and Settings\All Users\Documentos\RAD Studio\9.0\Bpl\GMLib_DXE2_FMX.bpl">GoogleMaps Library v1.0.0 FMX (Copyright © Xavier Martínez - cadetill)</Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k160.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\bcbofficexp160.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>

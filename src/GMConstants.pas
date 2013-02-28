@@ -81,6 +81,7 @@ const
   RectangleForm = 'rectangledata';
   CircleForm = 'circledata';
   DirectionsForm = 'directionsdata';
+  GeocoderForm = 'geocoderdata';
   ElevationsForm = 'elevationsdata';
   GeometryForm = 'geometrydata';
   // events forms
@@ -124,6 +125,9 @@ const
 
   // Properties Directions Form
   DirectionsFormXML = 'xml';
+
+  // Properties Geocoder Form
+  GeocoderFormXML = 'xml';
 
   // Properties Elevations Form
   ElevationsFormStatus = 'status';
@@ -228,36 +232,23 @@ const
   { ****************************************************************************
   ******  Geocoding constants
   **************************************************************************** }
-  CHAR_SPACE = ' ';
-  CHAR_PLUS = '+';
-  CHAR_COMMA = ',';
-  CHAR_RETURN = #13;
-  STR_WEB = 'http://maps.google.com/maps/api/geocode/xml?';
-  STR_ADDRESS = 'address=';
-  STR_LATLNG = 'latlng=';
-  STR_SENSOR = '&sensor=false';
-  STR_LANGUAGE = '&language=';
-  STR_CLIENT = '&client=gme-';
-  STR_SIGNATURE = '&signature=';
-  STR_BOUNDS = '&bounds=%s|%s';
-  STR_REGION = '&region=';
-  LBL_GEOCODERESPONSE = 'GEOCODERESPONSE';
-  LBL_STATUS = 'STATUS';
-  LBL_RESULT = 'RESULT';
-  LBL_TYPE = 'TYPE';
-  LBL_FORMATTED_ADDRESS = 'FORMATTED_ADDRESS';
-  LBL_ADDRCOMPONENT = 'ADDRESS_COMPONENT';
-  LBL_GEOMETRY = 'GEOMETRY';
-  LBL_LOCATION = 'LOCATION';
-  LBL_LAT = 'LAT';
-  LBL_LNG = 'LNG';
-  LBL_LOCATION_TYPE = 'LOCATION_TYPE';
-  LBL_VIEWPORT = 'VIEWPORT';
-  LBL_BOUNDS = 'BOUNDS';
-  LBL_SOUTHWEST = 'SOUTHWEST';
-  LBL_NORTHEAST = 'NORTHEAST';
-  LBL_LONG_NAME = 'LONG_NAME';
-  LBL_SHORT_NAME = 'SHORT_NAME';
+  LBL_GEOCODERESPONSE = 'GeocodeResponse';
+  LBL_STATUS = 'status';
+  LBL_RESULT = 'result';
+  LBL_TYPE = 'type';
+  LBL_FORMATTED_ADDRESS = 'formatted_address';
+  LBL_ADDRCOMPONENT = 'address_component';
+  LBL_GEOMETRY = 'geometry';
+  LBL_LOCATION = 'location';
+  LBL_LAT = 'lat';
+  LBL_LNG = 'lng';
+  LBL_LOCATION_TYPE = 'location_type';
+  LBL_VIEWPORT = 'viewport';
+  LBL_BOUNDS = 'bounds';
+  LBL_SOUTHWEST = 'southwest';
+  LBL_NORTHEAST = 'northeast';
+  LBL_LONG_NAME = 'long_name';
+  LBL_SHORT_NAME = 'short_name';
 
   { ****************************************************************************
   ******  XML Directions constants

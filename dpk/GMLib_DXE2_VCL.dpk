@@ -35,8 +35,8 @@ requires
   vclimg,
   xmlrtl,
   dbrtl,
-  {$IFDEF WIN32}
-  DCEF_XE2,
+  {$IFDEF CHROMIUM or CHROMIUMFMX}
+  {$IFDEF WIN32}DCEF_XE2,{$ENDIF}
   {$ENDIF}
   GMLib_DXE2;
 
@@ -51,8 +51,7 @@ contains
   GMPolylineVCL in '..\src\VCL\GMPolylineVCL.pas',
   GMRectangleVCL in '..\src\VCL\GMRectangleVCL.pas',
   RegisterCompVCL in '..\src\VCL\RegisterCompVCL.pas',
-  GMElevationVCL in '..\src\VCL\GMElevationVCL.pas',
-  GMGeoCode in '..\src\GMGeoCode.pas';
+  GMElevationVCL in '..\src\VCL\GMElevationVCL.pas';
 
 end.
 
