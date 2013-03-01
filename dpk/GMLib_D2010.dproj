@@ -22,10 +22,10 @@
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_UnitSearchPath>..\lib\D2010;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-			<DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\7.0\Bpl\GMLib_D2010.bpl</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documentos\RAD Studio\7.0\Bpl\GMLib_D2010.bpl</DCC_DependencyCheckOutputName>
 			<DesignOnlyPackage>false</DesignOnlyPackage>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_Description>GoogleMaps Library v0.1.9 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+			<DCC_Description>GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
 			<DCC_DcpOutput>..\lib\D2010</DCC_DcpOutput>
 			<GenDll>true</GenDll>
 			<DCC_DcuOutput>..\lib\D2010</DCC_DcuOutput>
@@ -111,9 +111,9 @@
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">0</VersionInfo>
-						<VersionInfo Name="MinorVer">0</VersionInfo>
-						<VersionInfo Name="Release">1</VersionInfo>
-						<VersionInfo Name="Build">9</VersionInfo>
+						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -125,13 +125,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">0.0.1.9</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.1.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
-						<VersionInfoKeys Name="ProductName">Google Maps Library</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">0.0.1.9</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductName">GoogleMaps Library</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">0.1.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Excluded_Packages>
@@ -149,7 +149,7 @@
 
 <!-- EurekaLog First Line
 [Exception Log]
-EurekaLog Version=6024
+EurekaLog Version=6105
 Activate=0
 Activate Handle=1
 Save Log File=1
@@ -309,6 +309,7 @@ loFreeAllLeaks=1
 loCatchLeaksExceptions=1
 cfoReduceFileSize=1
 cfoCheckFileCorruption=0
+cfoUseEL7=0
 Count mtInformationMsgCaption=1
 mtInformationMsgCaption0="Information."
 Count mtQuestionMsgCaption=1

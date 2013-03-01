@@ -35,9 +35,6 @@ requires
   vclimg,
   xmlrtl,
   dbrtl,
-  {$IFDEF CHROMIUM or CHROMIUMFMX}
-  {$IFDEF WIN32}DCEF_XE2,{$ENDIF}
-  {$ENDIF}
   GMLib_DXE2;
 
 contains

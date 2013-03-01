@@ -28,7 +28,6 @@ package GMLib_DXE2;
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD ON}
-{$I ..\gmlib.inc}
 
 requires
   rtl,
@@ -37,9 +36,6 @@ requires
   vcl,
   xmlrtl,
   dbrtl,
-  {$IFDEF CHROMIUM or CHROMIUMFMX}
-  {$IFDEF WIN32}DCEF_XE2,{$ENDIF}
-  {$ENDIF}
   fmx;
 
 contains

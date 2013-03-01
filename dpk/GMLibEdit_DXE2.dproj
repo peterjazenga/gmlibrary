@@ -66,7 +66,7 @@
 			<VerInfo_MinorVer>1</VerInfo_MinorVer>
 			<VerInfo_MajorVer>0</VerInfo_MajorVer>
 			<DCC_Description>GoogleMaps Library Editors (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
 			<VerInfo_Locale>1033</VerInfo_Locale>
@@ -82,9 +82,7 @@
 		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
 			<VerInfo_MinorVer>1</VerInfo_MinorVer>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-			<VerInfo_Build>9</VerInfo_Build>
 			<VerInfo_MajorVer>0</VerInfo_MajorVer>
-			<VerInfo_Release>1</VerInfo_Release>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 			<DCC_RemoteDebug>false</DCC_RemoteDebug>
 		</PropertyGroup>
@@ -95,6 +93,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+			<VerInfo_MinorVer>1</VerInfo_MinorVer>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<VerInfo_MajorVer>0</VerInfo_MajorVer>
 			<VerInfo_Build>7</VerInfo_Build>

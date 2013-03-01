@@ -16,6 +16,16 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    nuevo: documentación.
+    nuevo: se hace compatible con FireMonkey.
+    cambio: recodificación del componente para no usar WebService.
+  EN:
+    new: documentation.
+    new: now compatible with FireMonkey.
+    change: recodification of component to avoid use Web Service.
+
 ver 0.1.7
   ES:
     cambio: TGMGeoCode-> añadida propiedad booleana PaintMarkerFound. A true se
@@ -272,11 +282,11 @@ implementation
 
 uses
   {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils, {ExtActns, }XMLIntf, XMLDoc, StrUtils,
+  SysUtils, XMLIntf, XMLDoc, StrUtils, Controls,
   {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
-  System.SysUtils, {Vcl.ExtActns, }Xml.XMLIntf, Xml.XMLDoc, System.StrUtils,
+  System.SysUtils, Xml.XMLIntf, Xml.XMLDoc, System.StrUtils,
   {$IFEND}
-           Winapi.Windows,
+
   GMFunctions, Lang;
 
 { TGMGeoCode }
@@ -286,9 +296,6 @@ var
   Tmp: string;
 begin
   Tmp := QuotedStr(Trim(Address)) + ',-1, -1';
-//  Tmp := StringReplace(Tmp, CHAR_SPACE, CHAR_PLUS, [rfReplaceAll]);
-//  Tmp := StringReplace(Tmp, CHAR_RETURN, CHAR_COMMA, [rfReplaceAll]);
-//  Tmp := STR_ADDRESS + Tmp;
 
   GeocodeData(Tmp);
 end;
@@ -366,7 +373,6 @@ procedure TGMGeoCode.Geocode(LatLng: TLatLng);
 var
   Tmp: string;
 begin
-//  Tmp := STR_LATLNG + LatLng.ToUrlValue(0);
   Tmp := QuotedStr('') + ',' + LatLng.LatToStr(0) + LatLng.LngToStr(0);
 
   GeocodeData(Tmp);
@@ -377,44 +383,7 @@ var
   Tmp: string;
   TmpFile: string;
   T: TTime;
-  Msg: TMsg;
-//  Download: TDownLoadURL;
 begin
-(*
-  {$IF CompilerVersion > 20}
-  Tmp := STR_WEB + string(UTF8EncodeToShortString(Data)) + STR_SENSOR;
-  {$ELSE}
-  Tmp := STR_WEB + Data + STR_SENSOR;
-  {$IFEND}
-
-  if TCustomTransform.LangCodeToStr(FLangCode) <> '' then
-    Tmp := Tmp + STR_LANGUAGE + TCustomTransform.LangCodeToStr(FLangCode);
-
-  if (Bounds.NE.Lat <> 0) or (Bounds.NE.Lng <> 0) or
-     (Bounds.SW.Lat <> 0) or (Bounds.SW.Lng <> 0) then
-    Tmp := Tmp + Format(STR_BOUNDS, [Bounds.SW.ToUrlValue(0), Bounds.NE.ToUrlValue(0)]);
-
-  if TCustomTransform.RegionToStr(FRegion) <> '' then
-    Tmp := Tmp + STR_REGION + TCustomTransform.RegionToStr(FRegion);
-
-  if (FGBusiness.Client <> '') and (FGBusiness.Signature <> '') then
-    Tmp := Tmp + STR_CLIENT + FGBusiness.Client + STR_SIGNATURE + FGBusiness.Signature;
-
-  TmpFile := TPath.GetTempFileName;
-  DeleteFile(TmpFile);
-  Download := TDownLoadURL.Create(nil);
-  try
-    Download.URL := Tmp;
-    ForceDirectories( ExtractFilePath(TmpFile) );
-    Download.Filename := TmpFile;
-    Download.ExecuteTarget(nil);
-  finally
-    FreeAndNil(Download);
-  end;
-  FXMLData.LoadFromFile(TmpFile);
-  DeleteFile(PChar(TmpFile));
-  if Assigned(FAfterGetData) then FAfterGetData(Self);
-*)
   if not Assigned(Map) then
     raise Exception.Create(GetTranslateText('Mapa no asignado', Language));
 
@@ -430,19 +399,17 @@ begin
   T := Time + EncodeTime(0, 0, 1, 0);
   repeat
     FXMLData.Text := GetStringField(GeocoderForm, GeocoderFormXML);
-    Sleep(1);
-    while PeekMessage(msg, 0, 0, 0, PM_REMOVE) do
-      DispatchMessage(msg);
-    //if GetMessage(Msg,0,0,0) then
-    //begin
-    //  TranslateMessage(Msg);
-    //  DispatchMessage(Msg);
-    //end;
+    TGMGenFunc.ProcessMessages;
   until (T < Time) or (FXMLData.Text <> '');
+  if Assigned(FAfterGetData) then FAfterGetData(Self);
 
   ParseData;
 
+  {$IF CompilerVersion < 23}
+  SysUtils.DeleteFile(TmpFile);
+  {$ELSE}
   System.SysUtils.DeleteFile(TmpFile);
+  {$IFEND}
 end;
 
 function TGMGeoCode.GetAPIUrl: string;
@@ -478,15 +445,15 @@ var
         while Assigned(Node) do
         begin
           // ES: etiqueta "long_name" (sólo una)   // EN: "long_name" tag (only one)
-          if SameStr(Node.NodeName, LBL_LONG_NAME) then
+          if SameText(Node.NodeName, LBL_LONG_NAME) then
             Result.FLongName := Node.NodeValue;
 
           // ES: etiqueta "short_name" (sólo una)   // EN: "short_name" tag (only one)
-          if SameStr(Node.NodeName, LBL_SHORT_NAME) then
+          if SameText(Node.NodeName, LBL_SHORT_NAME) then
             Result.FShortName := Node.NodeValue;
 
           // ES: etiqueta "type" (una o más)   // EN: "type" tag (one or more)
-          if SameStr(Node.NodeName, LBL_TYPE) then
+          if SameText(Node.NodeName, LBL_TYPE) then
             Result.AddrCompTypeList.Add(Node.NodeValue);
 
           Node := Node.NextSibling;
@@ -498,10 +465,10 @@ var
         begin
           while Assigned(Node) do
           begin
-            if SameStr(Node.NodeName, LBL_LAT) then
+            if SameText(Node.NodeName, LBL_LAT) then
               LatLng.Lat := LatLng.StringToReal(Node.NodeValue);
 
-            if SameStr(Node.NodeName, LBL_LNG) then
+            if SameText(Node.NodeName, LBL_LNG) then
               LatLng.Lng := LatLng.StringToReal(Node.NodeValue);
 
             Node := Node.NextSibling;
@@ -512,10 +479,10 @@ var
         begin
           while Assigned(Node) do
           begin
-            if SameStr(Node.NodeName, LBL_SOUTHWEST) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_SOUTHWEST) and (Node.ChildNodes.Count = 2) then
               GetLatLng(LatLngBounds.SW, Node.ChildNodes.First);
 
-            if SameStr(Node.NodeName, LBL_NORTHEAST) and (Node.ChildNodes.Count = 2) then
+            if SameText(Node.NodeName, LBL_NORTHEAST) and (Node.ChildNodes.Count = 2) then
               GetLatLng(LatLngBounds.NE, Node.ChildNodes.First);
 
             Node := Node.NextSibling;
@@ -525,19 +492,19 @@ var
         while Assigned(Node) do
         begin
           // ES: etiqueta "location" (sólo una)   // EN: "location" tag (only one)
-          if SameStr(Node.NodeName, LBL_LOCATION) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_LOCATION) and (Node.ChildNodes.Count = 2) then
             GetLatLng(Result.Geometry.Location, Node.ChildNodes.First);
 
           // ES: etiqueta "location_type" (sólo una)   // EN: "location_type" tag (only one)
-          if SameStr(Node.NodeName, LBL_LOCATION_TYPE) then
+          if SameText(Node.NodeName, LBL_LOCATION_TYPE) then
             Result.Geometry.FLocationType := StrToGeocoderLocationType(Node.NodeValue);
 
           // ES: etiqueta "viewport" (sólo una)   // EN: "viewport" tag (only one)
-          if SameStr(Node.NodeName, LBL_VIEWPORT) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_VIEWPORT) and (Node.ChildNodes.Count = 2) then
             GetLatLngBounds(Result.Geometry.Viewport, Node.ChildNodes.First);
 
           // ES: etiqueta "bounds" (sólo una)   // EN: "bounds" tag (only one)
-          if SameStr(Node.NodeName, LBL_BOUNDS) and (Node.ChildNodes.Count = 2) then
+          if SameText(Node.NodeName, LBL_BOUNDS) and (Node.ChildNodes.Count = 2) then
             GetLatLngBounds(Result.Geometry.Bounds, Node.ChildNodes.First);
 
           Node := Node.NextSibling;
@@ -550,19 +517,19 @@ var
       begin
         // ES: etiqueta "type" (una o varias, normalmente sólo una)
         // EN: "type" tag (one or more, normally only one)
-        if SameStr(Node.NodeName, LBL_TYPE) then
+        if SameText(Node.NodeName, LBL_TYPE) then
           Result.TypeList.Add(Node.NodeValue);
 
         // ES: etiqueta "formatted_address" (sólo una)   // EN: "formatted_address" tag (only one)
-        if SameStr(Node.NodeName, LBL_FORMATTED_ADDRESS) then
+        if SameText(Node.NodeName, LBL_FORMATTED_ADDRESS) then
           Result.FFormatedAddr := Node.NodeValue;
 
         // ES: etiqueta "address_component" (una o varias)   // EN: "address_component" tag (one or more)
-        if SameStr(Node.NodeName, LBL_ADDRCOMPONENT) and (Node.ChildNodes.Count > 0) then
+        if SameText(Node.NodeName, LBL_ADDRCOMPONENT) and (Node.ChildNodes.Count > 0) then
           Result.AddrCompList.Add(ParseAddrComponent(Node.ChildNodes.First));
 
         // ES: etiqueta "geometry" (sólo una)   // EN: "geometry" tag (only one)
-        if SameStr(Node.NodeName, LBL_GEOMETRY) and (Node.ChildNodes.Count > 0) then
+        if SameText(Node.NodeName, LBL_GEOMETRY) and (Node.ChildNodes.Count > 0) then
           ParseGeometry(Result, Node.ChildNodes.First);
 
         Node := Node.NextSibling;
@@ -574,7 +541,7 @@ var
     Continue: Boolean;
   begin
     // ES: nos posicionamos en "GeocodeResponse" // EN: go to "GeocodeResponse" tag
-    while Assigned(Node) and not SameStr(Node.NodeName, LBL_GEOCODERESPONSE) do
+    while Assigned(Node) and not SameText(Node.NodeName, LBL_GEOCODERESPONSE) do
       Node := Node.NextSibling;
 
     if not Assigned(Node) or (Node.ChildNodes.Count = 0) then Exit;
@@ -590,11 +557,11 @@ var
       Inc(ActualNode);
 
       // ES: etiqueta "status" (sólo una)   // EN: "status" tag (only one)
-      if SameStr(Node.NodeName, LBL_STATUS) then
+      if SameText(Node.NodeName, LBL_STATUS) then
         FGeoStatus := TCustomTransform.StrToGeocoderStatus(Node.NodeValue);
 
       // ES: etiqueta "result" (ninguna, una o varias)  // EN: "result" (none, one or more)
-      if SameStr(Node.NodeName, LBL_RESULT) and (Node.ChildNodes.Count > 0) then
+      if SameText(Node.NodeName, LBL_RESULT) and (Node.ChildNodes.Count > 0) then
         FGeoResults.Add(ParseResultNode(Node.ChildNodes.First));
 
       Node := Node.NextSibling;

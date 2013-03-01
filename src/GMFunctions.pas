@@ -7,6 +7,12 @@ GMFunctions unit
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    nuevo: clase TGMGenFunc para alvergar funciones generales
+  EN:
+    new: TGMGenFunc class to store general functions
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -69,6 +75,23 @@ uses
   GMConstants, GMPolyline, GMClasses, GMLinkedComponents, GMMap;
 
 type
+  {*------------------------------------------------------------------------------
+    Class to store general functions.
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Clase para almacenar funciones de carácter general.
+  -------------------------------------------------------------------------------}
+  TGMGenFunc = class
+  public
+    {*------------------------------------------------------------------------------
+      Processes the message queue.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Clase para almacenar funciones de carácter general.
+    -------------------------------------------------------------------------------}
+    class procedure ProcessMessages;
+  end;
+
   {*------------------------------------------------------------------------------
     Class to access protected methods of TGMLinkedComponent class.
   -------------------------------------------------------------------------------}
@@ -883,7 +906,7 @@ uses
   {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
   TypInfo, Windows, SysUtils, Classes,
   {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
-  System.TypInfo, System.IOUtils, System.SysUtils, System.Classes,
+  System.TypInfo, System.IOUtils, System.SysUtils, System.Classes, Winapi.Windows,
   {$IFEND}
 
   GMRectangle;
@@ -1743,6 +1766,17 @@ begin
                   ]);
   THackGMLinkedComponent(GMPoly).ExecuteScript('IsLocationOnEdge', Params);
   Result := THackGMLinkedComponent(GMPoly).GetBoolField(GeometryForm, GeometryFormIsLocationOnEdge);
+end;
+
+{ TGMGenFunc }
+
+class procedure TGMGenFunc.ProcessMessages;
+var
+  Msg: TMsg;
+begin
+  Sleep(1);
+  while PeekMessage(msg, 0, 0, 0, PM_REMOVE) do
+    DispatchMessage(msg);
 end;
 
 end.

@@ -32,9 +32,6 @@ package GMLib_DXE2_FMX;
 requires
   rtl,
   fmx,
-  {$IFDEF CHROMIUM or CHROMIUMFMX}
-  {$IFDEF WIN32}DCEF_XE2,{$ENDIF}
-  {$ENDIF}
   xmlrtl,
   GMLib_DXE2;
 
