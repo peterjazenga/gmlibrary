@@ -99,8 +99,23 @@ type
     Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#DirectionsRendererOptions
   -------------------------------------------------------------------------------}
   TDirectionsRenderer = class(TCustomDirectionsRenderer)
+  private
+    {*------------------------------------------------------------------------------
+      Options for the polylines.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Opciones para las polilíneas.
+    -------------------------------------------------------------------------------}
+    FPolylineOptions: TPolylineOptions;
   protected
     procedure CreatePolylineOptions; override;
+    function PolylineOptionsToStr: string; override;
+  public
+    destructor Destroy; override;
+
+    procedure Assign(Source: TPersistent); override;
+  published
+    property PolylineOptions: TPolylineOptions read FPolylineOptions write FPolylineOptions;
   end;
 
   {*------------------------------------------------------------------------------
@@ -112,8 +127,22 @@ type
     Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#DirectionsResult
   -------------------------------------------------------------------------------}
   TDirectionsResult = class(TCustomDirectionsResult)
+  private
+    {*------------------------------------------------------------------------------
+      Query conditions.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Condiciones de la consulta.
+    -------------------------------------------------------------------------------}
+    FDirectionsRender: TDirectionsRenderer;
   protected
     procedure CreateDirectionsRenderObject; override;
+    function DirectionsRenderToStr: string; override;
+  public
+    destructor Destroy; override;
+    procedure Assign(Source: TObject); override;
+
+    property DirectionsRender: TDirectionsRenderer read FDirectionsRender write FDirectionsRender;
   end;
 
   {*------------------------------------------------------------------------------
@@ -132,11 +161,22 @@ type
   -------------------------------------------------------------------------------}
   TGMDirection = class(TCustomGMDirection)
   private
+    {*------------------------------------------------------------------------------
+      Properties that can be set on a DirectionsRenderer object.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Propiedades que pueden establecerse al objeto DirectionsRenderer.
+    -------------------------------------------------------------------------------}
+    FDirectionsRender: TDirectionsRenderer;
     function GetDirectionResult(I: Integer): TDirectionsResult;
   protected
+    function DirectionsRenderToStr: string; override;
     procedure CreateDirectionsRenderObject; override;
     procedure GetRetournedData; override;
   public
+    destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
+
     {*------------------------------------------------------------------------------
       Results array.
     -------------------------------------------------------------------------------}
@@ -144,11 +184,19 @@ type
       Array de resultados.
     -------------------------------------------------------------------------------}
     property DirectionsResult[I: Integer]: TDirectionsResult read GetDirectionResult; default;
+  published
+    property DirectionsRender: TDirectionsRenderer read FDirectionsRender write FDirectionsRender;
   end;
 
 implementation
 
 uses
+  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
+  SysUtils,
+  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  System.SysUtils,
+  {$IFEND}
+
   GMFunctionsFMX, GMConstants;
 
 { TPolylineOptions }
@@ -183,6 +231,16 @@ end;
 
 { TDirectionsRenderer }
 
+procedure TDirectionsRenderer.Assign(Source: TPersistent);
+begin
+  inherited;
+
+  if Source is TDirectionsRenderer then
+  begin
+    PolylineOptions.Assign(TDirectionsRenderer(Source).PolylineOptions);
+  end;
+end;
+
 procedure TDirectionsRenderer.CreatePolylineOptions;
 begin
   inherited;
@@ -191,7 +249,35 @@ begin
   TPolylineOptions(PolylineOptions).OnChange := OnPolylineOptionsChange;
 end;
 
+destructor TDirectionsRenderer.Destroy;
+begin
+  if Assigned(FPolylineOptions) then FreeAndNil(FPolylineOptions);
+
+  inherited;
+end;
+
+function TDirectionsRenderer.PolylineOptionsToStr: string;
+begin
+  Result := Format('%s,%s,%s,%s,%s', [
+                  LowerCase(TTransform.GMBoolToStr(PolylineOptions.Clickable, True)),
+                  LowerCase(TTransform.GMBoolToStr(PolylineOptions.Geodesic, True)),
+                  QuotedStr(PolylineOptions.GetStrokeColor),
+                  StringReplace(FloatToStr(PolylineOptions.StrokeOpacity), ',', '.', [rfReplaceAll]),
+                  IntToStr(PolylineOptions.StrokeWeight)
+                       ]);
+end;
+
 { TDirectionsResult }
+
+procedure TDirectionsResult.Assign(Source: TObject);
+begin
+  inherited;
+
+  if Source is TDirectionsResult then
+  begin
+    FDirectionsRender.Assign(TDirectionsResult(Source).FDirectionsRender);
+  end;
+end;
 
 procedure TDirectionsResult.CreateDirectionsRenderObject;
 begin
@@ -201,13 +287,71 @@ begin
   TDirectionsRenderer(DirectionsRender).OnChange := OnDirectionsRenderChange;
 end;
 
+destructor TDirectionsResult.Destroy;
+begin
+  if Assigned(FDirectionsRender) then FreeAndNil(FDirectionsRender);
+
+  inherited;
+end;
+
+function TDirectionsResult.DirectionsRenderToStr: string;
+begin
+  Result := Format('%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', [
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.Draggable, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.PreserveViewport, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressBicyclingLayer, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressInfoWindows, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressMarkers, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressPolylines, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Clickable, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Draggable, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Flat, True)),
+                  QuotedStr(DirectionsRender.MarkerOptions.Icon),
+                  DirectionsRender.PolylineOptionsToStr
+                       ]);
+end;
+
 { TGMDirection }
+
+procedure TGMDirection.Assign(Source: TPersistent);
+begin
+  inherited;
+
+  if Source is TGMDirection then
+  begin
+    DirectionsRender.Assign(TGMDirection(Source).DirectionsRender);
+  end;
+end;
 
 procedure TGMDirection.CreateDirectionsRenderObject;
 begin
   inherited;
 
   DirectionsRender := TDirectionsRenderer.Create(Self);
+end;
+
+destructor TGMDirection.Destroy;
+begin
+  if Assigned(FDirectionsRender) then FreeAndNil(FDirectionsRender);
+
+  inherited;
+end;
+
+function TGMDirection.DirectionsRenderToStr: string;
+begin
+  Result := Format('%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', [
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.Draggable, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.PreserveViewport, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressBicyclingLayer, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressInfoWindows, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressMarkers, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.SuppressPolylines, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Clickable, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Draggable, True)),
+                  LowerCase(TTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Flat, True)),
+                  QuotedStr(DirectionsRender.MarkerOptions.Icon),
+                  DirectionsRender.PolylineOptionsToStr
+                       ]);
 end;
 
 function TGMDirection.GetDirectionResult(I: Integer): TDirectionsResult;

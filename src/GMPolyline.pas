@@ -291,13 +291,6 @@ type
   private
     FOwner: TBasePolyline;
     {*------------------------------------------------------------------------------
-      Icon properties.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Propiedades del icono.
-    -------------------------------------------------------------------------------}
-    FIcon: TCustomSymbol;
-    {*------------------------------------------------------------------------------
       Repetition properties.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -347,6 +340,14 @@ type
     -------------------------------------------------------------------------------}
     procedure OnIconChange(Sender: TObject);
 
+    {*------------------------------------------------------------------------------
+      Create the properties that contains some color value.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea las propiedades que contienen algún valor de color.
+    -------------------------------------------------------------------------------}
+    procedure CreatePropertiesWithColor; virtual; abstract;
+
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
   public
     {*------------------------------------------------------------------------------
@@ -376,7 +377,6 @@ type
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
   published
-    property Icon: TCustomSymbol read FIcon write FIcon;
     property OffSet: TValue read FOffSet write FOffSet;
     property DistRepeat: TValue read FDistRepeat write FDistRepeat;
   end;
@@ -950,7 +950,6 @@ begin
 
   if Source is TCustomIconSequence then
   begin
-    Icon.Assign(TCustomIconSequence(Source).Icon);
     DistRepeat.Assign(TCustomIconSequence(Source).DistRepeat);
     OffSet.Assign(TCustomIconSequence(Source).OffSet);
   end;
@@ -967,11 +966,12 @@ begin
   FDistRepeat.FValue := 0;
   FDistRepeat.FMeasure := mPixels;
   FDistRepeat.OnChange := OnDistRepeatChange;
+
+  CreatePropertiesWithColor;
 end;
 
 destructor TCustomIconSequence.Destroy;
 begin
-  if Assigned(FIcon) then FreeAndNil(FIcon);
   if Assigned(FOffSet) then FreeAndNil(FOffSet);
   if Assigned(FDistRepeat) then FreeAndNil(FDistRepeat);
 

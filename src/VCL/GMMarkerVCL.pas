@@ -286,8 +286,32 @@ type
     Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#Marker
   -------------------------------------------------------------------------------}
   TMarker = class(TCustomMarker)
+  private
+    {*------------------------------------------------------------------------------
+      Features applicable when marker type is mtStyledMarker.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Características aplicables cuando el marcador es de tipo mtStyledMarker.
+    -------------------------------------------------------------------------------}
+    FStyledMarker: TStyledMarker;
+    {*------------------------------------------------------------------------------
+      Features applicable when marker type is mtColored.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Características aplicables cuando el marcador es de tipo mtColored.
+    -------------------------------------------------------------------------------}
+    FColoredMarker: TColoredMarker;
+  protected
+    procedure CreatePropertiesWithColor; override;
+    function ColoredMarkerToStr: string; override;
+    function StyledMarkerToStr: string; override;
   public
-    constructor Create(Collection: TCollection); override;
+    destructor Destroy; override;
+
+    procedure Assign(Source: TPersistent); override;
+  published
+    property ColoredMarker: TColoredMarker read FColoredMarker write FColoredMarker;
+    property StyledMarker: TStyledMarker read FStyledMarker write FStyledMarker;
   end;
 
   {*------------------------------------------------------------------------------
@@ -342,7 +366,13 @@ type
 implementation
 
 uses
-  GMFunctionsVCL;
+  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
+  SysUtils,
+  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  System.SysUtils,
+  {$IFEND}
+
+  GMFunctionsVCL, GMConstants;
 
 { TColoredMarker }
 
@@ -592,12 +622,53 @@ end;
 
 { TMarker }
 
-constructor TMarker.Create(Collection: TCollection);
+procedure TMarker.Assign(Source: TPersistent);
+begin
+  inherited;
+
+  if Source is TMarker then
+  begin
+    ColoredMarker.Assign(TMarker(Source).ColoredMarker);
+    StyledMarker.Assign(TMarker(Source).StyledMarker);
+  end;
+end;
+
+function TMarker.ColoredMarkerToStr: string;
+begin
+  Result := Format(StrColoredMarker, [
+                            ColoredMarker.Width,
+                            ColoredMarker.Height,
+                            StringReplace(ColoredMarker.GetCornerColor, '#', '', [rfReplaceAll]),
+                            StringReplace(ColoredMarker.GetPrimaryColor, '#', '', [rfReplaceAll]),
+                            StringReplace(ColoredMarker.GetStrokeColor, '#', '', [rfReplaceAll])
+                                     ]);
+end;
+
+procedure TMarker.CreatePropertiesWithColor;
 begin
   inherited;
 
   ColoredMarker := TColoredMarker.Create(Self);
   StyledMarker := TStyledMarker.Create(Self);
+end;
+
+destructor TMarker.Destroy;
+begin
+  if Assigned(FColoredMarker) then FreeAndNil(FColoredMarker);
+  if Assigned(FStyledMarker) then FreeAndNil(FStyledMarker);
+
+  inherited;
+end;
+
+function TMarker.StyledMarkerToStr: string;
+begin
+  Result := Format('%s,%s,%s,%s,%s', [
+                  QuotedStr(TTransform.StyledIconToStr(StyledMarker.StyledIcon)),
+                  QuotedStr(StyledMarker.GetBackgroundColor),
+                  QuotedStr(StyledMarker.GetTextColor),
+                  QuotedStr(StyledMarker.GetStarColor),
+                  LowerCase(TTransform.GMBoolToStr(StyledMarker.ShowStar, True))
+                       ]);
 end;
 
 { TMarkers }

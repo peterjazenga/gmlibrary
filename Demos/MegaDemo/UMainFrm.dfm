@@ -543,16 +543,16 @@ object MainFrm: TMainFrm
         InfoWindow.CloseOtherBeforeOpen = True
         Text = 'TPolyline'
         StrokeColor = clBlack
+        Icon.OffSet.Value = 10
+        Icon.OffSet.Measure = mPercentage
+        Icon.DistRepeat.Value = 10
+        Icon.DistRepeat.Measure = mPercentage
         Icon.Icon.FillOpacity = 1.000000000000000000
         Icon.Icon.Path = spDASHEDLINE
         Icon.Icon.StrokeOpacity = 1.000000000000000000
         Icon.Icon.StrokeWeight = 2
         Icon.Icon.FillColor = clRed
         Icon.Icon.StrokeColor = clRed
-        Icon.OffSet.Value = 10
-        Icon.OffSet.Measure = mPercentage
-        Icon.DistRepeat.Value = 10
-        Icon.DistRepeat.Measure = mPercentage
       end
       item
         Tag = 0
@@ -587,14 +587,14 @@ object MainFrm: TMainFrm
         InfoWindow.CloseOtherBeforeOpen = True
         Text = 'TPolyline'
         StrokeColor = clBlack
-        Icon.Icon.Path = spNONE
-        Icon.Icon.StrokeWeight = 0
-        Icon.Icon.FillColor = clBlack
-        Icon.Icon.StrokeColor = clBlack
         Icon.OffSet.Value = 100
         Icon.OffSet.Measure = mPercentage
         Icon.DistRepeat.Value = 0
         Icon.DistRepeat.Measure = mPixels
+        Icon.Icon.Path = spNONE
+        Icon.Icon.StrokeWeight = 0
+        Icon.Icon.FillColor = clBlack
+        Icon.Icon.StrokeColor = clBlack
       end>
     OnClick = GMMarker1Click
     OnDblClick = GMMarker1DblClick
@@ -631,20 +631,6 @@ object MainFrm: TMainFrm
     Map = GMMap1
     AutoShow = True
     HiddeOthers = True
-    DirectionsRender.Draggable = False
-    DirectionsRender.MarkerOptions.Clickable = True
-    DirectionsRender.MarkerOptions.Draggable = False
-    DirectionsRender.MarkerOptions.Flat = True
-    DirectionsRender.PolylineOptions.Clickable = True
-    DirectionsRender.PolylineOptions.Geodesic = False
-    DirectionsRender.PolylineOptions.StrokeOpacity = 0.500000000000000000
-    DirectionsRender.PolylineOptions.StrokeWeight = 2
-    DirectionsRender.PolylineOptions.StrokeColor = clBlue
-    DirectionsRender.PreserveViewport = False
-    DirectionsRender.SuppressBicyclingLayer = False
-    DirectionsRender.SuppressInfoWindows = False
-    DirectionsRender.SuppressMarkers = False
-    DirectionsRender.SuppressPolylines = False
     DirectionsRequest.AvoidHighways = False
     DirectionsRequest.AvoidTolls = False
     DirectionsRequest.Destination.Address = 'Tarragona'
@@ -656,10 +642,24 @@ object MainFrm: TMainFrm
     DirectionsRequest.TransitOpt.ArrivalDate = 25569.000000000000000000
     DirectionsRequest.TransitOpt.DepartureTime = 0.000000011574074074
     DirectionsRequest.TransitOpt.DepartureDate = 25569.000000000000000000
-    DirectionsRequest.TravelMode = tmTRANSIT
+    DirectionsRequest.TravelMode = tmDRIVING
     DirectionsRequest.UnitSystem = usMETRIC
     DirectionsRequest.WaypointsList = <>
     OnDirectionsChanged = GMDirection1DirectionsChanged
+    DirectionsRender.Draggable = False
+    DirectionsRender.MarkerOptions.Clickable = True
+    DirectionsRender.MarkerOptions.Draggable = False
+    DirectionsRender.MarkerOptions.Flat = True
+    DirectionsRender.PreserveViewport = False
+    DirectionsRender.SuppressBicyclingLayer = False
+    DirectionsRender.SuppressInfoWindows = False
+    DirectionsRender.SuppressMarkers = False
+    DirectionsRender.SuppressPolylines = False
+    DirectionsRender.PolylineOptions.Clickable = True
+    DirectionsRender.PolylineOptions.Geodesic = False
+    DirectionsRender.PolylineOptions.StrokeOpacity = 0.500000000000000000
+    DirectionsRender.PolylineOptions.StrokeWeight = 2
+    DirectionsRender.PolylineOptions.StrokeColor = clBlue
     Left = 200
     Top = 88
   end
@@ -689,16 +689,6 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
-        ColoredMarker.Width = 32
-        ColoredMarker.Height = 32
-        ColoredMarker.PrimaryColor = clRed
-        ColoredMarker.StrokeColor = clBlack
-        ColoredMarker.CornerColor = clWhite
-        StyledMarker.StyledIcon = siMarker
-        StyledMarker.ShowStar = False
-        StyledMarker.BackgroundColor = clRed
-        StyledMarker.TextColor = clBlack
-        StyledMarker.StarColor = clLime
         InfoWindow.HTMLContent = 
           '<h1>Camp Nou</h1>'#13#10'<p>El <b>Camp Nou</b> (nombre que en catal'#225'n ' +
           'significa "Campo Nuevo", pronunciado [kam '#39'now]), a menudo tambi' +
@@ -722,6 +712,16 @@ object MainFrm: TMainFrm
         InfoWindow.PixelOffset.Width = 10
         InfoWindow.CloseOtherBeforeOpen = True
         ShowInfoWinMouseOver = True
+        ColoredMarker.Width = 32
+        ColoredMarker.Height = 32
+        ColoredMarker.PrimaryColor = clRed
+        ColoredMarker.StrokeColor = clBlack
+        ColoredMarker.CornerColor = clWhite
+        StyledMarker.StyledIcon = siMarker
+        StyledMarker.ShowStar = False
+        StyledMarker.BackgroundColor = clRed
+        StyledMarker.TextColor = clBlack
+        StyledMarker.StarColor = clLime
       end
       item
         Tag = 0
@@ -738,16 +738,6 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
-        ColoredMarker.Width = 32
-        ColoredMarker.Height = 32
-        ColoredMarker.PrimaryColor = clRed
-        ColoredMarker.StrokeColor = clBlack
-        ColoredMarker.CornerColor = clWhite
-        StyledMarker.StyledIcon = siMarker
-        StyledMarker.ShowStar = True
-        StyledMarker.BackgroundColor = clRed
-        StyledMarker.TextColor = clBlack
-        StyledMarker.StarColor = clLime
         InfoWindow.HTMLContent = 
           '<h1>Templo Expiatorio de la Sagrada Familia</h1>'#13#10'<p><b>El Templ' +
           'o Expiatorio de la Sagrada Familia</b> (en catal'#225'n <i>Temple Exp' +
@@ -770,6 +760,16 @@ object MainFrm: TMainFrm
         InfoWindow.PixelOffset.Width = 0
         InfoWindow.CloseOtherBeforeOpen = True
         ShowInfoWinMouseOver = False
+        ColoredMarker.Width = 32
+        ColoredMarker.Height = 32
+        ColoredMarker.PrimaryColor = clRed
+        ColoredMarker.StrokeColor = clBlack
+        ColoredMarker.CornerColor = clWhite
+        StyledMarker.StyledIcon = siMarker
+        StyledMarker.ShowStar = True
+        StyledMarker.BackgroundColor = clRed
+        StyledMarker.TextColor = clBlack
+        StyledMarker.StarColor = clLime
       end
       item
         Tag = 0
@@ -786,16 +786,6 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
-        ColoredMarker.Width = 32
-        ColoredMarker.Height = 32
-        ColoredMarker.PrimaryColor = clRed
-        ColoredMarker.StrokeColor = clBlack
-        ColoredMarker.CornerColor = clWhite
-        StyledMarker.StyledIcon = siBubble
-        StyledMarker.ShowStar = False
-        StyledMarker.BackgroundColor = clRed
-        StyledMarker.TextColor = clBlue
-        StyledMarker.StarColor = clLime
         InfoWindow.HTMLContent = 
           '<h1>Parque G'#252'ell</h1>'#13#10'<p>El <b>Parque G'#252'ell</b> (<i>Parc G'#252'ell<' +
           '/i> en catal'#225'n y <i>Park G'#252'ell</i> en su denominaci'#243'n original) ' +
@@ -816,6 +806,16 @@ object MainFrm: TMainFrm
         InfoWindow.PixelOffset.Width = 0
         InfoWindow.CloseOtherBeforeOpen = True
         ShowInfoWinMouseOver = False
+        ColoredMarker.Width = 32
+        ColoredMarker.Height = 32
+        ColoredMarker.PrimaryColor = clRed
+        ColoredMarker.StrokeColor = clBlack
+        ColoredMarker.CornerColor = clWhite
+        StyledMarker.StyledIcon = siBubble
+        StyledMarker.ShowStar = False
+        StyledMarker.BackgroundColor = clRed
+        StyledMarker.TextColor = clBlue
+        StyledMarker.StarColor = clLime
       end
       item
         Tag = 0
@@ -832,16 +832,6 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
-        ColoredMarker.Width = 32
-        ColoredMarker.Height = 32
-        ColoredMarker.PrimaryColor = clRed
-        ColoredMarker.StrokeColor = clBlack
-        ColoredMarker.CornerColor = clWhite
-        StyledMarker.StyledIcon = siMarker
-        StyledMarker.ShowStar = False
-        StyledMarker.BackgroundColor = clRed
-        StyledMarker.TextColor = clBlack
-        StyledMarker.StarColor = clLime
         InfoWindow.HTMLContent = 
           '<h1>Monumento a Col'#243'n (Barcelona)</h1>'#13#10'<p>El <b>Monumento a Col' +
           #243'n</b> es una de las m'#225's famosas estatuas de la ciudad de Barcel' +
@@ -863,6 +853,16 @@ object MainFrm: TMainFrm
         InfoWindow.PixelOffset.Width = 0
         InfoWindow.CloseOtherBeforeOpen = True
         ShowInfoWinMouseOver = False
+        ColoredMarker.Width = 32
+        ColoredMarker.Height = 32
+        ColoredMarker.PrimaryColor = clRed
+        ColoredMarker.StrokeColor = clBlack
+        ColoredMarker.CornerColor = clWhite
+        StyledMarker.StyledIcon = siMarker
+        StyledMarker.ShowStar = False
+        StyledMarker.BackgroundColor = clRed
+        StyledMarker.TextColor = clBlack
+        StyledMarker.StarColor = clLime
       end
       item
         Tag = 0
@@ -878,6 +878,12 @@ object MainFrm: TMainFrm
         Visible = True
         Optimized = True
         RaiseOnDrag = True
+        InfoWindow.DisableAutoPan = False
+        InfoWindow.MaxWidth = 0
+        InfoWindow.PixelOffset.Height = 0
+        InfoWindow.PixelOffset.Width = 0
+        InfoWindow.CloseOtherBeforeOpen = True
+        ShowInfoWinMouseOver = False
         ColoredMarker.Width = 32
         ColoredMarker.Height = 32
         ColoredMarker.PrimaryColor = clRed
@@ -888,12 +894,6 @@ object MainFrm: TMainFrm
         StyledMarker.BackgroundColor = clRed
         StyledMarker.TextColor = clBlack
         StyledMarker.StarColor = clLime
-        InfoWindow.DisableAutoPan = False
-        InfoWindow.MaxWidth = 0
-        InfoWindow.PixelOffset.Height = 0
-        InfoWindow.PixelOffset.Width = 0
-        InfoWindow.CloseOtherBeforeOpen = True
-        ShowInfoWinMouseOver = False
       end>
     OnClick = GMMarker1Click
     OnDblClick = GMMarker1DblClick

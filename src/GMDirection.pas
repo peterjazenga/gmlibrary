@@ -1047,17 +1047,20 @@ type
       Cadena que contiene la búsqueda realizada en formato "Desde a Hasta".
     -------------------------------------------------------------------------------}
     FFromTo: string;
-    {*------------------------------------------------------------------------------
-      Query conditions.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Condiciones de la consulta.
-    -------------------------------------------------------------------------------}
-    FDirectionsRender: TCustomDirectionsRenderer;
     function GetCount: Integer;
     function GetRoutes(Index: Integer): TDirectionsRoute;
     procedure OnXMLChange(Sender: TObject);
   protected
+    {*------------------------------------------------------------------------------
+      Return a formatted string that contains the DirectionsRender property values.
+      @return Formatted string.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve una cadena formateada con los valores de la propiedad DirectionsRender.
+      @return Cadena formateada.
+    -------------------------------------------------------------------------------}
+    function DirectionsRenderToStr: string; virtual; abstract;
+
     {*------------------------------------------------------------------------------
       Method response to OnDirectionsRenderChange event of the DirectionsRender property.
       @param Sender Object that fired the event.
@@ -1131,7 +1134,6 @@ type
     property XMLData: TStringList read FXMLData;
     property Status: TDirectionsStatus read FStatus;
     property FromTo: string read FFromTo;
-    property DirectionsRender: TCustomDirectionsRenderer read FDirectionsRender write FDirectionsRender;
     {*------------------------------------------------------------------------------
       An array of DirectionsRoutes, each of which contains information about the legs and steps of which it is composed.
     -------------------------------------------------------------------------------}
@@ -1544,29 +1546,29 @@ type
     function GetOwner: TPersistent; override;
   public
     {*------------------------------------------------------------------------------
-      Constructor class
-      @param aOwner Owner
+      Constructor class.
+      @param AOwner Owner.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Constructor de la clase
-      @param aOwner Propietario
+      Constructor de la clase.
+      @param AOwner Propietario.
     -------------------------------------------------------------------------------}
     constructor Create(aOwner: TPersistent); virtual;
     {*------------------------------------------------------------------------------
-      Destructor class
+      Destructor class.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Destructor de la clase
+      Destructor de la clase.
     -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source object to copy content
+      @param Source object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source objeto a copiar el contenido
+      @param Source objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
 
@@ -1796,13 +1798,6 @@ type
     -------------------------------------------------------------------------------}
     FSuppressBicyclingLayer: Boolean;
     {*------------------------------------------------------------------------------
-      Options for the polylines.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Opciones para las polilíneas.
-    -------------------------------------------------------------------------------}
-    FPolylineOptions: TCustomPolylineOptions;
-    {*------------------------------------------------------------------------------
       Options for the markerss.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -1870,6 +1865,15 @@ type
       Crea el objeto PolylineOptions.
     -------------------------------------------------------------------------------}
     procedure CreatePolylineOptions; virtual; abstract;
+    {*------------------------------------------------------------------------------
+      Return a formatted string that contains the PolylineOptions property values.
+      @return Formatted string.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve una cadena formateada con los valores de la propiedad PolylineOptions.
+      @return Cadena formateada.
+    -------------------------------------------------------------------------------}
+    function PolylineOptionsToStr: string; virtual; abstract;
 
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
   public
@@ -1902,7 +1906,6 @@ type
   published
     property Draggable: Boolean read FDraggable write SetDraggable;
     property MarkerOptions: TMarkerOptions read FMarkerOptions write FMarkerOptions;
-    property PolylineOptions: TCustomPolylineOptions read FPolylineOptions write FPolylineOptions;
     property PreserveViewport: Boolean read FPreserveViewport write SetPreserveViewport;
     property SuppressBicyclingLayer: Boolean read FSuppressBicyclingLayer write SetSuppressBicyclingLayer;
     property SuppressInfoWindows: Boolean read FSuppressInfoWindows write SetSuppressInfoWindows;
@@ -1926,13 +1929,6 @@ type
   -------------------------------------------------------------------------------}
   TCustomGMDirection = class(TGMObjects)
   private
-    {*------------------------------------------------------------------------------
-      Properties that can be set on a DirectionsRenderer object.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Propiedades que pueden establecerse al objeto DirectionsRenderer.
-    -------------------------------------------------------------------------------}
-    FDirectionsRender: TCustomDirectionsRenderer;
     {*------------------------------------------------------------------------------
       Properties that can be set on a DirectionsRequest object.
     -------------------------------------------------------------------------------}
@@ -1987,6 +1983,15 @@ type
     procedure ShowElements; override;
     procedure EventFired(EventType: TEventType; Params: array of const); override;
 
+    {*------------------------------------------------------------------------------
+      Return a formatted string that contains the DirectionsRender property values.
+      @return Formatted string.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve una cadena formateada con los valores de la propiedad DirectionsRender.
+      @return Cadena formateada.
+    -------------------------------------------------------------------------------}
+    function DirectionsRenderToStr: string; virtual; abstract;
     {*------------------------------------------------------------------------------
       Create the DirectionsRender object.
     -------------------------------------------------------------------------------}
@@ -2093,7 +2098,6 @@ type
   published
     property AutoShow: Boolean read FAutoShow write FAutoShow;
     property HiddeOthers: Boolean read FHiddeOthers write FHiddeOthers;
-    property DirectionsRender: TCustomDirectionsRenderer read FDirectionsRender write FDirectionsRender;
     property DirectionsRequest: TDirectionsRequest read FDirectionsRequest write FDirectionsRequest;
     property OnDirectionsChanged: TNotifyEvent read FOnDirectionsChanged write FOnDirectionsChanged;
   end;
@@ -2117,17 +2121,16 @@ end;
 
 procedure TCustomGMDirection.Assign(Source: TPersistent);
 begin
+  inherited;
+
   if Source is TCustomGMDirection then
   begin
     Map := TCustomGMDirection(Source).Map;
     AutoShow := TCustomGMDirection(Source).AutoShow;
     HiddeOthers := TCustomGMDirection(Source).HiddeOthers;
-    DirectionsRender.Assign(TCustomGMDirection(Source).DirectionsRender);
     DirectionsRequest.Assign(TCustomGMDirection(Source).DirectionsRequest);
     FDirectionsResult.Assign(TCustomGMDirection(Source).FDirectionsResult);
-  end
-  else
-    inherited Assign(Source);
+  end;
 end;
 
 procedure TCustomGMDirection.ClearWaypoint;
@@ -2169,7 +2172,6 @@ end;
 
 destructor TCustomGMDirection.Destroy;
 begin
-  if Assigned(FDirectionsRender) then FreeAndNil(FDirectionsRender);
   if Assigned(FDirectionsRequest) then FreeAndNil(FDirectionsRequest);
   if Assigned(FDirectionsResult) then FreeAndNil(FDirectionsResult);
 
@@ -2275,7 +2277,7 @@ procedure TCustomGMDirection.Execute;
     end;
   end;
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   Dep, Arr: string;
@@ -2305,28 +2307,12 @@ begin
                   QuotedStr(TCustomTransform.RegionToStr(DirectionsRequest.Region)),
                   QuotedStr(Arr),
                   QuotedStr(Dep),
-                  //IntToStr(MilliSecondsBetween(DirectionsRequest.TransitOpt.ArrivalDate + DirectionsRequest.TransitOpt.ArrivalTime, EncodeDateTime(1970, 1, 1, 0, 0, 0, 1))),
-                  //IntToStr(MilliSecondsBetween(DirectionsRequest.TransitOpt.DepartureDate + DirectionsRequest.TransitOpt.DepartureTime, EncodeDateTime(1970, 1, 1, 0, 0, 0, 1))),
                   QuotedStr(TCustomTransform.TravelModeToStr(DirectionsRequest.TravelMode)),
                   QuotedStr(TCustomTransform.UnitSystemToStr(DirectionsRequest.UnitSystem)),
                   QuotedStr(WaypointsToStr),
                   LowerCase(TCustomTransform.GMBoolToStr(HiddeOthers, True)),
                   LowerCase(TCustomTransform.GMBoolToStr(AutoShow, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.Draggable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.PreserveViewport, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressBicyclingLayer, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressInfoWindows, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressMarkers, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressPolylines, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Clickable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Draggable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Flat, True)),
-                  QuotedStr(DirectionsRender.MarkerOptions.Icon),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.PolylineOptions.Clickable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.PolylineOptions.Geodesic, True)),
-                  QuotedStr(DirectionsRender.PolylineOptions.GetStrokeColor),
-                  StringReplace(FloatToStr(DirectionsRender.PolylineOptions.StrokeOpacity), ',', '.', [rfReplaceAll]),
-                  IntToStr(DirectionsRender.PolylineOptions.StrokeWeight),
+                  DirectionsRenderToStr,
                   IntToStr(IdxList),
                   IntToStr(FCountDirResult)
                   ]);
@@ -3077,7 +3063,6 @@ begin
   begin
     Draggable := TCustomDirectionsRenderer(Source).Draggable;
     MarkerOptions.Assign(TCustomDirectionsRenderer(Source).MarkerOptions);
-    PolylineOptions.Assign(TCustomDirectionsRenderer(Source).PolylineOptions);
     PreserveViewport := TCustomDirectionsRenderer(Source).PreserveViewport;
     SuppressBicyclingLayer := TCustomDirectionsRenderer(Source).SuppressBicyclingLayer;
     SuppressInfoWindows := TCustomDirectionsRenderer(Source).SuppressInfoWindows;
@@ -3103,7 +3088,6 @@ end;
 destructor TCustomDirectionsRenderer.Destroy;
 begin
   if Assigned(FMarkerOptions) then FreeAndNil(FMarkerOptions);
-  if Assigned(FPolylineOptions) then FreeAndNil(FPolylineOptions);
 
   inherited;
 end;
@@ -3171,7 +3155,12 @@ end;
 procedure TCustomDirectionsResult.Assign(Source: TObject);
 begin
   if Source is TCustomDirectionsResult then
+  begin
     FRoutes.Assign(TCustomDirectionsResult(Source).FRoutes);
+    FXMLData.Assign(TCustomDirectionsResult(Source).FXMLData);
+    FStatus := TCustomDirectionsResult(Source).FStatus;
+    FFromTo := TCustomDirectionsResult(Source).FFromTo;
+  end;
 end;
 
 constructor TCustomDirectionsResult.Create(aOwner: TCustomGMDirection; Index: Integer);
@@ -3189,7 +3178,6 @@ destructor TCustomDirectionsResult.Destroy;
 begin
   if Assigned(FRoutes) then FreeAndNil(FRoutes);
   if Assigned(FXMLData) then FreeAndNil(FXMLData);
-  if Assigned(FDirectionsRender) then FreeAndNil(FDirectionsRender);
 
   inherited;
 end;
@@ -3208,28 +3196,14 @@ end;
 
 procedure TCustomDirectionsResult.OnDirectionsRenderChange(Sender: TObject);
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s';
 var
   Params: string;
 begin
   if not Assigned(FOwner) then Exit;
 
   Params := Format(StrParams, [
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.Draggable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.PreserveViewport, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressBicyclingLayer, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressInfoWindows, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressMarkers, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.SuppressPolylines, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Clickable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Draggable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.MarkerOptions.Flat, True)),
-                  QuotedStr(DirectionsRender.MarkerOptions.Icon),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.PolylineOptions.Clickable, True)),
-                  LowerCase(TCustomTransform.GMBoolToStr(DirectionsRender.PolylineOptions.Geodesic, True)),
-                  QuotedStr(DirectionsRender.PolylineOptions.GetStrokeColor),
-                  StringReplace(FloatToStr(DirectionsRender.PolylineOptions.StrokeOpacity), ',', '.', [rfReplaceAll]),
-                  IntToStr(DirectionsRender.PolylineOptions.StrokeWeight),
+                  DirectionsRenderToStr,
                   IntToStr(FOwner.IdxList),
                   IntToStr(FIndex)
                   ]);

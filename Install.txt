@@ -1,14 +1,18 @@
 GMLib - Google Maps Library
 
-Send suggestions to gmlib@cadetill.com
+Web page at http://www.cadetill.com/gmlib/ or http://www.cadetill.com/gmlib_en/
+Bugs report at http://code.google.com/p/gmlibrary/issues/list
+SVN repository at http://code.google.com/p/gmlibrary/source/checkout
+Questions at http://stackoverflow.com with gmlib tag
+For new needs, you can email me to gmlib@cadetill.com 
 
-Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE2, XE3
+Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE, XE2, XE3
 Tested Windows Versions: XP, 2003, Vista, 7
 
 If you have installed TChromium browser, you can activate it at gmlib.inc file.
 
-The installation is quite easy:
 
+The installation is quite easy:
 
 Delphi 6 Installation
 ~~~~~~~~~~~~~~~~~~~~~
@@ -20,7 +24,7 @@ Delphi 6 Installation
    Browse to the "src" folder and press "OK", "Add"
    Browse to the "src\VCL" folder and press "OK", "Add", "OK", "OK"
 
-
+   
 Delphi 7 Installation
 ~~~~~~~~~~~~~~~~~~~~~
 1. Open the project "GMLibProject_D7.bpg"

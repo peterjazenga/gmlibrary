@@ -1,18 +1,16 @@
 {
-TGMGeoCode component
+GMGeoCode unit
 
-  ES: componente para mostrar marcadores de una dirección en un mapa de Google
-      Maps mediante el componente TGMMap
-  EN: component to show markers from an address on Google Map map using the
-      component TGMMap
+  ES: Contiene las classes necesarias para la geocodificación.
+  EN: Includes the necessary classes to geocoding.
 
 =========================================================================
 MODO DE USO/HOW TO USE
 
-  ES: poner el componente en el formulario y ejecutar el método Geocode. Si
-    queremos mostrar los marcadores, linkarlo a un TGMMarker
-  EN: put the component into a form and execute Geocode method. If you want to
-    show markers, link it to a TGMMarker
+  ES: poner el componente en el formulario, unirlo a un TGMMap y ejecutar el
+    método Geocode. Si queremos mostrar los marcadores, linkarlo a un TGMMarker.
+  EN: put the component into a form, link it to a TGMMap and execute Geocode
+    method. If you want to show markers, link it to a TGMMarker.
 =========================================================================
 History:
 
@@ -97,6 +95,18 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
 @author Xavier Martinez (cadetill)
 @web  http://www.cadetill.com
 }
+{*------------------------------------------------------------------------------
+  Includes the necessary classes to geocoding.
+
+  @author Xavier Martinez (cadetill)
+  @version 1.0.0
+-------------------------------------------------------------------------------}
+{=------------------------------------------------------------------------------
+  Contiene las classes necesarias para la geocodificación.
+
+  @author Xavier Martinez (cadetill)
+  @version 1.0.0
+-------------------------------------------------------------------------------}
 unit GMGeoCode;
 
 interface
@@ -111,18 +121,65 @@ uses
   GMMap, GMClasses, GMMarker, GMConstants;
 
 type
-  { ****************************************************************************
-    https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderAddressComponent
-  **************************************************************************** }
+  {*------------------------------------------------------------------------------
+    A single address component within a GeocoderResult.
+    A full address may consist of multiple address components.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderAddressComponent
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Un componente de la dirección único dentro de un GeocoderResult.
+    Una dirección completa puede constar de múltiples componentes de dirección.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderAddressComponent
+  -------------------------------------------------------------------------------}
   TAddressComponent = class
   private
+    {*------------------------------------------------------------------------------
+      The abbreviated, short text of the given address component.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Abreviación o texto corto del componente de la dirección dado.
+    -------------------------------------------------------------------------------}
     FShortName: string;
+    {*------------------------------------------------------------------------------
+      List of strings denoting the type of this address component.
+      See possibles types at https://developers.google.com/maps/documentation/geocoding/#Types
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Lista de cadenas que representan el tipo de este componente de la dirección.
+      Ver posibles tipos en https://developers.google.com/maps/documentation/geocoding/#Types
+    -------------------------------------------------------------------------------}
     FAddrCompTypeList: TStringList;
+    {*------------------------------------------------------------------------------
+      The full text of the address component.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Texto completo del componente de la dirección.
+    -------------------------------------------------------------------------------}
     FLongName: string;
   public
+    {*------------------------------------------------------------------------------
+      Constructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase.
+    -------------------------------------------------------------------------------}
     constructor Create; virtual;
+    {*------------------------------------------------------------------------------
+      Destructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Destructor de la clase.
+    -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
+    {*------------------------------------------------------------------------------
+      Assign method copies the contents of another similar object.
+      @param Source Object to copy content.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      El método Assign copia el contenido de un objeto similar.
+      @param Source Objeto a copiar el contenido.
+    -------------------------------------------------------------------------------}
     procedure Assign(Source: TObject); virtual;
 
     property ShortName: string read FShortName;
@@ -130,39 +187,133 @@ type
     property AddrCompTypeList: TStringList read FAddrCompTypeList;
   end;
 
-  { ****************************************************************************
-    internal class
-  **************************************************************************** }
+  {*------------------------------------------------------------------------------
+    Internal class to manage the address components list.
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Clase interna para gestionar la lista de componentes de la dirección.
+  -------------------------------------------------------------------------------}
   TAddressComponentsList = class
   private
     FAddrComponents: TObjectList;
     function GetItem(Index: Integer): TAddressComponent;
     function GetCount: Integer;
   public
+    {*------------------------------------------------------------------------------
+      Constructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase.
+    -------------------------------------------------------------------------------}
     constructor Create; virtual;
+    {*------------------------------------------------------------------------------
+      Destructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Destructor de la clase.
+    -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
+    {*------------------------------------------------------------------------------
+      Assign method copies the contents of another similar object.
+      @param Source Object to copy content.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      El método Assign copia el contenido de un objeto similar.
+      @param Source Objeto a copiar el contenido.
+    -------------------------------------------------------------------------------}
     procedure Assign(Source: TObject); virtual;
 
+    {*------------------------------------------------------------------------------
+      Adds a new element to the list.
+      @param AddrComp Element to add.
+      @return Position it has been added.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Añade un nuevo elemento a la lista.
+      @param AddrComp Elemento a añadir.
+      @return Posición en la que se ha añadido.
+    -------------------------------------------------------------------------------}
     function Add(AddrComp: TAddressComponent): Integer;
 
+    {*------------------------------------------------------------------------------
+      Number of items in the list.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Cantidad de elementos en la lista.
+    -------------------------------------------------------------------------------}
     property Count: Integer read GetCount;
+    {*------------------------------------------------------------------------------
+      Lists of items.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Lista de elementos.
+    -------------------------------------------------------------------------------}
     property Items[Index: Integer]: TAddressComponent read GetItem; default;
   end;
 
-  { ****************************************************************************
-    https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderGeometry
-  **************************************************************************** }
+  {*------------------------------------------------------------------------------
+    Geometry information about this GeocoderResult.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderGeometry
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Información geométrica del GeocoderResult.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderGeometry
+  -------------------------------------------------------------------------------}
   TGeometry = class
   private
+    {*------------------------------------------------------------------------------
+      The coordinates of this result.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Las coordenadas de éste resultado.
+    -------------------------------------------------------------------------------}
     FLocation: TLatLng;
+    {*------------------------------------------------------------------------------
+      The type of location returned in location.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Tipo de ubicación devuelta en la localización.
+    -------------------------------------------------------------------------------}
     FLocationType: TGeocoderLocationType;
+    {*------------------------------------------------------------------------------
+      The bounds of the recommended viewport for displaying this GeocodeResult.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Los límites de la ventana recomendada para mostrar este GeocodeResult.
+    -------------------------------------------------------------------------------}
     FViewport: TLatLngBounds;
+    {*------------------------------------------------------------------------------
+      The precise bounds of this GeocodeResult, if applicable.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Límites precisos de este GeocodeResult, si aplica.
+    -------------------------------------------------------------------------------}
     FBounds: TLatLngBounds;
   public
+    {*------------------------------------------------------------------------------
+      Constructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase.
+    -------------------------------------------------------------------------------}
     constructor Create; virtual;
+    {*------------------------------------------------------------------------------
+      Destructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Destructor de la clase.
+    -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
+    {*------------------------------------------------------------------------------
+      Assign method copies the contents of another similar object.
+      @param Source Object to copy content.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      El método Assign copia el contenido de un objeto similar.
+      @param Source Objeto a copiar el contenido.
+    -------------------------------------------------------------------------------}
     procedure Assign(Source: TObject); virtual;
 
     property Location: TLatLng read FLocation;
@@ -171,19 +322,72 @@ type
     property Bounds: TLatLngBounds read FBounds;
   end;
 
-  { ****************************************************************************
-    https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderResult
-  **************************************************************************** }
+  {*------------------------------------------------------------------------------
+    A single geocoder result retrieved from the geocode server.
+    A geocode request may return multiple result objects.
+    More information at https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderResult
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Un único resultado de la geocodificación devuelto por el servidor de geocodificación.
+    Una consulta de geocodificación puede devolver varios resultados.
+    Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderResult
+  -------------------------------------------------------------------------------}
   TGeoResult = class
   private
+    {*------------------------------------------------------------------------------
+      List of strings denoting the type of the returned geocoded element.
+      See possibles types at https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Lista de cadenas que representan el tipo de elemento devuelto por la geocodificación.
+      Ver posibles tipos en https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
+    -------------------------------------------------------------------------------}
     FTypeList: TStringList;
+    {*------------------------------------------------------------------------------
+      A string containing the human-readable address of this location.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Cadena que contiene la dirección interpretable por humanos de la localización.
+    -------------------------------------------------------------------------------}
     FFormatedAddr: string;
+    {*------------------------------------------------------------------------------
+      List of GeocoderAddressComponents.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Lista de GeocoderAddressComponents.
+    -------------------------------------------------------------------------------}
     FAddrCompList: TAddressComponentsList;
+    {*------------------------------------------------------------------------------
+      Geometry information about this GeocoderResult.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Información geométrica del GeocoderResult.
+    -------------------------------------------------------------------------------}
     FGeometry: TGeometry;
   public
+    {*------------------------------------------------------------------------------
+      Constructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase.
+    -------------------------------------------------------------------------------}
     constructor Create; virtual;
+    {*------------------------------------------------------------------------------
+      Destructor class.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Destructor de la clase.
+    -------------------------------------------------------------------------------}
     destructor Destroy; override;
 
+    {*------------------------------------------------------------------------------
+      Assign method copies the contents of another similar object.
+      @param Source Object to copy content.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      El método Assign copia el contenido de un objeto similar.
+      @param Source Objeto a copiar el contenido.
+    -------------------------------------------------------------------------------}
     procedure Assign(Source: TObject); virtual;
 
     property TypeList: TStringList read FTypeList;
@@ -192,44 +396,128 @@ type
     property Geometry: TGeometry read FGeometry;
   end;
 
-  { ****************************************************************************
-    internal class
-  **************************************************************************** }
-  TGoogleBusiness = class(TPersistent)
-  private
-    FSignature: string;
-    FClient: string;
-  public
-    constructor Create; virtual;
-
-    procedure Assign(Source: TPersistent); override;
-  published
-    property Client: string read FClient write FClient;
-    property Signature: string read FSignature write FSignature;
-  end;
-
+  {*------------------------------------------------------------------------------
+    The event TParseData is fired in each iteration of reading XML file.
+    @param Sender Owner object of the collection item
+    @param ActualNode Actual XML node.
+    @param CountNodes Number of nodes to process.
+    @param Continue If we like to continue the process.
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    El evento TParseData se dispara en cada iteración de la lectura del archivo XML.
+    @param Sender Objecto propietario del elemento de la colección.
+    @param ActualNode Nodo XML actual.
+    @param CountNodes Cantidad de nodos a procesar.
+    @param Continue Si queremos continuar con el proceso.
+  -------------------------------------------------------------------------------}
   TParseData = procedure(Sender: TObject; ActualNode, CountNodes: Integer; var Continue: Boolean) of object;
 
-  { ****************************************************************************
-    https://developers.google.com/maps/documentation/javascript/reference?hl=en#Geocoder
-    https://developers.google.com/maps/documentation/javascript/geocoding
-    https://developers.google.com/maps/documentation/geocoding/index
-  **************************************************************************** }
+  {*------------------------------------------------------------------------------
+    A service for converting between an address and a LatLng.
+    More information at
+    - https://developers.google.com/maps/documentation/javascript/reference?hl=en#Geocoder
+    - https://developers.google.com/maps/documentation/javascript/geocoding
+    - https://developers.google.com/maps/documentation/geocoding/index
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Servicio para convertir entre dirección y LatLng.
+    Más información en
+    - https://developers.google.com/maps/documentation/javascript/reference?hl=en#Geocoder
+    - https://developers.google.com/maps/documentation/javascript/geocoding
+    - https://developers.google.com/maps/documentation/geocoding/index
+  -------------------------------------------------------------------------------}
   TGMGeoCode = class(TGMObjects)
   private
+    {*------------------------------------------------------------------------------
+      Associated GMMarker in which will create the results.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      GMMarker asociado en el que se crearán los resultados.
+    -------------------------------------------------------------------------------}
     FMarker: TCustomGMMarker;
-    FGBusiness: TGoogleBusiness;
+    {*------------------------------------------------------------------------------
+      Resulting XML geocoding.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      XML resultante de la geocodificación.
+    -------------------------------------------------------------------------------}
     FXMLData: TStringList;
+    {*------------------------------------------------------------------------------
+      Event fired after get data.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Evento disparado después de conseguir los datos.
+    -------------------------------------------------------------------------------}
     FAfterGetData: TNotifyEvent;
+    {*------------------------------------------------------------------------------
+      Event fired before data parsing.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Evento disparado antes de analizar los datos.
+    -------------------------------------------------------------------------------}
     FBeforeParseData: TNotifyEvent;
+    {*------------------------------------------------------------------------------
+      Event fired after data parsing.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Evento disparado después de analizar los datos.
+    -------------------------------------------------------------------------------}
     FAfterParseData: TNotifyEvent;
+    {*------------------------------------------------------------------------------
+      Geolocation status.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Estado de la geolocalización.
+    -------------------------------------------------------------------------------}
     FGeoStatus: TGeoCoderStatus;
+    {*------------------------------------------------------------------------------
+      Event fired during data parsing.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Evento disparado durante el análisis de los datos.
+    -------------------------------------------------------------------------------}
     FOnParseData: TParseData;
+    {*------------------------------------------------------------------------------
+      Geolocation results.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Resultados de la geolocalización.
+    -------------------------------------------------------------------------------}
     FGeoResults: TObjectList;
+    {*------------------------------------------------------------------------------
+      Icon to show the results.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Icono para mostrar los resultados.
+    -------------------------------------------------------------------------------}
     FIcon: string;
+    {*------------------------------------------------------------------------------
+      LatLngBounds within which to search.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      LatLngBounds dentro de la que buscar.
+    -------------------------------------------------------------------------------}
     FBounds: TLatLngBounds;
+    {*------------------------------------------------------------------------------
+      Country code used to bias the search.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Código de pais utilizado para centrar la búsqueda.
+    -------------------------------------------------------------------------------}
     FRegion: TRegion;
+    {*------------------------------------------------------------------------------
+      Language used in the result.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Idioma usado en el resultado.
+    -------------------------------------------------------------------------------}
     FLangCode: TLangCode;
+    {*------------------------------------------------------------------------------
+      If true, will be created the markers into the GMMarker associated.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Si se establece a true, se crearán los marcadores en el GMMarker asociado.
+    -------------------------------------------------------------------------------}
     FPaintMarkerFound: Boolean;
 
     procedure GeocodeData(Data: string);
@@ -239,12 +527,21 @@ type
     function GetCount: Integer;
   protected
     procedure Notification(AComponent: TComponent; Operation: TOperation); override;
-
     function GetAPIUrl: string; override;
     procedure DeleteMapObjects; override;
     procedure ShowElements; override;
     procedure EventFired(EventType: TEventType; Params: array of const); override;
 
+    {*------------------------------------------------------------------------------
+      Returns the TGeocoderLocationType represented by the string GeocoderLocationType.
+      @param GeocoderLocationType string to convert to TGeocoderLocationType
+      @return TGeocoderLocationType that represents the string
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve el TGeocoderLocationType representado por la cadena GeocoderLocationType.
+      @param GeocoderLocationType Cadena a convertir a TGeocoderLocationType
+      @return TGeocoderLocationType que representa la cadena
+    -------------------------------------------------------------------------------}
     function StrToGeocoderLocationType(GeocoderLocationType: string): TGeocoderLocationType;
   public
     constructor Create(aOwner: TComponent); override;
@@ -252,19 +549,62 @@ type
 
     procedure Assign(Source: TPersistent); override;
 
+    {*------------------------------------------------------------------------------
+      Geocodes the address passed by parameter.
+      @param Address Address to geocoder.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Geolocaliza la dirección pasada por parámetro.
+      @param Address Dirección a geolocalizar.
+    -------------------------------------------------------------------------------}
     procedure Geocode(Address: string); overload;
+    {*------------------------------------------------------------------------------
+      Geocodes the LatLng passed by parameter.
+      @param LatLng TLatLng to geocoder.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Geolocaliza la LatLng pasada por parámetro.
+      @param LatLng TLatLng a geolocalizar.
+    -------------------------------------------------------------------------------}
     procedure Geocode(LatLng: TLatLng); overload;
+    {*------------------------------------------------------------------------------
+      Geocodes the Lat/Lng passed by parameter.
+      @param Lat Latitude to geocoder.
+      @param Lng Longitude to geocoder.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Geolocaliza la Lat/Lng pasada por parámetro.
+      @param Lat Latitud a geolocalizar.
+      @param Lng Longitud a geolocalizar.
+    -------------------------------------------------------------------------------}
     procedure Geocode(Lat, Lng: Real); overload;
 
+    {*------------------------------------------------------------------------------
+      Create the markers resulting of geocoder into the linked GMMarker.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea los marcadores resultantes de la geocodificación en el GMMarker asociado.
+    -------------------------------------------------------------------------------}
     procedure DoMarkers;
 
+    {*------------------------------------------------------------------------------
+      Number of results.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Cantidad de resultados.
+    -------------------------------------------------------------------------------}
     property Count: Integer read GetCount;
+    {*------------------------------------------------------------------------------
+      Array of results.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Array de resultados.
+    -------------------------------------------------------------------------------}
+    property GeoResult[Index: Integer]: TGeoResult read GetGeoResult; default;
     property XMLData: TStringList read FXMLData write FXMLData;
     property GeoStatus: TGeocoderStatus read FGeoStatus;
-    property GeoResult[Index: Integer]: TGeoResult read GetGeoResult; default;
   published
     property Marker: TCustomGMMarker read FMarker write FMarker;
-    property GBusiness: TGoogleBusiness read FGBusiness write FGBusiness;
     property Icon: string read FIcon write FIcon;
     property Bounds: TLatLngBounds read FBounds write FBounds;
     property Region: TRegion read FRegion write FRegion;
@@ -310,7 +650,6 @@ begin
   if Source is TGMGeoCode then
   begin
     Marker := TGMGeoCode(Source).Marker;
-    GBusiness.Assign(TGMGeoCode(Source).GBusiness);
     Icon := TGMGeoCode(Source).Icon;
     Bounds.Assign(TGMGeoCode(Source).Bounds);
     Region := TGMGeoCode(Source).Region;
@@ -324,7 +663,6 @@ constructor TGMGeoCode.Create(aOwner: TComponent);
 begin
   inherited;
 
-  FGBusiness := TGoogleBusiness.Create;
   FXMLData := TStringList.Create;
   FGeoResults := TObjectList.Create;
   FBounds := TLatLngBounds.Create;
@@ -340,7 +678,6 @@ end;
 
 destructor TGMGeoCode.Destroy;
 begin
-  if Assigned(FGBusiness) then FreeAndNil(FGBusiness);
   if Assigned(FXMLData) then FreeAndNil(FXMLData);
   if Assigned(FGeoResults) then FreeAndNil(FGeoResults);
   if Assigned(FBounds) then FreeAndNil(FBounds);
@@ -373,7 +710,7 @@ procedure TGMGeoCode.Geocode(LatLng: TLatLng);
 var
   Tmp: string;
 begin
-  Tmp := QuotedStr('') + ',' + LatLng.LatToStr(0) + LatLng.LngToStr(0);
+  Tmp := QuotedStr('') + ',' + LatLng.LatToStr(0) + ',' + LatLng.LngToStr(0);
 
   GeocodeData(Tmp);
 end;
@@ -587,7 +924,7 @@ begin
     DoMarkers;
   end;
 
-  if Assigned(FBeforeParseData) then FBeforeParseData(Self);
+  if Assigned(AfterParseData) then AfterParseData(Self);
 end;
 
 procedure TGMGeoCode.ShowElements;
@@ -618,25 +955,6 @@ begin
   finally
     FreeAndNil(Tmp);
   end;
-end;
-
-{ TGoogleBusiness }
-
-procedure TGoogleBusiness.Assign(Source: TPersistent);
-begin
-  if Source is TGoogleBusiness then
-  begin
-    Client := TGoogleBusiness(Source).Client;
-    Signature := TGoogleBusiness(Source).Signature;
-  end
-  else
-    inherited Assign(Source);
-end;
-
-constructor TGoogleBusiness.Create;
-begin
-  FClient := '';
-  FSignature := '';
 end;
 
 { TGeoResult }

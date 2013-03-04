@@ -3402,7 +3402,7 @@ var
       if MouseOver then EventFired(etCircleMouseOver, [Lat, Lng, LinkCompZIndex]);
       if MouseUp then EventFired(etCircleMouseUp, [Lat, Lng, LinkCompZIndex]);
       if RightClick then EventFired(etCircleRightClick, [Lat, Lng, LinkCompZIndex]);
-      if RadiusChange then EventFired(etCircleRadiusChange, [Radius, LinkCompZIndex, CenterChange]);
+      if RadiusChange then EventFired(etCircleRadiusChange, [CircleEvents.Radius, LinkCompZIndex, RadiusChange]);
       if CenterChange then EventFired(etCircleCenterChange, [Lat, Lng, LinkCompZIndex]);
     end;
   end;

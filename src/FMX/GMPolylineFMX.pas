@@ -103,8 +103,22 @@ type
     Clase FMX para determinar el icono y la repetición a mostrar.
   -------------------------------------------------------------------------------}
   TIconSequence = class(TCustomIconSequence)
+  private
+    {*------------------------------------------------------------------------------
+      Icon properties.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Propiedades del icono.
+    -------------------------------------------------------------------------------}
+    FIcon: TSymbol;
+  protected
+    procedure CreatePropertiesWithColor; override;
   public
-    constructor Create(aOwner: TBasePolyline); override;
+    destructor Destroy; override;
+
+    procedure Assign(Source: TPersistent); override;
+  published
+    property Icon: TSymbol read FIcon write FIcon;
   end;
 
   {*------------------------------------------------------------------------------
@@ -287,12 +301,29 @@ end;
 
 { TIconSequence }
 
-constructor TIconSequence.Create(aOwner: TBasePolyline);
+procedure TIconSequence.Assign(Source: TPersistent);
+begin
+  inherited;
+
+  if Source is TIconSequence then
+  begin
+    Icon.Assign(TIconSequence(Source).Icon);
+  end;
+end;
+
+procedure TIconSequence.CreatePropertiesWithColor;
 begin
   inherited;
 
   Icon := TSymbol.Create;
-  TSymbol(Icon).OnChange := OnIconChange;
+  Icon.OnChange := OnIconChange;
+end;
+
+destructor TIconSequence.Destroy;
+begin
+  if Assigned(FIcon) then FreeAndNil(FIcon);
+
+  inherited;
 end;
 
 { TBasePolylineFMX }
@@ -392,10 +423,10 @@ begin
                   IntToStr(InfoWindow.PixelOffset.Width),
                   LowerCase(TTransform.GMBoolToStr(InfoWindow.CloseOtherBeforeOpen, True)),
                   QuotedStr(DistRepeat),
-                  QuotedStr(TSymbol(Icon.Icon).GetFillColor),
+                  QuotedStr(Icon.Icon.GetFillColor),
                   StringReplace(FloatToStr(Icon.Icon.FillOpacity), ',', '.', [rfReplaceAll]),
                   QuotedStr(TTransform.SymbolPathToStr(Icon.Icon.Path)),
-                  QuotedStr(TSymbol(Icon.Icon).GetStrokeColor),
+                  QuotedStr(Icon.Icon.GetStrokeColor),
                   StringReplace(FloatToStr(Icon.Icon.StrokeOpacity), ',', '.', [rfReplaceAll]),
                   IntToStr(Icon.Icon.StrokeWeight),
                   QuotedStr(Offset)

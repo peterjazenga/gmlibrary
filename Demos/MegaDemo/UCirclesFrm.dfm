@@ -27,10 +27,6 @@ object CirclesFrm: TCirclesFrm
     object tsMarkers: TTabSheet
       Caption = 'tsMarkers'
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 8
         Top = 32
@@ -104,10 +100,6 @@ object CirclesFrm: TCirclesFrm
     TabOrder = 1
     object tsGeneral: TTabSheet
       Caption = 'General'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label9: TLabel
         Left = 48
         Top = 325
@@ -293,10 +285,6 @@ object CirclesFrm: TCirclesFrm
     object tsAutoResize: TTabSheet
       Caption = 'AutoResize'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label7: TLabel
         Left = 48
         Top = 95
@@ -391,10 +379,6 @@ object CirclesFrm: TCirclesFrm
     object tsInfoWin: TTabSheet
       Caption = 'InfoWin'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label33: TLabel
         Left = 40
         Top = 112
@@ -494,10 +478,6 @@ object CirclesFrm: TCirclesFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cbOnClick: TCheckBox
         Left = 32
         Top = 48

@@ -133,9 +133,9 @@ interface
 
 uses
   {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes, Types,
+  Classes, Types, DB,
   {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
-  System.Classes, System.Types,
+  System.Classes, System.Types, Data.DB,
   {$IFEND}
   GMLinkedComponents, GMConstants, GMClasses;
 
@@ -685,20 +685,6 @@ type
       Tipo de marcador.
     -------------------------------------------------------------------------------}
     FMarkerType: TMarkerType;
-    {*------------------------------------------------------------------------------
-      Features applicable when marker type is mtColored.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Características aplicables cuando el marcador es de tipo mtColored.
-    -------------------------------------------------------------------------------}
-    FColoredMarker: TCustomColoredMarker;
-    {*------------------------------------------------------------------------------
-      Features applicable when marker type is mtStyledMarker.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Características aplicables cuando el marcador es de tipo mtStyledMarker.
-    -------------------------------------------------------------------------------}
-    FStyledMarker: TCustomStyledMarker;
     FIsUpdating: Boolean;
 
     procedure SetClickable(const Value: Boolean);
@@ -717,6 +703,31 @@ type
 
     function GetDisplayName: string; override;
     function ChangeProperties: Boolean; override;
+    {*------------------------------------------------------------------------------
+      Create the properties that contains some color value.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea las propiedades que contienen algún valor de color.
+    -------------------------------------------------------------------------------}
+    procedure CreatePropertiesWithColor; virtual; abstract;
+    {*------------------------------------------------------------------------------
+      Return a formatted string that contains the ColoredMarker property values.
+      @return Formatted string.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve una cadena formateada con los valores de la propiedad ColoredMarker.
+      @return Cadena formateada.
+    -------------------------------------------------------------------------------}
+    function ColoredMarkerToStr: string; virtual; abstract;
+    {*------------------------------------------------------------------------------
+      Return a formatted string that contains the StyledMarker property values.
+      @return Formatted string.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve una cadena formateada con los valores de la propiedad StyledMarker.
+      @return Cadena formateada.
+    -------------------------------------------------------------------------------}
+    function StyledMarkerToStr: string; virtual; abstract;
   public
     constructor Create(Collection: TCollection); override;
     destructor Destroy; override;
@@ -742,8 +753,6 @@ type
     property Optimized: Boolean read FOptimized write SetOptimized;       // regenera todos los Markers
     property RaiseOnDrag: Boolean read FRaiseOnDrag write SetRaiseOnDrag; // regenera todos los Markers
     property Icon: string read FIcon write SetIcon;
-    property ColoredMarker: TCustomColoredMarker read FColoredMarker write FColoredMarker;
-    property StyledMarker: TCustomStyledMarker read FStyledMarker write FStyledMarker;
     {*------------------------------------------------------------------------------
       Index within the collection.
     -------------------------------------------------------------------------------}
@@ -988,7 +997,7 @@ type
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
     {*------------------------------------------------------------------------------
-      Creates TMarker instances and adds them to the Items array.
+      Creates TMarker instances and adds them to the Items array from a CSV file.
       @param LatColumn Column with latitude information.
       @param LngColumn Column with longitude information.
       @param FileName File name.
@@ -996,9 +1005,10 @@ type
       @param Delimiter Field delimiter.
       @param DeleteBeforeLoad To true, delete markers before load file.
       @param WithRownTitle If the file have a first row with title columns.
+      @param IconColumn Column for icon information.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Crea instancias de TMarker y las añade en el array de Items.
+      Crea instancias de TMarker y las añade en el array de Items desde un archivo CSV.
       @param LatColumn Columna con la información de la latitud.
       @param LngColumn Columna con información de la longitud.
       @param FileName Nombre del fichero.
@@ -1006,10 +1016,31 @@ type
       @param Delimiter Delimitador de campos.
       @param DeleteBeforeLoad A true, borra los marcadores antes de cargar el fichero.
       @param WithRownTitle Si el fichero tiene una primera fila con el título de las columnas.
+      @param IconColumn Columna con información del icono a mostrar.
     -------------------------------------------------------------------------------}
     procedure LoadFromCSV(LatColumn, LngColumn: Integer; FileName: string;
       TitleColumn: Integer = -1; Delimiter: Char = ','; DeleteBeforeLoad: Boolean = True;
-      WithRownTitle: Boolean = True);
+      WithRownTitle: Boolean = True; IconColumn: Integer = -1);
+    {*------------------------------------------------------------------------------
+      Creates TMarker instances and adds them to the Items array from a DataSet.
+      @param DataSet DataSet where get the data.
+      @param LatField Field with latitude.
+      @param LngField Field with longitude.
+      @param TitleField Field with title information.
+      @param IconField Field for icon information.
+      @param DeleteBeforeLoad To true, delete markers before load file.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Crea instancias de TMarker y las añade en el array de Items desde un DataSet.
+      @param DataSet DataSet de donde obtener los datos.
+      @param LatField Campo con la latitud.
+      @param LngField Campo con la longitud.
+      @param TitleField Campo con información del título.
+      @param IconField Campo con información del icono a mostrar.
+      @param DeleteBeforeLoad A true, borra los marcadores antes de cargar el fichero.
+    -------------------------------------------------------------------------------}
+    procedure LoadFromDataSet(DataSet: TDataSet; LatField, LngField: string;
+      TitleField: string = ''; IconField: string = ''; DeleteBeforeLoad: Boolean = True);
 
     {*------------------------------------------------------------------------------
       Creates a new TMarker instance and adds it to the Items array.
@@ -1118,8 +1149,9 @@ begin
   Result := TCustomMarker(inherited Items[i]);
 end;
 
-procedure TCustomGMMarker.LoadFromCSV(LatColumn, LngColumn: Integer; FileName: string;
-  TitleColumn: Integer; Delimiter: Char; DeleteBeforeLoad, WithRownTitle: Boolean);
+procedure TCustomGMMarker.LoadFromCSV(LatColumn, LngColumn: Integer;
+  FileName: string; TitleColumn: Integer; Delimiter: Char; DeleteBeforeLoad,
+  WithRownTitle: Boolean; IconColumn: Integer);
 var
   L1, L2: TStringList;
   i: Integer;
@@ -1158,6 +1190,7 @@ begin
       else Marker := Add(0, 0, L2[TitleColumn]);
       Marker.Position.Lat := Marker.Position.StringToReal(L2[LatColumn]);
       Marker.Position.Lng := Marker.Position.StringToReal(L2[LngColumn]);
+      if IconColumn <> -1 then Marker.Icon := L2[IconColumn];
 
       Stop := False;
       if Assigned(FOnLoadFile) then FOnLoadFile(Self, Marker, i, L1.Count, Stop);
@@ -1171,6 +1204,42 @@ begin
     AutoUpdate := Auto;
     if Assigned(L1) then FreeAndNil(L1);
     if Assigned(L2) then FreeAndNil(L2);
+  end;
+end;
+
+procedure TCustomGMMarker.LoadFromDataSet(DataSet: TDataSet; LatField, LngField,
+  TitleField, IconField: string; DeleteBeforeLoad: Boolean);
+var
+  Auto: Boolean;
+  Marker: TCustomMarker;
+  i: Integer;
+begin
+  if not DataSet.Active then DataSet.Open;
+
+  Auto := AutoUpdate;
+  AutoUpdate := False;
+
+  if DeleteBeforeLoad then Clear;
+
+  try
+    i := 0;
+    while not DataSet.Eof do
+    begin
+      if TitleField = '' then Marker := Add
+      else Marker := Add(0, 0, DataSet.FieldByName(TitleField).AsString);
+      Marker.Position.Lat := DataSet.FieldByName(LatField).AsFloat;
+      Marker.Position.Lng := DataSet.FieldByName(LngField).AsFloat;
+      if IconField <> '' then Marker.Icon := DataSet.FieldByName(IconField).AsString;
+
+      Inc(i);
+      DataSet.Next;
+    end;
+
+    if Auto then AutoUpdate := True;
+    ShowElements;
+    if Assigned(FAfterLoadFile) then FAfterLoadFile(Self, i, DataSet.RecordCount);
+  finally
+    AutoUpdate := Auto;
   end;
 end;
 
@@ -1355,8 +1424,8 @@ begin
     Title := TCustomMarker(Source).Title;
     Visible := TCustomMarker(Source).Visible;
     MarkerType := TCustomMarker(Source).MarkerType;
-    ColoredMarker.Assign(TCustomMarker(Source).ColoredMarker);
-    StyledMarker.Assign(TCustomMarker(Source).StyledMarker);
+    //ColoredMarker.Assign(TCustomMarker(Source).ColoredMarker);
+    //StyledMarker.Assign(TCustomMarker(Source).StyledMarker);
   end;
 end;
 
@@ -1370,7 +1439,7 @@ end;
 
 function TCustomMarker.ChangeProperties: Boolean;
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   Icon: string;
@@ -1386,14 +1455,7 @@ begin
      (csDesigning in TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).ComponentState) then
     Exit;
 
-  if MarkerType = mtColored then
-    Icon := Format(StrColoredMarker, [
-                            ColoredMarker.Width,
-                            ColoredMarker.Height,
-                            StringReplace(ColoredMarker.GetCornerColor, '#', '', [rfReplaceAll]),
-                            StringReplace(ColoredMarker.GetPrimaryColor, '#', '', [rfReplaceAll]),
-                            StringReplace(ColoredMarker.GetStrokeColor, '#', '', [rfReplaceAll])
-                                     ])
+  if MarkerType = mtColored then Icon := ColoredMarkerToStr
   else
   begin
     Icon := FIcon;
@@ -1426,11 +1488,7 @@ begin
                   IntToStr(InfoWindow.PixelOffset.Width),
                   LowerCase(TCustomTransform.GMBoolToStr(InfoWindow.CloseOtherBeforeOpen, True)),
                   QuotedStr(TCustomTransform.MarkerTypeToStr(MarkerType)),
-                  QuotedStr(TCustomTransform.StyledIconToStr(StyledMarker.StyledIcon)),
-                  QuotedStr(StyledMarker.GetBackgroundColor),
-                  QuotedStr(StyledMarker.GetTextColor),
-                  QuotedStr(StyledMarker.GetStarColor),
-                  LowerCase(TCustomTransform.GMBoolToStr(StyledMarker.ShowStar, True)),
+                  StyledMarkerToStr,
                   LowerCase(TCustomTransform.GMBoolToStr(ShowInfoWinMouseOver, True))
                   ]);
 
@@ -1454,14 +1512,14 @@ begin
   FVisible := True;
   FIsUpdating := False;
   FMarkerType := mtStandard;
+
+  CreatePropertiesWithColor;
 end;
 
 destructor TCustomMarker.Destroy;
 begin
   if Assigned(FPosition) then FreeAndNil(FPosition);
   if Assigned(FAnimation) then FreeAndNil(FAnimation);
-  if Assigned(FColoredMarker) then FreeAndNil(FColoredMarker);
-  if Assigned(FStyledMarker) then FreeAndNil(FStyledMarker);
 
   inherited;
 end;
