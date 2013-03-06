@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: las propiedades se cambian mediante el método ChangeProperties.
+  EN:
+    change: properties are changed by ChangeProperties method.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -54,13 +60,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMInfoWindow unit includes the classes needed to show InfoWindows on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases necesarias para mostrar ventanas de información en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMInfoWindow;
 

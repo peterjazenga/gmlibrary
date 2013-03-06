@@ -10,20 +10,22 @@ History:
 ver 1.0.0
   ES:
     nuevo: clase TGMGenFunc para alvergar funciones generales
+    nuevo: se termina de implementar la librería Geometry.
+    cambio: (issue GC3) TCustomTransform -> nueva función GMBoolToStr
   EN:
     new: TGMGenFunc class to store general functions
+    new: Geometry library is completed.
+    change: (issue GC3) TCustomTransform -> new function GMBoolToStr
 
 ver 0.1.9
   ES:
     nuevo: documentación
     nuevo: se hace compatible con FireMonkey
     cambio: se transladan las funciones de transformación de las propiedades del Mapa
-    cambio: (issue GC3) TCustomTransform -> nueva función GMBoolToStr
   EN:
     new: documentation
     new: now compatible with FireMonkey
     change: moved transformation functions of the map
-    change: (issue GC3) TCustomTransform -> new function GMBoolToStr
 
 ver 0.1.7
   ES:
@@ -59,13 +61,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Unit with a general functions.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad con funciones de caracter general.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMFunctions;
 
@@ -173,7 +175,7 @@ type
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Calcula si el punto dado se encuentra en o cerca de una polilínea, o el borde de un polígono, dentro de una tolerancia especificada.
-      @param GMPoly GMPolyline or GMPolygon.
+      @param GMPoly GMPolyline o GMPolygon.
       @param Idx Índice que especifica una Polyline o Polygon.
       @param LatLng LatLng a calcular.
       @param Tolerance Tolerancia. -1 sin tolerancia.
@@ -190,7 +192,7 @@ type
       @return Area.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Devuelve el area de una ruta cerrada. El area calculada usa las mismas unidades que Radius. El radio por defecto es el radio de la Tierra en metros, en cuyo caso el área es en metros cuadrados.
+      Devuelve el área de una ruta cerrada. El área calculada usa las mismas unidades que Radius. El radio por defecto es el radio de la Tierra en metros, en cuyo caso el área es en metros cuadrados.
       Los puntos tiene que estar separados por punto y coma (;) y la Lat/Lng de un punto por una barra vertical (|).
       @param Map Mapa para acceder a las funciones JavaScript.
       @param PointsStr String con los puntos.

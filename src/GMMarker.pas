@@ -14,6 +14,24 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: se elimina la propiedad TCustomMarker.ColoredMarker para que sea
+      definida en los hijos como TColoredMarker.
+    cambio: se elimina la propiedad TCustomMarker.StyledMarker para que sea
+      definida en los hijos como TStyledMarker.
+    cambio: se ha añadido un parámetro al método TCustomGMMarker.LoadFromCSV,
+      IconColumn, para poder especificar el icono a mostrar por defecto.
+    nuevo: nuevo método TCustomGMMarker.LoadFromDataSet.
+  EN:
+    change: TCustomMarker.ColoredMarker property is removed to be defined
+      in descendents as TColoredMarker.
+    change: TCustomMarker.StyledMarker property is removed to be defined
+      in descendents as TStyledMarker.
+    change: a new parameter is added in TCustomGMMarker.LoadFromCSV method,
+      IconColumn, to specify a default icon to show.
+    new: added new method TCustomGMMarker.LoadFromDataSet.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -119,13 +137,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the base classes needed to show markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMMarker;
 
@@ -1424,8 +1442,6 @@ begin
     Title := TCustomMarker(Source).Title;
     Visible := TCustomMarker(Source).Visible;
     MarkerType := TCustomMarker(Source).MarkerType;
-    //ColoredMarker.Assign(TCustomMarker(Source).ColoredMarker);
-    //StyledMarker.Assign(TCustomMarker(Source).StyledMarker);
   end;
 end;
 

@@ -42,13 +42,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMElevation unit includes the VCL classes needed for calculate a terrain elevations of a set of LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMElevation contiene las clases VCL necesarias para calcular elevaciones de terreno de un conjunto de LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMElevationVCL;
 

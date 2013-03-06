@@ -16,6 +16,16 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+var 1.0.0
+  ES:
+    nuevo: se añade la propiedad TDirectionsRenderer.PolylineOptions.
+    nuevo: se añade la propiedad TDirectionsResult.DirectionsRender.
+    nuevo: se añade la propiedad TGMDirection.DirectionsRender.
+  EN:
+    new: TDirectionsRenderer.PolylineOptions is added.
+    new: TDirectionsResult.DirectionsRender is added.
+    new: TGMDirection.DirectionsRender is added.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -42,13 +52,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary classes to manage routes and show it into a Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes necesarias para la manipulación de rutas y mostrarlas en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMDirectionVCL;
 

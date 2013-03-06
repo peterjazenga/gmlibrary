@@ -7,6 +7,12 @@ unit RegisterComp
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: ya no registra el componente TGMGeoCode.
+  EN:
+    change: TGMGeoCode component no longer registered here.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -79,13 +85,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the VCL components.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes VCL.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit RegisterCompVCL;
 

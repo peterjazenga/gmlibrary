@@ -7,6 +7,12 @@ unit RegisterComp
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    nuevo: registra el componente TGMGeoCode.
+  EN:
+    new: register the TGMGeoCode component.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -33,13 +39,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the components that no depend of any framework.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes que no dependen de ningún framework.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit RegisterComp;
 

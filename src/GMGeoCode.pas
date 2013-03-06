@@ -19,10 +19,21 @@ ver 1.0.0
     nuevo: documentación.
     nuevo: se hace compatible con FireMonkey.
     cambio: recodificación del componente para no usar WebService.
+    cambio: la clase TGeometry pasa a llamarse TGeocodeGeometry para evitar confusiones.
+    cambio: se suprime la clase TGoogleBusiness porque no puede usarse en la
+      geocodificación mediante clases.
+    cambio: TGMGeoCode ahora desciende de TGMObjects.
+    error: corregido error en el método TGMGeoCode.DoMarkers (gracias Herwig).
+    error: corregido error en el método TGMGeoCode.ParseData (gracias Herwig).
   EN:
     new: documentation.
     new: now compatible with FireMonkey.
     change: recodification of component to avoid use Web Service.
+    change: TGeometry class is renamed to TGeocodeGeometry to avoid confusions.
+    change: TGoogleBusiness is removed because cannot be used in geocoding with classes.
+    change: TGMGeoCode now descends from TGMObjects.
+    bug: bug fixed in TGMGeoCode.DoMarkers method (thanks Herwig).
+    bug: bug fixed in TGMGeoCode.ParseData (thanks Herwig).
 
 ver 0.1.7
   ES:
@@ -42,7 +53,7 @@ ver 0.1.6
   ES:
     nuevo: TAddressComponent -> añadido método Assign
     nuevo: TAddressComponentsList -> añadido método Assign
-    nuevo: TGeometry -> añadido método Assign
+    nuevo: TGeocodeGeometry -> añadido método Assign
     nuevo: TGeoResult -> añadido método Assign
     nuevo: TGoogleBusiness -> añadido método Assign
     nuevo: TGMGeoCode -> se sobreescribe el método Notification para controlar
@@ -53,7 +64,7 @@ ver 0.1.6
   EN:
     new: TAddressComponent -> added Assign method
     new: TAddressComponentsList -> added Assign method
-    new: TGeometry -> added Assign method
+    new: TGeocodeGeometry -> added Assign method
     new: TGeoResult -> added Assign method
     new: TGoogleBusiness -> added Assign method
     new: TGMGeoCode -> overrided Notification method to control Marker property
@@ -260,7 +271,7 @@ type
     Información geométrica del GeocoderResult.
     Más información en https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderGeometry
   -------------------------------------------------------------------------------}
-  TGeometry = class
+  TGeocodeGeometry = class
   private
     {*------------------------------------------------------------------------------
       The coordinates of this result.
@@ -363,7 +374,7 @@ type
     {=------------------------------------------------------------------------------
       Información geométrica del GeocoderResult.
     -------------------------------------------------------------------------------}
-    FGeometry: TGeometry;
+    FGeometry: TGeocodeGeometry;
   public
     {*------------------------------------------------------------------------------
       Constructor class.
@@ -393,7 +404,7 @@ type
     property TypeList: TStringList read FTypeList;
     property FormatedAddr: string read FFormatedAddr;
     property AddrCompList: TAddressComponentsList read FAddrCompList;
-    property Geometry: TGeometry read FGeometry;
+    property Geometry: TGeocodeGeometry read FGeometry;
   end;
 
   {*------------------------------------------------------------------------------
@@ -667,7 +678,7 @@ begin
   FGeoResults := TObjectList.Create;
   FBounds := TLatLngBounds.Create;
   FRegion := r_NO_REGION;
-  FLangCode := lc_NOT_DEFINED;
+  FLangCode := lcENGLISH;
   FGeoStatus := gsWithoutState;
 end;
 
@@ -974,7 +985,7 @@ constructor TGeoResult.Create;
 begin
   FTypeList := TStringList.Create;
   FAddrCompList := TAddressComponentsList.Create;
-  FGeometry := TGeometry.Create;
+  FGeometry := TGeocodeGeometry.Create;
 end;
 
 destructor TGeoResult.Destroy;
@@ -986,20 +997,20 @@ begin
   inherited;
 end;
 
-{ TGeometry }
+{ TGeocodeGeometry }
 
-procedure TGeometry.Assign(Source: TObject);
+procedure TGeocodeGeometry.Assign(Source: TObject);
 begin
-  if Source is TGeometry then
+  if Source is TGeocodeGeometry then
   begin
-    FLocationType := TGeometry(Source).LocationType;
-    FLocation.Assign(TGeometry(Source).Location);
-    FViewport.Assign(TGeometry(Source).Viewport);
-    FBounds.Assign(TGeometry(Source).Bounds);
+    FLocationType := TGeocodeGeometry(Source).LocationType;
+    FLocation.Assign(TGeocodeGeometry(Source).Location);
+    FViewport.Assign(TGeocodeGeometry(Source).Viewport);
+    FBounds.Assign(TGeocodeGeometry(Source).Bounds);
   end;
 end;
 
-constructor TGeometry.Create;
+constructor TGeocodeGeometry.Create;
 begin
   FLocation := TLatLng.Create;
   FLocationType := gltNOTHING;
@@ -1007,7 +1018,7 @@ begin
   FBounds := TLatLngBounds.Create;
 end;
 
-destructor TGeometry.Destroy;
+destructor TGeocodeGeometry.Destroy;
 begin
   if Assigned(FLocation) then FreeAndNil(FLocation);
   if Assigned(FViewport) then FreeAndNil(FViewport);

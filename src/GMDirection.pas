@@ -18,13 +18,29 @@ History:
 
 ver 1.0.0
   ES:
-    cambio: Error corregido en algunos tipos de datos (TTimeClass.Value,
+    error: Error corregido en algunos tipos de datos (TTimeClass.Value,
       TDirectionsLeg.DepartureTime, TDirectionsLeg.ArrivalTime).
-    cambio: Error corregido cuando se usaba la opción de DirectionsRequest.TravelMode=tmTRANSIT
+    error: Error corregido cuando se usaba la opción de DirectionsRequest.TravelMode=tmTRANSIT
+    cambio: se elimina la propiedad TCustomDirectionsResult.DirectionsRender para
+      que sea definida en los hijos como TDirectionsRender.
+    cambio: se elimina la propiedad TCustomDirectionsRenderer.PolylineOptions para
+      que sea definida en los hijos como TPolylineOptions.
+    cambio: se elimina la propiedad TCustomGMDirection.DirectionsRender para
+      que sea definida en los hijos como TDirectionsRenderer.
+    error: se corrige error en TDirectionsStep.Assign.
+    error: se corrige error en TCustomDirectionsResult.Assign.
   EN:
-    change: bug fixed in some data types (TTimeClass.Value,
+    bug: bug fixed in some data types (TTimeClass.Value,
       TDirectionsLeg.DepartureTime, TDirectionsLeg.ArrivalTime).
-    change: bug fixed when using the option DirectionsRequest.TravelMode=tmTRANSIT
+    bug: bug fixed when using the option DirectionsRequest.TravelMode=tmTRANSIT
+    change: TCustomDirectionsResult.DirectionsRender property is removed to be defined
+      in descendents as TDirectionsRender.
+    change: TCustomDirectionsRenderer.PolylineOptions property is removed to be defined
+      in descendents as TPolylineOptions.
+    change: TCustomGMDirection.DirectionsRender property is removed to be defined
+      in descendents as TDirectionsRenderer.
+    bug: bug fixed into TDirectionsStep.Assign.
+    bug: bug fixed into TCustomDirectionsResult.Assign.
 
 ver 0.1.9
   ES:
@@ -62,13 +78,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary base classes to manage routes and show it into a Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes bases necesarias para la manipulación de rutas y mostrarlas en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMDirection;
 

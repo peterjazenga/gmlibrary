@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: TPolygons ahora hereda de TBasePolylines.
+  EN:
+    change: TPolygons now descends from TBasePolylines.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -42,13 +48,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolygonFMX unit includes the FMX classes needed to show polygons on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolygonFMX contiene las clases FMX necesarias para mostrar polígonos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMPolygonFMX;
 
@@ -132,7 +138,7 @@ type
   {=------------------------------------------------------------------------------
     Clase FMX para la colección de polígonos.
   -------------------------------------------------------------------------------}
-  TPolygons = class(TPolylines)
+  TPolygons = class(TBasePolylines)
   private
     procedure SetItems(I: Integer; const Value: TPolygon);
     function GetItems(I: Integer): TPolygon;

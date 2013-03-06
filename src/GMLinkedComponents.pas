@@ -7,6 +7,12 @@ TGMLinkedComponent class
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: el método TGMLinkedComponent.ShowElements se hace público.
+  EN:
+    change: TGMLinkedComponent.ShowElements method becomes public.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -78,13 +84,13 @@ web  http://www.cadetill.com
   The GMLinkedComponent unit includes the base classes that represent an object into the Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unidad GMLinkedComponent incluye las clases bases que representan un objete en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMLinkedComponents;
 

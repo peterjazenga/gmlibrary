@@ -15,6 +15,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    nuevo: se añade la propiedad TMarker.StyledMarker.
+    nuevo: se añade la propiedad TMarker.ColoredMarker.
+  EN:
+    new: TMarker.StyledMarker property is added.
+    new: TMarker.ColoredMarker property is added.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -41,13 +49,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the classes needed to show FMX markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores FMX en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMMarkerFMX;
 

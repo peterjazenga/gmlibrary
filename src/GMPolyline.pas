@@ -15,6 +15,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: se elimina la propiedad TCustomIconSequence.Icon para que sea
+      definida en los hijos como TSymbol.
+  EN:
+    change: TCustomIconSequence.Icon property is removed to be defined
+      in descendents as TSymbol.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -109,13 +117,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolyline unit includes the base classes needed to show polylines and polygons on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolyline contiene las clases bases necesarias para mostrar polilineas y polígonos en un mapa de Google Maps mediante el componente TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMPolyline;
 

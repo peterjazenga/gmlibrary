@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    cambio: TCustomCircle -> el método GetBounds pasa ha ser un procedure.
+  EN:
+    change: TCustomCircle -> GetBounds method becomes a procedure.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -70,13 +76,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMCircle unit includes the base classes needed to show circles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMCircle contiene las clases bases necesarias para mostrar círculos en un mapa de Google Maps mediante el componente TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMCircle;
 

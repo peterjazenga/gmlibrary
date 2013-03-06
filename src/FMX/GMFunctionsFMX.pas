@@ -33,13 +33,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Unit with a general functions specific for FMX.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad con funciones de caracter general específicas para FMX.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMFunctionsFMX;
 

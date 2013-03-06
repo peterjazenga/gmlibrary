@@ -35,13 +35,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   The GMConstants unit includes constants ans sets.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMConstants incluye constantes y conjuntos.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMConstants;
 
@@ -359,19 +359,20 @@ type
   { ****************************************************************************
   https://developers.google.com/maps/documentation/javascript/reference?hl=en#GeocoderLocationType
   **************************************************************************** }
-  TGeocoderLocationType = (gltAPPROXIMATE, gltGEOMETRIC_CENTER, gltRANGE_INTERPOLATED, gltROOFTOP, gltNOTHING);
+  TGeocoderLocationType = (gltAPPROXIMATE, gltGEOMETRIC_CENTER, gltRANGE_INTERPOLATED,
+          gltROOFTOP, gltNOTHING);
   { ****************************************************************************
   https://spreadsheets.google.com/pub?key=p9pdwsai2hDMsLkXsoM05KQ&gid=1
   **************************************************************************** }
-  TLangCode = (lc_NOT_DEFINED, lcARABIC, lcBASQUE, lcBENGALI, lcBULGARIAN, lcCATALAN, lcCHINESE_SIMPLIFIED,
-          lcCHINESE_TRADITIONAL, lcCROATIAN, lcCZECH, lcDANISH, lcDUTCH, lcENGLISH,
-          lcENGLISH_AUSTRALIAN, lcENGLISH_GREAT_BRITAIN, lcFARSI, lcFILIPINO, lcFINNISH,
-          lcFRENCH, lcGALICIAN, lcGERMAN, lcGREEK, lcGUJARATI, lcHEBREW, lcHINDI, lcHUNGARIAN,
-          lcINDONESIAN, lcITALIAN, lcJAPANESE, lcKANNADA, lcKOREAN, lcLATVIAN, lcLITHUANIAN,
-          lcMALAYALAM, lcMARATHI, lcNORWEGIAN, lcPOLISH, lcPORTUGUESE, lcPORTUGUESE_BRAZIL,
-          lcPORTUGUESE_PORTUGAL, lcROMANIAN, lcRUSSIAN, lcSERBIAN, lcSLOVAK, lcSLOVENIAN,
-          lcSPANISH, lcSWEDISH, lcTAGALOG, lcTAMIL, lcTELUGU, lcTHAI, lcTURKISH, lcUKRAINIAN,
-          lcVIETNAMESE);
+  TLangCode = (lc_NOT_DEFINED, lcARABIC, lcBASQUE, lcBENGALI, lcBULGARIAN, lcCATALAN,
+          lcCHINESE_SIMPLIFIED, lcCHINESE_TRADITIONAL, lcCROATIAN, lcCZECH, lcDANISH,
+          lcDUTCH, lcENGLISH, lcENGLISH_AUSTRALIAN, lcENGLISH_GREAT_BRITAIN, lcFARSI,
+          lcFILIPINO, lcFINNISH, lcFRENCH, lcGALICIAN, lcGERMAN, lcGREEK, lcGUJARATI,
+          lcHEBREW, lcHINDI, lcHUNGARIAN, lcINDONESIAN, lcITALIAN, lcJAPANESE, lcKANNADA,
+          lcKOREAN, lcLATVIAN, lcLITHUANIAN, lcMALAYALAM, lcMARATHI, lcNORWEGIAN,
+          lcPOLISH, lcPORTUGUESE, lcPORTUGUESE_BRAZIL, lcPORTUGUESE_PORTUGAL, lcROMANIAN,
+          lcRUSSIAN, lcSERBIAN, lcSLOVAK, lcSLOVENIAN, lcSPANISH, lcSWEDISH, lcTAGALOG,
+          lcTAMIL, lcTELUGU, lcTHAI, lcTURKISH, lcUKRAINIAN, lcVIETNAMESE);
   { ****************************************************************************
   http://en.wikipedia.org/wiki/List_of_Internet_top-level_domains#Country_code_top-level_domains
   **************************************************************************** }
