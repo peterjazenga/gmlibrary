@@ -408,8 +408,8 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    The event TParseData is fired in each iteration of reading XML file.
-    @param Sender Owner object of the collection item
+    TParseData event is fired in each row of the XML file.
+    @param Sender Owner object of the collection item.
     @param ActualNode Actual XML node.
     @param CountNodes Number of nodes to process.
     @param Continue If we like to continue the process.

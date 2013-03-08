@@ -320,7 +320,7 @@ type
 
   {*------------------------------------------------------------------------------
     AfterPageLoaded event is fired when the base HTML code es loaded (First param is true) and after the all map is loaded (First param is false).
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param First True when HTML code loaded. False when Google Maps map loaded.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
@@ -331,7 +331,7 @@ type
   TAfterPageLoaded = procedure(Sender: TObject; First: Boolean) of object;
   {*------------------------------------------------------------------------------
     OnBoundsChanged event is fired when the bounds of map changed.
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param NewBounds New map bounds.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
@@ -342,7 +342,7 @@ type
   TBoundsChanged = procedure(Sender: TObject; NewBounds: TLatLngBounds) of object;
   {*------------------------------------------------------------------------------
     TLatLngEvent is used for events that return a lat/lng formatted in LatLng and a X and Y.
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param LatLng Lat/lng coordinates.
     @param X X Coordinate.
     @param Y Y Coordinate.
@@ -357,7 +357,7 @@ type
   TLatLngEvent = procedure(Sender: TObject; LatLng: TLatLng; X, Y: Double) of object;
   {*------------------------------------------------------------------------------
     TMapTypeIdChanged event is fired when MapTypeId property change.
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param NewMapTypeId The new MapTypeId.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
@@ -368,7 +368,7 @@ type
   TMapTypeIdChanged = procedure(Sender: TObject; NewMapTypeId: TMapTypeId) of object;
   {*------------------------------------------------------------------------------
     TZoomChanged event is fired when Zoom property change.
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param NewZoom The new zoom.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
@@ -379,7 +379,7 @@ type
   TZoomChanged = procedure(Sender: TObject; NewZoom: Integer) of object;
   {*------------------------------------------------------------------------------
     OnWeatherClick event is fired when a feature in the weather layer is clicked.
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param LatLng Lat/lng coordinates.
     @param FeatureDetails A TWeatherFeature object containing information about the clicked feature.
   -------------------------------------------------------------------------------}
@@ -392,7 +392,7 @@ type
   TWeatherClick = procedure(Sender: TObject; LatLng: TLatLng; FeatureDetails: TWeatherFeature) of object;
   {*------------------------------------------------------------------------------
     OnPanoramioClick event is fired when a feature in the layer is clicked.
-    @param Sender The object that belongs to.
+    @param Sender Owner object.
     @param LatLng Lat/lng coordinates.
     @param PanoramioFeature A TPanoramioFeature object containing information about the clicked feature.
   -------------------------------------------------------------------------------}
@@ -429,33 +429,33 @@ type
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
-      @param Source object to copy content
+      @param Source object to copy content.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       El método Assign copia el contenido de un objeto similar.
-      @param Source objeto a copiar el contenido
+      @param Source objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Set of all MapTypeId
+      Set of all MapTypeId.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Conjunto de todos los MapTypeId
+      Conjunto de todos los MapTypeId.
     -------------------------------------------------------------------------------}
     property MapTypeIds: TMapTypeIds read FMapTypeIds write FMapTypeIds default [mtHYBRID, mtROADMAP, mtSATELLITE, mtTERRAIN]; // mapTypeIds
     {*------------------------------------------------------------------------------
-      Position of the control within the map
+      Control position in the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Posición del control dentro del mapa
+      Posición del control dentro del mapa.
     -------------------------------------------------------------------------------}
     property Position: TControlPosition read FPosition write FPosition;   // position
     {*------------------------------------------------------------------------------
-      Style of the control
+      Control style.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Estilo del control
+      Estilo del control.
     -------------------------------------------------------------------------------}
     property Style: TMapTypeControlStyle read FStyle write FStyle; // style
     {*------------------------------------------------------------------------------
@@ -546,7 +546,7 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Position of the control within the map
+      Control position in the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Posición del control dentro del mapa
@@ -593,7 +593,7 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Position of the control within the map
+      Control position in the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Posición del control dentro del mapa
@@ -641,14 +641,14 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Position of the control within the map
+      Control position in the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Posición del control dentro del mapa
     -------------------------------------------------------------------------------}
     property Position: TControlPosition read FPosition write FPosition;   // position
     {*------------------------------------------------------------------------------
-      Style of the control
+      Control style.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Estilo del control
@@ -695,7 +695,7 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Position of the control within the map
+      Control position in the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Posición del control dentro del mapa
@@ -743,14 +743,14 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Position of the control within the map
+      Control position in the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Posición del control dentro del mapa
     -------------------------------------------------------------------------------}
     property Position: TControlPosition read FPosition write FPosition;   // position
     {*------------------------------------------------------------------------------
-      Style of the control
+      Control style.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Estilo del control
@@ -920,7 +920,7 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     {*------------------------------------------------------------------------------
-      Contains the lat/lng coordinates with the center of the map.
+      Contains the lat/lng coordinates with the centre of the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Contiene las coordenadas lat/lng con el centro del mapa.
@@ -1484,7 +1484,7 @@ type
     FShortDay: string;
   public
     {*------------------------------------------------------------------------------
-      The day of the week in long form.
+      The day of the week in long format.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Día de la semana en formato largo.
@@ -2135,7 +2135,7 @@ type
     -------------------------------------------------------------------------------}
     procedure LatLngBoundsSetBounds(Bounds: TLatLngBounds); overload;
     {*------------------------------------------------------------------------------
-      Get bounds of the map.
+      Get the map bounds.
       @param LLB TLatLngBounds to store the information.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -2179,10 +2179,10 @@ type
     -------------------------------------------------------------------------------}
     function LatLngBoundsContains(LatLng: TLatLng): Boolean; overload;
     {*------------------------------------------------------------------------------
-      Returns true if the given lat/lng is in the bounds.
-      @param Lat Latitude to check .
+      Returns true if the given lat/lng is into the bounds.
+      @param Lat Latitude to check.
       @param Lng Longitude to check.
-      @return True if the given lat/lng is in the bounds.
+      @return True if the given lat/lng is into the bounds.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve true si la lat/lng dada está dentro de los límites.
@@ -2192,8 +2192,8 @@ type
     -------------------------------------------------------------------------------}
     function LatLngBoundsContains(Lat, Lng: Real): Boolean; overload;
     {*------------------------------------------------------------------------------
-      Computes the center of the TLatLngBounds.
-      @param LL TLatLng representing the center.
+      Computes the TLatLngBounds centre.
+      @param LL TLatLng representing the centre.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Calcula el centro del TLatLngBounds.
@@ -2211,7 +2211,7 @@ type
     procedure LatLngBoundsToSpan(LL: TLatLng);
 
     {*------------------------------------------------------------------------------
-      Returns the position displayed at the center of the map.
+      Returns the position displayed at the centre of the map.
       @param LL Center of the map
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -2230,47 +2230,47 @@ type
     function GetMapTypeId: TMapTypeId;
     {*------------------------------------------------------------------------------
       Returns the zoom of the map.
-      @return Zoom of the map
+      @return Zoom of the map.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve el zoom del mapa.
-      @return Zoom del mapa
+      @return Zoom del mapa.
     -------------------------------------------------------------------------------}
     function GetZoom: Integer;
     {*------------------------------------------------------------------------------
       Changes the center of the map by the given distance in pixels.
-      @param x Number of pixels to move into x-axis
-      @param y Number of pixels to move into y-axis
+      @param x Number of pixels to move into x-axis.
+      @param y Number of pixels to move into y-axis.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Cambia el centro del mapa en la distancia dada en píxels.
-      @param x Número de píxels a moverse en el eje x
-      @param y Número de píxels a moverse en el eje y
+      @param x Número de píxels a moverse en el eje x.
+      @param y Número de píxels a moverse en el eje y.
     -------------------------------------------------------------------------------}
     procedure PanBy(x, y: Integer);
     {*------------------------------------------------------------------------------
       Changes the center of the map to the given LatLng.
-      @param LatLng New center
+      @param LatLng New centre.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Cambia el centro del mapa con la LatLng dada.
-      @param LatLng Nuevo centro
+      @param LatLng Nuevo centro.
     -------------------------------------------------------------------------------}
     procedure PanTo(LatLng: TLatLng); overload;
     {*------------------------------------------------------------------------------
       Changes the center of the map to the given lat/lng.
-      @param Lat New latitude for the center
-      @param Lng New longitude for the center
+      @param Lat New latitude for the centre.
+      @param Lng New longitude for the centre.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Cambia el centro del mapa con la lat/lng dada.
-      @param Lat Nueva latitud para el centro
-      @param Lng Nueva longitud para el centro
+      @param Lat Nueva latitud para el centro.
+      @param Lng Nueva longitud para el centro.
     -------------------------------------------------------------------------------}
     procedure PanTo(const Lat, Lng: Real); overload;
     {*------------------------------------------------------------------------------
       Changes the center of the map to the given LatLng.
-      @param LatLng New center
+      @param LatLng New center.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Cambia el centro del mapa con la LatLng dada.
@@ -2279,8 +2279,8 @@ type
     procedure SetCenter(LatLng: TLatLng); overload;
     {*------------------------------------------------------------------------------
       Changes the center of the map to the given lat/lng.
-      @param Lat New latitude for the center
-      @param Lng New longitude for the center
+      @param Lat New latitude for the centre
+      @param Lng New longitude for the centre
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Cambia el centro del mapa con la lat/lng dada.

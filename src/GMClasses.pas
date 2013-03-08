@@ -230,7 +230,7 @@ type
     -------------------------------------------------------------------------------}
     function ToStr(Precision: Integer = 6): string;
     {*------------------------------------------------------------------------------
-      Returns a string of the form "lat,lng" for this LatLng. We round the lat/lng values to 6 decimal places by default.
+      Returns a string of the form "lat,lng" for this LatLng. By default, round the lat/lng to 6 decimal.
       @param Precision Precision of values. Default 6
       @return String with the formatted latlng
     -------------------------------------------------------------------------------}
@@ -696,7 +696,7 @@ type
     -------------------------------------------------------------------------------}
     function ToStr(Precision: Integer = 6): string;
     {*------------------------------------------------------------------------------
-      Returns a string of the form "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, where "lo" corresponds to the southwest corner of the bounding box and "hi" corresponds to the northeast corner of that box.
+      Returns a string with format "lat_lo,lng_lo,lat_hi,lng_hi" for this bounds, where "lo" corresponds to the southwest corner of the bounding box and "hi" corresponds to the northeast corner of that box.
       @param Precision Precision of values. Default 6
       @return Formatted string
     -------------------------------------------------------------------------------}

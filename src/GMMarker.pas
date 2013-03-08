@@ -820,7 +820,7 @@ type
   end;
 
   {*------------------------------------------------------------------------------
-    TLinkedComponentChange is fired when a property of collection item changes.
+    TOnLoadFile event is fired on load each row of the CSV file.
     @param Sender Owner object of the collection item.
     @param Marker New marker.
     @param Current Current Row.
@@ -1065,7 +1065,7 @@ type
       @param Lat Marker latitude.
       @param Lng Marker longitude.
       @param Title Marker title.
-      @return New merker.
+      @return New marker.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Crea una nueva instancia de TMarker y la añade en el array de Items.
@@ -1269,10 +1269,11 @@ var
   LatCenter: real;
   LngCenter: real;
 begin
-  LatLow    := 500;
-  LatHigh   := 0;
-  LngLow    := 500;
-  LngHigh   := 0;
+  LatLow := 500;
+  LatHigh := -500;
+  LngLow := 500;
+  LngHigh := -500;
+
   for i := 0 to Count - 1 do
   begin
     if Items[i].Position.Lat < LatLow then
