@@ -15,7 +15,7 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
-march 10, 2013
+march 23, 2013
  - Google Maps Library v1.0.0 final
  - Improvement: (issue GC2) General -> compiled to XE
  - Improvement: TCustomCircle -> GetBounds method becomes a procedure.
@@ -55,6 +55,8 @@ march 10, 2013
  - Improvement: TMarker -> ColoredMarker property is added.
  - Improvement: TPolygons -> now descends from TBasePolylines.
  - Improvement: TIconSequence -> Icon property is added.
+ - bug fixed: TCustomDirections -> bug fixed into Execute method on the first request.
+ - bug fixed: TCustomGMElevation -> bug fixed into Execute method on the first request.
 
 january 14, 2013
  - Google Maps Library v0.1.9

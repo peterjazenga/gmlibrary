@@ -247,7 +247,7 @@
     return Tmp;
   }
   
-/* GetGeocoder */
+  /* GetGeocoder */
   function GetGeocoder(Address, Lat, Lng, Region, SWLat, SWLng, NELat, NELng, Lang) {
     document.geocoderdata.xml.value = '';
     if (Address == '') Address = null;
@@ -266,8 +266,10 @@
     }
     
     var Geo = new google.maps.Geocoder;
+    document.geocoderdata.response.value = 0;
     Geo.geocode(geocoderRequest, function(result, status) {
       document.geocoderdata.xml.value = GeocoderToXMLData(result, status);
+      document.geocoderdata.response.value = 1;
 	});
   }
   
@@ -286,11 +288,13 @@
       }
     }
     document.elevationsdata.elevations.value = tmp;
+    document.elevationsdata.response.value = 1;
   }
   
   /* GetElevations */
   function GetElevations(ElevType, Points, Samples) {
     var elevator = new google.maps.ElevationService();
+    document.elevationsdata.response.value = 0;
     if (ElevType == 'etAlongPath') {
       var request = {path: PointsStrToLatLngArray(Points), samples: Samples};
       elevator.getElevationAlongPath(request, ProcessResult)
@@ -544,9 +548,10 @@
           waypoints: Waypoints
     };
     
+    document.directionsdata.response.value = 0;
     Dir.route(request, function(result, status) {
       document.directionsdata.xml.value = DirectionsToXMLData(result, status);
-      
+      document.directionsdata.response.value = 1;
 	  if (HiddePrevious) 
         for (var i = 0; i < linkedCompList.length; i++) 
           if (linkedCompList[i].GMLibId == IdObj) linkedCompList[i].setMap(null);
@@ -2368,6 +2373,7 @@
   *******************************************************************************-->
   <form action="#" id="directionsdata" name="directionsdata"> 
     <input type="hidden" name="xml" value=""/> 
+    <input type="hidden" name="response" value=""/> 
   </form> 
   <!--******************************************************************************
      Resultados para la clase Geocoder
@@ -2375,6 +2381,7 @@
   *******************************************************************************-->
   <form action="#" id="geocoderdata" name="geocoderdata"> 
     <input type="hidden" name="xml" value=""/> 
+    <input type="hidden" name="response" value=""/> 
   </form> 
   <!--******************************************************************************
      Resultados para la clase Elevations
@@ -2383,6 +2390,7 @@
   <form action="#" id="elevationsdata" name="elevationsdata"> 
     <input type="hidden" name="status" value=""/> 
     <input type="hidden" name="elevations" value=""/> 
+    <input type="hidden" name="response" value=""/> 
   </form> 
   <!--******************************************************************************
      Resultados para errores

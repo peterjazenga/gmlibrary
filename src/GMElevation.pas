@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.0
+  ES:
+    error: error corregido en TCustomGMElevation.Execute en la 1era búsqeda.
+  EN:
+    bug: bug fixed into TCustomGMElevation.Execute on the first request.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -46,13 +52,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMElevation unit includes the base classes needed for calculate a terrain elevations of a set of LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMElevation contiene las clases bases necesarias para calcular elevaciones de terreno de un conjunto de LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 0.1.9
+  @version 1.0.0
 -------------------------------------------------------------------------------}
 unit GMElevation;
 
@@ -533,6 +539,9 @@ begin
                   ]);
   ExecuteScript('GetElevations', Params);
 
+  repeat
+    TGMGenFunc.ProcessMessages;
+  until (GetIntegerField(ElevationsForm, ElevationsFormResponse) = 1);
   ElevationResult.Clear;
   Tmp := GetStringField(ElevationsForm, ElevationsFormStatus);
   ElevationResult.FStatus := TCustomTransform.StrToElevationStatus('es' + Tmp);

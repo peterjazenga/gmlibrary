@@ -495,7 +495,7 @@ type
     procedure Clear;
     {*------------------------------------------------------------------------------
       Converts to string the set of items in the collection. The elements are separated by semicolon (;) and the coordinates (lat/lng) by a pipe (|).
-      @param Precision Precisión de los valores. Por defecto 6.
+      @param Precision Precision of values. Default 6.
       @return String with conversion.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------

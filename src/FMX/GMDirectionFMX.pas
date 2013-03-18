@@ -182,7 +182,7 @@ type
   protected
     function DirectionsRenderToStr: string; override;
     procedure CreateDirectionsRenderObject; override;
-    procedure GetRetournedData; override;
+    function GetRetournedData: Integer; override;
   public
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
@@ -369,7 +369,7 @@ begin
   Result := TDirectionsResult(DirectionsResult[i]);
 end;
 
-procedure TGMDirection.GetRetournedData;
+function TGMDirection.GetRetournedData: Integer;
 var
   DirResult: TDirectionsResult;
 begin
@@ -379,7 +379,7 @@ begin
   DirResult.DirectionsRender.Assign(DirectionsRender);
   DirResult.SetFromTo(DirectionsRequest.Origin.ToString + ' to ' + DirectionsRequest.Destination.ToString);
   DirResult.XMLData.Text := GetStringField(DirectionsForm, DirectionsFormXML);
-  FDirectionsResult.Add(DirResult);
+  Result := FDirectionsResult.Add(DirResult);
 end;
 
 end.

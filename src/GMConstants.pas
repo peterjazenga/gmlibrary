@@ -125,13 +125,16 @@ const
 
   // Properties Directions Form
   DirectionsFormXML = 'xml';
+  DirectionsFormResponse = 'response';
 
   // Properties Geocoder Form
   GeocoderFormXML = 'xml';
+  GeocoderFormResponse = 'response';
 
   // Properties Elevations Form
   ElevationsFormStatus = 'status';
   ElevationsFormElevations = 'elevations';
+  ElevationsFormResponse = 'response';
 
   // Properties Geometry Form
   GeometryFormEncodedPath = 'encodedPath';

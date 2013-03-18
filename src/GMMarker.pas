@@ -627,7 +627,7 @@ type
   TCustomMarker = class(TLinkedComponent)
   private
     {*------------------------------------------------------------------------------
-      Style animation for marker.
+      Animation style for marker.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Tipo de animación para los marcadores.

@@ -730,7 +730,6 @@ procedure TGMGeoCode.GeocodeData(Data: string);
 var
   Tmp: string;
   TmpFile: string;
-  T: TTime;
 begin
   if not Assigned(Map) then
     raise Exception.Create(GetTranslateText('Mapa no asignado', Language));
@@ -744,11 +743,11 @@ begin
 
   Tmp := Tmp + ',' + QuotedStr(TCustomTransform.LangCodeToStr(FLangCode));
   ExecuteScript('GetGeocoder', Tmp);
-  T := Time + EncodeTime(0, 0, 1, 0);
   repeat
-    FXMLData.Text := GetStringField(GeocoderForm, GeocoderFormXML);
     TGMGenFunc.ProcessMessages;
-  until (T < Time) or (FXMLData.Text <> '');
+  until (GetIntegerField(GeocoderForm, GeocoderFormResponse) = 1);
+  FXMLData.Text := GetStringField(GeocoderForm, GeocoderFormXML);
+
   if Assigned(FAfterGetData) then FAfterGetData(Self);
 
   ParseData;

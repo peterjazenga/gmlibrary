@@ -29,6 +29,7 @@ ver 1.0.0
       que sea definida en los hijos como TDirectionsRenderer.
     error: se corrige error en TDirectionsStep.Assign.
     error: se corrige error en TCustomDirectionsResult.Assign.
+    error: error corregido en TCustomDirections.Execute en la 1era búsqeda.
   EN:
     bug: bug fixed in some data types (TTimeClass.Value,
       TDirectionsLeg.DepartureTime, TDirectionsLeg.ArrivalTime).
@@ -41,6 +42,7 @@ ver 1.0.0
       in descendents as TDirectionsRenderer.
     bug: bug fixed into TDirectionsStep.Assign.
     bug: bug fixed into TCustomDirectionsResult.Assign.
+    bug: bug fixed into TCustomDirections.Execute on the first request.
 
 ver 0.1.9
   ES:
@@ -884,7 +886,7 @@ type
     -------------------------------------------------------------------------------}
     property CountViaWaypoints: Integer read GetCountViaWaypoints;
     {*------------------------------------------------------------------------------
-      Coun tof Steps.
+      Count of Steps.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Cantidad de Steps.
@@ -903,7 +905,7 @@ type
   TDirectionsRoute = class
   private
     {*------------------------------------------------------------------------------
-      Route sumary.
+      Route summary.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Resumen de la ruta.
@@ -1158,7 +1160,7 @@ type
     -------------------------------------------------------------------------------}
     property Routes[Index: Integer]: TDirectionsRoute read GetRoutes;
     {*------------------------------------------------------------------------------
-      Number of Router.
+      Number of Routes.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Número de Routes.
@@ -1310,7 +1312,7 @@ type
     -------------------------------------------------------------------------------}
     FStopOver: Boolean;
     {*------------------------------------------------------------------------------
-      Address or point in geographical coordenates of waypoint.
+      Address or point in geographical coordinates of waypoint.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Dirección o punto de coordenadas grográficas del punto de paso.
@@ -1814,7 +1816,7 @@ type
     -------------------------------------------------------------------------------}
     FSuppressBicyclingLayer: Boolean;
     {*------------------------------------------------------------------------------
-      Options for the markerss.
+      Options for the markers.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Opciones para los marcadores.
@@ -2022,7 +2024,7 @@ type
     {=------------------------------------------------------------------------------
       Recupera los datos de una llamada al método Execute creando el objeto TDirectionsResult.
     -------------------------------------------------------------------------------}
-    procedure GetRetournedData; virtual; abstract;
+    function GetRetournedData: Integer; virtual; abstract;
   public
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
@@ -2335,6 +2337,9 @@ begin
 
   ExecuteScript('GetDirections', Params);
 
+  repeat
+    TGMGenFunc.ProcessMessages;
+  until (GetIntegerField(DirectionsForm, DirectionsFormResponse) = 1);
   GetRetournedData;
 end;
 
