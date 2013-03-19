@@ -922,7 +922,11 @@ begin
     if Assigned(FMarker) and FPaintMarkerFound then FMarker.Clear;
     FGeoResults.Clear;
 
+    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
+    XML := LoadXMLData(AnsiToUtf8(FXMLData.Text));
+    {$ELSE}
     XML := LoadXMLData(FXMLData.Text);
+    {$IFEND}
     try
       XML.Active := True;
 

@@ -3611,17 +3611,13 @@ begin
   if FXMLData.Text = '' then Exit;
 
   FRoutes.Clear;
+  {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
+  XML := LoadXMLData(AnsiToUtf8(FXMLData.Text));
+  {$ELSE}
   XML := LoadXMLData(FXMLData.Text);
-//  XML := TXMLDocument.Create(nil);
+  {$IFEND}
   try
-//    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
-//    XML.XML.Text := Utf8ToAnsi(FXMLData.Text);
-//    {$ELSE}
-//    XML.XML.Text := FXMLData.Text;
-//    {$IFEND}
     XML.Active := True;
-//    XML.Version := '1.0';
-//    XML.Encoding := 'utf-8';
 
     ParseNodes(XML.ChildNodes.First);
   finally

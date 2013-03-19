@@ -12,21 +12,16 @@ File_9=SourceModule,'C:\Downloads\encrypt\Test.pas',0,1,49,1,1,0,0
 
 [Modules]
 Module0=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk
-Module1=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas
-Module2=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas
-Module3=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas
-Module4=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\WebControl.pas
+Module1=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas
+Module2=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas
+Module3=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\WebControl.pas
+Module4=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas
 Count=5
 EditWindowCount=1
 PackageWindowCount=2
 
 [D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk]
 ModuleType=PackageEditModule
-FormState=0
-FormOnTop=0
-
-[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas]
-ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
@@ -45,11 +40,16 @@ ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk]
+[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas]
+ModuleType=SourceModule
 FormState=0
-FormOnTop=1
+FormOnTop=0
 
 [D:\Docs\Dropbox\Programacio\GoogleMaps\Components\GMLibProject_D6.bpg]
+FormState=0
+FormOnTop=0
+
+[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk]
 FormState=0
 FormOnTop=0
 
@@ -78,9 +78,9 @@ LeftPanelSize=0
 LeftPanelClients=CodeExplorer@EditWindow0
 LeftPanelData=00000400010000000C000000436F64654578706C6F726572000000000000000000000000000000000001000000000000000000000000FFFFFFFF
 RightPanelSize=0
-BottomPanelSize=52
+BottomPanelSize=0
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=000004000000000000000000000000000000000000000000000100000000000000000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400010000000B0000004D657373616765566965770000000000000000000000000000000000FFFFFFFF
 
 [View0]
 Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk
@@ -119,16 +119,16 @@ LeftCol=1
 
 [PackageWindow0]
 Create=1
-Visible=1
+Visible=0
 State=0
-Left=0
-Top=0
-Width=167
-Height=833
+Left=47
+Top=442
+Width=430
+Height=375
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=167
-ClientHeight=833
+ClientWidth=422
+ClientHeight=349
 TBDockHeight=244
 LRDockWidth=368
 Dockable=1
@@ -136,21 +136,21 @@ StatusBar=0
 TextLabels=1
 Toolbar=1
 SectionWidth0=150
-SectionWidth1=80
+SectionWidth1=272
 Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk
 
 [PackageWindow1]
 Create=1
-Visible=1
+Visible=0
 State=0
-Left=0
-Top=0
-Width=167
-Height=833
+Left=72
+Top=188
+Width=418
+Height=427
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=167
-ClientHeight=833
+ClientWidth=410
+ClientHeight=401
 TBDockHeight=244
 LRDockWidth=368
 Dockable=1
@@ -158,7 +158,7 @@ StatusBar=0
 TextLabels=1
 Toolbar=1
 SectionWidth0=150
-SectionWidth1=80
+SectionWidth1=260
 Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk
 
 [Watches]
@@ -235,6 +235,22 @@ SelectedItem=
 ExpandedItems=
 HiddenCategories=
 
+[WatchWindow]
+Create=1
+Visible=0
+State=0
+Left=197
+Top=965
+Width=1082
+Height=175
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1074
+ClientHeight=149
+TBDockHeight=149
+LRDockWidth=421
+Dockable=1
+
 [ObjectTree]
 Create=1
 Visible=1
@@ -269,15 +285,15 @@ Dockable=1
 
 [MessageView@EditWindow0]
 Create=1
-Visible=1
+Visible=0
 State=0
-Left=12
-Top=0
-Width=1074
+Left=-6
+Top=-671
+Width=443
 Height=52
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1074
+ClientWidth=443
 ClientHeight=52
 TBDockHeight=52
 LRDockWidth=443
@@ -304,7 +320,7 @@ LRDockWidth=190
 Dockable=1
 TabPosition=2
 ActiveTab=Project Manager
-TabDockClients=PropertyInspector,ProjectManager,ObjectTree,PackageWindow1,PackageWindow0
+TabDockClients=PropertyInspector,ProjectManager,ObjectTree
 
 [ActiveProject]
 ActiveProject=2
