@@ -1,13 +1,6 @@
 package GMLib_D2007;
 
 {$R *.res}
-{$R '..\Resources\gmlibres.RES'}
-{$R '..\Resources\gmlibres.RES'}
-{$R '..\Resources\gmlibres.RES'}
-{$R '..\Resources\gmlibres.RES'}
-{$R '..\Resources\gmlibres.RES'}
-{$R '..\Resources\gmlibres.RES'}
-{$R '..\Resources\gmlibres.RES'}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -70,6 +63,7 @@ contains
   GMPolygonVCL in '..\src\VCL\GMPolygonVCL.pas',
   GMPolylineVCL in '..\src\VCL\GMPolylineVCL.pas',
   GMRectangleVCL in '..\src\VCL\GMRectangleVCL.pas',
-  RegisterCompVCL in '..\src\VCL\RegisterCompVCL.pas';
+  RegisterCompVCL in '..\src\VCL\RegisterCompVCL.pas',
+  GMGroundOverlay in '..\src\GMGroundOverlay.pas';
 
 end.

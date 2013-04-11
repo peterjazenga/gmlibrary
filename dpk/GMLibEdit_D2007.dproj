@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-    <DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documentos\RAD Studio\5.0\Bpl\GMLibEdit_D2007.bpl</DCC_DependencyCheckOutputName>
+    <DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\5.0\Bpl\GMLibEdit_D2007.bpl</DCC_DependencyCheckOutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Version>7.0</Version>
@@ -48,20 +48,20 @@
     <DCCReference Include="..\src\GMEditors.pas" />
     <DCCReference Include="..\src\RegisterEditors.pas" />
     <DCCReference Include="..\src\UAboutFrm.pas" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\designide.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\GMLib_D2007.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\rtl.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vcl.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vclactnband.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vclie.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vcljpg.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vclx.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\xmlrtl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\designide.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\GMLib_D2007.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\rtl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vcl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vclactnband.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vclie.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vcljpg.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vclx.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\xmlrtl.dcp" />
   </ItemGroup>
 </Project>
 <!-- EurekaLog First Line
 [Exception Log]
-EurekaLog Version=6105
+EurekaLog Version=6024
 Activate=0
 Activate Handle=1
 Save Log File=1

@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-    <DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documentos\RAD Studio\5.0\Bpl\GMLib_D2007.bpl</DCC_DependencyCheckOutputName>
+    <DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\5.0\Bpl\GMLib_D2007.bpl</DCC_DependencyCheckOutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Version>7.0</Version>
@@ -46,6 +46,11 @@
       
       
       
+      
+      
+      
+      
+      
       <Excluded_Packages Name="C:\Documents and Settings\All Users\Documentos\RAD Studio\5.0\Bpl\GMLibEdit_D2007.bpl">File C:\Documents and Settings\All Users\Documentos\RAD Studio\5.0\Bpl\GMLibEdit_D2007.bpl not found</Excluded_Packages>
     </Excluded_Packages></Delphi.Personality></BorlandProject></BorlandProject>
   </ProjectExtensions>
@@ -56,12 +61,6 @@
     </DelphiCompile>
     <DCCReference Include="..\Resources\gmlibres.RES" />
     <DCCReference Include="..\Resources\gmlibres.RES" />
-    <DCCReference Include="..\Resources\gmlibres.RES" />
-    <DCCReference Include="..\Resources\gmlibres.RES" />
-    <DCCReference Include="..\Resources\gmlibres.RES" />
-    <DCCReference Include="..\Resources\gmlibres.RES" />
-    <DCCReference Include="..\Resources\gmlibres.RES" />
-    <DCCReference Include="..\Resources\gmlibres.RES" />
     <DCCReference Include="..\src\GMCircle.pas" />
     <DCCReference Include="..\src\GMClasses.pas" />
     <DCCReference Include="..\src\GMConstants.pas" />
@@ -69,6 +68,7 @@
     <DCCReference Include="..\src\GMElevation.pas" />
     <DCCReference Include="..\src\GMFunctions.pas" />
     <DCCReference Include="..\src\GMGeoCode.pas" />
+    <DCCReference Include="..\src\GMGroundOverlay.pas" />
     <DCCReference Include="..\src\GMInfoWindow.pas" />
     <DCCReference Include="..\src\GMLinkedComponents.pas" />
     <DCCReference Include="..\src\GMMap.pas" />
@@ -89,19 +89,19 @@
     <DCCReference Include="..\src\VCL\RegisterCompVCL.pas" />
     <DCCReference Include="..\src\VCL\WebControlVCL.pas" />
     <DCCReference Include="..\src\WebControl.pas" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\dbrtl.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\rtl.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vcl.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vclactnband.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vclie.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vcljpg.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\vclx.dcp" />
-    <DCCReference Include="C:\Documents and Settings\cadetill.JULIAWWW\Escritorio\xmlrtl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\dbrtl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\rtl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vcl.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vclactnband.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vclie.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vcljpg.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\vclx.dcp" />
+    <DCCReference Include="C:\Users\cadetill\Desktop\xmlrtl.dcp" />
   </ItemGroup>
 </Project>
 <!-- EurekaLog First Line
 [Exception Log]
-EurekaLog Version=6105
+EurekaLog Version=6024
 Activate=0
 Activate Handle=1
 Save Log File=1
