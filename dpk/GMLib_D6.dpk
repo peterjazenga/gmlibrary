@@ -59,6 +59,7 @@ contains
   GMRectangle in '..\src\GMRectangle.pas',
   Lang in '..\src\Lang.pas',
   RegisterComp in '..\src\RegisterComp.pas',
-  WebControl in '..\src\WebControl.pas';
+  WebControl in '..\src\WebControl.pas',
+  GMGroundOverlay in '..\src\GMGroundOverlay.pas';
 
 end.
