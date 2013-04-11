@@ -85,6 +85,7 @@
 			<DCCReference Include="..\src\VCL\GMPolylineVCL.pas"/>
 			<DCCReference Include="..\src\VCL\GMRectangleVCL.pas"/>
 			<DCCReference Include="..\src\VCL\RegisterCompVCL.pas"/>
+			<DCCReference Include="..\src\GMGroundOverlay.pas"/>
 			<DCCReference Include="..\Resources\gmlibres.RES"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
