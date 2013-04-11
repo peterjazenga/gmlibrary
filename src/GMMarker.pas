@@ -23,6 +23,9 @@ ver 1.0.0
     cambio: se ha añadido un parámetro al método TCustomGMMarker.LoadFromCSV,
       IconColumn, para poder especificar el icono a mostrar por defecto.
     nuevo: nuevo método TCustomGMMarker.LoadFromDataSet.
+    nuevo: TCustomGMMarker -> ZoomToPoints, establece el zoom óptimo para visualizar
+      todos los marcadores.
+    cambio: TCustomGMMarker -> ZoomMapToAllMarkers se marca como obsoleta.
   EN:
     change: TCustomMarker.ColoredMarker property is removed to be defined
       in descendents as TColoredMarker.
@@ -31,6 +34,8 @@ ver 1.0.0
     change: a new parameter is added in TCustomGMMarker.LoadFromCSV method,
       IconColumn, to specify a default icon to show.
     new: added new method TCustomGMMarker.LoadFromDataSet.
+    new: TCustomGMMarker -> ZoomToPoints, sets the optimal zoom to display all markers.
+    change: TCustomGMMarker -> ZoomMapToAllMarkers is now deprecated.
 
 ver 0.1.9
   ES:
@@ -1078,11 +1083,20 @@ type
 
     {*------------------------------------------------------------------------------
       Applies zoom to the map to include all markers.
+      Deprecated. Instead use ZoomToPoints method.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Se aplica zoom al mapa para incluir todos los marcadores.
+      Obsoleto. En su lugar usar el método ZoomToPoints.
     -------------------------------------------------------------------------------}
-    procedure ZoomMapToAllMarkers;
+    procedure ZoomMapToAllMarkers; deprecated;
+    {*------------------------------------------------------------------------------
+      Sets the optimal zoom to display all markers.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Establece el zoom óptimo para visualizar todos los marcadores.
+    -------------------------------------------------------------------------------}
+    procedure ZoomToPoints;
 
     {*------------------------------------------------------------------------------
       Array with the collection items.
@@ -1289,6 +1303,20 @@ begin
   LngCenter := LngLow + ((LngHigh - LngLow) / 2);
   Map.SetCenter(LatCenter, LngCenter);
   Map.LatLngBoundsSetBounds(LatLow, LngLow, LatHigh, LngHigh);
+end;
+
+procedure TCustomGMMarker.ZoomToPoints;
+var
+  Points: array of TLatLng;
+  i: Integer;
+begin
+  if not Assigned(Map) then Exit;
+
+  SetLength(Points, Count);
+  for i := 0 to Count - 1 do
+    Points[i] := Items[i].Position;
+
+  Map.ZoomToPoints(Points);
 end;
 
 procedure TCustomGMMarker.EventFired(EventType: TEventType; Params: array of const);

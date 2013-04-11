@@ -19,9 +19,12 @@ ver 1.0.0
   ES:
     cambio: se elimina la propiedad TCustomIconSequence.Icon para que sea
       definida en los hijos como TSymbol.
+    nuevo: TBasePolyline -> ZoomToPoints, establece el zoom óptimo para visualizar
+      la polilínea.
   EN:
     change: TCustomIconSequence.Icon property is removed to be defined
       in descendents as TSymbol.
+    new: TBasePolyline -> ZoomToPoints, sets the optimal zoom to display the polyline.
 
 ver 0.1.9
   ES:
@@ -535,6 +538,13 @@ type
 
     procedure Assign(Source: TPersistent); override;
 
+    {*------------------------------------------------------------------------------
+      Sets the optimal zoom to display the polyline.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Establece el zoom óptimo para visualizar la polilínea.
+    -------------------------------------------------------------------------------}
+    procedure ZoomToPoints;
     {*------------------------------------------------------------------------------
       Converts to string the set of LinePoints. The elements are separated by semicolon (;) and the coordinates (lat/lng) by a pipe (|).
       @return String with conversion.
@@ -1137,12 +1147,30 @@ begin
   end;
 end;
 
+procedure TBasePolyline.ZoomToPoints;
+var
+  Points: array of TLatLng;
+  i: Integer;
+begin
+  if not Assigned(Collection) or not (Collection is TBasePolylines) or
+     not Assigned(TBasePolylines(Collection).FGMLinkedComponent) or
+     not Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) or
+     (LinePoints.Count = 0) then
+    Exit;
+
+  SetLength(Points, CountLinePoints);
+  for i := 0 to CountLinePoints - 1 do
+    Points[i] := LinePoints[i].GetLatLng;
+
+  TBasePolylines(Collection).FGMLinkedComponent.Map.ZoomToPoints(Points);
+end;
+
 procedure TBasePolyline.CenterMapTo;
 begin
   if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TBasePolylines(Collection).FGMLinkedComponent) and
      Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) and
-     (LinePoints.Count > 0) then
+     (CountLinePoints > 0) then
     TBasePolylines(Collection).FGMLinkedComponent.Map.SetCenter(Items[0].Lat, Items[0].Lng);
 end;
 
@@ -1343,6 +1371,9 @@ begin
 end;
 
 function TBasePolyline.PolylineToStr: string;
+var
+  Points: array of TLatLng;
+  i: Integer;
 begin
   Result := '';
 
@@ -1351,7 +1382,10 @@ begin
      not Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) then
     Exit;
 
-  Result := FLinePoints.PointsToStr(TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetMapPrecision);
+  SetLength(Points, CountLinePoints);
+  for i := 0 to LinePoints.Count - 1 do
+    Points[i] := LinePoints[i].GetLatLng;
+  Result := TGMGenFunc.PointsToStr(Points, TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetMapPrecision);
 end;
 
 function TBasePolyline.QueryInterface(const IID: TGUID; out Obj): HResult;

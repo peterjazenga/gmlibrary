@@ -333,7 +333,7 @@ end;
 
 procedure TMarkersFrm.bZoomToAllClick(Sender: TObject);
 begin
-  FGMMarker.ZoomMapToAllMarkers;
+  FGMMarker.ZoomToPoints;
 end;
 
 procedure TMarkersFrm.cbBounceClick(Sender: TObject);

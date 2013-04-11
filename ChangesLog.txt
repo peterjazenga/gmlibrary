@@ -15,8 +15,10 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
-march 23, 2013
+april 9, 2013
  - Google Maps Library v1.0.0 final
+ - change: change of licence to LGPL
+ - Improvement: new component TGMGroundOverlay.
  - Improvement: (issue GC2) General -> compiled to XE
  - Improvement: TCustomCircle -> GetBounds method becomes a procedure.
  - bug fixed: some data types were erroneous (TTimeClass.Value, TDirectionsLeg.DepartureTime, TDirectionsLeg.ArrivalTime).
@@ -57,6 +59,13 @@ march 23, 2013
  - Improvement: TIconSequence -> Icon property is added.
  - bug fixed: TCustomDirections -> bug fixed into Execute method on the first request.
  - bug fixed: TCustomGMElevation -> bug fixed into Execute method on the first request.
+ - Improvement: TCustomGMMap -> the methods LatLngBoundsExtend, LatLngBoundsContains and LatLngBoundsGetCenter not refers now to map bounds. For this, use the new methods MapLatLngBoundsExtend and MapLatLngBoundsContains.
+ - Improvement: TCustomGMMap -> new method ZoomToPoints to do that the map have the necessary zoom to show all points passed by parameter.
+ - Improvement: TBasePolyline -> ZoomToPoints, sets the optimal zoom to display the polyline.
+ - Improvement: TCustomRectangle -> ZoomToPoints, sets the optimal zoom to display the rectangle.
+ - Improvement: TCustomGMMarker -> ZoomToPoints, sets the optimal zoom to display all markers.
+ - Improvement: TLinePoints -> PointsToStr is now deprecated.
+ - Improvement: TCustomGMMarker -> ZoomMapToAllMarkers is now deprecated.
 
 january 14, 2013
  - Google Maps Library v0.1.9

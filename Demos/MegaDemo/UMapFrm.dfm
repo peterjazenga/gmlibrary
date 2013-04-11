@@ -26,6 +26,10 @@ object MapFrm: TMapFrm
     TabOrder = 0
     object tsGeneral: TTabSheet
       Caption = 'General Config.'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label33: TLabel
         Left = 24
         Top = 104
@@ -98,6 +102,10 @@ object MapFrm: TMapFrm
     object tsRequired: TTabSheet
       Caption = 'Required Prop.'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lLong: TLabel
         Left = 35
         Top = 53
@@ -181,6 +189,10 @@ object MapFrm: TMapFrm
     object tsVisual: TTabSheet
       Caption = 'Visual Prop.'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label16: TLabel
         Left = 56
         Top = 25
@@ -527,6 +539,10 @@ object MapFrm: TMapFrm
     object tsNonVisual: TTabSheet
       Caption = 'Non Visual Prop'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label7: TLabel
         Left = 56
         Top = 154
@@ -640,6 +656,10 @@ object MapFrm: TMapFrm
     object tsLayers: TTabSheet
       Caption = 'Layers'
       ImageIndex = 5
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cbBicycling: TCheckBox
         Left = 49
         Top = 42
@@ -831,6 +851,10 @@ object MapFrm: TMapFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cbOnBoundsChanged: TCheckBox
         Left = 64
         Top = 32
@@ -970,6 +994,10 @@ object MapFrm: TMapFrm
     object tsFunctions: TTabSheet
       Caption = 'Functions'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         556
         365)

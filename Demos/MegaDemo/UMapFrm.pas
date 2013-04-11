@@ -387,13 +387,17 @@ end;
 procedure TMapFrm.bGetCenterClick(Sender: TObject);
 var
   LL: TLatLng;
+  LLB: TLatLngBounds;
 begin
   LL := TLatLng.Create;
+  LLB := TLatLngBounds.Create;
   try
-    FGMMap.LatLngBoundsGetCenter(LL);
+    FGMMap.LatLngBoundsGetBounds(LLB);
+    FGMMap.LatLngBoundsGetCenter(LLB, LL);
     eLat.Text := LL.LatToStr(FGMMap.Precision);
     eLng.Text := LL.LngToStr(FGMMap.Precision);
   finally
+    FreeAndNil(LLB);
     FreeAndNil(LL);
   end;
 end;
@@ -411,11 +415,16 @@ end;
 procedure TMapFrm.bContainsClick(Sender: TObject);
 var
   Cont: Boolean;
+  LL: TLatLng;
 begin
-  Cont := FGMMap.LatLngBoundsContains(
-                            FGMMap.RequiredProp.Center.StringToReal(eLat.Text),
-                            FGMMap.RequiredProp.Center.StringToReal(eLng.Text)
-                                     );
+  LL := TLatLng.Create;
+  try
+    LL.Lat := LL.StringToReal(eLat.Text);
+    LL.Lng := LL.StringToReal(eLng.Text);
+    Cont := FGMMap.MapLatLngBoundsContains(LL);
+  finally
+    FreeAndNil(LL);
+  end;
   ShowMessage(BoolToStr(Cont, True));
 end;
 

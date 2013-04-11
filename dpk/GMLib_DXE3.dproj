@@ -51,17 +51,16 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <DCC_Description>GoogleMaps Library v0.1.9 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <DCC_Description>GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Build>9</VerInfo_Build>
         <GenDll>true</GenDll>
         <VerInfo_Locale>3082</VerInfo_Locale>
-        <VerInfo_Release>1</VerInfo_Release>
         <GenPackage>true</GenPackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.0.1.9;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.0.1.9;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
     </PropertyGroup>
@@ -72,7 +71,6 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_Build>0</VerInfo_Build>
-        <DCC_Description>GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
         <VerInfo_Release>0</VerInfo_Release>
         <DCC_UsePackage>rtl;xmlrtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_DcuOutput>..\lib\dxe3</DCC_DcuOutput>
@@ -88,7 +86,6 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_Release>0</VerInfo_Release>
-        <DCC_Description>GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
         <VerInfo_Build>0</VerInfo_Build>
         <DCC_UsePackage>rtl;xmlrtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_BpiOutput>..\lib\cxe3_64</DCC_BpiOutput>
@@ -109,6 +106,11 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Build>0</VerInfo_Build>
+        <DCC_Description>GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
@@ -149,6 +151,7 @@
         <DCCReference Include="..\src\RegisterComp.pas"/>
         <DCCReference Include="..\src\WebControl.pas"/>
         <DCCReference Include="..\src\GMGeoCode.pas"/>
+        <DCCReference Include="..\src\GMGroundOverlay.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

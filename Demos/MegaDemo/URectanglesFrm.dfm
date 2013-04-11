@@ -88,6 +88,15 @@ object RectanglesFrm: TRectanglesFrm
         TabOrder = 5
         OnClick = bCenterClick
       end
+      object bZoomToAll: TButton
+        Left = 89
+        Top = 343
+        Width = 75
+        Height = 25
+        Caption = 'Zoom To'
+        TabOrder = 6
+        OnClick = bZoomToAllClick
+      end
     end
   end
   object pcMarker: TPageControl
@@ -95,15 +104,11 @@ object RectanglesFrm: TRectanglesFrm
     Top = 0
     Width = 372
     Height = 393
-    ActivePage = tsGeometry
+    ActivePage = tsEvents
     Align = alClient
     TabOrder = 1
     object tsGeneral: TTabSheet
       Caption = 'General'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label9: TLabel
         Left = 48
         Top = 325
@@ -316,10 +321,6 @@ object RectanglesFrm: TRectanglesFrm
     object tsInfoWin: TTabSheet
       Caption = 'InfoWin'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label33: TLabel
         Left = 40
         Top = 112
@@ -419,10 +420,6 @@ object RectanglesFrm: TRectanglesFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cbOnClick: TCheckBox
         Left = 32
         Top = 48

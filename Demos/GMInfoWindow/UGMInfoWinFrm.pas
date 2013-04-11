@@ -506,10 +506,15 @@ begin
 end;
 
 procedure TGMInfoWinFrm.Button3Click(Sender: TObject);
+var
+  LL: TLatLng;
 begin
-  ShowMessage(BoolToStr(GMMap1.LatLngBoundsContains(
-                StrToFloat(StringReplace(eLat.Text, '.', ',', [rfReplaceAll])),
-                StrToFloat(StringReplace(eLng.Text, '.', ',', [rfReplaceAll]))), True));
+  LL := TLatLng.Create(StrToFloat(eLat.Text), StrToFloat(eLng.Text));
+  try
+    ShowMessage(BoolToStr(GMMap1.MapLatLngBoundsContains(LL), True));
+  finally
+    FreeAndNil(LL);
+  end;
 end;
 
 procedure TGMInfoWinFrm.Button4Click(Sender: TObject);
@@ -535,13 +540,17 @@ end;
 procedure TGMInfoWinFrm.Button5Click(Sender: TObject);
 var
   LL: TLatLng;
+  LLB: TLatLngBounds;
 begin
   LL := TLatLng.Create;
+  LLB := TLatLngBounds.Create;
   try
-    GMMap1.LatLngBoundsGetCenter(LL);
+    GMMap1.LatLngBoundsGetBounds(LLB);
+    GMMap1.LatLngBoundsGetCenter(LLB, LL);
     eLat.Text := LL.LatToStr(GMMap1.Precision);
     eLng.Text := LL.LngToStr(GMMap1.Precision);
   finally
+    FreeAndNil(LLB);
     FreeAndNil(LL);
   end;
 end;

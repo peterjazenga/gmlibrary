@@ -8,7 +8,8 @@ uses
   TeeProcs, Chart, GMElevation, GMMarker, GMMarkerVCL, GMDirection,
   GMDirectionVCL, GMGeoCode, GMPolylineVCL, GMCircle, GMCircleVCL, GMRectangle,
   GMRectangleVCL, GMPolyline, GMPolygonVCL, GMMap, GMLinkedComponents,
-  GMInfoWindow, GMClasses, GMMapVCL, GMConstants, GMElevationVCL;
+  GMInfoWindow, GMClasses, GMMapVCL, GMConstants, GMElevationVCL,
+  GMGroundOverlay;
 
 type
   TMainFrm = class(TForm)
@@ -50,6 +51,8 @@ type
     Label3: TLabel;
     lY: TLabel;
     GMElevation1: TGMElevation;
+    GMGroundOverlay1: TGMGroundOverlay;
+    N6GroundOverlay1: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure sbStatusDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
       const Rect: TRect);
@@ -161,6 +164,11 @@ type
     procedure GMDirection1DirectionsChanged(Sender: TObject);
     procedure Elevation1Click(Sender: TObject);
     procedure bClearLogClick(Sender: TObject);
+    procedure N6GroundOverlay1Click(Sender: TObject);
+    procedure GMGroundOverlay1OpacityChange(Sender: TObject; Index: Integer;
+      LinkedComponent: TLinkedComponent);
+    procedure GMGroundOverlay1UrlChange(Sender: TObject; Index: Integer;
+      LinkedComponent: TLinkedComponent);
   private
   public
     constructor Create(aOwner: TComponent); override;
@@ -173,8 +181,8 @@ implementation
 
 uses
   UMapFrm, UMarkersFrm, UPolylinesFrm, UPolygonFrm, URectanglesFrm, UCirclesFrm,
-  UGeoCodeFrm, UDirectionsFrm, GMFunctionsVCL,
-  ShellAPI;
+  UGeoCodeFrm, UDirectionsFrm, UGroundOverlayFrm, GMFunctionsVCL,
+  ShellAPI, Types;
 
 {$R *.dfm}
 
@@ -316,6 +324,22 @@ procedure TMainFrm.GMDirection1DirectionsChanged(Sender: TObject);
 begin
   sbStatus.Panels[0].Text := 'Directions OnChanged';
   mEvents.Lines.Add('Directions OnChanged');
+end;
+
+procedure TMainFrm.GMGroundOverlay1OpacityChange(Sender: TObject;
+  Index: Integer; LinkedComponent: TLinkedComponent);
+const
+  Txt = '%s OnOpacityChange fired';
+begin
+  sbStatus.Panels[0].Text := Format(Txt, [TGMLinkedComponent(Sender).Name]);
+end;
+
+procedure TMainFrm.GMGroundOverlay1UrlChange(Sender: TObject; Index: Integer;
+  LinkedComponent: TLinkedComponent);
+const
+  Txt = '%s OnUrlChange fired';
+begin
+  sbStatus.Panels[0].Text := Format(Txt, [TGMLinkedComponent(Sender).Name]);
 end;
 
 procedure TMainFrm.GMMap1ActiveChange(Sender: TObject);
@@ -849,6 +873,40 @@ begin
   end;
 
   MF.Show;
+end;
+
+procedure TMainFrm.N6GroundOverlay1Click(Sender: TObject);
+var
+  GF: TGroundOverlayFrm;
+  i: Integer;
+begin
+  GF := nil;
+
+  for i := 0 to Screen.FormCount - 1 do
+    if Screen.Forms[i].ClassName = TGroundOverlayFrm.ClassName then
+      GF := TGroundOverlayFrm(Screen.Forms[i]);
+
+  if not Assigned(GF) then
+  begin
+    GF := TGroundOverlayFrm.Create(Self, GMGroundOverlay1);
+
+    GF.OnBoundsChanged := GMRectangle1BoundsChanged;
+    GF.OnClick := GMMarker1Click;
+    GF.OnClickableChange := GMMarker1ClickableChange;
+    GF.OnDblClick := GMMarker1DblClick;
+    GF.OnVisibleChange := GMMarker1VisibleChange;
+    GF.OnUrlDown := GMGroundOverlay1UrlChange;
+    GF.OnOpacityChange := GMGroundOverlay1OpacityChange;
+
+    GF.OnCloseClick := GMMarker1CloseClick;
+    GF.OnCloseOtherBeforeOpenChange := GMMarker1CloseOtherBeforeOpenChange;
+    GF.OnDisableAutoPanChange := GMMarker1DisableAutoPanChange;
+    GF.OnHTMLContentChange := GMMarker1HTMLContentChange;
+    GF.OnMaxWidthChange := GMMarker1MaxWidthChange;
+    GF.OnPixelOffsetChange := GMMarker1PixelOffsetChange;
+  end;
+
+  GF.Show;
 end;
 
 procedure TMainFrm.Polygons1Click(Sender: TObject);

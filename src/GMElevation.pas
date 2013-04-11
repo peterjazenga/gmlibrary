@@ -528,13 +528,18 @@ const
 var
   Params: string;
   Tmp: string;
+  Points: array of TLatLng;
+  i: Integer;
 begin
   if not Assigned(Map) then
     raise Exception.Create(GetTranslateText('Mapa no asignado', Language));
 
+  SetLength(Points, CountLinePoints);
+  for i := 0 to LinePoints.Count - 1 do
+    Points[i] := LinePoints[i].GetLatLng;
   Params := Format(StrParams, [
                   QuotedStr(TCustomTransform.ElevationTypeToStr(FElevationType)),
-                  QuotedStr(LinePoints.PointsToStr(GetMapPrecision)),
+                  QuotedStr(TGMGenFunc.PointsToStr(Points, GetMapPrecision)),
                   IntToStr(Samples)
                   ]);
   ExecuteScript('GetElevations', Params);

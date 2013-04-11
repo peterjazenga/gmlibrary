@@ -87,6 +87,7 @@ type
     lComArea: TLabel;
     eRadius: TEdit;
     Label2: TLabel;
+    bZoomToAll: TButton;
     procedure bUpClick(Sender: TObject);
     procedure bDownClick(Sender: TObject);
     procedure bNewClick(Sender: TObject);
@@ -138,6 +139,7 @@ type
     procedure cbOnMaxWidthChangeClick(Sender: TObject);
     procedure cbOnPixelOffsetChangeClick(Sender: TObject);
     procedure bComAreaClick(Sender: TObject);
+    procedure bZoomToAllClick(Sender: TObject);
   private
     FGMRec: TGMRectangle;
     procedure GetInfo;
@@ -230,6 +232,12 @@ begin
 
   FGMRec.Move(lbItems.ItemIndex, lbItems.ItemIndex-1);
   lbItems.Items.Move(lbItems.ItemIndex, lbItems.ItemIndex-1);
+end;
+
+procedure TRectanglesFrm.bZoomToAllClick(Sender: TObject);
+begin
+  if lbItems.ItemIndex = -1 then Exit;
+  FGMRec[lbItems.ItemIndex].ZoomToPoints;
 end;
 
 procedure TRectanglesFrm.cbClickableClick(Sender: TObject);

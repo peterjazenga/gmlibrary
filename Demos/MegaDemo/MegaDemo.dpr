@@ -11,7 +11,8 @@ uses
   UCirclesFrm in 'UCirclesFrm.pas' {CirclesFrm},
   UGeoCodeFrm in 'UGeoCodeFrm.pas' {GeoCodeFrm},
   UDirectionsFrm in 'UDirectionsFrm.pas' {DirectionsFrm},
-  UWaypointFrm in 'UWaypointFrm.pas' {WaypointFrm};
+  UWaypointFrm in 'UWaypointFrm.pas' {WaypointFrm},
+  UGroundOverlayFrm in 'UGroundOverlayFrm.pas' {GroundOverlayFrm};
 
 {$R *.res}
 

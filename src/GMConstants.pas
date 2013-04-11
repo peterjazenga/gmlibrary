@@ -92,6 +92,7 @@ const
   EventsRectangleForm = 'eventsRectangle';
   EventsCircleForm = 'eventsCircle';
   EventsDirectionForm = 'eventsDirection';
+  EventsGroundOverlay = 'eventsGO';
 
   { ****************************************************************************
   ******  Form Fields Names
@@ -209,6 +210,7 @@ const
       // circle
   EventsFormCircleRadiusChange = 'radiusChange';
   EventsFormCircleRadius = 'radius';
+      // GroundOverlay
       // direction
   EventsFormXML = 'xml';
   EventsFormDirectionsChanged = 'directions_changed';
@@ -323,6 +325,7 @@ type
               etCircleClick, etCircleDblClick, etCircleMouseDown, etCircleMouseMove,
               etCircleMouseOut, etCircleMouseOver, etCircleMouseUp, etCircleRightClick,
               etCircleCenterChange, etCircleRadiusChange,
+              etGOClick, etGODblClick,
               etDirectionsChanged
               );
 

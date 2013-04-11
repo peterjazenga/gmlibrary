@@ -72,7 +72,7 @@
       <Item2>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMConstants.pas</Item2>
       <Item3>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMFunctions.pas</Item3>
       <Item4>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMMap.pas</Item4>
-      <Count>38</Count>
+      <Count>39</Count>
       <Item5>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMDirection.pas</Item5>
       <Item6>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMLinkedComponents.pas</Item6>
       <Item7>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMMarker.pas</Item7>
@@ -84,28 +84,29 @@
       <Item13>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\RegisterComp.pas</Item13>
       <Item14>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\Lang.pas</Item14>
       <Item15>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMGeoCode.pas</Item15>
-      <Item16>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas</Item16>
-      <Item17>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMFunctionsVCL.pas</Item17>
-      <Item18>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas</Item18>
-      <Item19>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas</Item19>
-      <Item20>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMDirectionVCL.pas</Item20>
-      <Item21>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMarkerVCL.pas</Item21>
-      <Item22>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMRectangleVCL.pas</Item22>
-      <Item23>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMCircleVCL.pas</Item23>
-      <Item24>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMPolylineVCL.pas</Item24>
-      <Item25>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMPolygonVCL.pas</Item25>
-      <Item26>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMElevationVCL.pas</Item26>
-      <Item27>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\WebControlFMX.pas</Item27>
-      <Item28>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMFunctionsFMX.pas</Item28>
-      <Item29>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\RegisterCompFMX.pas</Item29>
-      <Item30>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMMapFMX.pas</Item30>
-      <Item31>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMDirectionFMX.pas</Item31>
-      <Item32>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMMarkerFMX.pas</Item32>
-      <Item33>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMRectangleFMX.pas</Item33>
-      <Item34>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMCircleFMX.pas</Item34>
-      <Item35>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMPolylineFMX.pas</Item35>
-      <Item36>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMPolygonFMX.pas</Item36>
-      <Item37>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMElevationFMX.pas</Item37>
+      <Item16>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMGroundOverlay.pas</Item16>
+      <Item17>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas</Item17>
+      <Item18>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMFunctionsVCL.pas</Item18>
+      <Item19>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas</Item19>
+      <Item20>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas</Item20>
+      <Item21>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMDirectionVCL.pas</Item21>
+      <Item22>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMarkerVCL.pas</Item22>
+      <Item23>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMRectangleVCL.pas</Item23>
+      <Item24>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMCircleVCL.pas</Item24>
+      <Item25>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMPolylineVCL.pas</Item25>
+      <Item26>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMPolygonVCL.pas</Item26>
+      <Item27>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMElevationVCL.pas</Item27>
+      <Item28>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\WebControlFMX.pas</Item28>
+      <Item29>D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMFunctionsFMX.pas</Item29>
+      <Item30>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\RegisterCompFMX.pas</Item30>
+      <Item31>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMMapFMX.pas</Item31>
+      <Item32>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMDirectionFMX.pas</Item32>
+      <Item33>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMMarkerFMX.pas</Item33>
+      <Item34>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMRectangleFMX.pas</Item34>
+      <Item35>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMCircleFMX.pas</Item35>
+      <Item36>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMPolylineFMX.pas</Item36>
+      <Item37>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMPolygonFMX.pas</Item37>
+      <Item38>D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\FMX\GMElevationFMX.pas</Item38>
     </FilesIncludeList>
     <FilesExcludeList>
       <Count>0</Count>

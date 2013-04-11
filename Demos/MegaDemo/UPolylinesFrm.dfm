@@ -88,6 +88,15 @@ object PolylinesFrm: TPolylinesFrm
         TabOrder = 5
         OnClick = bCenterClick
       end
+      object bZoomToAll: TButton
+        Left = 89
+        Top = 343
+        Width = 75
+        Height = 25
+        Caption = 'Zoom To'
+        TabOrder = 6
+        OnClick = bZoomToAllClick
+      end
     end
   end
   object pcMarker: TPageControl
@@ -95,15 +104,11 @@ object PolylinesFrm: TPolylinesFrm
     Top = 0
     Width = 372
     Height = 393
-    ActivePage = tsGeometry
+    ActivePage = tsGeneral
     Align = alClient
     TabOrder = 1
     object tsGeneral: TTabSheet
       Caption = 'General'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label36: TLabel
         Left = 48
         Top = 152
@@ -314,10 +319,6 @@ object PolylinesFrm: TPolylinesFrm
     object tsInfoWin: TTabSheet
       Caption = 'InfoWin'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label33: TLabel
         Left = 40
         Top = 112
@@ -417,10 +418,6 @@ object PolylinesFrm: TPolylinesFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cbOnClick: TCheckBox
         Left = 32
         Top = 24
@@ -867,6 +864,8 @@ object PolylinesFrm: TPolylinesFrm
           Marks.Symbol.Shadow.Visible = False
           Marks.Visible = False
           ShowInLegend = False
+          AreaChartBrush.Color = clGray
+          AreaChartBrush.BackColor = clDefault
           Dark3D = False
           DrawArea = True
           Pointer.InflateMargins = False
@@ -951,10 +950,6 @@ object PolylinesFrm: TPolylinesFrm
     object tsGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label14: TLabel
         Left = 29
         Top = 120

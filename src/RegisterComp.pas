@@ -10,8 +10,10 @@ History:
 ver 1.0.0
   ES:
     nuevo: registra el componente TGMGeoCode.
+    nuevo: registra el componente TGMGroundOverlay.
   EN:
     new: register the TGMGeoCode component.
+    new: register the TGMGroundOverlay component.
 
 ver 0.1.9
   ES:
@@ -72,11 +74,11 @@ uses
   System.Classes,
   {$IFEND}
 
-  GMInfoWindow, GMGeoCode;
+  GMInfoWindow, GMGeoCode, GMGroundOverlay;
 
 procedure Register;
 begin
-  RegisterComponents('GoogleMaps', [TGMInfoWindow, TGMGeoCode]);
+  RegisterComponents('GoogleMaps', [TGMInfoWindow, TGMGeoCode, TGMGroundOverlay]);
 end;
 
 end.

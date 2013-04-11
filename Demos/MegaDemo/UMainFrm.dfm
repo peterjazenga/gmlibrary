@@ -218,6 +218,10 @@ object MainFrm: TMainFrm
         Caption = '&5. Circles'
         OnClick = Circles1Click
       end
+      object N6GroundOverlay1: TMenuItem
+        Caption = '&6. GroundOverlay'
+        OnClick = N6GroundOverlay1Click
+      end
     end
     object Services1: TMenuItem
       Caption = 'Services'
@@ -342,7 +346,7 @@ object MainFrm: TMainFrm
         Geodesic = False
         StrokeOpacity = 1.000000000000000000
         StrokeWeight = 2
-        Visible = True
+        Visible = False
         AutoUpdatePath = True
         LinePoints = <
           item
@@ -561,7 +565,7 @@ object MainFrm: TMainFrm
         Geodesic = False
         StrokeOpacity = 1.000000000000000000
         StrokeWeight = 2
-        Visible = True
+        Visible = False
         AutoUpdatePath = True
         LinePoints = <
           item
@@ -923,5 +927,46 @@ object MainFrm: TMainFrm
     ElevationType = etForLocations
     Left = 200
     Top = 136
+  end
+  object GMGroundOverlay1: TGMGroundOverlay
+    Language = Espanol
+    Map = GMMap1
+    AutoUpdate = True
+    OnCloseClick = GMMarker1CloseClick
+    OnHTMLContentChange = GMMarker1HTMLContentChange
+    OnDisableAutoPanChange = GMMarker1DisableAutoPanChange
+    OnMaxWidthChange = GMMarker1MaxWidthChange
+    OnPixelOffsetChange = GMMarker1PixelOffsetChange
+    OnCloseOtherBeforeOpenChange = GMMarker1CloseOtherBeforeOpenChange
+    VisualObjects = <
+      item
+        Tag = 0
+        Bounds.SW.Lat = 41.313817870000000000
+        Bounds.SW.Lng = 2.007959370000000000
+        Bounds.NE.Lat = 41.417399720000000000
+        Bounds.NE.Lng = 2.226999270000000000
+        Clickable = True
+        Visible = False
+        Opacity = 1.000000000000000000
+        Url = 
+          'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Images\mapa.pn' +
+          'g'
+        InfoWindow.HTMLContent = 'ngf jy yu uyg kugkug'
+        InfoWindow.DisableAutoPan = False
+        InfoWindow.MaxWidth = 0
+        InfoWindow.PixelOffset.Height = 0
+        InfoWindow.PixelOffset.Width = 0
+        InfoWindow.CloseOtherBeforeOpen = True
+        Text = 'TGroundOverlay'
+      end>
+    OnClick = GMMarker1Click
+    OnDblClick = GMMarker1DblClick
+    OnClickableChange = GMMarker1ClickableChange
+    OnBoundsChanged = GMRectangle1BoundsChanged
+    OnOpacityChange = GMGroundOverlay1OpacityChange
+    OnUrlChange = GMGroundOverlay1UrlChange
+    OnVisibleChange = GMMarker1VisibleChange
+    Left = 104
+    Top = 328
   end
 end

@@ -10,8 +10,12 @@ History:
 ver 1.0.0
   ES:
     nuevo: (issue GC2) General -> compilado para XE
+    cambio: cambio de licencia a LGPL
+    cambio: TLinePoints -> PointsToStr se marca como obsoleta.
   EN:
     new: (issue GC2) General -> compiled to XE
+    change: change of licence to LGPL
+    change: TLinePoints -> PointsToStr is now deprecated.
 
 ver 0.1.9
   ES:
@@ -425,14 +429,6 @@ type
       @return Propietario de la colección.
     -------------------------------------------------------------------------------}
     function GetOwner: TPersistent; override;
-
-    {*------------------------------------------------------------------------------
-      Lists the items in the collection.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Lista de elementos en la colección.
-    -------------------------------------------------------------------------------}
-    property Items[I: Integer]: TLinePoint read GetItems write SetItems; default;
   public
     {*------------------------------------------------------------------------------
       Constructor class.
@@ -495,15 +491,17 @@ type
     procedure Clear;
     {*------------------------------------------------------------------------------
       Converts to string the set of items in the collection. The elements are separated by semicolon (;) and the coordinates (lat/lng) by a pipe (|).
+      This function is deprecated. Instead, use the PointsToStr class method from TGMGenFunc class from GMFunctions unit.
       @param Precision Precision of values. Default 6.
       @return String with conversion.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Convierte en una cadena el conjunto de elementos de la colección. Los elementos están separados por punto y coma (;) y las coordenadas (lat/lng) separados por una barra vertical (|).
+      Esta función está obsoleta. En su lugar usar el método de clase PointsToStr de la clase TGMGenFunc de la unidad GMFunctions.
       @param Precision Precisión de los valores. Por defecto 6.
       @return Cadena con la conversión.
     -------------------------------------------------------------------------------}
-    function PointsToStr(Precision: Integer = 6): string;
+    function PointsToStr(Precision: Integer = 6): string; deprecated;
 
     {*------------------------------------------------------------------------------
       Assign method copies the contents of another similar object.
@@ -514,6 +512,14 @@ type
       @param Source Objeto a copiar el contenido.
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
+
+    {*------------------------------------------------------------------------------
+      Lists the items in the collection.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Lista de elementos en la colección.
+    -------------------------------------------------------------------------------}
+    property Items[I: Integer]: TLinePoint read GetItems write SetItems; default;
   end;
 
   {*------------------------------------------------------------------------------

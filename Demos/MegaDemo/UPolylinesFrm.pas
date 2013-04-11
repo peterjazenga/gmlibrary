@@ -129,6 +129,7 @@ type
     Label17: TLabel;
     bComArea: TButton;
     lComArea: TLabel;
+    bZoomToAll: TButton;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lbItemsClick(Sender: TObject);
@@ -198,9 +199,11 @@ type
     procedure bDecodePathClick(Sender: TObject);
     procedure bIsLocClick(Sender: TObject);
     procedure bComAreaClick(Sender: TObject);
+    procedure bZoomToAllClick(Sender: TObject);
   protected
     FGMPoly: TGMBasePolyline;
     FGMElev: TGMElevation;
+    FGetInfo: Boolean;
 
     procedure GetInfo; virtual;
     procedure ShowElevation; virtual;
@@ -307,62 +310,78 @@ begin
   lbPoints.Items.Move(lbPoints.ItemIndex, lbPoints.ItemIndex-1);
 end;
 
+procedure TPolylinesFrm.bZoomToAllClick(Sender: TObject);
+begin
+  if lbItems.ItemIndex = -1 then Exit;
+  FGMPoly[lbItems.ItemIndex].ZoomToPoints;
+end;
+
 procedure TPolylinesFrm.cbAutoUpdatePathClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].AutoUpdatePath := cbAutoUpdatePath.Checked;
 end;
 
 procedure TPolylinesFrm.cbClickableClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].Clickable := cbClickable.Checked;
 end;
 
 procedure TPolylinesFrm.cbCloseOtherBeforeOpenClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].InfoWindow.CloseOtherBeforeOpen := cbCloseOtherBeforeOpen.Checked;
 end;
 
 procedure TPolylinesFrm.cbDisableAutoPanClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].InfoWindow.DisableAutoPan := cbDisableAutoPan.Checked;
 end;
 
 procedure TPolylinesFrm.cbEditableClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].Editable := cbEditable.Checked;
 end;
 
 procedure TPolylinesFrm.cbGeodesicClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].Geodesic := cbGeodesic.Checked;
 end;
 
 procedure TPolylinesFrm.cbIFillColorChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TSymbol(TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon).FillColor := cbIFillColor.Selected;
 end;
 
 procedure TPolylinesFrm.cbIPathChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon.Path := TTransform.StrToSymbolPath(cbIPath.Text);
 end;
 
 procedure TPolylinesFrm.cbIStrokeColorChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TSymbol(TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon).StrokeColor := cbIStrokeColor.Selected;
 end;
 
 procedure TPolylinesFrm.cbOMeasureChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.OffSet.Measure := TTransform.StrToMeasure(cbOMeasure.Text);
 end;
@@ -501,18 +520,21 @@ end;
 
 procedure TPolylinesFrm.cbRMeasureChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.DistRepeat.Measure := TTransform.StrToMeasure(cbRMeasure.Text);
 end;
 
 procedure TPolylinesFrm.cbStrokeColorChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).StrokeColor := cbStrokeColor.Selected;
 end;
 
 procedure TPolylinesFrm.cbVisibleClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].Visible := cbVisible.Checked;
 end;
@@ -620,6 +642,7 @@ procedure TPolylinesFrm.eIFillOpacityChange(Sender: TObject);
 var
   Tmp: Extended;
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if TryStrToFloat(eIFillOpacity.Text, Tmp) then
     TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon.FillOpacity := Tmp;
@@ -629,6 +652,7 @@ procedure TPolylinesFrm.eIStrokeOpacityChange(Sender: TObject);
 var
   Tmp: Extended;
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if TryStrToFloat(eIStrokeOpacity.Text, Tmp) then
     TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon.StrokeOpacity := Tmp;
@@ -636,12 +660,14 @@ end;
 
 procedure TPolylinesFrm.eIStrokeWeightChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon.StrokeWeight := eIStrokeWeight.Value;
 end;
 
 procedure TPolylinesFrm.eLatChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if lbPoints.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex][lbPoints.ItemIndex].Lat := FGMPoly[lbItems.ItemIndex][lbPoints.ItemIndex].StringToReal(eLat.Text);
@@ -650,6 +676,7 @@ end;
 
 procedure TPolylinesFrm.eLngChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if lbPoints.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex][lbPoints.ItemIndex].Lng := FGMPoly[lbItems.ItemIndex][lbPoints.ItemIndex].StringToReal(eLng.Text);
@@ -658,6 +685,7 @@ end;
 
 procedure TPolylinesFrm.eMaxWidthChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if eMaxWidth.Value < 0 then eMaxWidth.Value := 0;
 
@@ -666,12 +694,14 @@ end;
 
 procedure TPolylinesFrm.eOValueChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.OffSet.Value := eOValue.Value;
 end;
 
 procedure TPolylinesFrm.ePixelOffsetHChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if ePixelOffsetH.Value < 0 then ePixelOffsetH.Value := 0;
 
@@ -680,6 +710,7 @@ end;
 
 procedure TPolylinesFrm.ePixelOffsetWChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if ePixelOffsetW.Value < 0 then ePixelOffsetW.Value := 0;
 
@@ -688,6 +719,7 @@ end;
 
 procedure TPolylinesFrm.eRValueChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.DistRepeat.Value := eRValue.Value;
 end;
@@ -696,6 +728,7 @@ procedure TPolylinesFrm.eStrokeOpacityChange(Sender: TObject);
 var
   Tmp: Extended;
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if TryStrToFloat(eStrokeOpacity.Text, Tmp) then
     FGMPoly[lbItems.ItemIndex].StrokeOpacity := Tmp;
@@ -703,6 +736,7 @@ end;
 
 procedure TPolylinesFrm.eStrokeWeightChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].StrokeWeight := eStrokeWeight.Value;
   ShowElevation;
@@ -710,6 +744,7 @@ end;
 
 procedure TPolylinesFrm.eTextChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].Text := eText.Text;
   lbItems.Items[lbItems.ItemIndex] := eText.Text;
@@ -754,6 +789,7 @@ begin
 
   if lbItems.ItemIndex = -1 then Exit;
 
+  FGetInfo := True;
   cbAutoUpdatePath.Checked := FGMPoly[lbItems.ItemIndex].AutoUpdatePath;
   cbClickable.Checked := FGMPoly[lbItems.ItemIndex].Clickable;
   cbEditable.Checked := FGMPoly[lbItems.ItemIndex].Editable;
@@ -789,6 +825,8 @@ begin
     eIFillOpacity.Text := FloatToStr(TPolyline(FGMPoly[lbItems.ItemIndex]).Icon.Icon.FillOpacity);
   end;
 
+  FGetInfo := False;
+
   ShowElevation;
 end;
 
@@ -799,6 +837,7 @@ end;
 
 procedure TPolylinesFrm.lbPointsClick(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   if lbPoints.ItemIndex = -1 then Exit;
 
@@ -808,6 +847,7 @@ end;
 
 procedure TPolylinesFrm.mHTMLChange(Sender: TObject);
 begin
+  if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].InfoWindow.HTMLContent := mHTML.Lines.Text;
 end;

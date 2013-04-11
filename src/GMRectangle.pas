@@ -19,8 +19,11 @@ History:
 ver 1.0.0
   ES:
     cambio: el método TCustomRectangle.GetCenter pasa a ser un procedure.
+    nuevo: TCustomRectangle -> ZoomToPoints, establece el zoom óptimo para visualizar
+      el rectánglo.
   EN:
     change: TCustomRectangle.GetCenter method becomes a procedure.
+    new: TCustomRectangle -> ZoomToPoints, sets the optimal zoom to display the rectangle.
 
 ver 0.1.9
   ES:
@@ -180,7 +183,6 @@ type
     -------------------------------------------------------------------------------}
     function GetStrokeColor: string; virtual; abstract;
 
-    procedure SetIdxList(const Value: Cardinal); override;
     function ChangeProperties: Boolean; override;
   public
     constructor Create(Collection: TCollection); override;
@@ -188,6 +190,13 @@ type
 
     procedure Assign(Source: TPersistent); override;
 
+    {*------------------------------------------------------------------------------
+      Sets the optimal zoom to display the rectangle.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Establece el zoom óptimo para visualizar el rectángulo.
+    -------------------------------------------------------------------------------}
+    procedure ZoomToPoints;
     {*------------------------------------------------------------------------------
       Converts to string the four points of the rectangle. The points are separated by semicolon (;) and the coordinates (lat/lng) by a pipe (|).
       @return String with conversion.
@@ -410,7 +419,7 @@ type
     function GetCollectionClass: TLinkedComponentsClass; override;
   public
     {*------------------------------------------------------------------------------
-      Creates a new TCustomRectangle instance and adds it to the Items array..
+      Creates a new TCustomRectangle instance and adds it to the Items array.
       @param SWLat The rectangle's southwest latitude
       @param SWLng The rectangle's southwest longitude
       @param NELat The rectangle's northeast latitude
@@ -813,12 +822,6 @@ begin
                   Self);
 end;
 
-procedure TCustomRectangle.SetIdxList(const Value: Cardinal);
-begin
-  inherited;
-
-end;
-
 procedure TCustomRectangle.SetStrokeOpacity(const Value: Real);
 begin
   if FStrokeOpacity = Value then Exit;
@@ -864,6 +867,22 @@ begin
                   TCustomGMRectangle(TCustomRectangles(Collection).FGMLinkedComponent),
                   Index,
                   Self);
+end;
+
+procedure TCustomRectangle.ZoomToPoints;
+var
+  Points: array of TLatLng;
+begin
+  if not Assigned(Collection) or not (Collection is TCustomRectangles) or
+     not Assigned(TCustomRectangles(Collection).FGMLinkedComponent) or
+     not Assigned(TCustomRectangles(Collection).FGMLinkedComponent.Map) then
+    Exit;
+
+  SetLength(Points, 2);
+  Points[0] := Bounds.SW;
+  Points[1] := Bounds.NE;
+
+  TCustomRectangles(Collection).FGMLinkedComponent.Map.ZoomToPoints(Points);
 end;
 
 end.

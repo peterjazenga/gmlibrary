@@ -50,6 +50,7 @@ contains
   Lang in '..\src\Lang.pas',
   RegisterComp in '..\src\RegisterComp.pas',
   WebControl in '..\src\WebControl.pas',
-  GMGeoCode in '..\src\GMGeoCode.pas';
+  GMGeoCode in '..\src\GMGeoCode.pas',
+  GMGroundOverlay in '..\src\GMGroundOverlay.pas';
 
 end.

@@ -50,6 +50,18 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <GenDll>true</GenDll>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
@@ -62,6 +74,7 @@
         <DCC_UsePackage>rtl;xmlrtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <DCC_ObjOutput>..\lib\CXE3\VCL</DCC_ObjOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -69,16 +82,15 @@
         <DCC_DcpOutput>..\lib\dxe3\VCL</DCC_DcpOutput>
         <DCC_DcuOutput>..\lib\dxe3\VCL</DCC_DcuOutput>
         <DCC_BpiOutput>..\lib\CXE3\VCL</DCC_BpiOutput>
-        <VerInfo_Release>1</VerInfo_Release>
         <DCC_UsePackage>rtl;vclimg;vcl;xmlrtl;vclie;dbrtl;GMLib_DXE3;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_UnitSearchPath>..\lib\dxe3\VCL;..\lib\dxe3;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Build>9</VerInfo_Build>
-        <DCC_Description>GoogleMaps Library v0.1.9 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.0.1.9;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.0.1.9;Comments=</VerInfo_Keys>
+        <DCC_Description>GoogleMaps Library v1.0.0 VCL (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <DCC_ObjOutput>..\lib\CXE3_64\VCL</DCC_ObjOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -86,14 +98,12 @@
         <DCC_DcpOutput>..\lib\DXE3_64\VCL</DCC_DcpOutput>
         <DCC_DcuOutput>..\lib\DXE3_64\VCL</DCC_DcuOutput>
         <DCC_BpiOutput>..\lib\CXE3_64\VCL</DCC_BpiOutput>
-        <VerInfo_Release>1</VerInfo_Release>
         <DCC_UsePackage>rtl;vclimg;vcl;xmlrtl;vclie;dbrtl;GMLib_DXE3;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_UnitSearchPath>..\lib\DXE3_64\VCL;..\lib\DXE3_64;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Build>9</VerInfo_Build>
-        <DCC_Description>GoogleMaps Library v0.1.9 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.0.1.9;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.0.1.9;Comments=</VerInfo_Keys>
+        <DCC_Description>GoogleMaps Library v1.0.0 VCL (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -104,27 +114,35 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Build>9</VerInfo_Build>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <DCC_Description>GoogleMaps Library v0.1.9 VCL (Copyright © Xavier Martínez - cadetill)</DCC_Description>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
-        <VerInfo_Build>9</VerInfo_Build>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <DCC_Description>GoogleMaps Library v0.1.9 VCL (Copyright © Xavier Martínez - cadetill)</DCC_Description>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>false</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MajorVer>0</VerInfo_MajorVer>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MajorVer>0</VerInfo_MajorVer>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

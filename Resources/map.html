@@ -895,6 +895,70 @@
   }
 
   /******************************************************************************
+     Funciones de la clase GroundOverlay
+     Functions for GroundOverlay class
+  *******************************************************************************/
+  /* GroundOverlayAssignEvents */
+  function GroundOverlayAssignEvents(GO) {
+    google.maps.event.addListener(GO, "click", function(event) {
+          var LatLng = GO.getBounds().getCenter();
+          InfoWindowSetPosition(GO.GMLibId, GO.GMLibZIndex, LatLng.lat(), LatLng.lng());
+          InfoWindowOpenClose(GO);
+
+          document.eventsGO.lat.value = event.latLng.lat(); 
+          document.eventsGO.lng.value = event.latLng.lng(); 
+          document.eventsGO.linkCompId.value = GO.GMLibId;
+          document.eventsGO.linkCompZIndex.value = GO.GMLibZIndex;
+          document.eventsGO.click.value = "1"; 
+          document.eventsGO.eventfired.value = "1";
+        });
+    google.maps.event.addListener(GO, "dblclick", function(event) {
+          document.eventsGO.lat.value = event.latLng.lat(); 
+          document.eventsGO.lng.value = event.latLng.lng(); 
+          document.eventsGO.linkCompId.value = GO.GMLibId;
+          document.eventsGO.linkCompZIndex.value = GO.GMLibZIndex;
+          document.eventsGO.dblclick.value = "1"; 
+          document.eventsGO.eventfired.value = "1";  
+        });
+  }
+  
+  /* MakeGroundOverlay */
+  function MakeGroundOverlay(IdObj, Url, Click, Opacity, SWLat, SWLng, NELat, NELng, Visible, ZIndex, 
+            IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, CloseOther) { 
+    if (map == null) throw new Error('map is null');
+    var Idx = IndexOf(IdObj, ZIndex);
+    var LLB = new google.maps.LatLngBounds(new google.maps.LatLng(SWLat,SWLng), new google.maps.LatLng(NELat, NELng)); 
+    if (Idx == -1) {
+      document.errordata.errorCode.value = "0";
+      var GO = new google.maps.GroundOverlay(Url, LLB, {
+            clickable: Click,
+            map: map,
+            opacity: Opacity,
+            GMLibId: IdObj,
+            GMLibZIndex: ZIndex,
+            GMLibInfoWin: InfoWindowsCreate(IdObj, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, 0, 0, CloseOther)
+          });
+      GroundOverlayAssignEvents(GO); 
+      Idx = linkedCompList.push(GO);
+      Idx--;
+    }
+    
+    if ((!linkedCompList[Idx].getBounds().equals(LLB)) || (Url != linkedCompList[Idx].getUrl())){
+      DeleteObject(IdObj, ZIndex);
+      MakeGroundOverlay(IdObj, Url, Click, Opacity, SWLat, SWLng, NELat, NELng, ZIndex, 
+            IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, CloseOther);
+    }
+    
+    if (Opacity != linkedCompList[Idx].getOpacity())
+      linkedCompList[Idx].setOpacity(Opacity);
+    
+    if (Click != linkedCompList[Idx].clickable)
+      linkedCompList[Idx].clickable = Click;
+    
+    if (!Visible) DeleteObject(IdObj, ZIndex);
+  } 
+
+  /******************************************************************************
      Funciones de la clase Circle
      Functions for Circle class
   *******************************************************************************/
@@ -1394,7 +1458,6 @@
   function CreateAllPolylines() {
     DeleteObjects(0);
 	MakePolyline(0, 0, true, false,false,'#000000', 1  , 2, true, '41.38086599|2.12257899;41.403185|2.173725;41.414282|2.151847;41.375875|2.177757', ''         ,false, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%');
-    MakePolyline(0, 1, true, true, true, '#000000', 1.0, 3, true, '41.380866|2.122579;41.403185|2.173725;41.414282|2.151847;41.375875|2.177757', '<p>Prova1</p>', true, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%');
     MakePolyline(0, 2, true, true, true, '#E00000', 1.0, 3, true, '41.580866|2.122579;41.603185|2.173725;41.614282|2.151847;41.575875|2.177757', '<p>Prova2</p>', true, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%');
   }
   
@@ -1689,41 +1752,59 @@
      Function for LatLngBounds class
   *******************************************************************************/
   /* LatLngBoundsContains */
-  function LatLngBoundsContains(Lat, Lng) { 
+  function LatLngBoundsContains(Lat, Lng, SWLat, SWLng, NELat, NELng) { 
     document.mapdata.mapisnull.value = "0"; 
     if (map != null) { 
       var latlng = new google.maps.LatLng(Lat, Lng); 
-      var Bounds = map.getBounds(); 
-      if (Bounds.contains(latlng)) { 
+      var Bounds = new google.maps.LatLngBounds(new google.maps.LatLng(SWLat, SWLng), new google.maps.LatLng(NELat, NELng)); 
+      document.latlngboundsdata.contains.value = "0";
+      if (Bounds.contains(latlng))  
         document.latlngboundsdata.contains.value = "1"; 
-      } else { document.latlngboundsdata.contains.value = "0"; } 
+    } else 
+      document.mapdata.mapisnull.value = "1"; 
+  }
+ 
+  /* MapLatLngBoundsContains */
+  function MapLatLngBoundsContains(Lat, Lng) { 
+    document.mapdata.mapisnull.value = "0"; 
+    if (map != null) { 
+      var Bounds = map.getBounds(); 
+      LatLngBoundsContains(Lat, Lng, Bounds.getSouthWest().lat(), Bounds.getSouthWest().lng(), Bounds.getNorthEast().lat(), Bounds.getNorthEast().lng());
     } else 
       document.mapdata.mapisnull.value = "1"; 
   }
  
   /* LatLngBoundsExtend */
-  function LatLngBoundsExtend(Lat, Lng) { 
+  function LatLngBoundsExtend(Lat, Lng, SWLat, SWLng, NELat, NELng) { 
     document.mapdata.mapisnull.value = "0"; 
     if (map != null) { 
       var latlng = new google.maps.LatLng(Lat, Lng); 
-      var Bounds = map.getBounds(); 
+      var Bounds = new google.maps.LatLngBounds(new google.maps.LatLng(SWLat, SWLng), new google.maps.LatLng(NELat, NELng)); 
       Bounds = Bounds.extend(latlng); 
-      var SW = Bounds.getSouthWest();
-      var NE = Bounds.getNorthEast();
-      document.latlngboundsdata.swLat.value = SW.lat(); 
-      document.latlngboundsdata.swLng.value = SW.lng(); 
-      document.latlngboundsdata.neLat.value = NE.lat(); 
-      document.latlngboundsdata.neLng.value = NE.lng(); 
+      document.latlngboundsdata.swLat.value = Bounds.getSouthWest().lat(); 
+      document.latlngboundsdata.swLng.value = Bounds.getSouthWest().lng(); 
+      document.latlngboundsdata.neLat.value = Bounds.getNorthEast().lat(); 
+      document.latlngboundsdata.neLng.value = Bounds.getNorthEast().lng(); 
+    } else 
+      document.mapdata.mapisnull.value = "1"; 
+  }
+ 
+  /* MapLatLngBoundsExtend */
+  function MapLatLngBoundsExtend(Lat, Lng) { 
+    document.mapdata.mapisnull.value = "0"; 
+    if (map != null) { 
+      var Bounds = map.getBounds(); 
+      LatLngBoundsExtend(Lat, Lng, Bounds.getSouthWest().lat(), Bounds.getSouthWest().lng(), Bounds.getNorthEast().lat(), Bounds.getNorthEast().lng());
     } else 
       document.mapdata.mapisnull.value = "1"; 
   }
  
   /* LatLngBoundsGetCenter */
-  function LatLngBoundsGetCenter() { 
+  function LatLngBoundsGetCenter(SWLat, SWLng, NELat, NELng) { 
     document.mapdata.mapisnull.value = "0"; 
     if (map != null) { 
-      var LatLngBounds = map.getBounds();
-      var LatLng = LatLngBounds.getCenter();
+      var Bounds = new google.maps.LatLngBounds(new google.maps.LatLng(SWLat, SWLng), new google.maps.LatLng(NELat, NELng)); 
+      var LatLng = Bounds.getCenter();
       document.latlngboundsdata.swLat.value = LatLng.lat(); 
       document.latlngboundsdata.swLng.value = LatLng.lng(); 
     } else 
@@ -1835,6 +1916,22 @@
     switch(WeatherLabelColor) {
       case "lcBLACK": return google.maps.weather.LabelColor.BLACK; break;
       default: return google.maps.weather.LabelColor.WHITE;
+    }
+  }
+  
+  /* MapZoomToPoints */
+  function MapZoomToPoints(StrPoints) {
+    var Points = PointsStrToLatLngArray(StrPoints);
+    if (Points.length > 0) {
+      LLB = new google.maps.LatLngBounds(Points[0], Points[0]);
+      if (Points.length > 1) {
+        for (var i = 1; i < Points.length; i++) 
+          LLB.extend(Points[i]);
+      }
+      if (map != null) 
+        map.fitBounds(LLB) 
+      else 
+        document.mapdata.mapisnull.value = "1"; 
     }
   }
   
@@ -2271,6 +2368,7 @@
 <body>
 <!-- table for test only -->
 <!--
+  <div id="test"></div> 
   <table border=1 align=center>
     <tr>                                       
       <td align=center width=70 onClick="DoMap(41.39963248,2.16794777,'mtROADMAP',10,false,true,true,true, true,0,0,false,'#ECE9D8',true,'mtHYBRID;mtROADMAP;mtSATELLITE;mtTERRAIN','cpTOP_RIGHT','mtcDEFAULT',true,true,true,'cpTOP_LEFT',true,'cpTOP_LEFT',true,'cpBOTTOM_LEFT','scDEFAULT',true,'cpTOP_LEFT',true,'cpTOP_LEFT','zcDEFAULT',false,false,false,false,true,false,'','',false,true,false,'lcWHITE','tuCELSIUS','wsKILOMETERS_PER_HOUR')">
@@ -2296,11 +2394,11 @@
       <td align=center width=90 onClick="GetDirections(false, false, 'Barcelona', 0, 0, false, 'Tarragona', 0, 0, true, 'es', 0, 0, 'DRIVING', 'METRIC', '', true)">do Direction 3</td>
       <td align=center width=90 onClick="CreateAllCircles()">do Circles</td>
       <td align=center width=90 onClick="EncodePath('}~kvHmzrr@ba\hnc@jiu@r{Zqx~@hjp@pwEhnc@zhu@zflAbxn@fhjBvqHroaAgcnAp}gAeahAtqGkngAinc@_h|@r{Zad\y|_D}_y@swg@ysg@}llBpoZqa{@xrw@~eBaaX}{uAero@uqGadY}nr@`dYs_NquNgbjAf{l@|yh@bfc@}nr@z}q@i|i@zgz@r{ZhjFr}gApob@ff}@laIsen@dgYhdPvbIren@')">Encode</td>
-	  <td onClick="GetGeocoder('c\ reial, 60, tarragona', -1, -1, 'es', -1, -1, -1, -1, 'es')">Geocode</td>
+	  <td align=center onClick="GetGeocoder('c\ reial, 60, tarragona', -1, -1, 'es', -1, -1, -1, -1, 'es')">Geocode</td>
+      <td align=center width=90 onClick="MakeGroundOverlay(1,'file:///D:/Docs/Dropbox/Programacio/GoogleMaps/Components/Images/mapa.png',true,1,41.31381787,2.00795937,41.41739972,2.22699927,true,0,'',false,0,0,0)">do GO</td>
     </tr>
   </table>
 -->
-  <div id="map_canvas" style="width:100%; height:100%"></div> 
   <!--******************************************************************************
      Resultados para la clase Map
      Results for Map class
@@ -2524,6 +2622,16 @@
     <input type="hidden" name="mouseUp" value="0"/>
     <input type="hidden" name="rightClick" value="0"/>
   </form> 
+  <form action="#" id="eventsGO" name="eventsGO"> 
+    <input type="hidden" name="eventfired" value="0"/> 
+    <input type="hidden" name="linkCompId" value="0"/> 
+    <input type="hidden" name="linkCompZIndex" value="0"/> 
+    <input type="hidden" name="lat" value="0"/>
+    <input type="hidden" name="lng" value="0"/>
+	<!-- eventos para los GroundOverlay / GroundOverlay events -->
+    <input type="hidden" name="click" value="0"/>
+    <input type="hidden" name="dblclick" value="0"/>
+  </form> 
   <form action="#" id="eventsDirection" name="eventsDirection"> 
     <input type="hidden" name="eventfired" value="0"/> 
     <input type="hidden" name="linkCompId" value="0"/> 
@@ -2532,5 +2640,6 @@
 	<!-- eventos para las direcciones / directions events -->
     <input type="hidden" name="directions_changed" value="0"/>
   </form> 
+  <div id="map_canvas" style="width:100%; height:100%"></div> 
 </body> 
 </html>

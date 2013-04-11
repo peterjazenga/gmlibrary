@@ -2020,9 +2020,11 @@ type
 
     {*------------------------------------------------------------------------------
       Retrieves data from a call to the Execute method creating the TDirectionsResult object.
+      @return Index of the new TDirectionsResult.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Recupera los datos de una llamada al método Execute creando el objeto TDirectionsResult.
+      @return Indice del nuevo TDirectionsResult.
     -------------------------------------------------------------------------------}
     function GetRetournedData: Integer; virtual; abstract;
   public

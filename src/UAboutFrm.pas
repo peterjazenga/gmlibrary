@@ -89,7 +89,7 @@ end;
 
 procedure TAboutFrm.Image2Click(Sender: TObject);
 begin
-  ShellExecute(Handle,'open', PChar('http://www.gnu.org/licenses/gpl.html'), nil, nil, SW_SHOWNORMAL) ;
+  ShellExecute(Handle,'open', PChar('http://www.gnu.org/licenses/lgpl.html'), nil, nil, SW_SHOWNORMAL) ;
 end;
 
 procedure TAboutFrm.lWebClick(Sender: TObject);

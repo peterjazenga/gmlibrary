@@ -11,9 +11,19 @@ ver 1.0.0
   ES:
     cambio: TLatLngEvent -> los parámetros X y Y pasan de Real a Double para
       evitar problemas en C++ XE3
+    cambio: TCustomGMMap -> los métodos LatLngBoundsExtend, LatLngBoundsContains
+      y LatLngBoundsGetCenter ya no hacen referencia a los límites del mapa. Para
+      ello usar los nuevos métodos MapLatLngBoundsExtend y MapLatLngBoundsContains.
+    nuevo: TCustomGMMap -> nuevo método ZoomToPoints para hacer que le mapa tenga el zoom
+      adecuado para la visualización de los puntos pasados por parámetro.
   EN:
     change: TLatLngEvent -> params X and Y are changed from Real to Double to
       avoid problems in C++ XE3
+    change: TCustomGMMap -> the methods LatLngBoundsExtend, LatLngBoundsContains and
+      LatLngBoundsGetCenter not refers now to map bounds. For this, use
+      the new methods MapLatLngBoundsExtend and MapLatLngBoundsContains.
+    new: TCustomGMMap -> new method ZoomToPoints to do that the map have the necessary
+      zoom to show all points passed by parameter.
 
 ver 0.1.9
   ES:
@@ -175,6 +185,7 @@ type
     Polyline: Boolean;
     Rectangle: Boolean;
     Circle: Boolean;
+    GO: Boolean;
     Direction: Boolean;
   end;
 
@@ -302,6 +313,17 @@ type
     MouseOver: Boolean;
     MouseUp: Boolean;
     RightClick: Boolean;
+  end;
+
+  TEventsGOForm = record
+    // general
+    LinkCompId: Integer;
+    LinkCompZIndex: Integer;
+    Lat: Real;
+    Lng: Real;
+    // events
+    Click: Boolean;
+    DblClick: Boolean;
   end;
 
   TEventsDirectionForm = record
@@ -2111,6 +2133,16 @@ type
     procedure Assign(Source: TPersistent); override;
 
     {*------------------------------------------------------------------------------
+      Sets the optimal zoom to display all points.
+      @param Points Array with the points.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Establece el zoom óptimo para visualizar todos los punto.
+      @param Points Array con los puntos.
+    -------------------------------------------------------------------------------}
+    procedure ZoomToPoints(Points: array of TLatLng);
+
+    {*------------------------------------------------------------------------------
       Sets a new bounds to the map
       @param SWLat Southwest latitude of the bounds
       @param SWLng Southwest longitude of the bounds
@@ -2168,38 +2200,66 @@ type
     -------------------------------------------------------------------------------}
     procedure LatLngBoundsExtend(Lat, Lng: Real; LLB: TLatLngBounds); overload;
     {*------------------------------------------------------------------------------
+      Extends the map bounds to contain the given point.
+      @param LatLng TLatLng to contain.
+      @param LLB TLatLngBounds to store the information.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Extiende los límites del mapa hasta contener el punto dado.
+      @param LatLng TLatLng a contener.
+      @param LLB TLatLngBounds donde se almacenará la información.
+    -------------------------------------------------------------------------------}
+    procedure MapLatLngBoundsExtend(LatLng: TLatLng; LLB: TLatLngBounds); overload;
+    {*------------------------------------------------------------------------------
       Returns true if the given TLatLng is in the bounds.
       @param LatLng TLatLng to check.
+      @param LLB TLatLngBounds where search.
       @return True if the given TLatLng is in the bounds.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve true si la TLatLng dada está dentro de los límites.
       @param LatLng TLatLng a comprobar.
+      @param LLB TLatLngBounds donde mirar.
       @return True si la TLatLng dada está dentro de los límites.
     -------------------------------------------------------------------------------}
-    function LatLngBoundsContains(LatLng: TLatLng): Boolean; overload;
+    function LatLngBoundsContains(LatLng: TLatLng; LLB: TLatLngBounds): Boolean; overload;
     {*------------------------------------------------------------------------------
       Returns true if the given lat/lng is into the bounds.
       @param Lat Latitude to check.
       @param Lng Longitude to check.
+      @param LLB TLatLngBounds where search.
       @return True if the given lat/lng is into the bounds.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Devuelve true si la lat/lng dada está dentro de los límites.
       @param Lat Latitud a comprobar.
       @param Lng Longitud a comprobar.
+      @param LLB TLatLngBounds donde mirar.
       @return True si la lat/lng dada está dentro de los límites.
     -------------------------------------------------------------------------------}
-    function LatLngBoundsContains(Lat, Lng: Real): Boolean; overload;
+    function LatLngBoundsContains(Lat, Lng: Real; LLB: TLatLngBounds): Boolean; overload;
+    {*------------------------------------------------------------------------------
+      Returns true if the given TLatLng is into the map bounds.
+      @param LatLng TLatLng to check.
+      @return True if the given TLatLng is into the map bounds.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve true si la TLatLng dada está dentro de los límites del mapa.
+      @param LatLng TLatLng a comprobar.
+      @return True si la TLatLng dada está dentro de los límites del mapa.
+    -------------------------------------------------------------------------------}
+    function MapLatLngBoundsContains(LatLng: TLatLng): Boolean; overload;
     {*------------------------------------------------------------------------------
       Computes the TLatLngBounds centre.
+      @param LLB TLatLngBounds where to search.
       @param LL TLatLng representing the centre.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Calcula el centro del TLatLngBounds.
+      @param LLB TLatLngBounds donde mirar.
       @param LL TLatLng que representa el centro.
     -------------------------------------------------------------------------------}
-    procedure LatLngBoundsGetCenter(LL: TLatLng);
+    procedure LatLngBoundsGetCenter(LLB: TLatLngBounds; LL: TLatLng);
     {*------------------------------------------------------------------------------
       Converts the given map bounds to a TLatLng span.
       @param LL TLatLng.
@@ -2564,7 +2624,7 @@ implementation
 
 uses
   Lang, GMFunctions, GMLinkedComponents, GMMarker, GMPolyline, GMRectangle,
-  GMCircle, GMDirection,
+  GMCircle, GMDirection, GMGroundOverlay,
 
   {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
   Windows, XMLIntf, XMLDoc;
@@ -2770,27 +2830,36 @@ begin
     Result := FWC.GetIntegerField(MapForm, MapFormZoom);
 end;
 
-function TCustomGMMap.LatLngBoundsContains(LatLng: TLatLng): Boolean;
+function TCustomGMMap.LatLngBoundsContains(LatLng: TLatLng;
+  LLB: TLatLngBounds): Boolean;
 const
-  StrParams = '%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s';
 var
   Params: string;
 begin
   Result := False;
+  if not Assigned(LatLng) or not Assigned(LLB) then Exit;
 
-  Params := Format(StrParams, [LatLng.LatToStr(FPrecision), LatLng.LngToStr(FPrecision)]);
+  Params := Format(StrParams, [LatLng.LatToStr(FPrecision),
+                               LatLng.LngToStr(FPrecision),
+                               LLB.SW.LatToStr(FPrecision),
+                               LLB.SW.LngToStr(FPrecision),
+                               LLB.NE.LatToStr(FPrecision),
+                               LLB.NE.LngToStr(FPrecision)
+                               ]);
 
   if Assigned(FWC) and ExecuteScript('LatLngBoundsContains', Params) then
     Result := FWC.GetBoolField(LatLngBoundsForm, LatLngBoundsFormContains);
 end;
 
-function TCustomGMMap.LatLngBoundsContains(Lat, Lng: Real): Boolean;
+function TCustomGMMap.LatLngBoundsContains(Lat, Lng: Real;
+  LLB: TLatLngBounds): Boolean;
 var
   LatLng: TLatLng;
 begin
   LatLng := TLatLng.Create(ControlPrecision(Lat, Precision), ControlPrecision(Lng, Precision));
   try
-    Result := LatLngBoundsContains(LatLng);
+    Result := LatLngBoundsContains(LatLng, LLB);
   finally
     FreeAndNil(LatLng);
   end;
@@ -2798,13 +2867,19 @@ end;
 
 procedure TCustomGMMap.LatLngBoundsExtend(LatLng: TLatLng; LLB: TLatLngBounds);
 const
-  StrParams = '%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s';
 var
   Params: string;
 begin
   if not Assigned(LLB) or not Assigned(LatLng) then Exit;
 
-  Params := Format(StrParams, [LatLng.LatToStr(FPrecision), LatLng.LngToStr(FPrecision)]);
+  Params := Format(StrParams, [LatLng.LatToStr(FPrecision),
+                               LatLng.LngToStr(FPrecision),
+                               LLB.SW.LatToStr(FPrecision),
+                               LLB.SW.LngToStr(FPrecision),
+                               LLB.NE.LatToStr(FPrecision),
+                               LLB.NE.LngToStr(FPrecision)
+                               ]);
   if Assigned(FWC) and ExecuteScript('LatLngBoundsExtend', Params) then
   begin
     LLB.SW.Lat := ControlPrecision(FWC.GetFloatField(LatLngBoundsForm, LatLngBoundsFormSWLat), Precision);
@@ -2839,11 +2914,20 @@ begin
   end;
 end;
 
-procedure TCustomGMMap.LatLngBoundsGetCenter(LL: TLatLng);
+procedure TCustomGMMap.LatLngBoundsGetCenter(LLB: TLatLngBounds; LL: TLatLng);
+const
+  StrParams = '%s,%s,%s,%s';
+var
+  Params: string;
 begin
-  if not Assigned(LL) then Exit;
+  if not Assigned(LL) or not Assigned(LLB) then Exit;
 
-  if Assigned(FWC) and ExecuteScript('LatLngBoundsGetCenter', '') then
+  Params := Format(StrParams, [LLB.SW.LatToStr(FPrecision),
+                               LLB.SW.LngToStr(FPrecision),
+                               LLB.NE.LatToStr(FPrecision),
+                               LLB.NE.LngToStr(FPrecision)]);
+
+  if Assigned(FWC) and ExecuteScript('LatLngBoundsGetCenter', Params) then
   begin
     LL.Lat := ControlPrecision(FWC.GetFloatField(LatLngBoundsForm, LatLngBoundsFormSWLat), Precision);
     LL.Lng := ControlPrecision(FWC.GetFloatField(LatLngBoundsForm, LatLngBoundsFormSWLng), Precision);
@@ -2856,8 +2940,10 @@ const
 var
   Params: string;
 begin
-  Params := Format(StrParams, [Bounds.SW.LatToStr(FPrecision), Bounds.SW.LngToStr(FPrecision),
-                               Bounds.NE.LatToStr(FPrecision), Bounds.NE.LngToStr(FPrecision)]);
+  Params := Format(StrParams, [Bounds.SW.LatToStr(FPrecision),
+                               Bounds.SW.LngToStr(FPrecision),
+                               Bounds.NE.LatToStr(FPrecision),
+                               Bounds.NE.LngToStr(FPrecision)]);
   ExecuteScript('MapSetBounds', Params);
 end;
 
@@ -2892,6 +2978,32 @@ begin
   Result := FWC.GetIntegerField(MapForm, MapFormMapIsNull, 1) = 1;
 end;
 
+function TCustomGMMap.MapLatLngBoundsContains(LatLng: TLatLng): Boolean;
+var
+  LLB: TLatLngBounds;
+begin
+  Result := False;
+  if not Assigned(LatLng) then Exit;
+
+  LLB := TLatLngBounds.Create;
+  try
+    LatLngBoundsGetBounds(LLB);
+    Result := LatLngBoundsContains(LatLng, LLB);
+  finally
+    FreeAndNil(LLB);
+  end;
+end;
+
+procedure TCustomGMMap.MapLatLngBoundsExtend(LatLng: TLatLng;
+  LLB: TLatLngBounds);
+begin
+  if not Assigned(LLB) or not Assigned(LatLng) then Exit;
+
+  LatLngBoundsGetBounds(LLB);
+  LatLngBoundsExtend(LatLng, LLB);
+  LatLngBoundsSetBounds(LLB);
+end;
+
 procedure TCustomGMMap.Notification(AComponent: TComponent;
   Operation: TOperation);
 begin
@@ -2913,6 +3025,7 @@ var
   PolylineEvents: TEventsPolylineForm;
   RectangleEvents: TEventsRectangleForm;
   CircleEvents: TEventsCircleForm;
+  GOEvents: TEventsGOForm;
   DirectionEvents: TEventsDirectionForm;
   EventFired: TEventsFired;
 
@@ -3021,6 +3134,13 @@ var
     CircleEvents.MouseOver := FWC.GetBoolField(EventsCircleForm, EventsFormMouseOver);
     CircleEvents.MouseUp := FWC.GetBoolField(EventsCircleForm, EventsFormMouseUp);
     CircleEvents.RightClick := FWC.GetBoolField(EventsCircleForm, EventsFormRightClick);
+    // GroundOverlay
+    GOEvents.LinkCompId := FWC.GetIntegerField(EventsGroundOverlay, EventsFormLinkCompId);
+    GOEvents.LinkCompZIndex := FWC.GetIntegerField(EventsGroundOverlay, EventsFormLinkCompZIndex);
+    GOEvents.Lat := FWC.GetFloatField(EventsGroundOverlay, EventsFormLat);
+    GOEvents.Lng := FWC.GetFloatField(EventsGroundOverlay, EventsFormLng);
+    GOEvents.Click := FWC.GetBoolField(EventsGroundOverlay, EventsFormClick);
+    GOEvents.DblClick := FWC.GetBoolField(EventsGroundOverlay, EventsFormDblClick);
     // Direction
     DirectionEvents.LinkCompId := FWC.GetIntegerField(EventsDirectionForm, EventsFormLinkCompId);
     DirectionEvents.LinkCompZIndex := FWC.GetIntegerField(EventsDirectionForm, EventsFormLinkCompZIndex);
@@ -3106,6 +3226,12 @@ var
     FWC.WebFormSetFieldValue(EventsCircleForm, EventsFormMouseOver, '0');
     FWC.WebFormSetFieldValue(EventsCircleForm, EventsFormMouseUp, '0');
     FWC.WebFormSetFieldValue(EventsCircleForm, EventsFormRightClick, '0');
+    // ground overlay
+    FWC.WebFormSetFieldValue(EventsGroundOverlay, EventsFormEventFired, '0');
+    FWC.WebFormSetFieldValue(EventsGroundOverlay, EventsFormLinkCompId, '0');
+    FWC.WebFormSetFieldValue(EventsGroundOverlay, EventsFormLinkCompZIndex, '0');
+    //FWC.WebFormSetFieldValue(EventsGroundOverlay, EventsFormClick, '0');
+    FWC.WebFormSetFieldValue(EventsGroundOverlay, EventsFormDblClick, '0');
     // direction
     FWC.WebFormSetFieldValue(EventsDirectionForm, EventsFormEventFired, '0');
     FWC.WebFormSetFieldValue(EventsDirectionForm, EventsFormLinkCompId, '0');
@@ -3121,6 +3247,7 @@ var
     EF.Polyline := FWC.GetIntegerField(EventsPolylineForm, EventsFormEventFired) = 1;
     EF.Rectangle := FWC.GetIntegerField(EventsRectangleForm, EventsFormEventFired) = 1;
     EF.Circle := FWC.GetIntegerField(EventsCircleForm, EventsFormEventFired) = 1;
+    EF.GO := FWC.GetIntegerField(EventsGroundOverlay, EventsFormEventFired) = 1;
     EF.Direction := FWC.GetIntegerField(EventsDirectionForm, EventsFormEventFired) = 1;
 
     // cogemos campos del formulario // get form fields
@@ -3128,7 +3255,8 @@ var
     // inicializamos banderas // initialize flags
     InitializeFlags;
 
-    Result := EF.Map or EF.InfoWin or EF.Marker or EF.Polyline or EF.Rectangle or EF.Circle;
+    Result := EF.Map or EF.InfoWin or EF.Marker or EF.Polyline or EF.Rectangle or
+              EF.Circle or EF.GO or EF.Direction;
   end;
 
   procedure MapEvent;
@@ -3407,6 +3535,27 @@ var
     end;
   end;
 
+  procedure GroundOverlayEvent;
+  var
+    LinkComp: Integer;
+  begin
+    // GroundOverlay events
+    if not GOEvents.Click and not GOEvents.DblClick then Exit;
+
+    LinkComp := ExistLinkedComponent(GOEvents.LinkCompId);
+    if LinkComp = -1 then
+      raise Exception.Create(GetTranslateText('Id de JavaScript inexistente', Language));
+
+    if not (TGMLinkedComponent(FLinkedComponents[LinkComp]) is TGMGroundOverlay) then
+      raise Exception.Create(GetTranslateText('Id de JavaScript incorrecto', Language));
+
+    with TGMLinkedComponent(FLinkedComponents[LinkComp]), GOEvents do
+    begin
+      if Click then EventFired(etGOClick, [Lat, Lng, LinkCompZIndex]);
+      if DblClick then EventFired(etGODblClick, [Lat, Lng, LinkCompZIndex]);
+    end;
+  end;
+
   procedure DirectionEvent;
   var
     LinkComp: Integer;
@@ -3450,6 +3599,9 @@ begin
 
   // circle events
   if EventFired.Circle then CircleEvent;
+
+  // groundoverlay events
+  if EventFired.GO then GroundOverlayEvent;
 
   // direction events
   if EventFired.Direction then DirectionEvent;
@@ -3593,6 +3745,11 @@ end;
 procedure TCustomGMMap.SetZoom(Zoom: Integer);
 begin
   ExecuteScript('MapSetZoom', IntToStr(Zoom));
+end;
+
+procedure TCustomGMMap.ZoomToPoints(Points: array of TLatLng);
+begin
+  ExecuteScript('MapZoomToPoints', QuotedStr(TGMGenFunc.PointsToStr(Points, FPrecision)));
 end;
 
 { TRequiredProp }

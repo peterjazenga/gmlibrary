@@ -89,9 +89,10 @@ type
       Processes the message queue.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Clase para almacenar funciones de carácter general.
+      Procesa la cola de mensajes.
     -------------------------------------------------------------------------------}
     class procedure ProcessMessages;
+    class function PointsToStr(Points: array of TLatLng; Precision: Integer): string;
   end;
 
   {*------------------------------------------------------------------------------
@@ -1771,6 +1772,19 @@ begin
 end;
 
 { TGMGenFunc }
+
+class function TGMGenFunc.PointsToStr(Points: array of TLatLng;
+  Precision: Integer): string;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 0 to High(Points) do
+    if Result <> '' then
+      Result := Result + ';' + Points[i].LatToStr(Precision) + '|' + Points[i].LngToStr(Precision)
+    else
+      Result := Points[i].LatToStr(Precision) + '|' + Points[i].LngToStr(Precision);
+end;
 
 class procedure TGMGenFunc.ProcessMessages;
 var

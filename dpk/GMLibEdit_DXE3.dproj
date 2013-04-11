@@ -66,14 +66,13 @@
         <DCC_UsePackage>rtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <DCC_UsePackage>rtl;vclimg;vclie;GMLib_DXE3;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Build>9</VerInfo_Build>
-        <VerInfo_Release>1</VerInfo_Release>
         <DCC_Description>GoogleMaps Library Editors (Copyright © Xavier Martínez - cadetill)</DCC_Description>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.0.1.9;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.0.1.9;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
