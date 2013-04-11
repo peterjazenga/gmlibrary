@@ -54,6 +54,7 @@ contains
   GMLinkedComponents in '..\src\GMLinkedComponents.pas',
   GMElevation in '..\src\GMElevation.pas',
   RegisterComp in '..\src\RegisterComp.pas',
-  GMGeoCode in '..\src\GMGeoCode.pas';
+  GMGeoCode in '..\src\GMGeoCode.pas',
+  GMGroundOverlay in '..\src\GMGroundOverlay.pas';
 
 end.
