@@ -10,12 +10,14 @@ History:
 ver 1.0.0
   ES:
     nuevo: (issue GC2) General -> compilado para XE
-    cambio: cambio de licencia a LGPL
+    cambio: General -> cambio de licencia a LGPL
     cambio: TLinePoints -> PointsToStr se marca como obsoleta.
+    error: General -> solucionado problema con D2007.
   EN:
     new: (issue GC2) General -> compiled to XE
-    change: change of licence to LGPL
+    change: General -> change of licence to LGPL
     change: TLinePoints -> PointsToStr is now deprecated.
+    bug: General -> Problem with D2007 solved.
 
 ver 0.1.9
   ES:

@@ -66,6 +66,7 @@ april 9, 2013
  - Improvement: TCustomGMMarker -> ZoomToPoints, sets the optimal zoom to display all markers.
  - Improvement: TLinePoints -> PointsToStr is now deprecated.
  - Improvement: TCustomGMMarker -> ZoomMapToAllMarkers is now deprecated.
+ - bug fixed: Problem with D2007 solved.
 
 january 14, 2013
  - Google Maps Library v0.1.9
