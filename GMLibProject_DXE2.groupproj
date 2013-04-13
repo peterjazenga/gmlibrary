@@ -18,9 +18,6 @@
 			<Projects Include="Demos\MegaDemo\MegaDemo.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="Demos\ChromiumDemo\ChromiumDemo.dproj">
-				<Dependencies/>
-			</Projects>
 			<Projects Include="Demos\GMInfoWindow\GMInfoWin_Demo.dproj">
 				<Dependencies/>
 			</Projects>
@@ -83,15 +80,6 @@
 		<Target Name="MegaDemo:Make">
 			<MSBuild Projects="Demos\MegaDemo\MegaDemo.dproj" Targets="Make"/>
 		</Target>
-		<Target Name="ChromiumDemo">
-			<MSBuild Projects="Demos\ChromiumDemo\ChromiumDemo.dproj"/>
-		</Target>
-		<Target Name="ChromiumDemo:Clean">
-			<MSBuild Projects="Demos\ChromiumDemo\ChromiumDemo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="ChromiumDemo:Make">
-			<MSBuild Projects="Demos\ChromiumDemo\ChromiumDemo.dproj" Targets="Make"/>
-		</Target>
 		<Target Name="GMInfoWin_Demo">
 			<MSBuild Projects="Demos\GMInfoWindow\GMInfoWin_Demo.dproj"/>
 		</Target>
@@ -120,13 +108,13 @@
 			<MSBuild Projects="Demos\TGeometryClass\TGeometryClassDemo.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="GMLib_DXE2;GMLib_DXE2_VCL;GMLib_DXE2_FMX;GMLibEdit_DXE2;MegaDemo;ChromiumDemo;GMInfoWin_Demo;SimpleGMInfoWin;TGeometryClassDemo"/>
+			<CallTarget Targets="GMLib_DXE2;GMLib_DXE2_VCL;GMLib_DXE2_FMX;GMLibEdit_DXE2;MegaDemo;GMInfoWin_Demo;SimpleGMInfoWin;TGeometryClassDemo"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="GMLib_DXE2:Clean;GMLib_DXE2_VCL:Clean;GMLib_DXE2_FMX:Clean;GMLibEdit_DXE2:Clean;MegaDemo:Clean;ChromiumDemo:Clean;GMInfoWin_Demo:Clean;SimpleGMInfoWin:Clean;TGeometryClassDemo:Clean"/>
+			<CallTarget Targets="GMLib_DXE2:Clean;GMLib_DXE2_VCL:Clean;GMLib_DXE2_FMX:Clean;GMLibEdit_DXE2:Clean;MegaDemo:Clean;GMInfoWin_Demo:Clean;SimpleGMInfoWin:Clean;TGeometryClassDemo:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="GMLib_DXE2:Make;GMLib_DXE2_VCL:Make;GMLib_DXE2_FMX:Make;GMLibEdit_DXE2:Make;MegaDemo:Make;ChromiumDemo:Make;GMInfoWin_Demo:Make;SimpleGMInfoWin:Make;TGeometryClassDemo:Make"/>
+			<CallTarget Targets="GMLib_DXE2:Make;GMLib_DXE2_VCL:Make;GMLib_DXE2_FMX:Make;GMLibEdit_DXE2:Make;MegaDemo:Make;GMInfoWin_Demo:Make;SimpleGMInfoWin:Make;TGeometryClassDemo:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

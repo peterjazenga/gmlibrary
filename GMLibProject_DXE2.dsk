@@ -1,19 +1,19 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMGroundOverlay.pas',0,1,1,1,1,0,0,,
-File_1=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMainFrm.pas',0,1,528,1,533,0,0,,{1
-File_2=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMarkersFrm.pas',0,1,688,1,701,0,0,,{1
-File_3=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMarker.pas',0,1,1,1,1,0,0,,{1
-File_4=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMMarkerFMX.pas',0,1,1,1,1,0,0,,
-File_5=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMMarkerVCL.pas',0,1,1,1,1,0,0,,
-File_6=TSourceModule,'D:\Docs\_Descargas\gmlib_0.1.9\src\GMCircle.pas',0,1,1,1,1,0,0,,
-File_7=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMInfoWindow.pas',0,1,1,1,1,0,0,,
-File_8=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMLinkedComponents.pas',0,1,1,1,1,0,0,,
-File_9=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMap.pas',0,1,1,1,1,0,0,,{1
-File_10=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMClasses.pas',0,1,1,1,1,0,0,,{1
-File_11=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\9.0\source\rtl\common\System.Classes.pas',0,1,12577,34,12591,0,0,,
-File_12=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\RegisterComp.pas',0,1,1,1,1,0,0,,
-File_13=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMConstants.pas',0,1,1,1,1,0,0,,
-File_14=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas',0,1,73,38,88,0,0,,{1
+File_0=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMainFrm.pas',0,1,528,1,533,0,0,,{1,275,1}
+File_1=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\ChromiumDemo\Unit1.pas',0,1,1,16,12,0,0,,
+File_2=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMGroundOverlay.pas',0,1,1,1,1,0,0,,
+File_3=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMarkersFrm.pas',0,1,688,1,701,0,0,,{1
+File_4=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMarker.pas',0,1,1,1,1,0,0,,{1
+File_5=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\FMX\GMMarkerFMX.pas',0,1,1,1,1,0,0,,
+File_6=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMMarkerVCL.pas',0,1,1,1,1,0,0,,
+File_7=TSourceModule,'D:\Docs\_Descargas\gmlib_0.1.9\src\GMCircle.pas',0,1,1,1,1,0,0,,
+File_8=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMInfoWindow.pas',0,1,1,1,1,0,0,,
+File_9=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMLinkedComponents.pas',0,1,1,1,1,0,0,,
+File_10=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMMap.pas',0,1,1,1,1,0,0,,{1
+File_11=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMClasses.pas',0,1,1,1,1,0,0,,{1
+File_12=TSourceModule,'c:\program files (x86)\embarcadero\rad studio\9.0\source\rtl\common\System.Classes.pas',0,1,12577,34,12591,0,0,,
+File_13=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\RegisterComp.pas',0,1,1,1,1,0,0,,
+File_14=TSourceModule,'D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\GMConstants.pas',0,1,1,1,1,0,0,,
 
 [Modules]
 Module0=default.htm
@@ -672,7 +672,7 @@ LRDockWidth=3799
 Dockable=1
 StayOnTop=0
 
-[Item__C74C7DBB_4D99_4FF4_BABE_F02A005254E6_]
+[Item__CE401FF6_F956_4BDB_9F54_088BD85F0CF4_]
 PercentageSizes=1
 Create=1
 Visible=0
@@ -691,7 +691,7 @@ LRDockWidth=3799
 Dockable=1
 StayOnTop=0
 
-[Item__CE401FF6_F956_4BDB_9F54_088BD85F0CF4_]
+[Item__C74C7DBB_4D99_4FF4_BABE_F02A005254E6_]
 PercentageSizes=1
 Create=1
 Visible=0
@@ -829,5 +829,5 @@ ActiveTabID=ProjectManager
 TabDockClients=PropertyInspector,ProjectManager,StructureView,DataExplorer,ModelViewTool,TFileExplorerForm,ClassBrowserTool
 
 [ActiveProject]
-ActiveProject=5
+ActiveProject=1
 
