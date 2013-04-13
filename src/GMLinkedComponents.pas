@@ -319,6 +319,13 @@ type
     procedure Assign(Source: TPersistent); override;
 
     {*------------------------------------------------------------------------------
+      Shows or hides the InfoWindows.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Muestra o oculta la ventana de información.
+    -------------------------------------------------------------------------------}
+    procedure OpenCloseInfoWin; virtual;
+    {*------------------------------------------------------------------------------
       Represents an object that is associated with the item.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -739,10 +746,6 @@ begin
 end;
 
 procedure TLinkedComponent.OnCloseOtherBeforeOpenChange(Sender: TObject);
-{const
-  StrParams = '%s,%s,%s';
-var
-  Params: string;}
 begin
   ChangeProperties;
   if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange) then
@@ -750,32 +753,9 @@ begin
                      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
                      Index,
                      Self);
-
-{
-  if Assigned(Collection) and (Collection is TLinkedComponents) and
-     Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
-     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
-  begin
-    Params := Format(StrParams, [
-                      IntToStr(FIdxList),
-                      LowerCase(TCustomTransform.GMBoolToStr(FInfoWindow.CloseOtherBeforeOpen, True)),
-                      IntToStr(Index)]);
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ExecuteScript('InfoWindowSetCloseOtherBeforeOpen', Params);
-
-    // ES: control de errores // EN: error control
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ErrorControl;
-
-    // ES/EN: evento/event
-    if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange) then
-      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnCloseOtherBeforeOpenChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;}
 end;
 
 procedure TLinkedComponent.OnDisableAutoPanChange(Sender: TObject);
-{const
-  StrParams = '%s,%s,%s';
-var
-  Params: string;}
 begin
   ChangeProperties;
   if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange) then
@@ -783,31 +763,9 @@ begin
                     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
                     Index,
                     Self);
-
-{  if Assigned(Collection) and (Collection is TLinkedComponents) and
-     Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
-     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
-  begin
-    Params := Format(StrParams, [
-                      IntToStr(FIdxList),
-                      LowerCase(TCustomTransform.GMBoolToStr(FInfoWindow.DisableAutoPan, True)),
-                      IntToStr(Index)]);
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ExecuteScript('InfoWindowSetDisableAutoPan', Params);
-
-    // ES: control de errores // EN: error control
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ErrorControl;
-
-    // ES/EN: evento/event
-    if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange) then
-      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnDisableAutoPanChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;}
 end;
 
 procedure TLinkedComponent.OnHTMLContentChange(Sender: TObject);
-{const
-  StrParams = '%s,%s,%s';
-var
-  Params: string;}
 begin
   ChangeProperties;
   if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange) then
@@ -815,31 +773,9 @@ begin
                     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
                     Index,
                     Self);
-
-{  if Assigned(Collection) and (Collection is TLinkedComponents) and
-     Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
-     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
-  begin
-    Params := Format(StrParams, [
-                      IntToStr(FIdxList),
-                      QuotedStr(FInfoWindow.GetConvertedString),
-                      IntToStr(Index)]);
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ExecuteScript('InfoWindowSetHTMLContent', Params);
-
-    // ES: control de errores // EN: error control
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ErrorControl;
-
-    // ES/EN: evento/event
-    if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange) then
-      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnHTMLContentChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;}
 end;
 
 procedure TLinkedComponent.OnMaxWidthChange(Sender: TObject);
-{const
-  StrParams = '%s,%s,%s';
-var
-  Params: string;}
 begin
   ChangeProperties;
   if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange) then
@@ -847,31 +783,9 @@ begin
                     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
                     Index,
                     Self);
-
-{  if Assigned(Collection) and (Collection is TLinkedComponents) and
-     Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
-     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
-  begin
-    Params := Format(StrParams, [
-                      IntToStr(FIdxList),
-                      IntToStr(FInfoWindow.MaxWidth),
-                      IntToStr(Index)]);
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ExecuteScript('InfoWindowSetMaxWidth', Params);
-
-    // ES: control de errores // EN: error control
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ErrorControl;
-
-    // ES/EN: evento/event
-    if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange) then
-      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnMaxWidthChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;}
 end;
 
 procedure TLinkedComponent.OnPixelOffsetChange(Sender: TObject);
-{const
-  StrParams = '%s,%s,%s,%s';
-var
-  Params: string;}
 begin
   ChangeProperties;
   if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange) then
@@ -879,25 +793,22 @@ begin
                     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent),
                     Index,
                     Self);
+end;
 
-{  if Assigned(Collection) and (Collection is TLinkedComponents) and
-     Assigned(TLinkedComponents(Collection).FGMLinkedComponent) and
-     TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).AutoUpdate then
+procedure TLinkedComponent.OpenCloseInfoWin;
+const
+  StrParams = 'null,%s,%s';
+var
+  Params: string;
+begin
+  if Assigned(Collection) and (Collection is TLinkedComponents) and
+     Assigned(TLinkedComponents(Collection).FGMLinkedComponent) then
   begin
     Params := Format(StrParams, [
-                      IntToStr(FIdxList),
-                      IntToStr(FInfoWindow.PixelOffset.Height),
-                      IntToStr(FInfoWindow.PixelOffset.Width),
+                      IntToStr(IdxList),
                       IntToStr(Index)]);
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ExecuteScript('InfoWindowSetPixelOffset', Params);
-
-    // ES: control de errores // EN: error control
-    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ErrorControl;
-
-    // ES/EN: evento/event
-    if Assigned(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange) then
-      TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).OnPixelOffsetChange(TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent), Index, Self);
-  end;}
+    TGMLinkedComponent(TLinkedComponents(Collection).FGMLinkedComponent).ExecuteScript('InfoWindowOpenClose', Params);
+  end;
 end;
 
 procedure TLinkedComponent.SetIdxList(const Value: Cardinal);

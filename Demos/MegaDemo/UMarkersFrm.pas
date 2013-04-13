@@ -122,6 +122,7 @@ type
     eRadius: TEdit;
     Label22: TLabel;
     lComDist: TLabel;
+    bShowInfoW: TButton;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bDelClick(Sender: TObject);
@@ -188,6 +189,7 @@ type
     procedure bZoomToAllClick(Sender: TObject);
     procedure bLoadMarkersClick(Sender: TObject);
     procedure bComDistClick(Sender: TObject);
+    procedure bShowInfoWClick(Sender: TObject);
   private
     FGMMarker: TGMMarker;
     FTime: TTime;
@@ -778,6 +780,12 @@ procedure TMarkersFrm.bSearchFileClick(Sender: TObject);
 begin
   if OpenDialog1.Execute then
     eFileName.Text := OpenDialog1.FileName;
+end;
+
+procedure TMarkersFrm.bShowInfoWClick(Sender: TObject);
+begin
+  if lbItems.ItemIndex <> -1 then
+    FGMMarker[lbItems.ItemIndex].OpenCloseInfoWin;
 end;
 
 end.

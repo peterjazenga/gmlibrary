@@ -941,6 +941,15 @@ object MarkersFrm: TMarkersFrm
         TabOrder = 6
         OnClick = bZoomToAllClick
       end
+      object bShowInfoW: TButton
+        Left = 89
+        Top = 314
+        Width = 75
+        Height = 25
+        Caption = 'Show InfoW'
+        TabOrder = 7
+        OnClick = bShowInfoWClick
+      end
     end
   end
   object OpenDialog1: TOpenDialog
