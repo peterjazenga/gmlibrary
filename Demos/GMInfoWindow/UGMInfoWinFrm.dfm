@@ -159,12 +159,16 @@ object GMInfoWinFrm: TGMInfoWinFrm
     Top = 0
     Width = 273
     Height = 585
-    ActivePage = TabSheet5
+    ActivePage = TabSheet2
     Align = alRight
     TabOrder = 2
     OnChange = pOptionsChange
     object TabSheet6: TTabSheet
       Caption = 'General'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel17: TPanel
         Left = 0
         Top = 0
@@ -279,6 +283,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
     end
     object TabSheet1: TTabSheet
       Caption = 'Config'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel12: TPanel
         Left = 0
         Top = 0
@@ -321,7 +329,7 @@ object GMInfoWinFrm: TGMInfoWinFrm
           object lTypMap: TLabel
             Left = 11
             Top = 77
-            Width = 47
+            Width = 46
             Height = 14
             Caption = 'Map Type'
           end
@@ -491,6 +499,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             TabOrder = 0
             object tsGeneral: TTabSheet
               Caption = 'General'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel2: TPanel
                 Left = 0
                 Top = 0
@@ -529,6 +541,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsMapType: TTabSheet
               Caption = 'MapType'
               ImageIndex = 1
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel3: TPanel
                 Left = 0
                 Top = 0
@@ -635,6 +651,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsOverview: TTabSheet
               Caption = 'Overview'
               ImageIndex = 2
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel4: TPanel
                 Left = 0
                 Top = 0
@@ -677,6 +697,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsPan: TTabSheet
               Caption = 'Pan'
               ImageIndex = 3
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel5: TPanel
                 Left = 0
                 Top = 0
@@ -739,6 +763,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsRotate: TTabSheet
               Caption = 'Rotate'
               ImageIndex = 4
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel6: TPanel
                 Left = 0
                 Top = 0
@@ -801,6 +829,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsScale: TTabSheet
               Caption = 'Scale'
               ImageIndex = 5
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel7: TPanel
                 Left = 0
                 Top = 0
@@ -884,6 +916,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsStreetView: TTabSheet
               Caption = 'StreetView'
               ImageIndex = 6
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel8: TPanel
                 Left = 0
                 Top = 0
@@ -946,6 +982,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
             object tsZoom: TTabSheet
               Caption = 'Zoom'
               ImageIndex = 7
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Panel9: TPanel
                 Left = 0
                 Top = 0
@@ -1045,6 +1085,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
     object TabSheet2: TTabSheet
       Caption = 'LatLngBounds'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel13: TPanel
         Left = 0
         Top = 0
@@ -1314,6 +1358,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
     object TabSheet3: TTabSheet
       Caption = 'Methods'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel14: TPanel
         Left = 0
         Top = 0
@@ -1331,7 +1379,7 @@ object GMInfoWinFrm: TGMInfoWinFrm
         object Label29: TLabel
           Left = 6
           Top = 201
-          Width = 52
+          Width = 51
           Height = 14
           Caption = 'MapTypeId'
         end
@@ -1537,6 +1585,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
     object TabSheet4: TTabSheet
       Caption = 'Events'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel15: TPanel
         Left = 0
         Top = 0
@@ -1694,6 +1746,10 @@ object GMInfoWinFrm: TGMInfoWinFrm
     object TabSheet5: TTabSheet
       Caption = 'InfoWindow'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel16: TPanel
         Left = 0
         Top = 0

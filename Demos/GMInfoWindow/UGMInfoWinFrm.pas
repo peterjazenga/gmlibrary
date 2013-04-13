@@ -325,7 +325,7 @@ var
 implementation
 
 uses
-  ShellAPI, GMFunctionsVCL;
+  ShellAPI, Types, GMFunctionsVCL;
 
 function GetStatusBarPanelXY(StatusBar : TStatusBar; X, Y: Integer) : Integer;
 var
