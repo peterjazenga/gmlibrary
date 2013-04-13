@@ -67,6 +67,7 @@ april 9, 2013
  - Improvement: TLinePoints -> PointsToStr is now deprecated.
  - Improvement: TCustomGMMarker -> ZoomMapToAllMarkers is now deprecated.
  - bug fixed: Problem with D2007 solved.
+ - Improvement: TCustomGMMap -> added StreetView property (TStreetView) to manipulate of StreetView panorama features (now only the visibility).
 
 january 14, 2013
  - Google Maps Library v0.1.9

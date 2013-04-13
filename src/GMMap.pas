@@ -16,6 +16,8 @@ ver 1.0.0
       ello usar los nuevos métodos MapLatLngBoundsExtend y MapLatLngBoundsContains.
     nuevo: TCustomGMMap -> nuevo método ZoomToPoints para hacer que le mapa tenga el zoom
       adecuado para la visualización de los puntos pasados por parámetro.
+    nuevo: TCustomGMMap -> añadida StreetView (TStreetView) para la gestión de las
+      características del panorama StreetView (actualmente sólo la visibilidad).
   EN:
     change: TLatLngEvent -> params X and Y are changed from Real to Double to
       avoid problems in C++ XE3
@@ -24,6 +26,8 @@ ver 1.0.0
       the new methods MapLatLngBoundsExtend and MapLatLngBoundsContains.
     new: TCustomGMMap -> new method ZoomToPoints to do that the map have the necessary
       zoom to show all points passed by parameter.
+    new: TCustomGMMap -> added StreetView property (TStreetView) to manipulate of
+      StreetView panorama features (now only the visibility).
 
 ver 0.1.9
   ES:
@@ -1648,10 +1652,40 @@ type
   TLayers = class(TPersistent)
   private
     FGMMap: TCustomGMMap;
+    {*------------------------------------------------------------------------------
+      Object containing the properties of layer Panoramio.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Objeto que contiene las propiedades del layer Panoramio.
+    -------------------------------------------------------------------------------}
     FPanoramio: TPanoramio;
+    {*------------------------------------------------------------------------------
+      Object containing the properties of layer Traffic.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Objeto que contiene las propiedades del layer Traffic.
+    -------------------------------------------------------------------------------}
     FTraffic: TTraffic;
+    {*------------------------------------------------------------------------------
+      Object containing the properties of layer Transit.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Objeto que contiene las propiedades del layer Transit.
+    -------------------------------------------------------------------------------}
     FTransit: TTransit;
+    {*------------------------------------------------------------------------------
+      Object containing the properties of layer Bicycling.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Objeto que contiene las propiedades del layer Bicycling.
+    -------------------------------------------------------------------------------}
     FBicycling: TBicycling;
+    {*------------------------------------------------------------------------------
+      Object containing the properties of layer Weather.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Objeto que contiene las propiedades del layer Weather.
+    -------------------------------------------------------------------------------}
     FWeather: TWeather;
   public
     {*------------------------------------------------------------------------------
@@ -1681,41 +1715,45 @@ type
     -------------------------------------------------------------------------------}
     procedure Assign(Source: TPersistent); override;
   published
-    {*------------------------------------------------------------------------------
-      Object containing the properties of layer Panoramio.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Objeto que contiene las propiedades del layer Panoramio.
-    -------------------------------------------------------------------------------}
     property Panoramio: TPanoramio read FPanoramio write FPanoramio;
-    {*------------------------------------------------------------------------------
-      Object containing the properties of layer Traffic.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Objeto que contiene las propiedades del layer Traffic.
-    -------------------------------------------------------------------------------}
     property Traffic: TTraffic read FTraffic write FTraffic;
-    {*------------------------------------------------------------------------------
-      Object containing the properties of layer Transit.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Objeto que contiene las propiedades del layer Transit.
-    -------------------------------------------------------------------------------}
     property Transit: TTransit read FTransit write FTransit;
-    {*------------------------------------------------------------------------------
-      Object containing the properties of layer Bicycling.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Objeto que contiene las propiedades del layer Bicycling.
-    -------------------------------------------------------------------------------}
     property Bicycling: TBicycling read FBicycling write FBicycling;
+    property Weather: TWeather read FWeather write FWeather;
+  end;
+
+  {*------------------------------------------------------------------------------
+    Internal class to manipulate features of StreetView panorama.
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Clase interna para gestionar las características del panorama StreetView.
+  -------------------------------------------------------------------------------}
+  TStreetView = class(TPersistent)
+  private
+    FGMMap: TCustomGMMap;
     {*------------------------------------------------------------------------------
-      Object containing the properties of layer Weather.
+      Make visible the StreetView panorama.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Objeto que contiene las propiedades del layer Weather.
+      Hace visible el panoráma StreetView.
     -------------------------------------------------------------------------------}
-    property Weather: TWeather read FWeather write FWeather;
+    FVisible: Boolean;
+
+    procedure SetVisible(const Value: Boolean);
+
+    procedure SetOptions;
+  public
+    {*------------------------------------------------------------------------------
+      Constructor class
+      @param GMMap Object owner
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase
+      @param GMMap Propietario del objeto
+    -------------------------------------------------------------------------------}
+    constructor Create(GMMap: TCustomGMMap); virtual;
+  published
+    property Visible: Boolean read FVisible write SetVisible;
   end;
 
   {*------------------------------------------------------------------------------
@@ -1822,6 +1860,13 @@ type
       Capas de Google Maps.
     -------------------------------------------------------------------------------}
     FLayers: TLayers;
+    {*------------------------------------------------------------------------------
+      Features for StreetView panorama.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Características del panorama StreetView.
+    -------------------------------------------------------------------------------}
+    FStreetView: TStreetView;
     {*------------------------------------------------------------------------------
       OnRightClick event is fired when press right mouse button.
       See TLatLngEvent.
@@ -2401,6 +2446,7 @@ type
     property RequiredProp: TRequiredProp read FRequiredProp write FRequiredProp;
     property NonVisualProp: TNonVisualProp read FNonVisualProp write FNonVisualProp;
     property Layers: TLayers read FLayers write FLayers;
+    property StreetView: TStreetView read FStreetView write FStreetView;
 
     // eventos / Events
     property AfterPageLoaded: TAfterPageLoaded read FAfterPageLoaded write FAfterPageLoaded;
@@ -2696,6 +2742,7 @@ begin
   FRequiredProp.Center.OnChange := ChangeCenter;
   FNonVisualProp := TNonVisualProp.Create;
   FLayers := TLayers.Create(Self);
+  FStreetView := TStreetView.Create(Self);
 end;
 
 destructor TCustomGMMap.Destroy;
@@ -2703,6 +2750,7 @@ begin
   if Assigned(FRequiredProp) then FreeAndNil(FRequiredProp);
   if Assigned(FNonVisualProp) then FreeAndNil(FNonVisualProp);
   if Assigned(FLayers) then FreeAndNil(FLayers);
+  if Assigned(FStreetView) then FreeAndNil(FStreetView);
 
   if Assigned(FLinkedComponents) then FreeAndNil(FLinkedComponents);
   if Assigned(FWC) then FreeAndNil(FWC);
@@ -2712,7 +2760,7 @@ end;
 
 procedure TCustomGMMap.DoMap;
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   i: Integer;
@@ -2749,7 +2797,9 @@ begin
              LowerCase(TCustomTransform.GMBoolToStr(Layers.Weather.SuppressInfoWindows, True)),
              QuotedStr(TCustomTransform.LabelColorToStr(Layers.Weather.LabelColor)),
              QuotedStr(TCustomTransform.TemperatureUnitToStr(Layers.Weather.TemperatureUnit)),
-             QuotedStr(TCustomTransform.WindSpeedUnitToStr(Layers.Weather.WindSpeedUnit))
+             QuotedStr(TCustomTransform.WindSpeedUnitToStr(Layers.Weather.WindSpeedUnit)),
+             // streetview
+             LowerCase(TCustomTransform.GMBoolToStr(StreetView.Visible, True))
              ]);
   if not ExecuteScript('DoMap', Params) then Exit;
   FIsDoMap := True;
@@ -4126,7 +4176,7 @@ procedure TPanoramio.SetOptions;
 const
   StrParams = '%s,%s,%s,%s';
 var
-  Params: String;
+  Params: string;
 begin
   if Assigned(FGMMap.FWebBrowser) and FGMMap.FActive and FGMMap.FDocLoaded and
      FGMMap.FIsDoMap then
@@ -4632,6 +4682,38 @@ begin
     if not (csDesigning in ComponentState) and (FIdxList <> 0) and
        Map.Active and Map.FDocLoaded then ShowElements;
   end;
+end;
+
+{ TStreetView }
+
+constructor TStreetView.Create(GMMap: TCustomGMMap);
+begin
+  FGMMap := GMMap;
+  FVisible := False;
+end;
+
+procedure TStreetView.SetOptions;
+const
+  StrParams = '%s';
+var
+  Params: string;
+begin
+  if Assigned(FGMMap.FWebBrowser) and FGMMap.FActive and FGMMap.FDocLoaded and
+     FGMMap.FIsDoMap then
+  begin
+    Params := Format(StrParams, [
+               LowerCase(TCustomTransform.GMBoolToStr(FVisible, True))
+               ]);
+    FGMMap.ExecuteScript('MapsSVPanoramaOptions', Params);
+  end;
+end;
+
+procedure TStreetView.SetVisible(const Value: Boolean);
+begin
+  if FVisible = Value then Exit;
+
+  FVisible := Value;
+  SetOptions;
 end;
 
 end.

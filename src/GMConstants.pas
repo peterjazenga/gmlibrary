@@ -310,7 +310,7 @@ const
   LBL_D_PHONE = 'phone';
 
 type
-  TLang = (Espanol, English, French, PortuguesBR, Danish, German);
+  TLang = (Espanol, English, French, PortuguesBR, Danish, German, Russian);
 
   TEventType = (etMarkerClick, etMarkerDblClick, etMarkerDrag, etMarkerDragEnd, etMarkerDragStart,
               etMarkerMouseDown, etMarkerMouseOut, etMarkerMouseOver, etMarkerMouseUp,

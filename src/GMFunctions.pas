@@ -92,6 +92,18 @@ type
       Procesa la cola de mensajes.
     -------------------------------------------------------------------------------}
     class procedure ProcessMessages;
+    {*------------------------------------------------------------------------------
+      Converts to string a set of points. The elements are separated by semicolon (;) and the coordinates (lat/lng) by a pipe (|).
+      @param Points Array with the points to convert.
+      @param Precision Precision of values. Default 6.
+      @return String with conversion.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Convierte en una cadena un conjunto de puntos. Los elementos están separados por punto y coma (;) y las coordenadas (lat/lng) separados por una barra vertical (|).
+      @param Points Array con los puntos a convertir.
+      @param Precision Precisión de los valores. Por defecto 6.
+      @return Cadena con la conversión.
+    -------------------------------------------------------------------------------}
     class function PointsToStr(Points: array of TLatLng; Precision: Integer): string;
   end;
 

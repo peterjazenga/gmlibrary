@@ -1,6 +1,7 @@
 object MainFrm: TMainFrm
   Left = 0
   Top = 0
+  AlphaBlendValue = 0
   Caption = 'GMLib Mega Demo'
   ClientHeight = 405
   ClientWidth = 634
@@ -244,8 +245,8 @@ object MainFrm: TMainFrm
     Active = False
     IntervalEvents = 100
     Precision = 8
-    RequiredProp.Center.Lat = 41.399632480000000000
-    RequiredProp.Center.Lng = 2.167947770000000000
+    RequiredProp.Center.Lat = 41.403185000000000000
+    RequiredProp.Center.Lng = 2.173725000000000000
     RequiredProp.MapType = mtTERRAIN
     RequiredProp.Zoom = 12
     NonVisualProp.MaxZoom = 0
@@ -263,6 +264,7 @@ object MainFrm: TMainFrm
     Layers.Weather.SuppressInfoWindows = False
     Layers.Weather.TemperatureUnit = tuCELSIUS
     Layers.Weather.WindSpeedUnit = wsKILOMETERS_PER_HOUR
+    StreetView.Visible = False
     AfterPageLoaded = GMMap1AfterPageLoaded
     OnBoundsChanged = GMMap1BoundsChanged
     OnCenterChanged = GMMap1CenterChanged
@@ -281,7 +283,6 @@ object MainFrm: TMainFrm
     OnPanoramioClick = GMMap1PanoramioClick
     OnActiveChange = GMMap1ActiveChange
     OnIntervalEventsChange = GMMap1IntervalEventsChange
-    OnPrecisionChange = GMMap1PrecisionChange
     VisualProp.MapTypeCtrl.Position = cpTOP_RIGHT
     VisualProp.MapTypeCtrl.Style = mtcDEFAULT
     VisualProp.MapTypeCtrl.Show = True

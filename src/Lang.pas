@@ -11,9 +11,11 @@ ver 1.0.0
   ES:
     nuevo: (issue GC4) aсadido el idioma alemбn (gracias Sascha)
     error: corregido error en funciуn GetTranslateText
+    nuevo: aсadido el idioma ruso (gracias Teltikov Aleksandr)
   EN:
     new: (issue GC4) added German language (thanks Sascha)
     bug: bug fixed in function GetTranslateText
+    new: added russian language (thanks Teltikov Aleksandr)
 
 ver 0.1.9
   ES:
@@ -226,6 +228,30 @@ const
       );
 
   {*------------------------------------------------------------------------------
+    Array with messages in Russian
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Array con los mensajes en ruso
+  -------------------------------------------------------------------------------}
+  Lang_RUS: array[0..14] of string = (
+      'WebBrowser не определен',                         // 0
+      'Начальная страница не загружена',                 // 1
+      'Карта не создана',                                // 2
+      'Не аквивна',                                      // 3
+      'Не возможно загрузить ресурсы',                   // 4
+      'Этот объект не имеет связей в JavaScript',        // 5
+      'Id из JavaScript не корректный',                  // 6
+      'JavaScript Id не существует',                     // 7
+      'Некорректное число параметров',                   // 8
+      'Некорректный тип параметра',                      // 9
+      'Некорректное значение параметра',                 // 10
+      'Индекс вне диапазона',                            // 11
+      'Карта не назначена',                              // 12
+      'Файл не существует',                              // 13
+      'Номер столбца некорректный'                       // 14
+      );
+
+  {*------------------------------------------------------------------------------
     GetTranslateText fucntion retrieves a translated string into the Lang language
     @param Text string to translate
     @param Lang destination language
@@ -267,6 +293,7 @@ begin
       PortuguesBR: Result := Lang_PTBR[Idx];
       Danish: Result := Lang_DAN[Idx];
       German: Result := Lang_GER[Idx];
+      Russian: Result := Lang_RUS[GetIndex(Text)];
       else Result := Text;
     end;
     if Result = '' then Result := Text;

@@ -148,6 +148,8 @@ type
     bSetCenterLL: TButton;
     Label34: TLabel;
     Button15: TButton;
+    tsStreetView: TTabSheet;
+    cbSVVisible: TCheckBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cbActiveClick(Sender: TObject);
     procedure eIntervalChange(Sender: TObject);
@@ -226,6 +228,7 @@ type
     procedure bSetCenterLLClick(Sender: TObject);
     procedure bPanToClick(Sender: TObject);
     procedure Button15Click(Sender: TObject);
+    procedure cbSVVisibleClick(Sender: TObject);
   private
     FGMMap: TGMMap;
 
@@ -659,6 +662,11 @@ begin
   FGMMap.VisualProp.StreetViewCtrl.Position := TTransform.StrToPosition(cbStreetViewPos.Text);
 end;
 
+procedure TMapFrm.cbSVVisibleClick(Sender: TObject);
+begin
+  FGMMap.StreetView.Visible := cbSVVisible.Checked;
+end;
+
 procedure TMapFrm.cbTrafficClick(Sender: TObject);
 begin
   FGMMap.Layers.Traffic.Show := cbTraffic.Checked;
@@ -863,6 +871,9 @@ begin
   cbWeatherLabCol.ItemIndex := cbWeatherLabCol.Items.IndexOf(TTransform.LabelColorToStr(FGMMap.Layers.Weather.LabelColor));
   cbWeatherTempUnit.ItemIndex := cbWeatherTempUnit.Items.IndexOf(TTransform.TemperatureUnitToStr(FGMMap.Layers.Weather.TemperatureUnit));
   cbWeatherWSUnit.ItemIndex := cbWeatherWSUnit.Items.IndexOf(TTransform.WindSpeedUnitToStr(FGMMap.Layers.Weather.WindSpeedUnit));
+
+  // StreetView
+  cbSVVisible.Checked := FGMMap.StreetView.Visible;
 
   // Events
   cbOnBoundsChanged.Checked := Assigned(FGMMap.OnBoundsChanged);

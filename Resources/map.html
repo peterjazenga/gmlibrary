@@ -32,6 +32,7 @@
   *******************************************************************************/
   // var
   var map = null; 
+  var panorama;
   var linkedCompList = [];
   
   // layers
@@ -2097,6 +2098,10 @@
     });
   }
   
+  function MapsSVPanoramaOptions(Visible) {
+    panorama.setVisible(Visible);
+  }
+  
   /* GetWeatherFeature */
   function GetWeatherFeature(Features) {
       var Tmp = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -2270,7 +2275,7 @@
             MTCtrl, MTIds, MTPos, MTStyle, OverCtrl, OverOpen, PanCtrl, PanPos, RotCtrl, RotPos, 
             ScaleCtrl, ScalePos, ScaleStyle, SVCtrl, SVPos, ZCtrl, ZPos, ZStyle, ShowTraffic, 
             ShowTransit, ShowBicy, ShowPano, PanoClick, PanoFiltered, PanoTag, PanoUserId, ShowWeather,
-            WeatherClick, WeatherSupress, WeatherLabelColor, WeatherTemp, WeatherWinSpeed) { 
+            WeatherClick, WeatherSupress, WeatherLabelColor, WeatherTemp, WeatherWinSpeed, SVVisible) { 
     while (linkedCompList.length > 0) 
       DeleteObject(linkedCompList[0].GMLibId, linkedCompList[0].GMLibZIndex);
     document.mapdata.mapisnull.value = "0"; 
@@ -2288,10 +2293,9 @@
     ZStyle = StrToZoomControlStyle(ZStyle); 
     if (MaxZ = 0) MaxZ = null; 
     if (MinZ = 0) MinZ = null; 
-    var latlng = new google.maps.LatLng(Lat,Lng); 
     var myOptions = { 
       /* required properties */ 
-      center: latlng, 
+      center: new google.maps.LatLng(Lat,Lng), 
       mapTypeId: MapT, 
       zoom: Zoom, 
   
@@ -2324,6 +2328,13 @@
       }; 
     map = null; 
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+    
+    if (SVVisible) {
+      panorama = map.getStreetView();
+      panorama.setPosition(new google.maps.LatLng(Lat,Lng));
+      panorama.setPov({heading: 265, pitch:0});
+      panorama.setVisible(SVVisible);
+    }
 
     directionsDisplay = new google.maps.DirectionsRenderer({map: map});
     
