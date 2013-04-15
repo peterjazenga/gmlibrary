@@ -69,6 +69,7 @@ april 9, 2013
  - bug fixed: Problem with D2007 solved.
  - Improvement: TCustomGMMap -> added StreetView property (TStreetView) to manipulate of StreetView panorama features (now only the visibility).
  - Improvement: TLinkedComponent -> added OpenCloseInfoWin method to show/hide associated InfoWindows.
+ - Improvement: Lang unit -> added Russian language (thanks Teltikov Aleksandr).
 
 january 14, 2013
  - Google Maps Library v0.1.9
