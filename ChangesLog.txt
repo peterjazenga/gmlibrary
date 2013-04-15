@@ -34,7 +34,7 @@ april 9, 2013
  - Improvement: GMGeoCode unit -> documentation.
  - Improvement: TGMGeoCode -> now compatible with FireMonkey.
  - Improvement: TGMGeoCode -> recodification of component to avoid use Web Service.
- - Improvement: TGeometry -> renamed to TGeocodeGeometry to avoid confusions.
+ - Improvement: TGeometry (from Geocode) -> renamed to TGeocodeGeometry to avoid confusions.
  - Improvement: TGoogleBusiness -> removed because cannot be used in geocoding with classes.
  - Improvement: TGMGeoCode -> now descends from TGMObjects.
  - bug fixed: TGMGeoCode -> bug fixed in DoMarkers method (thanks Herwig).
@@ -68,6 +68,7 @@ april 9, 2013
  - Improvement: TCustomGMMarker -> ZoomMapToAllMarkers is now deprecated.
  - bug fixed: Problem with D2007 solved.
  - Improvement: TCustomGMMap -> added StreetView property (TStreetView) to manipulate of StreetView panorama features (now only the visibility).
+ - Improvement: TLinkedComponent -> added OpenCloseInfoWin method to show/hide associated InfoWindows.
 
 january 14, 2013
  - Google Maps Library v0.1.9

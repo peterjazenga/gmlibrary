@@ -10,8 +10,12 @@ History:
 ver 1.0.0
   ES:
     cambio: el método TGMLinkedComponent.ShowElements se hace público.
+    nuevo: TLinkedComponent -> añadido método OpenCloseInfoWin para mostrar/ocultar
+      el InfoWindows asociado
   EN:
     change: TGMLinkedComponent.ShowElements method becomes public.
+    new: TLinkedComponent -> added OpenCloseInfoWin method to show/hide associated
+      InfoWindows.
 
 ver 0.1.9
   ES:
