@@ -2329,12 +2329,10 @@
     map = null; 
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
     
-    if (SVVisible) {
-      panorama = map.getStreetView();
-      panorama.setPosition(new google.maps.LatLng(Lat,Lng));
-      panorama.setPov({heading: 265, pitch:0});
-      panorama.setVisible(SVVisible);
-    }
+    panorama = map.getStreetView();
+    panorama.setPosition(new google.maps.LatLng(Lat,Lng));
+    panorama.setPov({heading: 265, pitch:0});
+    panorama.setVisible(SVVisible);
 
     directionsDisplay = new google.maps.DirectionsRenderer({map: map});
     
