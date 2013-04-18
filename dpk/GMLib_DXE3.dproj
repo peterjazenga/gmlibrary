@@ -68,10 +68,9 @@
         <DCC_UsePackage>rtl;xmlrtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Release>0</VerInfo_Release>
+        <DCC_Description>GoogleMaps Library v1.0.1 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.1;Comments=</VerInfo_Keys>
+        <VerInfo_Build>1</VerInfo_Build>
         <DCC_UsePackage>rtl;xmlrtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_DcuOutput>..\lib\dxe3</DCC_DcuOutput>
         <DCC_BpiOutput>..\lib\cxe3</DCC_BpiOutput>
@@ -83,10 +82,9 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <VerInfo_Release>0</VerInfo_Release>
-        <VerInfo_Build>0</VerInfo_Build>
+        <DCC_Description>GoogleMaps Library v1.0.1 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.1;Comments=</VerInfo_Keys>
+        <VerInfo_Build>1</VerInfo_Build>
         <DCC_UsePackage>rtl;xmlrtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_BpiOutput>..\lib\cxe3_64</DCC_BpiOutput>
         <DCC_HppOutput>..\lib\cxe3_64</DCC_HppOutput>
@@ -106,10 +104,6 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <DCC_Description>GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Release>0</VerInfo_Release>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Google Maps Library;ProductVersion=0.1.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
