@@ -240,8 +240,9 @@
     Tmp += '<GeocodeResponse>\n';
     Tmp += '<status>gs' + status + '</status>\n';
     
-    for (var i = 0; i < result.length; i++) {
-	  Tmp += '<result>\n' + GeocoderParseResult(result[i]) + '</result>\n';
+    if (status == google.maps.GeocoderStatus.OK)
+      for (var i = 0; i < result.length; i++) {
+	    Tmp += '<result>\n' + GeocoderParseResult(result[i]) + '</result>\n';
     }
 	
     Tmp += '</GeocodeResponse>\n';
@@ -252,13 +253,13 @@
   function GetGeocoder(Address, Lat, Lng, Region, SWLat, SWLng, NELat, NELng, Lang) {
     document.geocoderdata.xml.value = '';
     if (Address == '') Address = null;
-	else Address = ReplaceString(Address, ".#%#:", "'"); 
+    else Address = ReplaceString(Address, ".#%#:", "'"); 
     if ((Lat == -1) || (Lng == -1)) LL = null;
     else LL = new google.maps.LatLng(Lat, Lng);
     if (Region == '') Region = null;
     if ((SWLat == -1) || (SWLng == -1) || (NELat == -1) || (NELng == -1)) LLB = null;
     else LLB = new google.maps.LatLngBounds(new google.maps.LatLng(SWLat, SWLng), new google.maps.LatLng(NELat, NELng));
-    
+  
     var geocoderRequest = {
           address: Address,
           bounds: LLB,
