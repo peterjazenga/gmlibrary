@@ -1,1 +1,0 @@
-Created with DelphiCodeToDoc. To obtain the latest revision, please visit http://dephicodetodoc.sourceforge.net/
