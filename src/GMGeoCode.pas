@@ -14,6 +14,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.1
+  ES:
+    error: JavaScript -> corregido error en función GeocoderToXMLData cuando la
+      geocodificación no devolvía resultados.
+  EN:
+    bug: JavaScript -> bug fixed on GeocoderToXMLData function when geocoding not
+      retrun results.
+
 ver 1.0.0
   ES:
     nuevo: documentación.

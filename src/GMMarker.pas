@@ -14,6 +14,13 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.1
+  ES:
+    error: TCustomGMMarker -> corregido error en el método LoadFromDataSet (first
+      del DataSet).
+  EN:
+    bug: TCustomGMMarker -> bug fixed on LoadFromDataSet method (first from DataSet).
+
 ver 1.0.0
   ES:
     cambio: se elimina la propiedad TCustomMarker.ColoredMarker para que sea
@@ -1255,6 +1262,7 @@ begin
 
   try
     i := 0;
+    DataSet.First;
     while not DataSet.Eof do
     begin
       if TitleField = '' then Marker := Add
