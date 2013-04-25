@@ -12,11 +12,11 @@
     <Transaction>2012/03/16 10:52:29.000.217,=D:\Docs\Fonts\GoogleMaps\Components\src\UAboutFrm.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.077,=D:\Docs\Fonts\GoogleMaps\Components\src\GMLatLngBounds.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.046,=D:\Docs\Fonts\GoogleMaps\Components\src\GMBase.pas</Transaction>
-    <Transaction>2012/03/16 10:52:29.000.124,=D:\Docs\Fonts\GoogleMaps\Components\src\Lang.pas</Transaction>
+    <Transaction>2012/03/16 10:52:29.000.061,=D:\Docs\Fonts\GoogleMaps\Components\src\GMEditors.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.077,=D:\Docs\Fonts\GoogleMaps\Components\src\GMLatLng.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.108,=D:\Docs\Fonts\GoogleMaps\Components\src\GMSize.pas</Transaction>
     <Transaction>2012/03/16 10:52:29.000.108,=D:\Docs\Fonts\GoogleMaps\Components\src\GMMarker.pas</Transaction>
-    <Transaction>2012/03/16 10:52:29.000.061,=D:\Docs\Fonts\GoogleMaps\Components\src\GMEditors.pas</Transaction>
+    <Transaction>2012/03/16 10:52:29.000.124,=D:\Docs\Fonts\GoogleMaps\Components\src\Lang.pas</Transaction>
     <Transaction>2012/03/16 10:57:05.000.148,=designide.dcp</Transaction>
     <Transaction>2012/03/16 10:57:10.000.163,=vclimg.dcp</Transaction>
     <Transaction>2012/03/16 10:57:10.000.163,=vclie.dcp</Transaction>
@@ -104,6 +104,8 @@
     <File Path="..\src\GMDirection.pas"/>
     <File Path="..\src\GMElevation.pas"/>
     <File Path="..\src\GMFunctions.pas"/>
+    <File Path="..\src\GMGeoCode.pas"/>
+    <File Path="..\src\GMGroundOverlay.pas"/>
     <File Path="..\src\GMInfoWindow.pas"/>
     <File Path="..\src\GMLinkedComponents.pas"/>
     <File Path="..\src\GMMap.pas"/>
@@ -113,8 +115,6 @@
     <File Path="..\src\Lang.pas"/>
     <File Path="..\src\RegisterComp.pas"/>
     <File Path="..\src\WebControl.pas"/>
-    <File Path="..\src\GMGeoCode.pas"/>
-    <File Path="..\src\GMGroundOverlay.pas"/>
     <File Path="dbrtl.dcp"/>
     <File Path="fmx.dcp"/>
     <File Path="rtl.dcp"/>

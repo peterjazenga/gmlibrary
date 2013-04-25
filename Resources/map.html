@@ -252,6 +252,7 @@
   function GetGeocoder(Address, Lat, Lng, Region, SWLat, SWLng, NELat, NELng, Lang) {
     document.geocoderdata.xml.value = '';
     if (Address == '') Address = null;
+	else Address = ReplaceString(Address, ".#%#:", "'"); 
     if ((Lat == -1) || (Lng == -1)) LL = null;
     else LL = new google.maps.LatLng(Lat, Lng);
     if (Region == '') Region = null;

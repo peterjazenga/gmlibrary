@@ -646,7 +646,7 @@ procedure TGMGeoCode.Geocode(Address: string);
 var
   Tmp: string;
 begin
-  Tmp := QuotedStr(Trim(Address)) + ',-1, -1';
+  Tmp := QuotedStr(Trim(GetConvertedString(Address))) + ',-1, -1';
 
   GeocodeData(Tmp);
 end;

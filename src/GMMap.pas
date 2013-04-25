@@ -7,6 +7,12 @@ GMMap unit
 =========================================================================
 History:
 
+ver 1.0.1
+  ES:
+    error: TCustomGMMap -> StreetView. Corregido error de JavaScript
+  EN:
+    bug: TCustomGMMap -> StreetView. JavaScript bug fixed.
+
 ver 1.0.0
   ES:
     cambio: TLatLngEvent -> los parámetros X y Y pasan de Real a Double para
