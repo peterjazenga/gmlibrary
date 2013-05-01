@@ -15,7 +15,17 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
-april 9, 2013
+May 5 2013
+ - Google Maps Library v1.0.1
+ - bug fixed: TCustomGMMap -> StreetView. JavaScript bug fixed.
+ - bug fixed: TCustomGMMarker -> bug fixed on LoadFromDataSet method (first from DataSet).
+ - bug fixed: JavaScript -> bug fixed on GeocoderToXMLData function when geocoding not retrun results.
+ - bug fixed: JavaScript -> bug fixed on DirectionsToXMLData function when directions not retrun results.
+ - bug fixed: TWebChromiumFMX -> WebFormFieldValue method (GC: issue 6).
+ - bug fixed: TWebControl -> WebFormFieldValue method (GC: issue 6).
+ - bug fixed: TWebChromium -> WebFormFieldValue method (GC: issue 6).
+
+April 9, 2013
  - Google Maps Library v1.0.0 final
  - change: change of licence to LGPL
  - Improvement: new component TGMGroundOverlay.
@@ -71,7 +81,7 @@ april 9, 2013
  - Improvement: TLinkedComponent -> added OpenCloseInfoWin method to show/hide associated InfoWindows.
  - Improvement: Lang unit -> added Russian language (thanks Teltikov Aleksandr).
 
-january 14, 2013
+January 14, 2013
  - Google Maps Library v0.1.9
  - Improvement: Compatible with FMX framework.
  - Improvement: About all Geometry Library coded.

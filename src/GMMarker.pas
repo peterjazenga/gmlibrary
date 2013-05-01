@@ -1252,6 +1252,7 @@ var
   Auto: Boolean;
   Marker: TCustomMarker;
   i: Integer;
+  Bkm: TBookmark;
 begin
   if not DataSet.Active then DataSet.Open;
 
@@ -1260,6 +1261,8 @@ begin
 
   if DeleteBeforeLoad then Clear;
 
+  Bkm := DataSet.GetBookmark;
+  DataSet.DisableControls;
   try
     i := 0;
     DataSet.First;
@@ -1274,11 +1277,14 @@ begin
       Inc(i);
       DataSet.Next;
     end;
+    DataSet.GotoBookmark(Bkm);
 
     if Auto then AutoUpdate := True;
     ShowElements;
     if Assigned(FAfterLoadFile) then FAfterLoadFile(Self, i, DataSet.RecordCount);
   finally
+    DataSet.FreeBookmark(Bkm);
+    DataSet.EnableControls;
     AutoUpdate := Auto;
   end;
 end;

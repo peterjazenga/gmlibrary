@@ -240,11 +240,12 @@
     Tmp += '<GeocodeResponse>\n';
     Tmp += '<status>gs' + status + '</status>\n';
     
-    if (status == google.maps.GeocoderStatus.OK)
+    if (status == google.maps.GeocoderStatus.OK) {
       for (var i = 0; i < result.length; i++) {
-	    Tmp += '<result>\n' + GeocoderParseResult(result[i]) + '</result>\n';
+        Tmp += '<result>\n' + GeocoderParseResult(result[i]) + '</result>\n';
+      }
     }
-	
+    
     Tmp += '</GeocodeResponse>\n';
     return Tmp;
   }
@@ -482,9 +483,12 @@
     Tmp += '<DirectionsResponse>\n';
     Tmp += '<status>ds' + status + '</status>\n';
     
-    for (var i = 0; i < result.routes.length; i++) {
-      Tmp += '<route>\n' + DirectionsProcessRoute(result.routes[i]) + '</route>\n';
+    if (status == google.maps.DirectionsStatus.OK) {
+      for (var i = 0; i < result.routes.length; i++) {
+        Tmp += '<route>\n' + DirectionsProcessRoute(result.routes[i]) + '</route>\n';
+      }
     }
+    
     Tmp += '</DirectionsResponse>';
     return Tmp;
   }

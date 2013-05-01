@@ -16,6 +16,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.0.1
+  ES:
+    error: JavaScript -> corregido error en función DirectionsToXMLData cuando la
+      dirección no devolvía resultados.
+  EN:
+    bug: JavaScript -> bug fixed on DirectionsToXMLData function when direction not
+      retrun results.
+
 ver 1.0.0
   ES:
     error: Error corregido en algunos tipos de datos (TTimeClass.Value,

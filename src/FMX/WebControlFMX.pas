@@ -7,6 +7,12 @@ TWebChromiumFMX class
 =========================================================================
 History:
 
+ver 1.0.1
+  ES:
+    error: TWebChromiumFMX -> método WebFormFieldValue corregido (GC: issue 6).
+  EN:
+    bug: TWebChromiumFMX -> WebFormFieldValue method (GC: issue 6).
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -201,6 +207,9 @@ begin
 
   repeat Application.ProcessMessages until (Finish);
   Result := Temp;
+
+  if Pos('&nbsp;', Result) > 0 then
+    Result := ReplaceText(Result, '&nbsp;', ' ');
 end;
 
 procedure TWebChromiumFMX.WebFormNames;

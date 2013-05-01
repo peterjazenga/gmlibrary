@@ -7,6 +7,14 @@ TWebControl and TWebChromium classes
 =========================================================================
 History:
 
+ver 1.0.1
+  ES:
+    error: TWebControl -> método WebFormFieldValue corregido (GC: issue 6).
+    error: TWebChromium -> método WebFormFieldValue corregido (GC: issue 6).
+  EN:
+    bug: TWebControl -> WebFormFieldValue method (GC: issue 6).
+    bug: TWebChromium -> WebFormFieldValue method (GC: issue 6).
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -174,9 +182,9 @@ implementation
 uses
   {$IFDEF WEBBROWSER}
     {$IF CompilerVersion < 23}
-    ActiveX, Types, Graphics, Forms,
+    ActiveX, Types, Graphics, Forms, StrUtils,
     {$ELSE}
-    Winapi.ActiveX, System.Types, Vcl.Graphics, Vcl.Forms,
+    Winapi.ActiveX, System.Types, Vcl.Graphics, Vcl.Forms, System.StrUtils,
     {$IFEND}
   {$ENDIF}
 
@@ -304,6 +312,9 @@ begin
   if Field.tagName = 'INPUT' then Result := (Field as IHTMLInputElement).value;
   if Field.tagName = 'SELECT' then Result := (Field as IHTMLSelectElement).value;
   if Field.tagName = 'TEXTAREA' then Result := (Field as IHTMLTextAreaElement).value;
+
+  if Pos('&nbsp;', Result) > 0 then
+    Result := ReplaceText(Result, '&nbsp;', ' ');
 end;
 
 function TWebControl.WebFormGet(const FormNumber: Integer): IHTMLFormElement;
@@ -537,6 +548,9 @@ begin
 
   repeat Application.ProcessMessages until (Finish);
   Result := Temp;
+
+  if Pos('&nbsp;', Result) > 0 then
+    Result := ReplaceText(Result, '&nbsp;', ' ');
 end;
 
 procedure TWebChromium.WebFormNames;
