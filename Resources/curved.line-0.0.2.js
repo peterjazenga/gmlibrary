@@ -48,22 +48,16 @@ function curved_line_generate(Options) {
 	var Resolution = Options.resolution || 0.1;
 	var Map = map; //Options.Map || null;
 	
-	if(Horizontal == undefined) {
-	
-		Horizontal = true;
-	
-	}
+	if (Horizontal == undefined) Horizontal = true;
 	
 	var LastLat = LatStart;
 	var LastLng = LngStart;
-	
 	var PartLat;
 	var PartLng;
-		
 	var Points = new Array();
 	var PointsOffset = new Array();
 	
-	for(point = 0; point <= 1; point += Resolution)
+	for (point = 0; point <= 1; point += Resolution)
 	{
 		Points.push(point);
 		offset = (0.6 * Math.sin((Math.PI * point / 1)));
@@ -72,62 +66,56 @@ function curved_line_generate(Options) {
 			
 	var OffsetMultiplier = 0;
 	
-	if(Horizontal == 1) {
-	
+	if (Horizontal == 1) {
 		var OffsetLenght = (LngEnd - LngStart) * 0.1;
-	
 	} else {
-		
 		var OffsetLenght = (LatEnd - LatStart) * 0.1;
-		
 	}
 			 
-	for(var i = 0; i < Points.length; i++) {
-		
-		if(i == 4) {
-			
+	var LatLngs = new Array();
+	LatLngs.push(new google.maps.LatLng(LatStart, LngStart));
+	
+	for (var i = 0; i < Points.length; i++) {
+		if (i == 4) 
 			OffsetMultiplier = 1.5 * Multiplier;
-			
-		}
 		
 		if(i >= 5) {
-			
 			OffsetMultiplier = (OffsetLenght * PointsOffset[i]) * Multiplier;
-			
 		} else {
-		
 			OffsetMultiplier = (OffsetLenght * PointsOffset[i]) * Multiplier;
-			
 		}
 		
 		if(Horizontal == 1) {
-		
 			PartLat = (LatStart + ((LatEnd - LatStart) * Points[i])) + OffsetMultiplier;
 			PartLng = (LngStart + ((LngEnd - LngStart) * Points[i]));
-		
 		} else {
-			
 			PartLat = (LatStart + ((LatEnd - LatStart) * Points[i]));
 			PartLng = (LngStart + ((LngEnd - LngStart) * Points[i])) + OffsetMultiplier;
-			
 		}
 		
-		curved_line_create_segment(LastLat, LastLng, PartLat, PartLng, Color, Opacity, Weight, GapWidth, Map);
+		//curved_line_create_segment(LastLat, LastLng, PartLat, PartLng, Color, Opacity, Weight, GapWidth, Map);
+		LatLngs.push(new google.maps.LatLng(PartLat, PartLng));
 		
 		LastLat = PartLat;
 		LastLng = PartLng;
-	
 	}
 	
-	curved_line_create_segment(LastLat, LastLng, LatEnd, LngEnd, Color, Opacity, Weight, GapWidth, Map);
+	//curved_line_create_segment(LastLat, LastLng, LatEnd, LngEnd, Color, Opacity, Weight, GapWidth, Map);
+	var Line = new google.maps.Polyline({
+		path: LatLngs,
+		geodesic: false,
+		strokeColor: Color,
+		strokeOpacity: Opacity,
+		strokeWeight: Weight
+	}); 
 	
+	Line.setMap(Map);	
 }
 
 function curved_line_create_segment(LatStart, LngStart, LatEnd, LngEnd, Color, Opacity, Weight, GapWidth, Map) {
-	
 	evenOdd++;
 	
-	if(evenOdd % (GapWidth+1))
+	if (evenOdd % (GapWidth+1))
 		return;
 		
 	var LineCordinates = new Array();
@@ -144,5 +132,4 @@ function curved_line_create_segment(LatStart, LngStart, LatEnd, LngEnd, Color, O
 	}); 
 	
 	Line.setMap(Map);	
-	
 }
