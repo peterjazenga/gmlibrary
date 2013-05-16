@@ -106,10 +106,9 @@ function curved_line_generate(Options) {
 		geodesic: false,
 		strokeColor: Color,
 		strokeOpacity: Opacity,
-		strokeWeight: Weight
+		strokeWeight: Weight,
+		map: Map
 	}); 
-	
-	Line.setMap(Map);	
 }
 
 function curved_line_create_segment(LatStart, LngStart, LatEnd, LngEnd, Color, Opacity, Weight, GapWidth, Map) {
