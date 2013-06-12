@@ -85,13 +85,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the VCL components.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes VCL.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit RegisterCompVCL;
 
@@ -111,18 +111,18 @@ interface
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
-  System.Classes, Vcl.Controls,
-  {$IFEND}
+  {$IFDEF DELPHIXE2}
+  System.Classes, Vcl.Controls, Vcl.Graphics,
+  {$ELSE}
+  Classes, Graphics,
+  {$ENDIF}
 
   GMMapVCL, GMMarkerVCL, GMPolylineVCL, GMPolygonVCL, GMRectangleVCL,
   GMCircleVCL, GMDirectionVCL, GMElevationVCL;
 
 procedure Register;
 begin
-{$IF CompilerVersion > 22}  // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   GroupDescendentsWith(TGMMap, Vcl.Controls.TControl);
   {$IFDEF CHROMIUM}GroupDescendentsWith(TGMMapChr, Vcl.Controls.TControl);{$ENDIF}
   GroupDescendentsWith(TGMMarker, Vcl.Controls.TControl);
@@ -132,7 +132,8 @@ begin
   GroupDescendentsWith(TGMCircle, Vcl.Controls.TControl);
   GroupDescendentsWith(TGMDirection, Vcl.Controls.TControl);
   GroupDescendentsWith(TGMElevation, Vcl.Controls.TControl);
-{$IFEND}
+  {$ENDIF}
+
   RegisterComponents('GoogleMaps', [TGMMap, {$IFDEF CHROMIUM}TGMMapChr,{$ENDIF} TGMMarker,
                                     TGMPolyline, TGMPolygon,
                                     TGMRectangle, TGMCircle,

@@ -49,24 +49,26 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the classes needed to show VCL markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores VCL en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMMarkerVCL;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes, Graphics,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes, Vcl.Graphics,
-  {$IFEND}
+  {$ELSE}
+  Classes, Graphics,
+  {$ENDIF}
 
   GMMarker, GMLinkedComponents;
 
@@ -374,11 +376,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
 
   GMFunctionsVCL, GMConstants;
 

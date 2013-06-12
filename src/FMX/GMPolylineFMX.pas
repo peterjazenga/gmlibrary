@@ -16,6 +16,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.1.0
+  ES:
+    nuevo: TPolyline -> añadida propiedad CurveLine.
+    nuevo: TGMPolyline -> añadido evento OnCurveLineChange.
+  EN:
+    new: TPolyline -> added CurveLine property.
+    new: TGMPolyline -> added OnCurveLineChange event.
+
 ver 1.0.0
   ES:
     nuevo: se añade la propiedad TIconSequence.Icon.
@@ -48,13 +56,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolylineFMX unit includes the FMX classes needed to show polylines on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolylineFMX contiene las clases FMX necesarias para mostrar polilíneas en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMPolylineFMX;
 
@@ -164,6 +172,13 @@ type
   TPolyline = class(TBasePolylineFMX)
   private
     {*------------------------------------------------------------------------------
+      Properties for a curve line polyline.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Propiedades para una polilínea con linea curva.
+    -------------------------------------------------------------------------------}
+    FCurveLine: TCurveLine;
+    {*------------------------------------------------------------------------------
       Features for icon and repetition.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
@@ -171,6 +186,7 @@ type
     -------------------------------------------------------------------------------}
     FIcon: TIconSequence;
     procedure OnIconChange(Sender: TObject);
+    procedure OnCurveLineChange(Sender: TObject);
   protected
     function ChangeProperties: Boolean; override;
   public
@@ -180,6 +196,7 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     property Icon: TIconSequence read FIcon write FIcon;
+    property CurveLine: TCurveLine read FCurveLine write FCurveLine;
   end;
 
   {*------------------------------------------------------------------------------
@@ -222,6 +239,13 @@ type
       Este evento ocurre cuando cambia la propiedad Icon de una polilínea.
     -------------------------------------------------------------------------------}
     FOnIconChange: TLinkedComponentChange;
+    {*------------------------------------------------------------------------------
+      This event is fired when the polyline's CurveLine property are changed.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Este evento ocurre cuando cambia la propiedad CurveLine de una polilínea.
+    -------------------------------------------------------------------------------}
+    FOnCurveLineChange: TLinkedComponentChange;
   protected
     function GetAPIUrl: string; override;
 
@@ -249,6 +273,7 @@ type
     property Items[I: Integer]: TPolyline read GetItems; default;
   published
     property OnIconChange: TLinkedComponentChange read FOnIconChange write FOnIconChange;
+    property OnCurveLineChange: TLinkedComponentChange read FOnCurveLineChange write FOnCurveLineChange;
   end;
 
 implementation
@@ -384,7 +409,7 @@ end;
 
 function TPolyline.ChangeProperties: Boolean;
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   DistRepeat: string;
@@ -435,7 +460,11 @@ begin
                   QuotedStr(Icon.Icon.GetStrokeColor),
                   StringReplace(FloatToStr(Icon.Icon.StrokeOpacity), ',', '.', [rfReplaceAll]),
                   IntToStr(Icon.Icon.StrokeWeight),
-                  QuotedStr(Offset)
+                  QuotedStr(Offset),
+                  LowerCase(TTransform.GMBoolToStr(CurveLine.Active, True)),
+                  LowerCase(TTransform.GMBoolToStr(CurveLine.Horizontal, True)),
+                  IntToStr(CurveLine.Multiplier),
+                  StringReplace(FloatToStr(CurveLine.Resolution), ',', '.', [rfReplaceAll])
                   ]);
 
   Result := TGMPolyline(TPolylines(Collection).FGMLinkedComponent).ExecuteScript('MakePolyline', Params);
@@ -448,13 +477,25 @@ begin
 
   FIcon := TIconSequence.Create(Self);
   FIcon.OnChange := OnIconChange;
+  FCurveLine := TCurveLine.Create;
+  FCurveLine.OnChange := OnCurveLineChange;
 end;
 
 destructor TPolyline.Destroy;
 begin
   if Assigned(FIcon) then FreeAndNil(FIcon);
+  if Assigned(FCurveLine) then FreeAndNil(FCurveLine);
 
   inherited;
+end;
+
+procedure TPolyline.OnCurveLineChange(Sender: TObject);
+begin
+  if ChangeProperties and Assigned(TGMPolyline(TPolylines(Collection).FGMLinkedComponent).FOnCurveLineChange) then
+    TGMPolyline(TPolylines(Collection).FGMLinkedComponent).FOnCurveLineChange(
+                  TGMPolyline(TPolylines(Collection).FGMLinkedComponent),
+                  Index,
+                  Self);
 end;
 
 procedure TPolyline.OnIconChange(Sender: TObject);

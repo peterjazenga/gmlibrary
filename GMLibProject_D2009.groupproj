@@ -6,9 +6,6 @@
 			<Projects Include="dpk\GMLib_D2009.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="dpk\GMLibEdit_D2009.dproj">
-				<Dependencies/>
-			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -26,23 +23,14 @@
 		<Target Name="GMLib_D2009:Make">
 			<MSBuild Targets="Make" Projects="dpk\GMLib_D2009.dproj"/>
 		</Target>
-		<Target Name="GMLibEdit_D2009">
-			<MSBuild Projects="dpk\GMLibEdit_D2009.dproj"/>
-		</Target>
-		<Target Name="GMLibEdit_D2009:Clean">
-			<MSBuild Targets="Clean" Projects="dpk\GMLibEdit_D2009.dproj"/>
-		</Target>
-		<Target Name="GMLibEdit_D2009:Make">
-			<MSBuild Targets="Make" Projects="dpk\GMLibEdit_D2009.dproj"/>
-		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="GMLib_D2009;GMLibEdit_D2009"/>
+			<CallTarget Targets="GMLib_D2009"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="GMLib_D2009:Clean;GMLibEdit_D2009:Clean"/>
+			<CallTarget Targets="GMLib_D2009:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="GMLib_D2009:Make;GMLibEdit_D2009:Make"/>
+			<CallTarget Targets="GMLib_D2009:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>

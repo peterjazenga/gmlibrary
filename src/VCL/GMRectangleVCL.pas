@@ -42,24 +42,26 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMRectangleVCL unit includes the base classes needed to show rectangles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMRectangleVCL contiene las clases bases necesarias para mostrar rectángulos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMRectangleVCL;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Graphics, Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   Vcl.Graphics, System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Graphics, Classes,
+  {$ENDIF}
 
   GMRectangle, GMLinkedComponents;
 

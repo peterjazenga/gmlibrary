@@ -88,24 +88,27 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   The GMClasses unit includes basse classes or support classes.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMClasses incluye clases bases o de apoyo.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMClasses;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
+
   GMConstants;
 
 type
@@ -944,11 +947,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Math, SysUtils;
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Math, System.SysUtils;
-  {$IFEND}
+  {$ELSE}
+  Math, SysUtils;
+  {$ENDIF}
 
 { TLinePoint }
 
@@ -1299,7 +1302,7 @@ begin
     aLng := FloatToStr(FLng);
   end;
 
-  if {$IF CompilerVersion < 22}DecimalSeparator{$ELSE}FormatSettings.DecimalSeparator{$IFEND} = ',' then
+  if {$IFDEF DELPHIXE}FormatSettings.DecimalSeparator{$ELSE}DecimalSeparator{$ENDIF} = ',' then
   begin
     aLat := StringReplace(aLat, ',', '.', [rfReplaceAll]);
     aLng := StringReplace(aLng, ',', '.', [rfReplaceAll]);
@@ -1340,7 +1343,7 @@ end;
 
 function TLatLng.StringToReal(Value: string): Real;
 begin
-  if {$IF CompilerVersion < 22}DecimalSeparator{$ELSE}FormatSettings.DecimalSeparator{$IFEND} = ',' then
+  if {$IFDEF DELPHIXE}FormatSettings.DecimalSeparator{$ELSE}DecimalSeparator{$ENDIF} = ',' then
     Value := StringReplace(Value, '.', ',', [rfReplaceAll]);
   try
     Result := StrToFloat(Value);

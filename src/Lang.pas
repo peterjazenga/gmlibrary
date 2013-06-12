@@ -63,7 +63,7 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   - change the GetTranslateText function by adding new language
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit Lang contiene las cadenas de los mensajes de error mostrados por los componentes y una función para realizar la traducción.
@@ -73,7 +73,7 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   - modificar la función GetTranslateText añadiendo el nuevo idioma del conjunto
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit Lang;
 

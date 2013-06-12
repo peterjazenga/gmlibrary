@@ -33,24 +33,27 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Unit with a general functions specific for VCL.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad con funciones de caracter general específicas para VCL.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMFunctionsVCL;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Graphics,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   Vcl.Graphics,
-  {$IFEND}
+  {$ELSE}
+  Graphics,
+  {$ENDIF}
+
   GMFunctions, GMPolygonVCL, GMClasses;
 
 type
@@ -120,11 +123,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
 
   GMConstants;
 

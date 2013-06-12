@@ -118,24 +118,26 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary classes to geocoding.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes necesarias para la geocodificación.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMGeoCode;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes, Contnrs,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes, System.Contnrs,
-  {$IFEND}
+  {$ELSE}
+  Classes, Contnrs,
+  {$ENDIF}
 
   GMMap, GMClasses, GMMarker, GMConstants;
 
@@ -640,11 +642,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils, XMLIntf, XMLDoc, StrUtils, Controls,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils, Xml.XMLIntf, Xml.XMLDoc, System.StrUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils, XMLIntf, XMLDoc, StrUtils, Controls,
+  {$ENDIF}
 
   GMFunctions, Lang;
 
@@ -737,7 +739,6 @@ end;
 procedure TGMGeoCode.GeocodeData(Data: string);
 var
   Tmp: string;
-  TmpFile: string;
 begin
   if not Assigned(Map) then
     raise Exception.Create(GetTranslateText('Mapa no asignado', Language));
@@ -759,12 +760,6 @@ begin
   if Assigned(FAfterGetData) then FAfterGetData(Self);
 
   ParseData;
-
-  {$IF CompilerVersion < 23}
-  SysUtils.DeleteFile(TmpFile);
-  {$ELSE}
-  System.SysUtils.DeleteFile(TmpFile);
-  {$IFEND}
 end;
 
 function TGMGeoCode.GetAPIUrl: string;
@@ -930,11 +925,11 @@ begin
     if Assigned(FMarker) and FPaintMarkerFound then FMarker.Clear;
     FGeoResults.Clear;
 
-    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
-    XML := LoadXMLData(AnsiToUtf8(FXMLData.Text));
-    {$ELSE}
+    {$IFDEF DELPHI2010}
     XML := LoadXMLData(FXMLData.Text);
-    {$IFEND}
+    {$ELSE}
+    XML := LoadXMLData(AnsiToUtf8(FXMLData.Text));
+    {$ENDIF}
     try
       XML.Active := True;
 

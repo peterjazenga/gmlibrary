@@ -14,6 +14,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.1.0
+  ES:
+    cambio: TCustomMarker -> el método CenterMapToMarker se marca como deprecated,
+      en su lugar usar CenterMapTo.
+  EN:
+    change: TCustomMarker -> CenterMapToMarker methos is marked as deprecated,
+      instead use CenterMapTo.
+
 ver 1.0.1
   ES:
     error: TCustomGMMarker -> corregido error en el método LoadFromDataSet (first
@@ -149,24 +157,27 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the base classes needed to show markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMMarker;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes, Types, DB,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes, System.Types, Data.DB,
-  {$IFEND}
+  {$ELSE}
+  Classes, Types, DB,
+  {$ENDIF}
+
   GMLinkedComponents, GMConstants, GMClasses;
 
 type
@@ -770,7 +781,8 @@ type
     {=------------------------------------------------------------------------------
       Centra el mapa en el marcador.
     -------------------------------------------------------------------------------}
-    procedure CenterMapToMarker;
+    procedure CenterMapToMarker; deprecated;
+    procedure CenterMapTo; override;
   published
     property MarkerType: TMarkerType read FMarkerType write SetMarkerType;
     property Animation: TAnimation read FAnimation write FAnimation;
@@ -1150,11 +1162,12 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
+
   Lang, GMFunctions;
 
 { TCustomGMMarker }
@@ -1213,9 +1226,9 @@ begin
     if WithRownTitle then L1.Delete(0);
 
     L2.Delimiter := Delimiter;
-    {$IF CompilerVersion > 16}  
+    {$IFDEF DELPHI2005}
     L2.StrictDelimiter := True;
-    {$IFEND}
+    {$ENDIF}
 
     for i := 0 to L1.Count - 1 do
     begin
@@ -1486,6 +1499,16 @@ begin
     Visible := TCustomMarker(Source).Visible;
     MarkerType := TCustomMarker(Source).MarkerType;
   end;
+end;
+
+procedure TCustomMarker.CenterMapTo;
+begin
+  inherited;
+
+  if Assigned(Collection) and (Collection is TCustomMarkers) and
+     Assigned(TCustomMarkers(Collection).FGMLinkedComponent) and
+     Assigned(TCustomMarkers(Collection).FGMLinkedComponent.Map) then
+    TCustomMarkers(Collection).FGMLinkedComponent.Map.SetCenter(Position.Lat, Position.Lng);
 end;
 
 procedure TCustomMarker.CenterMapToMarker;

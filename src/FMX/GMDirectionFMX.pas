@@ -52,21 +52,22 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary classes to manage routes and show it into a Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes necesarias para la manipulación de rutas y mostrarlas en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMDirectionFMX;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
   System.Classes, System.UITypes,
-
   GMDirection;
 
 type
@@ -201,12 +202,7 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
   System.SysUtils,
-  {$IFEND}
-
   GMFunctionsFMX, GMConstants;
 
 { TPolylineOptions }

@@ -7,6 +7,14 @@ TGMLinkedComponent class
 =========================================================================
 History:
 
+ver 1.1.0
+  ES:
+    cambio: TLinkedComponent -> el método CenterMapTo de las clases hijas se
+      traslada a esta clase.
+  EN:
+    change: TLinkedComponent -> the CenterMapTo method of child classes moved to
+      this class.
+
 ver 1.0.0
   ES:
     cambio: el método TGMLinkedComponent.ShowElements se hace público.
@@ -88,24 +96,27 @@ web  http://www.cadetill.com
   The GMLinkedComponent unit includes the base classes that represent an object into the Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unidad GMLinkedComponent incluye las clases bases que representan un objete en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMLinkedComponents;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
+
   GMMap, GMClasses, GMConstants;
 
 type
@@ -265,6 +276,13 @@ type
       @return True si todo correcto
     -------------------------------------------------------------------------------}
     function ChangeProperties: Boolean; virtual; abstract;
+    {*------------------------------------------------------------------------------
+      Center the map on the figure.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Centra el mapa en la figura.
+    -------------------------------------------------------------------------------}
+    procedure CenterMapTo; virtual; abstract;
 
     {*------------------------------------------------------------------------------
       Index position in the list FLinkedComponents of TCustomGMMap class.
@@ -681,14 +699,13 @@ type
 implementation
 
 uses
-  Lang,
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  TypInfo, SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.TypInfo, System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  TypInfo, SysUtils,
+  {$ENDIF}
 
-  GMFunctions;
+  Lang, GMFunctions;
 
 { TLinkedComponent }
 

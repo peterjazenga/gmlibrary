@@ -9,13 +9,10 @@ MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
 DCC = $(ROOT)\bin\dcc32.exe $**
 BRCC = $(ROOT)\bin\brcc32.exe $**
 #------------------------------------------------------------------------------
-PROJECTS = GMLib_D7.bpl GMLibEdit_D7.bpl
+PROJECTS = GMLib_D7.bpl
 #------------------------------------------------------------------------------
 default: $(PROJECTS)
 #------------------------------------------------------------------------------
-
-GMLibEdit_D7.bpl: dpk\GMLibEdit_D7.dpk
-  $(DCC)
 
 GMLib_D7.bpl: dpk\GMLib_D7.dpk
   $(DCC)

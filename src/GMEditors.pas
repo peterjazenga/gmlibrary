@@ -34,12 +34,12 @@ uses
 
 type
   // http://delphi.about.com/library/bluc/text/uc092501c.htm
-(*  TAboutGMLib = class(TPropertyEditor)
+  TAboutGMLib = class(TPropertyEditor)
   public
     procedure Edit; override;
     function GetValue: string; override;
     function GetAttributes: TPropertyAttributes; override;
-  end;*)
+  end;
 
   // http://delphi.about.com/library/bluc/text/uc092501b.htm
   TGMBaseEditor = class(TComponentEditor)
@@ -62,7 +62,7 @@ implementation
 uses
   UAboutFrm, GMConstants, ColnEdit, GMLinkedComponents;
 
-(*
+
 { TAboutGMLib }
 
 procedure TAboutGMLib.Edit;
@@ -86,7 +86,7 @@ function TAboutGMLib.GetValue: string;
 begin
   Result := GMLIB_Version;
 end;
-*)
+
 { TGMBaseEditor }
 
 procedure TGMBaseEditor.ExecuteVerb(Index: Integer);

@@ -60,24 +60,26 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMInfoWindow unit includes the classes needed to show InfoWindows on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases necesarias para mostrar ventanas de información en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMInfoWindow;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
 
   GMLinkedComponents, GMClasses;
 
@@ -129,13 +131,8 @@ type
 
     procedure Assign(Source: TPersistent); override;
 
-    {*------------------------------------------------------------------------------
-      Center the map on the infoWindows.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Centra el mapa en la ventana de información.
-    -------------------------------------------------------------------------------}
-    procedure CenterMapTo;
+    procedure CenterMapTo; override;
+
     {*------------------------------------------------------------------------------
       Shows or hides the InfoWindows.
     -------------------------------------------------------------------------------}
@@ -344,6 +341,8 @@ end;
 
 procedure TInfoWindow.CenterMapTo;
 begin
+  inherited;
+
   if Assigned(Collection) and (Collection is TInfoWindows) and
      Assigned(TInfoWindows(Collection).FGMLinkedComponent) and
      Assigned(TInfoWindows(Collection).FGMLinkedComponent.Map) then

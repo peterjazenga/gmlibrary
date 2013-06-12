@@ -1,10 +1,16 @@
 GMLib - Google Maps Library
 
-Web page at http://www.cadetill.com/gmlib/ or http://www.cadetill.com/gmlib_en/
-Bugs report at http://code.google.com/p/gmlibrary/issues/list
-SVN repository at http://code.google.com/p/gmlibrary/source/checkout
-Questions at http://stackoverflow.com with gmlib tag
-For new needs, you can email me to gmlib@cadetill.com 
+Web page:
+    http://www.cadetill.com/gmlib/ (spanish)
+    http://www.cadetill.com/gmlib_en/ (english)
+Bugs report 
+    http://code.google.com/p/gmlibrary/issues/list
+SVN repository 
+    http://code.google.com/p/gmlibrary/source/checkout
+Questions 
+    http://stackoverflow.com with gmlib tag
+For new needs, you can email me
+    gmlib@cadetill.com 
 
 Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE, XE2, XE3
 Tested Windows Versions: XP, 2003, Vista, 7
@@ -15,6 +21,16 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
+Juny 12, 2013
+ - Google Maps Library v1.1.0
+ - Improvement: TLinkedComponent -> the CenterMapTo method of child classes moved to this class.
+ - Improvement: TCustomMarker -> CenterMapToMarker methos is marked as deprecated, instead use CenterMapTo.
+ - Improvement: TCurveLine -> new class to do curved polylines.
+ - Improvement: TBasePolyline -> modified AddLinePoint method to accelerate the creation of polylines.
+ - bug fixed: TBasePolyline -> improved performance on GetPath and AddLinePoint methods (GC: issue 9).
+ - Improvement: TPolyline -> added CurveLine property.
+ - Improvement: TGMPolyline -> added OnCurveLineChange event.
+ 
 May 5 2013
  - Google Maps Library v1.0.1
  - bug fixed: TCustomGMMap -> StreetView. JavaScript bug fixed.
@@ -235,4 +251,6 @@ March 20, 2012
 
 
 
-For full information, see http://www.cadetill.com/?page_id=365 (spanish only)
+For full information, see 
+  http://www.cadetill.com/gmlib/ (spanish)
+  http://www.cadetill.com/gmlib_en/ (english)

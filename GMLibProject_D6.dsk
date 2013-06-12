@@ -1,29 +1,25 @@
 [Closed Files]
-File_0=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas',0,1,1,1,1,0,0
-File_1=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\WebControl.pas',0,1,1,1,1,0,0
-File_2=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas',0,1,1,1,1,0,0
-File_3=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas',0,1,1,1,1,0,0
-File_4=SourceModule,'D:\Docs\Fonts\Botigues\Replicacion\UReplicacion.pas',0,1,802,1,798,1,0
-File_5=SourceModule,'C:\Fuentes\Replicacion\UReplicacion.pas',0,1,845,1,861,1,0
-File_6=SourceModule,'C:\Fuentes\interfaseA\Uxml.pas',0,1,838,54,844,1,0
-File_7=SourceModule,'C:\Componentes\rx275d6\Units\RXSpin.pas',0,1,636,14,644,0,0
-File_8=SourceModule,'Y:\Fuentes\interfaseA\Uxml.pas',0,1,218,1,232,1,0
-File_9=SourceModule,'\\Madriu\D\Fuentes\interfaseA\Uxml.pas',0,1,194,28,204,0,0
+File_0=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMClasses.pas',0,1,1,1,1,0,0
+File_1=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\RegisterEditors.pas',0,1,1,1,1,0,0
+File_2=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\UAboutFrm.pas',0,1,1,1,1,0,0
+File_3=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\GMEditors.pas',0,1,1,1,1,0,0
+File_4=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\WebControlVCL.pas',0,1,1,1,1,0,0
+File_5=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\WebControl.pas',0,1,1,1,1,0,0
+File_6=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\GMMapVCL.pas',0,1,1,1,1,0,0
+File_7=SourceModule,'D:\Docs\Dropbox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas',0,1,1,1,1,0,0
+File_8=SourceModule,'D:\Docs\Fonts\Botigues\Replicacion\UReplicacion.pas',0,1,802,1,798,1,0
+File_9=SourceModule,'C:\Fuentes\Replicacion\UReplicacion.pas',0,1,845,1,861,1,0
 
 [Modules]
-Module0=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk
+Module0=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk
 Count=1
 EditWindowCount=1
-PackageWindowCount=2
+PackageWindowCount=1
 
-[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk]
+[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk]
 ModuleType=PackageEditModule
 FormState=0
 FormOnTop=0
-
-[D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk]
-FormState=0
-FormOnTop=1
 
 [D:\Docs\Dropbox\Programacio\GoogleMaps\Components\GMLibProject_D6.bpg]
 FormState=0
@@ -55,9 +51,9 @@ BottomPanelClients=MessageView@EditWindow0
 BottomPanelData=00000400010000000B0000004D657373616765566965770000000000000000000000000000000000FFFFFFFF
 
 [View0]
-Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk
-CursorX=34
-CursorY=25
+Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk
+CursorX=1
+CursorY=1
 TopLine=1
 LeftCol=1
 
@@ -65,44 +61,22 @@ LeftCol=1
 Create=1
 Visible=0
 State=0
-Left=47
-Top=442
-Width=430
-Height=375
-MaxLeft=-1
-MaxTop=-1
-ClientWidth=422
-ClientHeight=349
-TBDockHeight=244
-LRDockWidth=368
-Dockable=1
-StatusBar=0
-TextLabels=1
-Toolbar=1
-SectionWidth0=150
-SectionWidth1=272
-Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLibEdit_D6.dpk
-
-[PackageWindow1]
-Create=1
-Visible=1
-State=0
-Left=72
-Top=188
+Left=290
+Top=283
 Width=418
-Height=427
+Height=552
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=410
-ClientHeight=401
+ClientHeight=526
 TBDockHeight=244
 LRDockWidth=368
 Dockable=1
 StatusBar=0
 TextLabels=1
 Toolbar=1
-SectionWidth0=150
-SectionWidth1=260
+SectionWidth0=191
+SectionWidth1=219
 Module=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D6.dpk
 
 [Watches]
@@ -122,8 +96,8 @@ Left=0
 Top=0
 Width=1280
 Height=112
-MaxLeft=-4
-MaxTop=-4
+MaxLeft=-1
+MaxTop=-1
 MaxWidth=1288
 MaxHeight=112
 ClientWidth=1280
@@ -247,7 +221,7 @@ TBDockHeight=527
 LRDockWidth=190
 Dockable=1
 TabPosition=2
-ActiveTab=Object Inspector
+ActiveTab=Project Manager
 TabDockClients=PropertyInspector,ProjectManager,ObjectTree
 
 [ActiveProject]

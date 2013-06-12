@@ -246,7 +246,7 @@ end;
 procedure TMarkersFrm.bCenterClick(Sender: TObject);
 begin
   if lbItems.ItemIndex <> -1 then
-    FGMMarker[lbItems.ItemIndex].CenterMapToMarker;
+    FGMMarker[lbItems.ItemIndex].CenterMapTo;
 end;
 
 procedure TMarkersFrm.bComDistClick(Sender: TObject);

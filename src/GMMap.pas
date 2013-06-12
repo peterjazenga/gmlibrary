@@ -163,13 +163,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMMap;
 
@@ -179,11 +179,11 @@ unit GMMap;
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Contnrs, SysUtils, Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Contnrs, System.SysUtils, System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Contnrs, SysUtils, Classes,
+  {$ENDIF}
 
   GMClasses, GMConstants, WebControl;
 
@@ -2678,11 +2678,11 @@ uses
   Lang, GMFunctions, GMLinkedComponents, GMMarker, GMPolyline, GMRectangle,
   GMCircle, GMDirection, GMGroundOverlay,
 
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Windows, XMLIntf, XMLDoc;
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Types, Xml.XMLIntf, Xml.XMLDoc;
-  {$IFEND}
+  {$ELSE}
+  Windows, XMLIntf, XMLDoc;
+  {$ENDIF}
 
 { TCustomGMMap }
 
@@ -4615,7 +4615,7 @@ begin
   Result := DefaultValue;
 
   Temp := GetStringField(FormName, FieldName, '');
-  if {$IF CompilerVersion < 22}DecimalSeparator{$ELSE}FormatSettings.DecimalSeparator{$IFEND} = ',' then
+  if {$IFDEF DELPHIXE}FormatSettings.DecimalSeparator{$ELSE}DecimalSeparator{$ENDIF} = ',' then
     Temp := StringReplace(Temp, '.', ',', [rfReplaceAll]);
   if (Temp <> '') and TryStrToFloat(Temp, Val) then
     Result := Val;

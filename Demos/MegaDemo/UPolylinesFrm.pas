@@ -130,6 +130,13 @@ type
     bComArea: TButton;
     lComArea: TLabel;
     bZoomToAll: TButton;
+    tsCurveLine: TTabSheet;
+    cbCLActive: TCheckBox;
+    cbCLHoriz: TCheckBox;
+    eCLRes: TEdit;
+    Label10: TLabel;
+    eCLMulti: TSpinEdit;
+    Label11: TLabel;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lbItemsClick(Sender: TObject);
@@ -200,6 +207,10 @@ type
     procedure bIsLocClick(Sender: TObject);
     procedure bComAreaClick(Sender: TObject);
     procedure bZoomToAllClick(Sender: TObject);
+    procedure cbCLActiveClick(Sender: TObject);
+    procedure cbCLHorizClick(Sender: TObject);
+    procedure eCLResChange(Sender: TObject);
+    procedure eCLMultiChange(Sender: TObject);
   protected
     FGMPoly: TGMBasePolyline;
     FGMElev: TGMElevation;
@@ -321,6 +332,20 @@ begin
   if FGetInfo then Exit;
   if lbItems.ItemIndex = -1 then Exit;
   FGMPoly[lbItems.ItemIndex].AutoUpdatePath := cbAutoUpdatePath.Checked;
+end;
+
+procedure TPolylinesFrm.cbCLActiveClick(Sender: TObject);
+begin
+  if FGetInfo then Exit;
+  if lbItems.ItemIndex = -1 then Exit;
+  TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Active := cbCLActive.Checked;
+end;
+
+procedure TPolylinesFrm.cbCLHorizClick(Sender: TObject);
+begin
+  if FGetInfo then Exit;
+  if lbItems.ItemIndex = -1 then Exit;
+  TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Horizontal := cbCLHoriz.Checked;
 end;
 
 procedure TPolylinesFrm.cbClickableClick(Sender: TObject);
@@ -638,6 +663,23 @@ begin
   eEncodePath.Text := '';
 end;
 
+procedure TPolylinesFrm.eCLMultiChange(Sender: TObject);
+begin
+  if FGetInfo then Exit;
+  if lbItems.ItemIndex = -1 then Exit;
+  TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Multiplier := eCLMulti.Value;
+end;
+
+procedure TPolylinesFrm.eCLResChange(Sender: TObject);
+var
+  Tmp: Extended;
+begin
+  if FGetInfo then Exit;
+  if lbItems.ItemIndex = -1 then Exit;
+  if TryStrToFloat(eCLRes.Text, Tmp) then
+    TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Resolution := Tmp;
+end;
+
 procedure TPolylinesFrm.eIFillOpacityChange(Sender: TObject);
 var
   Tmp: Extended;
@@ -799,6 +841,10 @@ begin
   eStrokeOpacity.Text := FloatToStr(FGMPoly[lbItems.ItemIndex].StrokeOpacity);
   eStrokeWeight.Value := FGMPoly[lbItems.ItemIndex].StrokeWeight;
   eText.Text := FGMPoly[lbItems.ItemIndex].Text;
+  cbCLActive.Checked := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Active;
+  cbCLHoriz.Checked := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Horizontal;
+  eCLRes.Text := FloatToStr(TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Resolution);
+  eCLMulti.Value := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Multiplier;
 
   lbPoints.Clear;
   for i := 0 to FGMPoly[lbItems.ItemIndex].CountLinePoints - 1 do

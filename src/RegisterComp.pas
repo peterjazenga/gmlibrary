@@ -41,19 +41,21 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the components that no depend of any framework.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes que no dependen de ningún framework.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit RegisterComp;
 
-{$IF CompilerVersion < 20}
+{$I ..\gmlib.inc}
+
+{$IFNDEF DELPHI2009}
 {$R ..\Resources\gmlibres.res}
-{$IFEND}
+{$ENDIF}
 
 interface
 
@@ -68,11 +70,11 @@ interface
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
 
   GMInfoWindow, GMGeoCode, GMGroundOverlay;
 

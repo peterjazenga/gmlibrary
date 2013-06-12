@@ -61,15 +61,17 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Unit with a general functions.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad con funciones de caracter general.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMFunctions;
+
+{$I ..\gmlib.inc}
 
 interface
 
@@ -918,18 +920,22 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  TypInfo, Windows, SysUtils, Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.TypInfo, System.IOUtils, System.SysUtils, System.Classes, Winapi.Windows,
-  {$IFEND}
+  {$ELSE}
+  TypInfo, Windows, SysUtils, Classes,
+  {$ENDIF}
 
   GMRectangle;
 
 { TPath }
 
 class function TPath.GetTempPath: string;
-{$IF CompilerVersion < 23}
+{$IFDEF DELPHIXE2}
+begin
+  Result := System.IOUtils.TPath.GetTempPath;
+end;
+{$ELSE}
 var
   Len: Integer;
 begin
@@ -941,14 +947,15 @@ begin
   SetLength(Result, Len - 1);
   if Windows.GetTempPath(Len, PChar(Result)) = 0 then
     Result := '';
-{$ELSE}
-begin
-  Result := System.IOUtils.TPath.GetTempPath;
-{$IFEND}
 end;
+{$ENDIF}
 
 class function TPath.GetTempFileName: string;
-{$IF CompilerVersion < 23}
+{$IFDEF DELPHIXE2}
+begin
+  Result := System.IOUtils.TPath.GetTempFileName;
+end;
+{$ELSE}
 var
   TempPath: string;
   ErrCode: Cardinal;
@@ -958,21 +965,14 @@ begin
   GetMem(P, MAX_PATH);
 
   SetLastError(ERROR_SUCCESS);
-  {$IF CompilerVersion < 23}
   ErrCode := Windows.GetTempFileName(PChar(TempPath), 'tmp', 0, P); // DO NOT LOCALIZE
-  {$ELSE}
-  ErrCode := Winapi.Windows.GetTempFileName(PChar(TempPath), 'tmp', 0, P); // DO NOT LOCALIZE
-  {$IFEND}
   if ErrCode = 0 then
     raise Exception.Create(SysErrorMessage(GetLastError));
 
   Result := StrPas(P);
   FreeMem(P);
-{$ELSE}
-begin
-  Result := System.IOUtils.TPath.GetTempFileName;
-{$IFEND}
 end;
+{$ENDIF}
 
 { TCustomTransform }
 
@@ -1582,14 +1582,12 @@ begin
   P := TStringList.Create;
   try
     L.Delimiter := ';';
-    {$IF CompilerVersion > 16}
-    L.StrictDelimiter := True;
-    {$IFEND}
-    L.DelimitedText := PointsStr;
     P.Delimiter := '|';
-    {$IF CompilerVersion > 16}
+    {$IFDEF DELPHI2005}
+    L.StrictDelimiter := True;
     P.StrictDelimiter := True;
-    {$IFEND}
+    {$ENDIF}
+    L.DelimitedText := PointsStr;
     Result := True;
     for i := 0 to L.Count - 1 do
     begin
@@ -1597,12 +1595,12 @@ begin
       if P.Count <> 2 then Result := False;
 
       Tmp := P[0];
-      if {$IF CompilerVersion < 22}DecimalSeparator{$ELSE}FormatSettings.DecimalSeparator{$IFEND} = ',' then
+      if {$IFDEF DELPHIXE}FormatSettings.DecimalSeparator{$ELSE}DecimalSeparator{$ENDIF} = ',' then
         Tmp := StringReplace(Tmp, '.', ',', [rfReplaceAll]);
       if not TryStrToFloat(Tmp, R) then Result := False;
 
       Tmp := P[1];
-      if {$IF CompilerVersion < 22}DecimalSeparator{$ELSE}FormatSettings.DecimalSeparator{$IFEND} = ',' then
+      if {$IFDEF DELPHIXE}FormatSettings.DecimalSeparator{$ELSE}DecimalSeparator{$ENDIF} = ',' then
         Tmp := StringReplace(Tmp, '.', ',', [rfReplaceAll]);
       if not TryStrToFloat(Tmp, R) then Result := False;
     end;

@@ -8,86 +8,86 @@
   resources were bound to the produced executable.
 */
 
-#define DBConsts_SParameterNotFound 65088
-#define DBConsts_SInvalidVersion 65089
-#define DBConsts_SBadFieldType 65090
-#define DBConsts_SProviderSQLNotSupported 65091
-#define DBConsts_SProviderExecuteNotSupported 65092
-#define DBConsts_SDataSetUnidirectional 65093
-#define DBConsts_SUnassignedVar 65094
-#define DBConsts_SRecordNotFound 65095
-#define DBConsts_SBcdOverflow 65096
-#define DBConsts_SInvalidBcdValue 65097
-#define DBConsts_SInvalidFormatType 65098
-#define DBConsts_SCouldNotParseTimeStamp 65099
-#define DBConsts_SInvalidSqlTimeStamp 65100
+#define DBConsts_SUnassignedVar 65088
+#define DBConsts_SRecordNotFound 65089
+#define DBConsts_SBcdOverflow 65090
+#define DBConsts_SInvalidBcdValue 65091
+#define DBConsts_SInvalidFormatType 65092
+#define DBConsts_SCouldNotParseTimeStamp 65093
+#define DBConsts_SInvalidSqlTimeStamp 65094
+#define OleConst_SBadPropValue 65095
+#define OleConst_SCannotActivate 65096
+#define OleConst_SNoWindowHandle 65097
+#define OleConst_SInvalidLicense 65098
+#define OleConst_SNotLicensed 65099
+#define OleConst_sNoRunningObject 65100
 #define JConsts_sChangeJPGSize 65101
 #define JConsts_sJPEGError 65102
 #define JConsts_sJPEGImageFile 65103
-#define DBConsts_SInvalidCalcType 65104
-#define DBConsts_SDuplicateIndexName 65105
-#define DBConsts_SNoIndexForFields 65106
-#define DBConsts_SIndexNotFound 65107
-#define DBConsts_SDBDuplicateName 65108
-#define DBConsts_SCircularDataLink 65109
-#define DBConsts_SLookupInfoError 65110
-#define DBConsts_SDataSourceChange 65111
-#define DBConsts_SDataSetOpen 65112
-#define DBConsts_SNotEditing 65113
-#define DBConsts_SDataSetClosed 65114
-#define DBConsts_SDataSetEmpty 65115
-#define DBConsts_SDataSetReadOnly 65116
-#define DBConsts_SNestedDataSetClass 65117
-#define DBConsts_STextFalse 65118
-#define DBConsts_STextTrue 65119
-#define DBConsts_SFieldNameMissing 65120
-#define DBConsts_SDuplicateFieldName 65121
-#define DBConsts_SFieldNotFound 65122
-#define DBConsts_SFieldAccessError 65123
-#define DBConsts_SFieldValueError 65124
-#define DBConsts_SFieldRangeError 65125
-#define DBConsts_SBcdFieldRangeError 65126
-#define DBConsts_SInvalidIntegerValue 65127
-#define DBConsts_SInvalidBoolValue 65128
-#define DBConsts_SInvalidFloatValue 65129
-#define DBConsts_SFieldTypeMismatch 65130
-#define DBConsts_SFieldSizeMismatch 65131
-#define DBConsts_SInvalidVarByteArray 65132
-#define DBConsts_SFieldOutOfRange 65133
-#define DBConsts_SFieldRequired 65134
-#define DBConsts_SDataSetMissing 65135
-#define XMLConst_SNotActive 65136
-#define XMLConst_SNodeNotFound 65137
-#define XMLConst_SMissingNode 65138
-#define XMLConst_SNoAttributes 65139
-#define XMLConst_SInvalidNodeType 65140
-#define XMLConst_SMismatchedRegItems 65141
-#define XMLConst_SNotSingleTextNode 65142
-#define XMLConst_SNoDOMParseOptions 65143
-#define XMLConst_SMissingItemTag 65144
-#define XMLConst_SNodeReadOnly 65145
-#define XMLConst_SNoRefresh 65146
-#define XMLConst_SMissingFileName 65147
-#define XMLConst_SLine 65148
-#define DBConsts_SInvalidFieldSize 65149
-#define DBConsts_SInvalidFieldKind 65150
-#define DBConsts_SUnknownFieldType 65151
-#define ComConst_SNoMethod 65152
-#define ComConst_SVarNotObject 65153
-#define ComConst_STooManyParams 65154
-#define ComConst_SDCOMNotInstalled 65155
-#define OleConst_SBadPropValue 65156
-#define OleConst_SCannotActivate 65157
-#define OleConst_SNoWindowHandle 65158
-#define OleConst_SInvalidLicense 65159
-#define OleConst_SNotLicensed 65160
-#define OleConst_sNoRunningObject 65161
-#define XMLConst_SDuplicateRegistration 65162
-#define XMLConst_SNoMatchingDOMVendor 65163
-#define XMLConst_SNoDOMNodeEx 65164
-#define XMLConst_SDOMNotSupported 65165
-#define XMLConst_SNodeExpected 65166
-#define XMLConst_SMSDOMNotInstalled 65167
+#define DBConsts_SLookupInfoError 65104
+#define DBConsts_SDataSourceChange 65105
+#define DBConsts_SDataSetOpen 65106
+#define DBConsts_SNotEditing 65107
+#define DBConsts_SDataSetClosed 65108
+#define DBConsts_SDataSetEmpty 65109
+#define DBConsts_SDataSetReadOnly 65110
+#define DBConsts_SNestedDataSetClass 65111
+#define DBConsts_STextFalse 65112
+#define DBConsts_STextTrue 65113
+#define DBConsts_SParameterNotFound 65114
+#define DBConsts_SInvalidVersion 65115
+#define DBConsts_SBadFieldType 65116
+#define DBConsts_SProviderSQLNotSupported 65117
+#define DBConsts_SProviderExecuteNotSupported 65118
+#define DBConsts_SDataSetUnidirectional 65119
+#define DBConsts_SBcdFieldRangeError 65120
+#define DBConsts_SInvalidIntegerValue 65121
+#define DBConsts_SInvalidBoolValue 65122
+#define DBConsts_SInvalidFloatValue 65123
+#define DBConsts_SFieldTypeMismatch 65124
+#define DBConsts_SFieldSizeMismatch 65125
+#define DBConsts_SInvalidVarByteArray 65126
+#define DBConsts_SFieldOutOfRange 65127
+#define DBConsts_SFieldRequired 65128
+#define DBConsts_SDataSetMissing 65129
+#define DBConsts_SInvalidCalcType 65130
+#define DBConsts_SDuplicateIndexName 65131
+#define DBConsts_SNoIndexForFields 65132
+#define DBConsts_SIndexNotFound 65133
+#define DBConsts_SDBDuplicateName 65134
+#define DBConsts_SCircularDataLink 65135
+#define XMLConst_SMissingFileName 65136
+#define XMLConst_SLine 65137
+#define ComConst_SOleError 65138
+#define ComConst_SNoMethod 65139
+#define ComConst_SVarNotObject 65140
+#define ComConst_STooManyParams 65141
+#define ComConst_SDCOMNotInstalled 65142
+#define DBConsts_SInvalidFieldSize 65143
+#define DBConsts_SInvalidFieldKind 65144
+#define DBConsts_SUnknownFieldType 65145
+#define DBConsts_SFieldNameMissing 65146
+#define DBConsts_SDuplicateFieldName 65147
+#define DBConsts_SFieldNotFound 65148
+#define DBConsts_SFieldAccessError 65149
+#define DBConsts_SFieldValueError 65150
+#define DBConsts_SFieldRangeError 65151
+#define XMLConst_SNoMatchingDOMVendor 65152
+#define XMLConst_SNoDOMNodeEx 65153
+#define XMLConst_SDOMNotSupported 65154
+#define XMLConst_SNodeExpected 65155
+#define XMLConst_SMSDOMNotInstalled 65156
+#define XMLConst_SNotActive 65157
+#define XMLConst_SNodeNotFound 65158
+#define XMLConst_SMissingNode 65159
+#define XMLConst_SNoAttributes 65160
+#define XMLConst_SInvalidNodeType 65161
+#define XMLConst_SMismatchedRegItems 65162
+#define XMLConst_SNotSingleTextNode 65163
+#define XMLConst_SNoDOMParseOptions 65164
+#define XMLConst_SMissingItemTag 65165
+#define XMLConst_SNodeReadOnly 65166
+#define XMLConst_SNoRefresh 65167
 #define ComStrs_sTabFailSetObject 65168
 #define ComStrs_sTabMustBeMultiLine 65169
 #define ComStrs_sInvalidLevel 65170
@@ -103,7 +103,7 @@
 #define ComStrs_sFailSetCalMaxSelRange 65180
 #define ComStrs_sFailSetCalMinMaxRange 65181
 #define ComStrs_sFailsetCalSelRange 65182
-#define ComConst_SOleError 65183
+#define XMLConst_SDuplicateRegistration 65183
 #define Consts_SNameMenu 65184
 #define Consts_SNameMenuBar 65185
 #define Consts_SNameMenuHighlight 65186
@@ -458,12 +458,6 @@
 #define SysConst_SZeroDivide 65535
 STRINGTABLE
 BEGIN
-	DBConsts_SParameterNotFound,	"Parameter '%s' not found"
-	DBConsts_SInvalidVersion,	"Unable to load bind parameters"
-	DBConsts_SBadFieldType,	"Field '%s' is of an unsupported type"
-	DBConsts_SProviderSQLNotSupported,	"SQL not supported"
-	DBConsts_SProviderExecuteNotSupported,	"Execute not supported"
-	DBConsts_SDataSetUnidirectional,	"Operation not allowed on a unidirectional dataset"
 	DBConsts_SUnassignedVar,	"Unassigned variant value"
 	DBConsts_SRecordNotFound,	"Record not found"
 	DBConsts_SBcdOverflow,	"BCD overflow"
@@ -471,15 +465,15 @@ BEGIN
 	DBConsts_SInvalidFormatType,	"Invalid format type for BCD"
 	DBConsts_SCouldNotParseTimeStamp,	"Could not parse SQL TimeStamp string"
 	DBConsts_SInvalidSqlTimeStamp,	"Invalid SQL date/time values"
+	OleConst_SBadPropValue,	"'%s' is not a valid property value"
+	OleConst_SCannotActivate,	"OLE control activation failed"
+	OleConst_SNoWindowHandle,	"Could not obtain OLE control window handle"
+	OleConst_SInvalidLicense,	"License information for %s is invalid"
+	OleConst_SNotLicensed,	"License information for %s not found. You cannot use this control in design mode"
+	OleConst_sNoRunningObject,	"Unable to retrieve a pointer to a running object registered with OLE for %s/%s"
 	JConsts_sChangeJPGSize,	"Cannot change the size of a JPEG image"
 	JConsts_sJPEGError,	"JPEG error #%d"
 	JConsts_sJPEGImageFile,	"JPEG Image File"
-	DBConsts_SInvalidCalcType,	"Field '%s' cannot be a calculated or lookup field"
-	DBConsts_SDuplicateIndexName,	"Duplicate index name '%s'"
-	DBConsts_SNoIndexForFields,	"No index for fields '%s'"
-	DBConsts_SIndexNotFound,	"Index '%s' not found"
-	DBConsts_SDBDuplicateName,	"Duplicate name '%s' in %s"
-	DBConsts_SCircularDataLink,	"Circular datalinks are not allowed"
 	DBConsts_SLookupInfoError,	"Lookup information for field '%s' is incomplete"
 	DBConsts_SDataSourceChange,	"DataSource cannot be changed"
 	DBConsts_SDataSetOpen,	"Cannot perform this operation on an open dataset"
@@ -490,12 +484,12 @@ BEGIN
 	DBConsts_SNestedDataSetClass,	"Nested dataset must inherit from %s"
 	DBConsts_STextFalse,	"False"
 	DBConsts_STextTrue,	"True"
-	DBConsts_SFieldNameMissing,	"Field name missing"
-	DBConsts_SDuplicateFieldName,	"Duplicate field name '%s'"
-	DBConsts_SFieldNotFound,	"Field '%s' not found"
-	DBConsts_SFieldAccessError,	"Cannot access field '%s' as type %s"
-	DBConsts_SFieldValueError,	"Invalid value for field '%s'"
-	DBConsts_SFieldRangeError,	"%g is not a valid value for field '%s'. The allowed range is %g to %g"
+	DBConsts_SParameterNotFound,	"Parameter '%s' not found"
+	DBConsts_SInvalidVersion,	"Unable to load bind parameters"
+	DBConsts_SBadFieldType,	"Field '%s' is of an unsupported type"
+	DBConsts_SProviderSQLNotSupported,	"SQL not supported"
+	DBConsts_SProviderExecuteNotSupported,	"Execute not supported"
+	DBConsts_SDataSetUnidirectional,	"Operation not allowed on a unidirectional dataset"
 	DBConsts_SBcdFieldRangeError,	"%s is not a valid value for field '%s'. The allowed range is %s to %s"
 	DBConsts_SInvalidIntegerValue,	"'%s' is not a valid integer value for field '%s'"
 	DBConsts_SInvalidBoolValue,	"'%s' is not a valid boolean value for field '%s'"
@@ -506,6 +500,33 @@ BEGIN
 	DBConsts_SFieldOutOfRange,	"Value of field '%s' is out of range"
 	DBConsts_SFieldRequired,	"Field '%s' must have a value"
 	DBConsts_SDataSetMissing,	"Field '%s' has no dataset"
+	DBConsts_SInvalidCalcType,	"Field '%s' cannot be a calculated or lookup field"
+	DBConsts_SDuplicateIndexName,	"Duplicate index name '%s'"
+	DBConsts_SNoIndexForFields,	"No index for fields '%s'"
+	DBConsts_SIndexNotFound,	"Index '%s' not found"
+	DBConsts_SDBDuplicateName,	"Duplicate name '%s' in %s"
+	DBConsts_SCircularDataLink,	"Circular datalinks are not allowed"
+	XMLConst_SMissingFileName,	"FileName cannot be blank"
+	XMLConst_SLine,	"Line"
+	ComConst_SOleError,	"OLE error %.8x"
+	ComConst_SNoMethod,	"Method '%s' not supported by automation object"
+	ComConst_SVarNotObject,	"Variant does not reference an automation object"
+	ComConst_STooManyParams,	"Dispatch methods do not support more than 64 parameters"
+	ComConst_SDCOMNotInstalled,	"DCOM not installed"
+	DBConsts_SInvalidFieldSize,	"Invalid field size"
+	DBConsts_SInvalidFieldKind,	"Invalid FieldKind"
+	DBConsts_SUnknownFieldType,	"Field '%s' is of an unknown type"
+	DBConsts_SFieldNameMissing,	"Field name missing"
+	DBConsts_SDuplicateFieldName,	"Duplicate field name '%s'"
+	DBConsts_SFieldNotFound,	"Field '%s' not found"
+	DBConsts_SFieldAccessError,	"Cannot access field '%s' as type %s"
+	DBConsts_SFieldValueError,	"Invalid value for field '%s'"
+	DBConsts_SFieldRangeError,	"%g is not a valid value for field '%s'. The allowed range is %g to %g"
+	XMLConst_SNoMatchingDOMVendor,	"No matching DOM Vendor: \"%s\""
+	XMLConst_SNoDOMNodeEx,	"Selected DOM Vendor does not support this property or method"
+	XMLConst_SDOMNotSupported,	"Property or Method \"%s\" is not supported by DOM Vendor \"%s\""
+	XMLConst_SNodeExpected,	"Node cannot be null"
+	XMLConst_SMSDOMNotInstalled,	"Microsoft MSXML is not installed"
 	XMLConst_SNotActive,	"No active document"
 	XMLConst_SNodeNotFound,	"Node \"%s\" not found"
 	XMLConst_SMissingNode,	"IDOMNode required"
@@ -517,27 +538,6 @@ BEGIN
 	XMLConst_SMissingItemTag,	"ItemTag property is not initialized"
 	XMLConst_SNodeReadOnly,	"Node is readonly"
 	XMLConst_SNoRefresh,	"Refresh is only supported if the FileName or XML properties are set"
-	XMLConst_SMissingFileName,	"FileName cannot be blank"
-	XMLConst_SLine,	"Line"
-	DBConsts_SInvalidFieldSize,	"Invalid field size"
-	DBConsts_SInvalidFieldKind,	"Invalid FieldKind"
-	DBConsts_SUnknownFieldType,	"Field '%s' is of an unknown type"
-	ComConst_SNoMethod,	"Method '%s' not supported by automation object"
-	ComConst_SVarNotObject,	"Variant does not reference an automation object"
-	ComConst_STooManyParams,	"Dispatch methods do not support more than 64 parameters"
-	ComConst_SDCOMNotInstalled,	"DCOM not installed"
-	OleConst_SBadPropValue,	"'%s' is not a valid property value"
-	OleConst_SCannotActivate,	"OLE control activation failed"
-	OleConst_SNoWindowHandle,	"Could not obtain OLE control window handle"
-	OleConst_SInvalidLicense,	"License information for %s is invalid"
-	OleConst_SNotLicensed,	"License information for %s not found. You cannot use this control in design mode"
-	OleConst_sNoRunningObject,	"Unable to retrieve a pointer to a running object registered with OLE for %s/%s"
-	XMLConst_SDuplicateRegistration,	"\"%s\" DOMImplementation already registered"
-	XMLConst_SNoMatchingDOMVendor,	"No matching DOM Vendor: \"%s\""
-	XMLConst_SNoDOMNodeEx,	"Selected DOM Vendor does not support this property or method"
-	XMLConst_SDOMNotSupported,	"Property or Method \"%s\" is not supported by DOM Vendor \"%s\""
-	XMLConst_SNodeExpected,	"Node cannot be null"
-	XMLConst_SMSDOMNotInstalled,	"Microsoft MSXML is not installed"
 	ComStrs_sTabFailSetObject,	"Failed to set object at index %d"
 	ComStrs_sTabMustBeMultiLine,	"MultiLine must be True when TabPosition is tpLeft or tpRight"
 	ComStrs_sInvalidLevel,	"Invalid item level assignment"
@@ -553,7 +553,7 @@ BEGIN
 	ComStrs_sFailSetCalMaxSelRange,	"Failed to set maximum selection range"
 	ComStrs_sFailSetCalMinMaxRange,	"Failed to set calendar min/max range"
 	ComStrs_sFailsetCalSelRange,	"Failed to set calendar selected range"
-	ComConst_SOleError,	"OLE error %.8x"
+	XMLConst_SDuplicateRegistration,	"\"%s\" DOMImplementation already registered"
 	Consts_SNameMenu,	"Menu Background"
 	Consts_SNameMenuBar,	"Menu Bar"
 	Consts_SNameMenuHighlight,	"Menu Highlight"
@@ -910,21 +910,21 @@ END
 
 /* c:\program files (x86)\embarcadero\rad studio\7.0\lib\character.res */
 /* c:\program files (x86)\embarcadero\rad studio\7.0\lib\Controls.res */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Resources\..\Resources\gmmapres.RES */
 /* c:\program files (x86)\embarcadero\rad studio\7.0\lib\TeeResou.res */
-/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\..\Resources\gmmapres.RES */
 /* c:\program files (x86)\embarcadero\rad studio\7.0\lib\Buttons.res */
 /* c:\program files (x86)\embarcadero\rad studio\7.0\lib\SPIN.RES */
-/* UMapFrm.dfm */
-/* UMarkersFrm.dfm */
-/* UPolylinesFrm.dfm */
-/* UPolygonFrm.dfm */
-/* URectanglesFrm.dfm */
-/* UCirclesFrm.dfm */
-/* UGeoCodeFrm.dfm */
+/* UGroundOverlayFrm.dfm */
 /* UWaypointFrm.dfm */
 /* c:\program files (x86)\embarcadero\rad studio\7.0\lib\ExtDlgs.res */
 /* UDirectionsFrm.dfm */
-/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UGroundOverlayFrm.dfm */
-/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMainFrm.dfm */
+/* UGeoCodeFrm.dfm */
+/* UCirclesFrm.dfm */
+/* URectanglesFrm.dfm */
+/* UPolylinesFrm.dfm */
+/* UPolygonFrm.dfm */
+/* UMarkersFrm.dfm */
+/* UMapFrm.dfm */
+/* UMainFrm.dfm */
 /* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.res */
 /* D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.drf */

@@ -40,7 +40,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   By default, only the TWebBrowser is active.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit WebChronium incluye las clases necesarias para encapsular el acceso a un navegador.
@@ -49,7 +49,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   Por defecto, sólo está activo el TWebBrowser.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit WebControl;
 
@@ -64,11 +64,11 @@ uses
   ceflib,
   {$ENDIF}
 
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes, SysUtils;
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes, System.SysUtils;
-  {$IFEND}
+  {$ELSE}
+  Classes, SysUtils;
+  {$ENDIF}
 
 type
   {*------------------------------------------------------------------------------
@@ -499,7 +499,7 @@ begin
   Result := DefaultValue;
 
   Temp := GetStringField(FormName, FieldName, '');
-  if {$IF CompilerVersion < 22}DecimalSeparator{$ELSE}FormatSettings.DecimalSeparator{$IFEND} = ',' then
+  if {$IFDEF DELPHIXE}FormatSettings.DecimalSeparator{$ELSE}DecimalSeparator{$ENDIF} = ',' then
     Temp := StringReplace(Temp, '.', ',', [rfReplaceAll]);
   if (Temp <> '') and TryStrToFloat(Temp, Val) then
     Result := Val;

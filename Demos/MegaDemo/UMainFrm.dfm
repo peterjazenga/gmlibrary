@@ -558,6 +558,10 @@ object MainFrm: TMainFrm
         Icon.Icon.StrokeWeight = 2
         Icon.Icon.FillColor = clRed
         Icon.Icon.StrokeColor = clRed
+        CurveLine.Active = False
+        CurveLine.Horizontal = True
+        CurveLine.Multiplier = 1
+        CurveLine.Resolution = 0.160000000000000000
       end
       item
         Tag = 0
@@ -600,6 +604,10 @@ object MainFrm: TMainFrm
         Icon.Icon.StrokeWeight = 0
         Icon.Icon.FillColor = clBlack
         Icon.Icon.StrokeColor = clBlack
+        CurveLine.Active = False
+        CurveLine.Horizontal = True
+        CurveLine.Multiplier = 1
+        CurveLine.Resolution = 0.100000000000000000
       end>
     OnClick = GMMarker1Click
     OnDblClick = GMMarker1DblClick

@@ -15,14 +15,28 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.1.0
+  ES:
+    nuevo: TCurveLine -> nueva clase para hacer polilineas curvas.
+    cambio: TBasePolyline -> método AddLinePoint modificado para acelerar la
+      creación de las polilineas.
+    error: TBasePolyline -> mejorado rendimiento en métodos AddLinePoint y GetPath
+      (GC: issue 9).
+  EN:
+    new: TCurveLine -> new class to do curved polylines.
+    change: TBasePolyline -> modified AddLinePoint method to accelerate the creation
+      of polylines.
+    bug: TBasePolyline -> improved performance on GetPath and AddLinePoint methods
+      (GC: issue 9).
+
 ver 1.0.0
   ES:
-    cambio: se elimina la propiedad TCustomIconSequence.Icon para que sea
+    cambio: TCustomIconSequence -> se elimina la propiedad Icon para que sea
       definida en los hijos como TSymbol.
     nuevo: TBasePolyline -> ZoomToPoints, establece el zoom óptimo para visualizar
       la polilínea.
   EN:
-    change: TCustomIconSequence.Icon property is removed to be defined
+    change: TCustomIconSequence -> Icon property is removed to be defined
       in descendents as TSymbol.
     new: TBasePolyline -> ZoomToPoints, sets the optimal zoom to display the polyline.
 
@@ -120,24 +134,27 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolyline unit includes the base classes needed to show polylines and polygons on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolyline contiene las clases bases necesarias para mostrar polilineas y polígonos en un mapa de Google Maps mediante el componente TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMPolyline;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
+
   GMLinkedComponents, GMConstants, GMClasses;
 
 type
@@ -393,6 +410,72 @@ type
   end;
 
   {*------------------------------------------------------------------------------
+    Class to determine the curve line properties.
+    Based on Curved Line Plugin for Google Maps Api. Plugin web site http://curved_lines.overfx.net/
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Clase para determinar las propiedades de una línea curva.
+    Basado en Curved Line Plugin for Google Maps Api. Página web del plugin http://curved_lines.overfx.net/
+  -------------------------------------------------------------------------------}
+  TCurveLine = class(TPersistent)
+  private
+    {*------------------------------------------------------------------------------
+      For horizontal or vertical lines.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Para lineas horizontales o verticales.
+    -------------------------------------------------------------------------------}
+    FHorizontal: Boolean;
+    {*------------------------------------------------------------------------------
+      Number multiplying the curved line roundness.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Multiplicador para la línea curva.
+    -------------------------------------------------------------------------------}
+    FMultiplier: Integer;
+    {*------------------------------------------------------------------------------
+      Activate curve line. If active, only will be consider the incial and final point of path.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Activar línea curva. Si se activa, sólo se tendrán en cuenta los puntos inicial y final del path.
+    -------------------------------------------------------------------------------}
+    FActive: Boolean;
+    {*------------------------------------------------------------------------------
+      Number to define how much points there will be in a curved line. For example 0.1 means there will be a point every 10% of the width of the line, 0.05 means there will be a point every 5% of the width of the line.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Numero para definir cuántos puntos habrá en la línea curva. Por ejemplo, 0.1 significa que habrá un punto cada 10% a lo largo de la línea, 0.05 significa que habrá un punto cada 5% a lo largo de la línea.
+    -------------------------------------------------------------------------------}
+    FResolution: Real;
+    {*------------------------------------------------------------------------------
+      Event fired when a property change.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Evento disparado cuando cambia alguna propiedad.
+    -------------------------------------------------------------------------------}
+    FOnChange: TNotifyEvent;
+    procedure SetActive(const Value: Boolean);
+    procedure SetHorizontal(const Value: Boolean);
+    procedure SetMultiplier(const Value: Integer);
+    procedure SetResolution(const Value: Real);
+  public
+    {*------------------------------------------------------------------------------
+      Constructor class
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase
+    -------------------------------------------------------------------------------}
+    constructor Create; virtual;
+
+    property OnChange: TNotifyEvent read FOnChange write FOnChange;
+  published
+    property Active: Boolean read FActive write SetActive;
+    property Horizontal: Boolean read FHorizontal write SetHorizontal;
+    property Multiplier: Integer read FMultiplier write SetMultiplier;
+    property Resolution: Real read FResolution write SetResolution;
+  end;
+
+  {*------------------------------------------------------------------------------
     Base class for polylines and polygons.
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
@@ -456,6 +539,8 @@ type
       Si se establece a true, cada vez que se modifique el recorrido en el mapa, se actualizará el array de LinePoints.
     -------------------------------------------------------------------------------}
     FAutoUpdatePath: Boolean;
+
+    FIsUpdating: Boolean;
 
    { TInterfaced Persistent }
     FOwnerInterface: IInterface;
@@ -621,13 +706,7 @@ type
       @param Add Si es true, se añaden los puntos resultantes de la decodificación a los actuales. Si es false (por defecto), antes de cargar los nuevos puntos resultantes de la decodificación, se borrarán los puntos actuales.
     -------------------------------------------------------------------------------}
     procedure DecodePath(EncodedPath: string; Add: Boolean = False);
-    {*------------------------------------------------------------------------------
-      Center the map on the first polyline point.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Centra el mapa en el primer punto de la polilinea.
-    -------------------------------------------------------------------------------}
-    procedure CenterMapTo;
+    procedure CenterMapTo; override;
     {*------------------------------------------------------------------------------
       Get path changes.
     -------------------------------------------------------------------------------}
@@ -953,11 +1032,12 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
+
   Lang, GMFunctions;
 
 { TCustomIconSequence }
@@ -1125,9 +1205,12 @@ end;
 
 function TBasePolyline.AddLinePoint(Lat, Lng: Real): TLinePoint;
 begin
+  FIsUpdating := True;
   Result := LinePoints.Add;
   Result.Lat := Lat;
   Result.Lng := Lng;
+  FIsUpdating := False;
+  ChangeProperties;
 end;
 
 procedure TBasePolyline.Assign(Source: TPersistent);
@@ -1167,6 +1250,8 @@ end;
 
 procedure TBasePolyline.CenterMapTo;
 begin
+  inherited;
+
   if Assigned(Collection) and (Collection is TLinkedComponents) and
      Assigned(TBasePolylines(Collection).FGMLinkedComponent) and
      Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) and
@@ -1188,6 +1273,7 @@ constructor TBasePolyline.Create(Collection: TCollection);
 begin
   inherited;
 
+  FIsUpdating := False;
   FClickable := True;
   FEditable := False;
   FGeodesic := False;
@@ -1213,10 +1299,12 @@ begin
   P := TStringList.Create;
   try
     L.Delimiter := ';';
-    {$IF CompilerVersion > 15}L.StrictDelimiter := True;{$IFEND}
-    L.DelimitedText := Points;
     P.Delimiter := '|';
-    {$IF CompilerVersion > 15}P.StrictDelimiter := True;{$IFEND}
+    {$IFDEF DELPHI2005}
+    L.StrictDelimiter := True;
+    P.StrictDelimiter := True;
+    {$ENDIF}
+    L.DelimitedText := Points;
     for i := 0 to L.Count - 1 do
     begin
       P.DelimitedText := L[i];
@@ -1265,11 +1353,11 @@ var
   L1, L2: TStringList;
   IsEqual: Boolean;
   LL: TLatLng;
-  AutoUpdate: Boolean;
 begin
   if not Assigned(Collection) or not (Collection is TBasePolylines) or
      not Assigned(TBasePolylines(Collection).FGMLinkedComponent) or
-     not Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) then
+     not Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) or
+     not FAutoUpdatePath then
     Exit;
 
   Params := Format(StrParams, [IntToStr(IdxList), IntToStr(Index)]);
@@ -1283,7 +1371,6 @@ begin
   L1 := TStringList.Create;
   L2 := TStringList.Create;
   LL := TLatLng.Create;
-  AutoUpdate := TBasePolylines(Collection).FGMLinkedComponent.AutoUpdate;
   try
     L1.Delimiter := ';';
     L2.Delimiter := '|';
@@ -1314,7 +1401,7 @@ begin
       end;
     end;
 
-    TBasePolylines(Collection).FGMLinkedComponent.AutoUpdate := False;
+    FIsUpdating := True;
     LinePoints.Clear;
     for i := 0 to L1.Count - 1 do
     begin
@@ -1323,7 +1410,7 @@ begin
       AddLinePoint(L2[0], L2[1]);
     end;
   finally
-    TBasePolylines(Collection).FGMLinkedComponent.AutoUpdate := AutoUpdate;
+    FIsUpdating := False;
     if Assigned(LL) then FreeAndNil(LL);
     if Assigned(L1) then FreeAndNil(L1);
     if Assigned(L2) then FreeAndNil(L2);
@@ -1362,6 +1449,8 @@ end;
 
 procedure TBasePolyline.LinePointChanged;
 begin
+  if FIsUpdating then Exit;
+
   ChangeProperties;
 end;
 
@@ -1597,6 +1686,57 @@ end;
 procedure TBasePolylines.SetItems(I: Integer; const Value: TBasePolyline);
 begin
   inherited SetItem(I, Value);
+end;
+
+{ TCurveLine }
+
+constructor TCurveLine.Create;
+begin
+  inherited;
+
+  FResolution := 0.1;
+  FHorizontal := True;
+  FMultiplier := 1;
+  FActive := False;
+end;
+
+procedure TCurveLine.SetActive(const Value: Boolean);
+begin
+  if Value = FActive then Exit;
+
+  FActive := Value;
+
+  if Assigned(FOnChange) then FOnChange(Self);
+end;
+
+procedure TCurveLine.SetHorizontal(const Value: Boolean);
+begin
+  if Value = FHorizontal then Exit;
+
+  FHorizontal := Value;
+
+  if Assigned(FOnChange) then FOnChange(Self);
+end;
+
+procedure TCurveLine.SetMultiplier(const Value: Integer);
+begin
+  if Value = FMultiplier then Exit;
+
+  FMultiplier := Value;
+
+  if Assigned(FOnChange) then FOnChange(Self);
+end;
+
+procedure TCurveLine.SetResolution(const Value: Real);
+begin
+  if Value = FResolution then Exit;
+
+  FResolution := Value;
+  if FResolution < 0 then FResolution := 0;
+  if FResolution > 1 then FResolution := 1;
+  FResolution := Round(FResolution * 100) / 100;
+
+  if Assigned(FOnChange) then FOnChange(Self);
 end;
 
 end.

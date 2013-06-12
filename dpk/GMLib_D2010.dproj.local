@@ -72,6 +72,7 @@
     <File Path="..\src\GMClasses.pas"/>
     <File Path="..\src\GMConstants.pas"/>
     <File Path="..\src\GMDirection.pas"/>
+    <File Path="..\src\GMEditors.pas"/>
     <File Path="..\src\GMElevation.pas"/>
     <File Path="..\src\GMFunctions.pas"/>
     <File Path="..\src\GMGeoCode.pas"/>
@@ -84,8 +85,12 @@
     <File Path="..\src\GMRectangle.pas"/>
     <File Path="..\src\Lang.pas"/>
     <File Path="..\src\RegisterComp.pas"/>
+    <File Path="..\src\RegisterEditors.pas"/>
+    <File Path="..\src\UAboutFrm.pas"/>
+    <File Path="..\src\UAboutFrm.dfm"/>
     <File Path="..\src\WebControl.pas"/>
     <File Path="dbrtl.dcp"/>
+    <File Path="designide.dcp"/>
     <File Path="rtl.dcp"/>
     <File Path="vcl.dcp"/>
     <File Path="vclie.dcp"/>

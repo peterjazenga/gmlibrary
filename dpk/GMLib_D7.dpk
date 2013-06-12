@@ -22,7 +22,7 @@ package GMLib_D7;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DESCRIPTION 'GoogleMaps Library v1.0.0 (Copyright © Xavier Martínez - cadetill)'}
+{$DESCRIPTION 'GoogleMaps Library v1.1.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD OFF}
 
 requires
@@ -34,7 +34,9 @@ requires
   vclie,
   xmlrtl,
   dbrtl,
-  inet;
+  inet,
+  designide,
+  indy;
 
 contains
   GMCircle in '..\src\GMCircle.pas',
@@ -64,7 +66,10 @@ contains
   GMPolylineVCL in '..\src\VCL\GMPolylineVCL.pas',
   GMRectangleVCL in '..\src\VCL\GMRectangleVCL.pas',
   RegisterCompVCL in '..\src\VCL\RegisterCompVCL.pas',
-  GMGroundOverlay in '..\src\GMGroundOverlay.pas';
+  GMGroundOverlay in '..\src\GMGroundOverlay.pas',
+  UAboutFrm in '..\src\UAboutFrm.pas' {AboutFrm},
+  GMEditors in '..\src\GMEditors.pas',
+  RegisterEditors in '..\src\RegisterEditors.pas';
 
 end.
 

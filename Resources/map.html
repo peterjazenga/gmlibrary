@@ -10,6 +10,7 @@
 </style> 
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=weather,panoramio,geometry"></script> 
 <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/styledmarker/src/StyledMarker.js"></script>
+<script type="text/javascript" src="http://gmlibrary.googlecode.com/svn/trunk/Resources/curved.line-0.0.2.js"></script>
 <script language=javascript>
   document.onkeydown = function(){
     if (window.event && window.event.keyCode == 116) { 
@@ -1317,6 +1318,53 @@
      Funciones de la clase Polyline
      Functions for Polyline class
   *******************************************************************************/
+  /* PathCurvedLine => based: http://curved_lines.overfx.net */
+  function PathCurvedLine(LatStart, LngStart, LatEnd, LngEnd, Horizontal, Multiplier, Resolution) {
+    if (Horizontal == undefined) Horizontal = true;
+    
+    var LastLat = LatStart;
+    var LastLng = LngStart;
+    var PartLat;
+    var PartLng;
+    var Points = new Array();
+    var PointsOffset = new Array();
+    
+    for (point = 0; point <= 1; point += Resolution) {
+      Points.push(point);
+      offset = (0.6 * Math.sin((Math.PI * point / 1)));
+      PointsOffset.push(offset);
+    }
+    		
+    var OffsetMultiplier = 0;
+    
+    if (Horizontal == 1) var OffsetLenght = (LngEnd - LngStart) * 0.1;
+    else var OffsetLenght = (LatEnd - LatStart) * 0.1;
+    		 
+    var LatLngs = new Array();
+    LatLngs.push(new google.maps.LatLng(LatStart, LngStart));
+    
+    for (var i = 0; i < Points.length; i++) {
+      if (i == 4) OffsetMultiplier = 1.5 * Multiplier;
+      if (i >= 5) OffsetMultiplier = (OffsetLenght * PointsOffset[i]) * Multiplier;
+      else OffsetMultiplier = (OffsetLenght * PointsOffset[i]) * Multiplier;
+      
+      if (Horizontal == 1) {
+        PartLat = (LatStart + ((LatEnd - LatStart) * Points[i])) + OffsetMultiplier;
+        PartLng = (LngStart + ((LngEnd - LngStart) * Points[i]));
+      } 
+      else {
+        PartLat = (LatStart + ((LatEnd - LatStart) * Points[i]));
+        PartLng = (LngStart + ((LngEnd - LngStart) * Points[i])) + OffsetMultiplier;
+      }
+      
+      LatLngs.push(new google.maps.LatLng(PartLat, PartLng));
+      LastLat = PartLat;
+      LastLng = PartLng;
+    }
+	
+	return LatLngs;
+  }
+
   /* PolylineSetGeodesic */
   function PolylineSetGeodesic(Id, Geodesic, ZIndex) {
     var Idx = IndexOf(Id, ZIndex);
@@ -1338,6 +1386,7 @@
     }
   }
   
+  /* StrToSymbolPath */
   function StrToSymbolPath(SymbolPath) {
     switch (SymbolPath) {
       case "spBACKWARD_CLOSED_ARROW": return google.maps.SymbolPath.BACKWARD_CLOSED_ARROW; break;
@@ -1349,6 +1398,7 @@
     }
   }
   
+  /* DoIcon */
   function DoIcon(IconDRepeat, IconFColor, IconFOpacity, IconPath, IconSColor, 
             IconSOpacity, IconSWeight, IconOffset) {
     var Icon = null;
@@ -1464,15 +1514,15 @@
   /* función exclusiva para debug */
   function CreateAllPolylines() {
     DeleteObjects(0);
-	MakePolyline(0, 0, true, false,false,'#000000', 1  , 2, true, '41.38086599|2.12257899;41.403185|2.173725;41.414282|2.151847;41.375875|2.177757', ''         ,false, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%');
-    MakePolyline(0, 2, true, true, true, '#E00000', 1.0, 3, true, '41.580866|2.122579;41.603185|2.173725;41.614282|2.151847;41.575875|2.177757', '<p>Prova2</p>', true, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%');
+	MakePolyline(0, 0, true, false,false,'#000000', 1  , 2, true, '41.38086599|2.12257899;41.403185|2.173725;41.414282|2.151847;41.375875|2.177757', ''         ,false, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%', true, true, 5, 0.05);
+    MakePolyline(0, 1, true, true, true, '#E00000', 0.5, 3, true, '41.580866|2.122579;41.603185|2.173725;41.614282|2.151847;41.575875|2.177757', '<p>Prova2</p>', true, 0, 0, 0, true, '10%', '#FF0000', 1, 'spDASHEDLINE', '#FF0000', 1, 2, '10%', false, true, 1, 0.1);
   }
   
   /* MakePolyline */
   function MakePolyline(IdObj, ZIndex, Click, Edit, Geo, StrkColor, StrkOpac, StrkW, 
             Visible, Points, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, 
             IWPixelOffW, CloseOther, IconDRepeat, IconFColor, IconFOpacity, IconPath,
-            IconSColor, IconSOpacity, IconSWeight, IconOffset) { 
+            IconSColor, IconSOpacity, IconSWeight, IconOffset, CLActive, CLHoriz, CLMult, CLRes) { 
     if (map == null) throw new Error('map is null');
     var Idx = IndexOf(IdObj, ZIndex);
     if (Idx == -1) {
@@ -1487,20 +1537,33 @@
       Idx = linkedCompList.push(aPolyline);
       Idx--;
     }
-    if (IconPath == "spDASHEDLINE") StrkOpac = 0;
+	
+	/* getting path (normal or curved) */
+    var Path = PointsStrToLatLngArray(Points);
+    if (CLActive) Path = PathCurvedLine(Path[0].lat(), Path[0].lng(), Path[Path.length-1].lat(), Path[Path.length-1].lng(), CLHoriz, CLMult, CLRes);
+	
+    if (IconPath == "spDASHEDLINE") StrkOpac = 0;	
+	
     linkedCompList[Idx].setOptions({
-        clickable: Click,
-        editable: Edit,
-        geodesic: Geo,
         icons: DoIcon(IconDRepeat, IconFColor, IconFOpacity, IconPath, IconSColor, IconSOpacity, IconSWeight, IconOffset),
-        path: PointsStrToLatLngArray(Points),
-        strokeColor: StrkColor,
-        strokeOpacity: StrkOpac,
-        strokeWeight: StrkW,
-        visible: Visible,
+        path: Path,
         zIndex: ZIndex,
         GMLibInfoWin: InfoWindowsCreate(IdObj, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, 0, 0, CloseOther)
         });
+	if ((linkedCompList[Idx].editable != Edit) || (linkedCompList[Idx].editable == undefined))
+      linkedCompList[Idx].setEditable(Edit);
+	if ((linkedCompList[Idx].clickable != Click) || (linkedCompList[Idx].clickable == undefined))
+      linkedCompList[Idx].setOptions({clickable: Click});
+	if ((linkedCompList[Idx].geodesic != Geo) || (linkedCompList[Idx].geodesic == undefined))
+      linkedCompList[Idx].setOptions({geodesic: Geo});
+	if ((linkedCompList[Idx].strokeColor != StrkColor) || (linkedCompList[Idx].strokeColor == undefined))
+      linkedCompList[Idx].setOptions({strokeColor: StrkColor});
+	if ((linkedCompList[Idx].strokeOpacity != StrkOpac) || (linkedCompList[Idx].strokeOpacity == undefined))
+      linkedCompList[Idx].setOptions({strokeOpacity: StrkOpac});
+	if ((linkedCompList[Idx].strokeWeight != StrkW) || (linkedCompList[Idx].strokeWeight == undefined))
+      linkedCompList[Idx].setOptions({strokeWeight: StrkW});
+	if ((linkedCompList[Idx].visible != Visible) || (linkedCompList[Idx].visible == undefined))
+      linkedCompList[Idx].setVisible(Visible);
   } 
   
   /******************************************************************************
@@ -2377,6 +2440,22 @@
     if (ShowPano) panoramioLayer.setMap(map);
 
     MapsAssignEvents();
+	
+	
+	
+	
+/*
+        curved_line_generate({
+				
+            latStart: 42.68243562027229, 
+            lngStart: 23.280029421875042, 
+            latEnd: 42.488302202180364, 
+            lngEnd: 27.432861453125042,
+			multiplier: 4
+        });
+*/	
+	
+	
   } 
 </script> 
 </head> 

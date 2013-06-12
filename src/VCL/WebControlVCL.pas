@@ -38,7 +38,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   By default, only the TWebBrowser is active.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit WebControlVCL incluye las clases necesarias para encapsular el acceso a un navegador mediante el framework de la VCL.
@@ -47,7 +47,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   Por defecto, sólo está activo el TWebBrowser.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit WebControlVCL;
 
@@ -66,11 +66,11 @@ uses
   ceflib, cefvcl,
   {$ENDIF}
 
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
 
   WebControl;
 
@@ -181,18 +181,18 @@ implementation
 
 uses
   {$IFDEF WEBBROWSER}
-    {$IF CompilerVersion < 23}
-    ActiveX, Types, Graphics, Forms, StrUtils,
-    {$ELSE}
+    {$IFDEF DELPHIXE2}
     Winapi.ActiveX, System.Types, Vcl.Graphics, Vcl.Forms, System.StrUtils,
-    {$IFEND}
+    {$ELSE}
+    ActiveX, Types, Graphics, Forms, StrUtils,
+    {$ENDIF}
   {$ENDIF}
 
-  {$IF CompilerVersion < 23}
-  jpeg, DateUtils;
-  {$ELSE}
+  {$IFDEF DELPHIXE2}
   Vcl.Imaging.jpeg, System.DateUtils;
-  {$IFEND}
+  {$ELSE}
+  jpeg, DateUtils;
+  {$ENDIF}
 
 { TWebControl }
 
@@ -206,11 +206,11 @@ procedure TWebControl.SaveToJPGFile(FileName: TFileName);
 var
   viewObject: IViewObject;
   r: TRect;
-  {$IF CompilerVersion < 23}
-  bitmap: Graphics.TBitmap;
-  {$ELSE}
+  {$IFDEF DELPHIXE2}
   bitmap: Vcl.Graphics.TBitmap;
-  {$IFEND}
+  {$ELSE}
+  bitmap: Graphics.TBitmap;
+  {$ENDIF}
 begin
   if not Assigned(FWebBrowser) then
     raise Exception.Create('WebBrowser not assigned');
@@ -220,22 +220,22 @@ begin
   TWebBrowser(FWebBrowser).Document.QueryInterface(IViewObject, viewObject);
   if Assigned(viewObject) then
   try
-    {$IF CompilerVersion < 23}
-    bitmap := Graphics.TBitmap.Create;
-    {$ELSE}
+    {$IFDEF DELPHIXE2}
     bitmap := Vcl.Graphics.TBitmap.Create;
-    {$IFEND}
+    {$ELSE}
+    bitmap := Graphics.TBitmap.Create;
+    {$ENDIF}
     try
       r := Rect(0, 0, TWebBrowser(FWebBrowser).Width, TWebBrowser(FWebBrowser).Height);
 
       bitmap.Height := TWebBrowser(FWebBrowser).Height;
       bitmap.Width := TWebBrowser(FWebBrowser).Width;
 
-      {$IF CompilerVersion < 23}
-      viewObject.Draw(DVASPECT_CONTENT, 1, nil, nil, Application.Handle, bitmap.Canvas.Handle, @r, nil, nil, 0);
-      {$ELSE}
+      {$IFDEF DELPHIXE2}
       viewObject.Draw(DVASPECT_CONTENT, 1, nil, nil, Vcl.Forms.Application.Handle, bitmap.Canvas.Handle, @r, nil, nil, 0);
-      {$IFEND}
+      {$ELSE}
+      viewObject.Draw(DVASPECT_CONTENT, 1, nil, nil, Application.Handle, bitmap.Canvas.Handle, @r, nil, nil, 0);
+      {$ENDIF}
 
       with TJPEGImage.Create do
       try
@@ -314,7 +314,11 @@ begin
   if Field.tagName = 'TEXTAREA' then Result := (Field as IHTMLTextAreaElement).value;
 
   if Pos('&nbsp;', Result) > 0 then
+    {$IFDEF DELPHI2005}
     Result := ReplaceText(Result, '&nbsp;', ' ');
+    {$ELSE}
+    Result := StringReplace(Result, '&nbsp;', ' ', [rfReplaceAll, rfIgnoreCase]);
+    {$ENDIF}
 end;
 
 function TWebControl.WebFormGet(const FormNumber: Integer): IHTMLFormElement;
@@ -550,7 +554,11 @@ begin
   Result := Temp;
 
   if Pos('&nbsp;', Result) > 0 then
+    {$IFDEF DELPHI2005}
     Result := ReplaceText(Result, '&nbsp;', ' ');
+    {$ELSE}
+    Result := StringReplace(Result, '&nbsp;', ' ', [rfReplaceAll, rfIgnoreCase]);
+    {$ENDIF}
 end;
 
 procedure TWebChromium.WebFormNames;

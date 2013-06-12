@@ -24,7 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_Description>GoogleMaps Library v0.1.9 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+			<DCC_Description>GoogleMaps Library v1.1.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
 			<DCC_UnitSearchPath>..\lib\DXE;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<GenPackage>true</GenPackage>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
@@ -57,12 +57,14 @@
 			<DelphiCompile Include="GMLib_DXE.dpk">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="..\Resources\gmlibres.RES"/>
 			<DCCReference Include="rtl.dcp"/>
 			<DCCReference Include="vclimg.dcp"/>
 			<DCCReference Include="vcl.dcp"/>
 			<DCCReference Include="xmlrtl.dcp"/>
 			<DCCReference Include="vclie.dcp"/>
 			<DCCReference Include="dbrtl.dcp"/>
+			<DCCReference Include="designide.dcp"/>
 			<DCCReference Include="..\src\GMCircle.pas"/>
 			<DCCReference Include="..\src\GMClasses.pas"/>
 			<DCCReference Include="..\src\GMConstants.pas"/>
@@ -91,6 +93,11 @@
 			<DCCReference Include="..\src\VCL\GMRectangleVCL.pas"/>
 			<DCCReference Include="..\src\VCL\RegisterCompVCL.pas"/>
 			<DCCReference Include="..\src\GMGroundOverlay.pas"/>
+			<DCCReference Include="..\src\UAboutFrm.pas">
+				<Form>AboutFrm</Form>
+			</DCCReference>
+			<DCCReference Include="..\src\GMEditors.pas"/>
+			<DCCReference Include="..\src\RegisterEditors.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -104,7 +111,7 @@
 			</BuildConfiguration>
 		</ItemGroup>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
-		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\8.0\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\8.0\UserTools.proj"/>
 		<ProjectExtensions>
 			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
 			<Borland.ProjectType>Package</Borland.ProjectType>
@@ -117,9 +124,9 @@
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
 						<VersionInfo Name="MajorVer">0</VersionInfo>
-						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="MinorVer">1</VersionInfo>
 						<VersionInfo Name="Release">1</VersionInfo>
-						<VersionInfo Name="Build">9</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -129,15 +136,15 @@
 						<VersionInfo Name="CodePage">1252</VersionInfo>
 					</VersionInfo>
 					<VersionInfoKeys>
-						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="CompanyName">www.cadetill.com</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">0.0.1.9</VersionInfoKeys>
-						<VersionInfoKeys Name="InternalName"/>
-						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="FileVersion">0.1.1.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName">GMLib</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright">Copyright © Xavier Martínez - cadetill</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
-						<VersionInfoKeys Name="ProductName">Google Maps Library</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">0.0.1.9</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductName">GoogleMaps Library</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">0.1.1.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Excluded_Packages>

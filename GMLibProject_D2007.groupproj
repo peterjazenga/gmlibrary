@@ -4,14 +4,13 @@
   </PropertyGroup>
   <ItemGroup />
   <ItemGroup>
-    <Projects Include="dpk\GMLibEdit_D2007.dproj" />
     <Projects Include="dpk\GMLib_D2007.dproj" />
   </ItemGroup>
   <ProjectExtensions>
     <Borland.Personality>Default.Personality</Borland.Personality>
     <Borland.ProjectType />
     <BorlandProject>
-  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
   </ProjectExtensions>
   <Target Name="GMLib_D2007">
     <MSBuild Projects="dpk\GMLib_D2007.dproj" Targets="" />
@@ -22,23 +21,14 @@
   <Target Name="GMLib_D2007:Make">
     <MSBuild Projects="dpk\GMLib_D2007.dproj" Targets="Make" />
   </Target>
-  <Target Name="GMLibEdit_D2007">
-    <MSBuild Projects="dpk\GMLibEdit_D2007.dproj" Targets="" />
-  </Target>
-  <Target Name="GMLibEdit_D2007:Clean">
-    <MSBuild Projects="dpk\GMLibEdit_D2007.dproj" Targets="Clean" />
-  </Target>
-  <Target Name="GMLibEdit_D2007:Make">
-    <MSBuild Projects="dpk\GMLibEdit_D2007.dproj" Targets="Make" />
-  </Target>
   <Target Name="Build">
-    <CallTarget Targets="GMLib_D2007;GMLibEdit_D2007" />
+    <CallTarget Targets="GMLib_D2007" />
   </Target>
   <Target Name="Clean">
-    <CallTarget Targets="GMLib_D2007:Clean;GMLibEdit_D2007:Clean" />
+    <CallTarget Targets="GMLib_D2007:Clean" />
   </Target>
   <Target Name="Make">
-    <CallTarget Targets="GMLib_D2007:Make;GMLibEdit_D2007:Make" />
+    <CallTarget Targets="GMLib_D2007:Make" />
   </Target>
   <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
 </Project>

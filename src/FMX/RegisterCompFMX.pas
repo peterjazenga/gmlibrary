@@ -33,18 +33,19 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the FireMonkey components.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes FireMonkey.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit RegisterCompFMX;
 
 {.$DEFINE CHROMIUMFMX}
 {$I ..\gmlib.inc}
+{$R ..\Resources\gmlibres.res}
 
 interface
 
@@ -82,9 +83,8 @@ begin
   RegisterComponents('GoogleMaps', [TGMMapChr, TGMMarker,
                                     TGMPolyline, TGMPolygon,
                                     TGMRectangle, TGMCircle,
-                                    TGMDirection, TGMElevation {,
-
-                                    TGMGeoCode}]);
+                                    TGMDirection, TGMElevation
+                                   ]);
 end;
 
 {$ENDIF}

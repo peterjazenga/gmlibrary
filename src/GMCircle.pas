@@ -76,24 +76,26 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMCircle unit includes the base classes needed to show circles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMCircle contiene las clases bases necesarias para mostrar círculos en un mapa de Google Maps mediante el componente TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMCircle;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
 
   GMLinkedComponents, GMClasses, GMConstants;
 
@@ -327,13 +329,7 @@ type
 
     procedure Assign(Source: TPersistent); override;
 
-    {*------------------------------------------------------------------------------
-      Center the map on the circle.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Centra el mapa en el círculo.
-    -------------------------------------------------------------------------------}
-    procedure CenterMapTo;
+    procedure CenterMapTo; override;
     {*------------------------------------------------------------------------------
       Gets the LatLngBounds of this circle.
       @param LLB The LatLngBounds.
@@ -596,11 +592,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
 
   Lang, GMFunctions;
 
@@ -769,6 +765,8 @@ end;
 
 procedure TCustomCircle.CenterMapTo;
 begin
+  inherited;
+
   if Assigned(Collection) and (Collection is TCustomCircles) and
      Assigned(TCustomCircles(Collection).FGMLinkedComponent) and
      Assigned(TCustomCircles(Collection).FGMLinkedComponent.Map) then

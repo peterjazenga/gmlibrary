@@ -34,7 +34,7 @@ web  http://www.cadetill.com
   HOW TO USE: put the component into a form, link to a browser, activate it and call DoMap method (usually when AfterPageLoaded event is fired with First parameter to True).
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMapVCL incluye las clases que gestionan el mapa especializados en un determinado navegador.
@@ -44,7 +44,7 @@ web  http://www.cadetill.com
   MODO DE USO: poner el componente en el formulario, linkarlo a un navegador, activarlo y ejecutar el método DoMap (usualmente en el evento AfterPageLoaded cuando el parámetro First es True).
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMMapVCL;
 
@@ -57,22 +57,22 @@ interface
 uses
   {$IFDEF WEBBROWSER}
   SHDocVw,
-    {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-    ExtCtrls,
-    {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+    {$IFDEF DELPHIXE2}
     Vcl.ExtCtrls,
-    {$IFEND}
+    {$ELSE}
+    ExtCtrls,
+    {$ENDIF}
   {$ENDIF}
 
   {$IFDEF CHROMIUM}
   cefvcl, ceflib, cefgui,
   {$ENDIF}
 
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils, Classes, Dialogs, Graphics,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils, System.Classes, Vcl.Dialogs, Vcl.Graphics,
-  {$IFEND}
+  {$ELSE}
+  SysUtils, Classes, Dialogs, Graphics,
+  {$ENDIF}
 
   GMMap, GMFunctionsVCL;
 
@@ -157,15 +157,7 @@ type
 
     // ES: eventos del TWebBrowser para el control de la carga de la página
     // EN: events of TWebBrowser to control the load page
-    {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-    procedure BeforeNavigate2(ASender: TObject; const pDisp: IDispatch;
-      var URL, Flags, TargetFrameName, PostData, Headers: OleVariant;
-      var Cancel: WordBool);
-    procedure DocumentComplete(ASender: TObject; const pDisp: IDispatch;
-      var URL: OleVariant);
-    procedure NavigateComplete2(ASender: TObject; const pDisp: IDispatch;
-      var URL: OleVariant);
-    {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+    {$IFDEF DELPHIXE2}
     procedure BeforeNavigate2(ASender: TObject; const pDisp: IDispatch;
       const URL, Flags, TargetFrameName, PostData, Headers: OleVariant;
       var Cancel: WordBool);
@@ -173,7 +165,15 @@ type
       const URL: OleVariant);
     procedure NavigateComplete2(ASender: TObject; const pDisp: IDispatch;
       const URL: OleVariant);
-    {$IFEND}
+    {$ELSE}
+    procedure BeforeNavigate2(ASender: TObject; const pDisp: IDispatch;
+      var URL, Flags, TargetFrameName, PostData, Headers: OleVariant;
+      var Cancel: WordBool);
+    procedure DocumentComplete(ASender: TObject; const pDisp: IDispatch;
+      var URL: OleVariant);
+    procedure NavigateComplete2(ASender: TObject; const pDisp: IDispatch;
+      var URL: OleVariant);
+    {$ENDIF}
     function GetWebBrowser: TWebBrowser;
     procedure SetWebBrowser(const Value: TWebBrowser);
   protected
@@ -244,18 +244,18 @@ implementation
 uses
   {$IFDEF WEBBROWSER}
     MSHTML,
-    {$IF CompilerVersion < 23}
-    ActiveX,
-    {$ELSE}
+    {$IFDEF DELPHIXE2}
     Winapi.ActiveX,
-    {$IFEND}
+    {$ELSE}
+    ActiveX,
+    {$ENDIF}
   {$ENDIF}
 
-  {$IF CompilerVersion < 23}
-  Forms, DateUtils,
-  {$ELSE}
+  {$IFDEF DELPHIXE2}
   Vcl.Forms, System.DateUtils,
-  {$IFEND}
+  {$ELSE}
+  Forms, DateUtils,
+  {$ENDIF}
 
   Lang, WebControlVCL;
 
@@ -272,15 +272,15 @@ begin
   end;
 end;
 
-{$IF CompilerVersion < 23}
-procedure TGMMap.BeforeNavigate2(ASender: TObject; const pDisp: IDispatch;
-  var URL, Flags, TargetFrameName, PostData, Headers: OleVariant;
-  var Cancel: WordBool);
-{$ELSE}
+{$IFDEF DELPHIXE2}
 procedure TGMMap.BeforeNavigate2(ASender: TObject; const pDisp: IDispatch;
   const URL, Flags, TargetFrameName, PostData, Headers: OleVariant;
   var Cancel: WordBool);
-{$IFEND}
+{$ELSE}
+procedure TGMMap.BeforeNavigate2(ASender: TObject; const pDisp: IDispatch;
+  var URL, Flags, TargetFrameName, PostData, Headers: OleVariant;
+  var Cancel: WordBool);
+{$ENDIF}
 begin
   if Assigned(OldBeforeNavigate2) then OldBeforeNavigate2(ASender, pDisp, URL, Flags, TargetFrameName, PostData, Headers, Cancel);
 
@@ -315,13 +315,13 @@ begin
   inherited;
 end;
 
-{$IF CompilerVersion < 23}
-procedure TGMMap.DocumentComplete(ASender: TObject; const pDisp: IDispatch;
-  var URL: OleVariant);
-{$ELSE}
+{$IFDEF DELPHIXE2}
 procedure TGMMap.DocumentComplete(ASender: TObject; const pDisp: IDispatch;
   const URL: OleVariant);
-{$IFEND}
+{$ELSE}
+procedure TGMMap.DocumentComplete(ASender: TObject; const pDisp: IDispatch;
+  var URL: OleVariant);
+{$ENDIF}
 begin
   if Assigned(OldDocumentComplete) then OldDocumentComplete(ASender, pDisp, URL);
 
@@ -399,13 +399,13 @@ begin
   TWebBrowser(FWebBrowser).Navigate('about:blank');
 end;
 
-{$IF CompilerVersion < 23}
-procedure TGMMap.NavigateComplete2(ASender: TObject; const pDisp: IDispatch;
-  var URL: OleVariant);
-{$ELSE}
+{$IFDEF DELPHIXE2}
 procedure TGMMap.NavigateComplete2(ASender: TObject; const pDisp: IDispatch;
   const URL: OleVariant);
-{$IFEND}
+{$ELSE}
+procedure TGMMap.NavigateComplete2(ASender: TObject; const pDisp: IDispatch;
+  var URL: OleVariant);
+{$ENDIF}
 begin
   if Assigned(OldNavigateComplete2) then OldNavigateComplete2(ASender, pDisp, URL);
 

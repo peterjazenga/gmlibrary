@@ -36,7 +36,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   By default, only the TWebBrowser is active.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit WebControlFMX incluye las clases necesarias para encapsular el acceso a un navegador mediante el framework de la FMX.
@@ -45,7 +45,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   Por defecto, sólo está activo el TWebBrowser.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit WebControlFMX;
 
@@ -54,8 +54,7 @@ unit WebControlFMX;
 
 interface
 
-{$IF CompilerVersion > 22}  // ES: si la versión es superior a la XE - EN: if upper than XE version
-  {$IFDEF CHROMIUMFMX}
+{$IFDEF CHROMIUMFMX}
 uses
   ceffmx,
   System.SysUtils,
@@ -105,13 +104,11 @@ type
     -------------------------------------------------------------------------------}
     procedure SetBrowser(Browser: TChromiumFMX); reintroduce; virtual;
   end;
-  {$ENDIF}
-{$IFEND}
+{$ENDIF}
 
 implementation
 
-{$IF CompilerVersion > 22}  // ES: si la versión es superior a la XE - EN: if upper than XE version
-  {$IFDEF CHROMIUMFMX}
+{$IFDEF CHROMIUMFMX}
 uses
   ceflib,
   FMX.Types, FMX.Forms;
@@ -322,7 +319,6 @@ procedure TWebChromiumFMX.WebPrintWithoutDialog;
 begin
   raise Exception.Create('This method is not implemented for this class. Call WebPrintWithDialog in his stead.');
 end;
-  {$ENDIF}
-{$IFEND}
+{$ENDIF}
 
 end.

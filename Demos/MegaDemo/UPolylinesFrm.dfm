@@ -104,11 +104,15 @@ object PolylinesFrm: TPolylinesFrm
     Top = 0
     Width = 372
     Height = 393
-    ActivePage = tsGeneral
+    ActivePage = tsCurveLine
     Align = alClient
     TabOrder = 1
     object tsGeneral: TTabSheet
       Caption = 'General'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label36: TLabel
         Left = 48
         Top = 152
@@ -222,6 +226,10 @@ object PolylinesFrm: TPolylinesFrm
     object tsLinePoints: TTabSheet
       Caption = 'Line Points'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel
         Left = 16
         Top = 14
@@ -319,6 +327,10 @@ object PolylinesFrm: TPolylinesFrm
     object tsInfoWin: TTabSheet
       Caption = 'InfoWin'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label33: TLabel
         Left = 40
         Top = 112
@@ -418,6 +430,10 @@ object PolylinesFrm: TPolylinesFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cbOnClick: TCheckBox
         Left = 32
         Top = 24
@@ -620,6 +636,10 @@ object PolylinesFrm: TPolylinesFrm
     object tsIcon: TTabSheet
       Caption = 'Icon'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox1: TGroupBox
         Left = 3
         Top = 38
@@ -830,6 +850,10 @@ object PolylinesFrm: TPolylinesFrm
     object tsElev: TTabSheet
       Caption = 'Elevation'
       ImageIndex = 5
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Chart1: TChart
         Left = 0
         Top = 153
@@ -860,6 +884,7 @@ object PolylinesFrm: TPolylinesFrm
           Marks.Shadow.Color = 8684676
           Marks.Shadow.Smooth = False
           Marks.Shadow.Visible = False
+          Marks.ShapeStyle = fosRoundRectangle
           Marks.Symbol.Shadow.Smooth = False
           Marks.Symbol.Shadow.Visible = False
           Marks.Visible = False
@@ -950,6 +975,10 @@ object PolylinesFrm: TPolylinesFrm
     object tsGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label14: TLabel
         Left = 29
         Top = 120
@@ -1062,6 +1091,62 @@ object PolylinesFrm: TPolylinesFrm
         Caption = 'Compute Area'
         TabOrder = 8
         OnClick = bComAreaClick
+      end
+    end
+    object tsCurveLine: TTabSheet
+      Caption = 'Curve Line'
+      ImageIndex = 7
+      object Label10: TLabel
+        Left = 60
+        Top = 117
+        Width = 50
+        Height = 13
+        Caption = 'Resolution'
+      end
+      object Label11: TLabel
+        Left = 60
+        Top = 165
+        Width = 42
+        Height = 13
+        Caption = 'Multiplier'
+      end
+      object cbCLActive: TCheckBox
+        Left = 40
+        Top = 48
+        Width = 97
+        Height = 17
+        Caption = 'Active'
+        TabOrder = 0
+        OnClick = cbCLActiveClick
+      end
+      object cbCLHoriz: TCheckBox
+        Left = 40
+        Top = 79
+        Width = 97
+        Height = 17
+        Caption = 'Horizontal'
+        TabOrder = 1
+        OnClick = cbCLHorizClick
+      end
+      object eCLRes: TEdit
+        Left = 121
+        Top = 114
+        Width = 57
+        Height = 21
+        TabOrder = 2
+        Text = '0'
+        OnChange = eCLResChange
+      end
+      object eCLMulti: TSpinEdit
+        Left = 108
+        Top = 162
+        Width = 57
+        Height = 22
+        MaxValue = 50
+        MinValue = 1
+        TabOrder = 3
+        Value = 1
+        OnChange = eCLMultiChange
       end
     end
   end

@@ -88,25 +88,27 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary base classes to manage routes and show it into a Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes bases necesarias para la manipulación de rutas y mostrarlas en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMDirection;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 19}Controls,{$IFEND}
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes, Contnrs,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFNDEF DELPHI2009}Controls,{$ENDIF}
+  {$IFDEF DELPHIXE2}
   System.Classes, System.Contnrs,
-  {$IFEND}
+  {$ELSE}
+  Classes, Contnrs,
+  {$ENDIF}
   GMClasses, GMConstants, GMMap;
 
 type
@@ -1231,7 +1233,7 @@ type
       Este método devuelve Address si está informado o LatLng en caso contrario.
       @return Cadena con Adress o LatLng.
     -------------------------------------------------------------------------------}
-    function ToString: string; {$IF CompilerVersion < 19}virtual;{$ELSE}override;{$IFEND}
+    function ToString: string; {$IFDEF DELPHI2009}override;{$ELSE}virtual;{$ENDIF}
   published
     property LatLng: TLatLng read FLatLng write FLatLng;
     property Address: string read FAddress write FAddress;
@@ -2133,11 +2135,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils, DateUtils, XMLIntf, XMLDoc,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils, System.DateUtils, Xml.XMLIntf, Xml.XMLDoc,
-  {$IFEND}
+  {$ELSE}
+  SysUtils, DateUtils, XMLIntf, XMLDoc,
+  {$ENDIF}
   Lang, GMFunctions;
 
 { TCustomGMDirection }
@@ -2247,18 +2249,16 @@ var
 begin
   inherited;
 
-//  if EventType = etInfoWinCloseClick then Exit;
-
   if EventType = etDirectionsChanged then
   begin
     if High(Params) <> 1 then
       raise Exception.Create(GetTranslateText('Número de parámetros incorrecto', Map.Language));
 
-    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
-    if Params[0].VType <> vtAnsiString then
-    {$ELSE}
+    {$IFDEF DELPHI2010}
     if Params[0].VType <> vtUnicodeString then
-    {$IFEND}
+    {$ELSE}
+    if Params[0].VType <> vtAnsiString then
+    {$ENDIF}
       raise Exception.Create(GetTranslateText('Tipo de parámetro incorrecto', Map.Language));
 
     if Params[1].VType <> vtInteger then
@@ -2276,11 +2276,11 @@ begin
     if Idx = -1 then
       raise Exception.Create(GetTranslateText('Valor de parámetro incorrecto', Map.Language));
 
-    {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
-    TCustomDirectionsResult(FDirectionsResult[Idx]).FXMLData.Text := String(PChar(Params[0].VAnsiString));
+    {$IFDEF DELPHI2010}
+    TCustomDirectionsResult(FDirectionsResult[Idx]).FXMLData.Text := string(PChar(Params[0].VUnicodeString));
     {$ELSE}
-    TCustomDirectionsResult(FDirectionsResult[Idx]).FXMLData.Text := String(PChar(Params[0].VUnicodeString));
-    {$IFEND}
+    TCustomDirectionsResult(FDirectionsResult[Idx]).FXMLData.Text := string(PChar(Params[0].VAnsiString));
+    {$ENDIF}
 
     if Assigned(FOnDirectionsChanged) then FOnDirectionsChanged(Self);
   end;
@@ -3621,11 +3621,11 @@ begin
   if FXMLData.Text = '' then Exit;
 
   FRoutes.Clear;
-  {$IF CompilerVersion < 21}  // ES: si la versión es inferior a la 2010 - EN: if lower than 2010 version
-  XML := LoadXMLData(AnsiToUtf8(FXMLData.Text));
-  {$ELSE}
+  {$IFDEF DELPHI2010}
   XML := LoadXMLData(FXMLData.Text);
-  {$IFEND}
+  {$ELSE}
+  XML := LoadXMLData(AnsiToUtf8(FXMLData.Text));
+  {$ENDIF}
   try
     XML.Active := True;
 

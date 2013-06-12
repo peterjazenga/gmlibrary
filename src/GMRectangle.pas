@@ -75,24 +75,27 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMRectangle unit includes the base classes needed to show rectangles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMRectangle contiene las clases bases necesarias para mostrar rectángulos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.0.0
+  @version 1.1.0
 -------------------------------------------------------------------------------}
 unit GMRectangle;
+
+{$I ..\gmlib.inc}
 
 interface
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  Classes,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.Classes,
-  {$IFEND}
+  {$ELSE}
+  Classes,
+  {$ENDIF}
+
   GMLinkedComponents, GMClasses, GMConstants;
 
 type
@@ -226,13 +229,7 @@ type
       @param LL TLatLng con el centro del rectángulo.
     -------------------------------------------------------------------------------}
     procedure GetCenter(LL: TLatLng);
-    {*------------------------------------------------------------------------------
-      Center the map on the rectangle.
-    -------------------------------------------------------------------------------}
-    {=------------------------------------------------------------------------------
-      Centra el mapa en el rectángulo.
-    -------------------------------------------------------------------------------}
-    procedure CenterMapTo;
+    procedure CenterMapTo; override;
   published
     property Bounds: TLatLngBounds read FBounds write FBounds;
     property Clickable: Boolean read FClickable write SetClickable;
@@ -478,11 +475,11 @@ type
 implementation
 
 uses
-  {$IF CompilerVersion < 23}  // ES: si la versión es inferior a la XE2 - EN: if lower than XE2 version
-  SysUtils,
-  {$ELSE}                     // ES: si la verisón es la XE2 o superior - EN: if version is XE2 or higher
+  {$IFDEF DELPHIXE2}
   System.SysUtils,
-  {$IFEND}
+  {$ELSE}
+  SysUtils,
+  {$ENDIF}
 
   Lang, GMFunctions;
 
@@ -643,6 +640,8 @@ procedure TCustomRectangle.CenterMapTo;
 var
   LL: TLatLng;
 begin
+  inherited;
+
   if Assigned(Collection) and (Collection is TCustomRectangles) and
      Assigned(TCustomRectangles(Collection).FGMLinkedComponent) and
      Assigned(TCustomRectangles(Collection).FGMLinkedComponent.Map) then
