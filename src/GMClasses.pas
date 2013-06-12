@@ -7,6 +7,12 @@ GMClasses class
 =========================================================================
 History:
 
+ver 1.1.0
+  ES:
+    nuevo: General -> compilado para XE4
+  EN:
+    new: General -> compiled to XE4
+
 ver 1.0.0
   ES:
     nuevo: (issue GC2) General -> compilado para XE

@@ -178,7 +178,7 @@ type
   TPolyline = class(TBasePolylineVCL)
   private
     {*------------------------------------------------------------------------------
-      Properties for a curve line polyline.
+      Features for a curve line polyline.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
       Propiedades para una polilínea con linea curva.

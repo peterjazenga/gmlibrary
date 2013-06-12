@@ -1318,6 +1318,24 @@
      Funciones de la clase Polyline
      Functions for Polyline class
   *******************************************************************************/
+  /* PolylineGetCenter */
+  function PolylineGetCenter(Id, ZIndex) {
+    var Idx = IndexOf(Id, ZIndex);
+    if (Idx != -1) {
+      var Path = linkedCompList[Idx].getPath();
+      if (Path.getLength() > 0) {
+        var LLB = new google.maps.LatLngBounds(Path.getAt(0), Path.getAt(0));
+        if (Path.getLength() > 1) {
+          for (var i = 1; i < Path.getLength(); i++) {
+            LLB.extend(Path.getAt(i));}
+        }
+        var LL = LLB.getCenter();
+        document.polylinedata.lat.value = LL.lat();
+        document.polylinedata.lng.value = LL.lng();
+      }
+    }
+  }
+  
   /* PathCurvedLine => based: http://curved_lines.overfx.net */
   function PathCurvedLine(LatStart, LngStart, LatEnd, LngEnd, Horizontal, Multiplier, Resolution) {
     if (Horizontal == undefined) Horizontal = true;
@@ -2490,6 +2508,7 @@
       <td align=center width=90 onClick="EncodePath('}~kvHmzrr@ba\hnc@jiu@r{Zqx~@hjp@pwEhnc@zhu@zflAbxn@fhjBvqHroaAgcnAp}gAeahAtqGkngAinc@_h|@r{Zad\y|_D}_y@swg@ysg@}llBpoZqa{@xrw@~eBaaX}{uAero@uqGadY}nr@`dYs_NquNgbjAf{l@|yh@bfc@}nr@z}q@i|i@zgz@r{ZhjFr}gApob@ff}@laIsen@dgYhdPvbIren@')">Encode</td>
 	  <td align=center onClick="GetGeocoder('c\ reial, 60, tarragona', -1, -1, 'es', -1, -1, -1, -1, 'es')">Geocode</td>
       <td align=center width=90 onClick="MakeGroundOverlay(1,'file:///D:/Docs/Dropbox/Programacio/GoogleMaps/Components/Images/mapa.png',true,1,41.31381787,2.00795937,41.41739972,2.22699927,true,0,'',false,0,0,0)">do GO</td>
+      <td align=center width=90 onClick="PolylineGetCenter(0,0)">Center poly</td>
     </tr>
   </table>
 -->
@@ -2521,6 +2540,8 @@
   *******************************************************************************-->
   <form action="#" id="polylinedata" name="polylinedata"> 
     <input type="hidden" name="path" value=""/> 
+    <input type="hidden" name="lat" value="0"/> 
+    <input type="hidden" name="lng" value="0"/> 
   </form> 
   <!--******************************************************************************
      Resultados para la clase Rectangle

@@ -776,10 +776,10 @@ type
     procedure Assign(Source: TPersistent); override;
 
     {*------------------------------------------------------------------------------
-      Center the map on the marker.
+      Center the map on the marker. Deprecated, instead use CenterMapTo.
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      Centra el mapa en el marcador.
+      Centra el mapa en el marcador. Obsoleto, en su lugar usar CenterMapTo.
     -------------------------------------------------------------------------------}
     procedure CenterMapToMarker; deprecated;
     procedure CenterMapTo; override;

@@ -22,12 +22,14 @@ ver 1.1.0
       creación de las polilineas.
     error: TBasePolyline -> mejorado rendimiento en métodos AddLinePoint y GetPath
       (GC: issue 9).
+    nuevo: TBasePolyline -> se añade el método GetCenter.
   EN:
     new: TCurveLine -> new class to do curved polylines.
     change: TBasePolyline -> modified AddLinePoint method to accelerate the creation
       of polylines.
     bug: TBasePolyline -> improved performance on GetPath and AddLinePoint methods
       (GC: issue 9).
+    new: TBasePolyline -> added GetCenter method.
 
 ver 1.0.0
   ES:
@@ -623,6 +625,15 @@ type
 
     procedure Assign(Source: TPersistent); override;
 
+    {*------------------------------------------------------------------------------
+      Returns the polyline's center.
+      @param LL TLatLng with the center.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve el centro de la polilinea.
+      @param LL TLatLng con el centro.
+    -------------------------------------------------------------------------------}
+    procedure GetCenter(LL: TLatLng);
     {*------------------------------------------------------------------------------
       Sets the optimal zoom to display the polyline.
     -------------------------------------------------------------------------------}
@@ -1249,6 +1260,8 @@ begin
 end;
 
 procedure TBasePolyline.CenterMapTo;
+var
+  LL: TLatLng;
 begin
   inherited;
 
@@ -1256,7 +1269,15 @@ begin
      Assigned(TBasePolylines(Collection).FGMLinkedComponent) and
      Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) and
      (CountLinePoints > 0) then
-    TBasePolylines(Collection).FGMLinkedComponent.Map.SetCenter(Items[0].Lat, Items[0].Lng);
+  begin
+    LL := TLatLng.Create;
+    try
+      GetCenter(LL);
+      TBasePolylines(Collection).FGMLinkedComponent.Map.SetCenter(LL);
+    finally
+      FreeAndNil(LL);
+    end;
+  end;
 end;
 
 procedure TBasePolyline.ClearLinePoints;
@@ -1331,6 +1352,29 @@ end;
 function TBasePolyline.EncodePath: string;
 begin
   Result := TGeometry.EncodePath(TBasePolylines(Collection).FGMLinkedComponent.Map, PolylineToStr);
+end;
+
+procedure TBasePolyline.GetCenter(LL: TLatLng);
+const
+  StrParams = '%s,%s';
+var
+  Params: string;
+begin
+  if not Assigned(Collection) or not (Collection is TBasePolylines) or
+     not Assigned(TBasePolylines(Collection).FGMLinkedComponent) or
+     not Assigned(TBasePolylines(Collection).FGMLinkedComponent.Map) or
+     not Assigned(LL) then
+    Exit;
+
+  LL.Lat := 0;
+  LL.Lng := 0;
+
+  Params := Format(StrParams, [IntToStr(IdxList), IntToStr(Index)]);
+  if not TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).ExecuteScript('PolylineGetCenter', Params) then
+    Exit;
+
+  LL.Lat := TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetFloatField(PolylineForm, PolylineFormLat);
+  LL.Lng := TGMBasePolyline(TBasePolylines(Collection).FGMLinkedComponent).GetFloatField(PolylineForm, PolylineFormLng);
 end;
 
 function TBasePolyline.GetCountLinePoints: Integer;

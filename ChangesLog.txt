@@ -23,6 +23,7 @@ CHANGE HISTORY
 
 Juny 12, 2013
  - Google Maps Library v1.1.0
+ - Improvement: General -> compiled to XE4.
  - Improvement: TLinkedComponent -> the CenterMapTo method of child classes moved to this class.
  - Improvement: TCustomMarker -> CenterMapToMarker methos is marked as deprecated, instead use CenterMapTo.
  - Improvement: TCurveLine -> new class to do curved polylines.
@@ -30,6 +31,7 @@ Juny 12, 2013
  - bug fixed: TBasePolyline -> improved performance on GetPath and AddLinePoint methods (GC: issue 9).
  - Improvement: TPolyline -> added CurveLine property.
  - Improvement: TGMPolyline -> added OnCurveLineChange event.
+ - Improvement: TBasePolyline -> added GetCenter method.
  
 May 5 2013
  - Google Maps Library v1.0.1

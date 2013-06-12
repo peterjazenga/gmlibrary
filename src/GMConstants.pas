@@ -113,6 +113,8 @@ const
 
   // Properties Polyline Form
   PolylineFormPath = 'path';
+  PolylineFormLat = 'lat';
+  PolylineFormLng = 'lng';
 
   // Properties Rectangle Form
   RectangleFormLat = 'lat';
