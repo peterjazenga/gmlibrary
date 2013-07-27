@@ -79,7 +79,7 @@
         <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>2</VerInfo_Release>
         <DCC_BpiOutput>..\lib\cxe4</DCC_BpiOutput>
         <DCC_HppOutput>..\lib\cxe4</DCC_HppOutput>
         <DCC_ObjOutput>..\lib\cxe4</DCC_ObjOutput>
@@ -90,14 +90,14 @@
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <DCC_Description>GoogleMaps Library v1.1.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.1.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.1.0;Comments=</VerInfo_Keys>
+        <DCC_Description>GoogleMaps Library v1.2.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>2</VerInfo_Release>
         <DCC_DcuOutput>..\lib\dxe4_64</DCC_DcuOutput>
         <DCC_BpiOutput>..\lib\cxe4_64</DCC_BpiOutput>
         <DCC_HppOutput>..\lib\cxe4_64</DCC_HppOutput>
@@ -110,8 +110,8 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <DCC_Description>GoogleMaps Library v1.1.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.1.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.1.0;Comments=</VerInfo_Keys>
+        <DCC_Description>GoogleMaps Library v1.2.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
