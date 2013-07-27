@@ -21,15 +21,11 @@ object MarkersFrm: TMarkersFrm
     Top = 0
     Width = 372
     Height = 393
-    ActivePage = tsGeometry
+    ActivePage = tsGeneral
     Align = alClient
     TabOrder = 0
     object tsGeneral: TTabSheet
       Caption = 'General'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label37: TLabel
         Left = 43
         Top = 176
@@ -198,10 +194,6 @@ object MarkersFrm: TMarkersFrm
     object tsInfoWin: TTabSheet
       Caption = 'InfoWin'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label33: TLabel
         Left = 40
         Top = 112
@@ -301,10 +293,6 @@ object MarkersFrm: TMarkersFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cbOnClick: TCheckBox
         Left = 32
         Top = 24
@@ -516,10 +504,6 @@ object MarkersFrm: TMarkersFrm
     object tsLoadCSV: TTabSheet
       Caption = 'Load from CSV'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object bSearchFile: TSpeedButton
         Left = 319
         Top = 55
@@ -665,10 +649,6 @@ object MarkersFrm: TMarkersFrm
     object tsColoredMarker: TTabSheet
       Caption = 'Colored Marker'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label14: TLabel
         Left = 64
         Top = 41
@@ -754,10 +734,6 @@ object MarkersFrm: TMarkersFrm
     object tsStyledMarker: TTabSheet
       Caption = 'Styled Marker'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label19: TLabel
         Left = 64
         Top = 93
@@ -835,10 +811,6 @@ object MarkersFrm: TMarkersFrm
     object tsGeometry: TTabSheet
       Caption = 'Geometry'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label22: TLabel
         Left = 248
         Top = 17
@@ -899,10 +871,6 @@ object MarkersFrm: TMarkersFrm
     object tsMarkers: TTabSheet
       Caption = 'tsMarkers'
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label1: TLabel
         Left = 8
         Top = 32
@@ -981,6 +949,15 @@ object MarkersFrm: TMarkersFrm
         Caption = 'Show InfoW'
         TabOrder = 7
         OnClick = bShowInfoWClick
+      end
+      object bMaxZoom: TButton
+        Left = 89
+        Top = 344
+        Width = 75
+        Height = 25
+        Caption = 'Max Zoom'
+        TabOrder = 8
+        OnClick = bMaxZoomClick
       end
     end
   end

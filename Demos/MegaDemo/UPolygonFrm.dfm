@@ -12,7 +12,6 @@ inherited PolygonFrm: TPolygonFrm
     end
   end
   inherited pcMarker: TPageControl
-    ActivePage = tsCurveLine
     inherited tsGeneral: TTabSheet
       inherited Label36: TLabel
         Left = 32

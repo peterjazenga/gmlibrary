@@ -134,9 +134,9 @@ type
     cbCLActive: TCheckBox;
     cbCLHoriz: TCheckBox;
     eCLRes: TEdit;
-    Label10: TLabel;
+    Label101: TLabel;
     eCLMulti: TSpinEdit;
-    Label11: TLabel;
+    Label102: TLabel;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lbItemsClick(Sender: TObject);
@@ -841,10 +841,13 @@ begin
   eStrokeOpacity.Text := FloatToStr(FGMPoly[lbItems.ItemIndex].StrokeOpacity);
   eStrokeWeight.Value := FGMPoly[lbItems.ItemIndex].StrokeWeight;
   eText.Text := FGMPoly[lbItems.ItemIndex].Text;
-  cbCLActive.Checked := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Active;
-  cbCLHoriz.Checked := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Horizontal;
-  eCLRes.Text := FloatToStr(TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Resolution);
-  eCLMulti.Value := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Multiplier;
+  if FGMPoly[lbItems.ItemIndex] is TPolyline then
+  begin
+    cbCLActive.Checked := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Active;
+    cbCLHoriz.Checked := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Horizontal;
+    eCLRes.Text := FloatToStr(TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Resolution);
+    eCLMulti.Value := TPolyline(FGMPoly[lbItems.ItemIndex]).CurveLine.Multiplier;
+  end;
 
   lbPoints.Clear;
   for i := 0 to FGMPoly[lbItems.ItemIndex].CountLinePoints - 1 do

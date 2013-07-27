@@ -123,6 +123,7 @@ type
     Label22: TLabel;
     lComDist: TLabel;
     bShowInfoW: TButton;
+    bMaxZoom: TButton;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bDelClick(Sender: TObject);
@@ -190,6 +191,7 @@ type
     procedure bLoadMarkersClick(Sender: TObject);
     procedure bComDistClick(Sender: TObject);
     procedure bShowInfoWClick(Sender: TObject);
+    procedure bMaxZoomClick(Sender: TObject);
   private
     FGMMarker: TGMMarker;
     FTime: TTime;
@@ -331,6 +333,12 @@ begin
   lbTo.Clear;
   for i :=  0 to FGMMarker.Count - 1 do
     lbTo.Items.Add(FGMMarker[i].Title);
+end;
+
+procedure TMarkersFrm.bMaxZoomClick(Sender: TObject);
+begin
+  if lbItems.ItemIndex = -1 then Exit;
+  ShowMessage(IntToStr(FGMMarker.Map.GetMaxZoom(FGMMarker[lbItems.ItemIndex].Position)));
 end;
 
 procedure TMarkersFrm.bZoomToAllClick(Sender: TObject);
