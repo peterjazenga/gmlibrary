@@ -2377,11 +2377,11 @@
           document.eventsMap.panoUserId.value = event.featureDetails.userId;
           document.eventsMap.eventfired.value = "1"; 
         });
-    google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
+    /*google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
           document.eventsMap.circleComplete.value = "1"; 
           document.eventsMap.eventfired.value = "1"; 
 		  alert(circle.getRadius());
-        });
+        });*/
   } 
  
   /* DoMap */
@@ -2483,7 +2483,7 @@
     if (ShowWeather) weatherLayer.setMap(map);
     if (ShowWeather) cloudLayer.setMap(map);
     if (ShowPano) panoramioLayer.setMap(map);
-	
+	/*
     drawingManager = new google.maps.drawing.DrawingManager({
       circleOptions: {
           clickable: false,
@@ -2550,7 +2550,7 @@
           strokeWeight: 1
       }
     });
-
+    */
     MapsAssignEvents();
 	
 	
@@ -2559,7 +2559,7 @@
 </head> 
 <body>
 <!-- table for test only -->
-
+<!--
   <div id="test"></div> 
   <table border=1 align=center>
     <tr>                                       
@@ -2591,7 +2591,7 @@
       <td align=center width=90 onClick="GetMaxZoom(41.375875,2.177757)">MaxZoom</td>
     </tr>
   </table>
-
+-->
   <!--******************************************************************************
      Resultados para la clase Map
      Results for Map class
