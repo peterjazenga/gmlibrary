@@ -1,3 +1,5 @@
+{ Configuration GMLib file }
+
 // delphi 6
 {$IFDEF VER140}
   {$DEFINE DELPHI6}
