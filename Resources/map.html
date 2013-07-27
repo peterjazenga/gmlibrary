@@ -8,9 +8,9 @@
   body { height: 100%; margin: 0px; padding: 0px } 
   #map_canvas { height: 100% } 
 </style> 
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=weather,panoramio,geometry"></script> 
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=weather,panoramio,geometry,drawing"></script> 
 <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/styledmarker/src/StyledMarker.js"></script>
-<script type="text/javascript" src="http://gmlibrary.googlecode.com/svn/trunk/Resources/curved.line-0.0.2.js"></script>
+<script type="text/javascript" src="http://gmlibrary.googlecode.com/svn/trunk/Resources/MaxZoom.js"></script>
 <script language=javascript>
   document.onkeydown = function(){
     if (window.event && window.event.keyCode == 116) { 
@@ -33,6 +33,7 @@
   *******************************************************************************/
   // var
   var map = null; 
+  var drawingManager = null;
   var panorama;
   var linkedCompList = [];
   
@@ -43,6 +44,26 @@
   var weatherLayer;
   var cloudLayer;
   var panoramioLayer;
+  
+  // Enable the visual refresh
+  google.maps.visualRefresh = true;
+
+  /******************************************************************************
+     Funciones de la clase MaxZoom
+     MaxZoom class functions
+  *******************************************************************************/
+  /* GetMaxZoom */
+  function GetMaxZoom(Lat, Lng) {
+    document.maxzoomdata.maxzoom.value = -1;
+    document.maxzoomdata.response.value = 0;
+    var MZ = new google.maps.MaxZoomService();
+	MZ.getMaxZoomAtLatLng(new google.maps.LatLng(Lat,Lng), function(MaxZoomResult) {
+      document.maxzoomdata.status.value = MaxZoomResult.status;
+      if (MaxZoomResult.status = google.maps.MaxZoomStatus.OK) 
+        document.maxzoomdata.maxzoom.value =  MaxZoomResult.zoom;
+      document.maxzoomdata.response.value = 1;
+	})
+  }
 
   /******************************************************************************
      Funciones de la librería geometry
@@ -1762,7 +1783,7 @@
   function MakeMarker(IdObj, OnDrop, Bounce, Click, Drag, Flat, Optimize, Lat, Lng, 
             Raise, Title, Visible, Icon, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, 
             IWPixelOffW, CloseOther, MarkerStyle, StyleIcon, StyledBackColor, 
-            StyledTextColor, StyledStarColor, StyledShowStar, ShowIWMouseover) { 
+            StyledTextColor, StyledStarColor, StyledShowStar, ShowIWMouseover, CrossOnDrag) { 
     if (map == null) throw new Error('map is null');
     var Idx = IndexOf(IdObj, ZIndex);
     if (Idx == -1) {
@@ -1807,7 +1828,7 @@
         MakeMarker(IdObj, OnDrop, Bounce, Click, Drag, Flat, Optimize, Lat, Lng,
             Raise, Title, Visible, Icon, ZIndex, IWContent, IWDisAutopan, IWMaxW, IWPixelOffH,
             IWPixelOffW, CloseOther, MarkerStyle, StyleIcon, StyledBackColor,
-            StyledTextColor, StyledStarColor, StyledShowStar)
+            StyledTextColor, StyledStarColor, StyledShowStar, CrossOnDrag)
         return;
       }
     }
@@ -1822,6 +1843,7 @@
         optimize: Optimize,
         position: new google.maps.LatLng(Lat,Lng),
         raiseOnDrag: Raise,
+        crossOnDrag: CrossOnDrag,
         title: Title.replace('.#%#:', '\''),
         visible: Visible,
         zIndex: ZIndex,
@@ -2355,6 +2377,11 @@
           document.eventsMap.panoUserId.value = event.featureDetails.userId;
           document.eventsMap.eventfired.value = "1"; 
         });
+    google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
+          document.eventsMap.circleComplete.value = "1"; 
+          document.eventsMap.eventfired.value = "1"; 
+		  alert(circle.getRadius());
+        });
   } 
  
   /* DoMap */
@@ -2456,22 +2483,75 @@
     if (ShowWeather) weatherLayer.setMap(map);
     if (ShowWeather) cloudLayer.setMap(map);
     if (ShowPano) panoramioLayer.setMap(map);
+	
+    drawingManager = new google.maps.drawing.DrawingManager({
+      circleOptions: {
+          clickable: false,
+          draggable: false,
+          editable: false,
+          fillColor: '#ff0000',
+          fillOpacity: 1,
+          strokeColor: '#ff0000',
+          strokeOpacity: 1,
+          strokeWeight: 1
+      },
+      drawingControl: true,
+      drawingControlOptions: {
+          drawingModes: [
+              google.maps.drawing.OverlayType.MARKER,
+              google.maps.drawing.OverlayType.CIRCLE,
+              google.maps.drawing.OverlayType.POLYGON,
+              google.maps.drawing.OverlayType.POLYLINE,
+              google.maps.drawing.OverlayType.RECTANGLE
+          ],
+          position: google.maps.ControlPosition.TOP_CENTER
+      },
+      drawingMode: null,
+      map: map,
+      markerOptions: {
+          clickable: true,
+          draggable: true,
+          flat: false,
+          icon: 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png',
+          optimized: true,
+          raiseOnDrag: true,
+          crossOnDrag: false,
+          title: 'Mi title'
+      },
+      polygonOptions: {
+          clickable: true,
+          draggable: true,
+          editable: true,
+          fillColor: '#ff0000',
+          fillOpacity: 1,
+          geodesic: false,
+          strokeColor: '#ff0000',
+          strokeOpacity: 1,
+          strokeWeight: 1
+      },
+      polylineOptions: {
+          clickable: true,
+          draggable: true,
+          editable: true,
+          geodesic: false,
+          icons: null,
+          strokeColor: '#ff0000',
+          strokeOpacity: 1,
+          strokeWeight: 1
+      },
+      rectangleOptions: {
+          clickable: true,
+          draggable: true,
+          editable: true,
+          fillColor: '#ff0000',
+          fillOpacity: 1,
+          strokeColor: '#ff0000',
+          strokeOpacity: 1,
+          strokeWeight: 1
+      }
+    });
 
     MapsAssignEvents();
-	
-	
-	
-	
-/*
-        curved_line_generate({
-				
-            latStart: 42.68243562027229, 
-            lngStart: 23.280029421875042, 
-            latEnd: 42.488302202180364, 
-            lngEnd: 27.432861453125042,
-			multiplier: 4
-        });
-*/	
 	
 	
   } 
@@ -2479,7 +2559,7 @@
 </head> 
 <body>
 <!-- table for test only -->
-<!--
+
   <div id="test"></div> 
   <table border=1 align=center>
     <tr>                                       
@@ -2508,10 +2588,10 @@
       <td align=center width=90 onClick="EncodePath('}~kvHmzrr@ba\hnc@jiu@r{Zqx~@hjp@pwEhnc@zhu@zflAbxn@fhjBvqHroaAgcnAp}gAeahAtqGkngAinc@_h|@r{Zad\y|_D}_y@swg@ysg@}llBpoZqa{@xrw@~eBaaX}{uAero@uqGadY}nr@`dYs_NquNgbjAf{l@|yh@bfc@}nr@z}q@i|i@zgz@r{ZhjFr}gApob@ff}@laIsen@dgYhdPvbIren@')">Encode</td>
 	  <td align=center onClick="GetGeocoder('c\ reial, 60, tarragona', -1, -1, 'es', -1, -1, -1, -1, 'es')">Geocode</td>
       <td align=center width=90 onClick="MakeGroundOverlay(1,'file:///D:/Docs/Dropbox/Programacio/GoogleMaps/Components/Images/mapa.png',true,1,41.31381787,2.00795937,41.41739972,2.22699927,true,0,'',false,0,0,0)">do GO</td>
-      <td align=center width=90 onClick="PolylineGetCenter(0,0)">Center poly</td>
+      <td align=center width=90 onClick="GetMaxZoom(41.375875,2.177757)">MaxZoom</td>
     </tr>
   </table>
--->
+
   <!--******************************************************************************
      Resultados para la clase Map
      Results for Map class
@@ -2606,6 +2686,15 @@
     <input type="hidden" name="response" value=""/> 
   </form> 
   <!--******************************************************************************
+     Resultados para la clase MaxZoom
+     Results for MaxZoom class
+  *******************************************************************************-->
+  <form action="#" id="maxzoomdata" name="maxzoomdata"> 
+    <input type="hidden" name="status" value=""/> 
+    <input type="hidden" name="maxzoom" value=""/> 
+    <input type="hidden" name="response" value=""/> 
+  </form> 
+  <!--******************************************************************************
      Resultados para errores
      Results for errors
   *******************************************************************************-->
@@ -2655,6 +2744,7 @@
     <input type="hidden" name="panoTitle" value=""/> 
     <input type="hidden" name="panoUrl" value=""/> 
     <input type="hidden" name="panoUserId" value=""/> 
+    <input type="hidden" name="circleComplete" value=""/> 
   </form> 
   <form action="#" id="eventsMarker" name="eventsMarker"> 
     <input type="hidden" name="eventfired" value="0"/> 
