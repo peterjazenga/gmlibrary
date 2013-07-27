@@ -35,13 +35,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   The GMConstants unit includes constants ans sets.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMConstants incluye constantes y conjuntos.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 unit GMConstants;
 
@@ -51,8 +51,8 @@ const
   { ****************************************************************************
   ******  Version
   **************************************************************************** }
-  GMLIB_Version = '[1.1.0 Final]';
-  GMLIB_VerText = '1.1.0 Final';
+  GMLIB_Version = '[1.2.0 Final]';
+  GMLIB_VerText = '1.2.0 Final';
 
   { ****************************************************************************
   ******  Editors
@@ -84,6 +84,7 @@ const
   GeocoderForm = 'geocoderdata';
   ElevationsForm = 'elevationsdata';
   GeometryForm = 'geometrydata';
+  MaxZoomdForm = 'maxzoomdata';
   // events forms
   EventsMapForm = 'eventsMap';
   EventsInfoWinForm = 'eventsInfoWin';
@@ -156,6 +157,11 @@ const
 
   // Properties Error Form
   ErrorFormErrorCode = 'errorCode';
+
+  // Properties Error Form
+  MaxZoomdFormStatus = 'status';
+  MaxZoomdFormMaxZoom = 'maxzoom';
+  MaxZoomdFormResponse = 'response';
 
   // Events Form
       // General

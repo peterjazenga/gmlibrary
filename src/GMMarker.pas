@@ -18,9 +18,13 @@ ver 1.1.0
   ES:
     cambio: TCustomMarker -> el método CenterMapToMarker se marca como deprecated,
       en su lugar usar CenterMapTo.
+    nuevo: TCustomMarker -> añadida propiedad CrossOnDrag.
+    nuevo: TCustomGMMarker -> añadido evento OnCrossOnDragChange.
   EN:
     change: TCustomMarker -> CenterMapToMarker methos is marked as deprecated,
       instead use CenterMapTo.
+    new: TCustomMarker -> added CrossOnDrag property.
+    new: TCustomGMMarker -> added OnCrossOnDragChange event.
 
 ver 1.0.1
   ES:
@@ -157,13 +161,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the base classes needed to show markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 unit GMMarker;
 
@@ -726,6 +730,13 @@ type
       Tipo de marcador.
     -------------------------------------------------------------------------------}
     FMarkerType: TMarkerType;
+    {*------------------------------------------------------------------------------
+      If false, disables cross that appears beneath the marker when dragging.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Si es falso, desactiva la cruz que aparece debajo del marcador cuando éste es desplazado.
+    -------------------------------------------------------------------------------}
+    FCrossOnDrag: Boolean;
     FIsUpdating: Boolean;
 
     procedure SetClickable(const Value: Boolean);
@@ -739,6 +750,7 @@ type
     procedure SetIcon(const Value: string);
     procedure OnLatLngChange(Sender: TObject);
     procedure SetMarkerType(const Value: TMarkerType);
+    procedure SetCrossOnDrag(const Value: Boolean);
   protected
     procedure SetIdxList(const Value: Cardinal); override;
 
@@ -786,15 +798,16 @@ type
   published
     property MarkerType: TMarkerType read FMarkerType write SetMarkerType;
     property Animation: TAnimation read FAnimation write FAnimation;
-    property Clickable: Boolean read FClickable write SetClickable;  // sólo regenera el propio Marker
-    property Draggable: Boolean read FDraggable write SetDraggable;  // sólo regenera el propio Marker
-    property Flat: Boolean read FFlat write SetFlat;                 // sólo regenera el propio Marker
-    property Position: TLatLng read FPosition write FPosition;       // sólo regenera el propio Marker
-    property Title: string read FTitle write SetTitle;               // sólo regenera el propio Marker
-    property Visible: Boolean read FVisible write SetVisible;        // sólo regenera el propio Marker
-    property Optimized: Boolean read FOptimized write SetOptimized;       // regenera todos los Markers
-    property RaiseOnDrag: Boolean read FRaiseOnDrag write SetRaiseOnDrag; // regenera todos los Markers
+    property Clickable: Boolean read FClickable write SetClickable;
+    property Draggable: Boolean read FDraggable write SetDraggable;
+    property Flat: Boolean read FFlat write SetFlat;
+    property Position: TLatLng read FPosition write FPosition;
+    property Title: string read FTitle write SetTitle;
+    property Visible: Boolean read FVisible write SetVisible;
+    property Optimized: Boolean read FOptimized write SetOptimized;
+    property RaiseOnDrag: Boolean read FRaiseOnDrag write SetRaiseOnDrag;
     property Icon: string read FIcon write SetIcon;
+    property CrossOnDrag: Boolean read FCrossOnDrag write SetCrossOnDrag;
     {*------------------------------------------------------------------------------
       Index within the collection.
     -------------------------------------------------------------------------------}
@@ -1029,6 +1042,13 @@ type
       Este evento se dispara cuando cambia una propiedad de la propiedad StyledMarker del marcador.
     -------------------------------------------------------------------------------}
     FOnStyledMarkerChange: TLinkedComponentChange;
+    {*------------------------------------------------------------------------------
+      This event is fired when the marker's CrossOnDrag property changes.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Este evento se dispara cuando cambia la propiedad CrossOnDrag del marcador.
+    -------------------------------------------------------------------------------}
+    FOnCrossOnDragChange: TLinkedComponentChange;
   protected
     function GetAPIUrl: string; override;
 
@@ -1157,6 +1177,7 @@ type
     property OnIconChange: TLinkedComponentChange read FOnIconChange write FOnIconChange;
     property OnColoredMarkerChange: TLinkedComponentChange read FOnColoredMarkerChange write FOnColoredMarkerChange;
     property OnStyledMarkerChange: TLinkedComponentChange read FOnStyledMarkerChange write FOnStyledMarkerChange;
+    property OnCrossOnDragChange: TLinkedComponentChange read FOnCrossOnDragChange write FOnCrossOnDragChange;
   end;
 
 implementation
@@ -1521,7 +1542,7 @@ end;
 
 function TCustomMarker.ChangeProperties: Boolean;
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   Icon: string;
@@ -1571,7 +1592,8 @@ begin
                   LowerCase(TCustomTransform.GMBoolToStr(InfoWindow.CloseOtherBeforeOpen, True)),
                   QuotedStr(TCustomTransform.MarkerTypeToStr(MarkerType)),
                   StyledMarkerToStr,
-                  LowerCase(TCustomTransform.GMBoolToStr(ShowInfoWinMouseOver, True))
+                  LowerCase(TCustomTransform.GMBoolToStr(ShowInfoWinMouseOver, True)),
+                  LowerCase(TCustomTransform.GMBoolToStr(FCrossOnDrag, True))
                   ]);
 
   Result := TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).ExecuteScript('MakeMarker', Params);
@@ -1594,6 +1616,7 @@ begin
   FVisible := True;
   FIsUpdating := False;
   FMarkerType := mtStandard;
+  FCrossOnDrag := True;
 
   CreatePropertiesWithColor;
 end;
@@ -1649,6 +1672,20 @@ begin
   ChangeProperties;
   if Assigned(TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).FOnClickableChange) then
     TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).FOnClickableChange(
+                  TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent),
+                  Index,
+                  Self);
+end;
+
+procedure TCustomMarker.SetCrossOnDrag(const Value: Boolean);
+begin
+  if FCrossOnDrag = Value then Exit;
+
+  FCrossOnDrag := Value;
+
+  ChangeProperties;
+  if Assigned(TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).FOnCrossOnDragChange) then
+    TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent).FOnCrossOnDragChange(
                   TCustomGMMarker(TCustomMarkers(Collection).FGMLinkedComponent),
                   Index,
                   Self);

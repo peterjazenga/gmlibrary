@@ -14,6 +14,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.2.0
+  ES:
+    error: TAddressComponentsList -> corregido Memory leak en el método Destroy (gracias Mike) (GC: issue 13).
+  EN:
+    bug: TAddressComponentsList -> fixed Memory leak on Destroy method (thanks Mike) (GC: issue 13).
+
 ver 1.0.1
   ES:
     error: JavaScript -> corregido error en función GeocoderToXMLData cuando la
@@ -118,13 +124,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary classes to geocoding.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes necesarias para la geocodificación.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 unit GMGeoCode;
 
@@ -1055,7 +1061,7 @@ end;
 
 destructor TAddressComponentsList.Destroy;
 begin
-  if Assigned(FAddrComponents) then TObjectList.Create;
+  if Assigned(FAddrComponents) then FreeAndNil(FAddrComponents);
 
   inherited;
 end;

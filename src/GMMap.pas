@@ -7,6 +7,12 @@ GMMap unit
 =========================================================================
 History:
 
+ver 1.2.0
+  ES:
+    nuevo: TCustomGMMap -> añadido método GetMaxZoom.
+  EN:
+    new: TCustomGMMap -> added GetMaxZoom method.
+
 ver 1.0.1
   ES:
     error: TCustomGMMap -> StreetView. Corregido error de JavaScript
@@ -163,13 +169,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.1.0
+  @version 1.2.0
 -------------------------------------------------------------------------------}
 unit GMMap;
 
@@ -2184,6 +2190,18 @@ type
     procedure Assign(Source: TPersistent); override;
 
     {*------------------------------------------------------------------------------
+      Returns max zoom of a LatLng. If error return -1.
+      @param LL TLatLng to know Max Zoom.
+      @return Max Zoom
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve el zoom máximo de la LatLng dada. En caso de error devuelve -1.
+      @param LL TLatLng de la que queremos saber el Zoom Máximo.
+      @return Zoom Máximo.
+    -------------------------------------------------------------------------------}
+    function GetMaxZoom(LL: TLatLng): Integer;
+
+    {*------------------------------------------------------------------------------
       Sets the optimal zoom to display all points.
       @param Points Array with the points.
     -------------------------------------------------------------------------------}
@@ -2876,6 +2894,29 @@ begin
 
   if Assigned(FWC) and ExecuteScript('MapGetMapType', '') then
     Result := TCustomTransform.StrToMapTypeId(FWC.GetStringField(MapForm, MapFormMapTypeId));
+end;
+
+function TCustomGMMap.GetMaxZoom(LL: TLatLng): Integer;
+const
+  StrParams = '%s,%s';
+var
+  Params: string;
+begin
+  Result := -1;
+
+  if not Assigned(LL) then Exit;
+
+  Params := Format(StrParams, [LL.LatToStr(FPrecision),
+                               LL.LngToStr(FPrecision)
+                               ]);
+
+  if Assigned(FWC) and ExecuteScript('GetMaxZoom', Params) then
+  begin
+    repeat
+      TGMGenFunc.ProcessMessages;
+    until (FWC.GetIntegerField(MaxZoomdForm, MaxZoomdFormResponse) = 1);
+    Result := FWC.GetIntegerField(MaxZoomdForm, MaxZoomdFormMaxZoom);
+  end;
 end;
 
 function TCustomGMMap.GetZoom: Integer;
