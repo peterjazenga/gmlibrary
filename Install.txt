@@ -8,7 +8,9 @@ For new needs, you can email me to gmlib@cadetill.com
 
 Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE, XE2, XE3, XE4
 Tested Windows Versions: XP, 2003, Vista, 7
-Need IE 8 or higher installed on system
+Requirements: 
+  - IE 8 and above
+
 
 If you have installed TChromium browser, you can activate it at gmlib.inc file.
 

@@ -1,4 +1,4 @@
-{
+ï»¿{
 unit Lang
 
   ES: unidad para facilitar el cambio de idioma en los errores
@@ -7,11 +7,17 @@ unit Lang
 =========================================================================
 History:
 
+ver 1.2.0
+  ES:
+    nuevo: aÃ±adido el idioma HÃºngaro (gracias BÃ³gÃ¡ncs SÃ¡ndor)
+  EN:
+    new: added Hungarian language (thanks BÃ³gÃ¡ncs SÃ¡ndor)
+
 ver 1.0.0
   ES:
-    nuevo: (issue GC4) añadido el idioma alemán (gracias Sascha)
-    error: corregido error en función GetTranslateText
-    nuevo: añadido el idioma ruso (gracias Teltikov Aleksandr)
+    nuevo: (issue GC4) aÃ±adido el idioma alemÃ¡n (gracias Sascha)
+    error: corregido error en funciÃ³n GetTranslateText
+    nuevo: aÃ±adido el idioma ruso (gracias Teltikov Aleksandr)
   EN:
     new: (issue GC4) added German language (thanks Sascha)
     bug: bug fixed in function GetTranslateText
@@ -19,30 +25,30 @@ ver 1.0.0
 
 ver 0.1.9
   ES:
-    nuevo: documentación
-    nuevo: añadido el idioma danés (gracias Hugo Pedersen)
+    nuevo: documentaciÃ³n
+    nuevo: aÃ±adido el idioma danÃ©s (gracias Hugo Pedersen)
   EN:
     new: documentation
     new: added danish language (thanks Hugo Pedersen)
 
 ver 0.1.7
   ES:
-    nuevo: añadido el idioma portugués (gracias Moacir Fortes)
+    nuevo: aÃ±adido el idioma portuguÃ©s (gracias Moacir Fortes)
   EN:
     new: added portuguese language (thanks Moacir Fortes)
 
 ver 0.1.6
   ES:
-    nuevo: añadido el idioma francés (gracias Stéphane)
+    nuevo: aÃ±adido el idioma francÃ©s (gracias StÃ©phane)
   EN:
-    new: added french language (thanks Stéphane)
+    new: added french language (thanks StÃ©phane)
 
 ver 0.1:
-  ES: primera versión
+  ES: primera versiÃ³n
   EN: first version
 =========================================================================
 IMPORTANTE PROGRAMADORES: Por favor, si tienes comentarios, mejoras,
-  ampliaciones, errores y/o cualquier otro tipo de sugerencia, envíame un correo a:
+  ampliaciones, errores y/o cualquier otro tipo de sugerencia, envÃ­ame un correo a:
   gmlib@cadetill.com
 
 IMPORTANT PROGRAMMERS: please, if you have comments, improvements, enlargements,
@@ -50,7 +56,7 @@ IMPORTANT PROGRAMMERS: please, if you have comments, improvements, enlargements,
   gmlib@cadetill.com
 =========================================================================
 
-Copyright (©) 2011, by Xavier Martinez (cadetill)
+Copyright (Â©) 2011, by Xavier Martinez (cadetill)
 
 @author Xavier Martinez (cadetill)
 @web  http://www.cadetill.com
@@ -66,11 +72,11 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   @version 1.2.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
-  La unit Lang contiene las cadenas de los mensajes de error mostrados por los componentes y una función para realizar la traducción.
-  Para añadir un nuevo idioma se tendrán que hacer estos pasos:
+  La unit Lang contiene las cadenas de los mensajes de error mostrados por los componentes y una funciÃ³n para realizar la traducciÃ³n.
+  Para aÃ±adir un nuevo idioma se tendrÃ¡n que hacer estos pasos:
   - crear una nueva constante de tipo array con todas las traducciones
-  - añadir el nuevo idioma al conjunto GMConstants.TLang
-  - modificar la función GetTranslateText añadiendo el nuevo idioma del conjunto
+  - aÃ±adir el nuevo idioma al conjunto GMConstants.TLang
+  - modificar la funciÃ³n GetTranslateText aÃ±adiendo el nuevo idioma del conjunto
 
   @author Xavier Martinez (cadetill)
   @version 1.2.0
@@ -87,31 +93,31 @@ const
     Array with messages in Spanish
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Array con los mensajes en español
+    Array con los mensajes en espaÃ±ol
   -------------------------------------------------------------------------------}
   Lang_ESP: array[0..14] of string = (
       'No se ha especificado el objeto WebBrowser',    // 0
-      'Página inicial aun no cargada',      // 1
-      'El mapa todavía no ha sido creado',  // 2
-      'No está activo',                     // 3
+      'PÃ¡gina inicial aun no cargada',      // 1
+      'El mapa todavÃ­a no ha sido creado',  // 2
+      'No estÃ¡ activo',                     // 3
       'No se ha podido cargar el recurso',  // 4
-      'Este objeto no tiene relación en JavaScript',  // 5
+      'Este objeto no tiene relaciÃ³n en JavaScript',  // 5
       'Id de JavaScript incorrecto',        // 6
       'Id de JavaScript inexistente',       // 7
-      'Número de parámetros incorrecto',    // 8
-      'Tipo de parámetro incorrecto',       // 9
-      'Valor de parámetro incorrecto',      // 10
-      'Índice fuera de rango',              // 11
+      'NÃºmero de parÃ¡metros incorrecto',    // 8
+      'Tipo de parÃ¡metro incorrecto',       // 9
+      'Valor de parÃ¡metro incorrecto',      // 10
+      'Ãndice fuera de rango',              // 11
       'Mapa no asignado',                   // 12
       'El fichero no existe',               // 13
-      'El número de columna es incorrecto'  // 14
+      'El nÃºmero de columna es incorrecto'  // 14
       );
 
   {*------------------------------------------------------------------------------
     Array with messages in English
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Array con los mensajes en inglés
+    Array con los mensajes en inglÃ©s
   -------------------------------------------------------------------------------}
   Lang_ENG: array[0..14] of string = (
       'WebBrowser not defined',             // 0
@@ -135,59 +141,59 @@ const
     Array with messages in French
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Array con los mensajes en francés
+    Array con los mensajes en francÃ©s
   -------------------------------------------------------------------------------}
   Lang_FRE: array[0..14] of string = (
-      'Navigateur Web non défini',          // 0
-      'Page initiale non chargée',          // 1
-      'La carte n''est pas encore créée',   // 2
+      'Navigateur Web non dÃ©fini',          // 0
+      'Page initiale non chargÃ©e',          // 1
+      'La carte n''est pas encore crÃ©Ã©e',   // 2
       'Non actif',                          // 3
       'Ne peux pas charger la ressource',   // 4
       'Cet object n''a pas de relation dans JavaScript', // 5
       'Id JavaScript incorrect',            // 6
       'Id JavaScript inexistant',           // 7
-      'Nombre incorrecte de paramètres',    // 8
-      'Type de paramètre incorrect',        // 9
-      'Valeur de paramètre incorrecte',     // 10
+      'Nombre incorrecte de paramÃ¨tres',    // 8
+      'Type de paramÃ¨tre incorrect',        // 9
+      'Valeur de paramÃ¨tre incorrecte',     // 10
       'Indice hors limites',                // 11
-      'Carte non attribuée',                // 12
+      'Carte non attribuÃ©e',                // 12
       'Le fichier n''existe pas',           // 13
-      'Le numéro de colonne est incorrect'  // 14
+      'Le numÃ©ro de colonne est incorrect'  // 14
       );
 
   {*------------------------------------------------------------------------------
     Array with messages in Brazilian Portuguese
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Array con los mensajes en portugués de Brasil
+    Array con los mensajes en portuguÃ©s de Brasil
   -------------------------------------------------------------------------------}
   Lang_PTBR: array[0..14] of string = (
-      'Navegador Web não definido',                // 0
-      'Página inicial não foi carregada',          // 1
-      'O mapa ainda não foi criado',               // 2
+      'Navegador Web nÃ£o definido',                // 0
+      'PÃ¡gina inicial nÃ£o foi carregada',          // 1
+      'O mapa ainda nÃ£o foi criado',               // 2
       'Inativo',                                   // 3
-      'Não é possível carregar recursos',          // 4
-      'Este objeto não tem relação em JavaScript', // 5
+      'NÃ£o Ã© possÃ­vel carregar recursos',          // 4
+      'Este objeto nÃ£o tem relaÃ§Ã£o em JavaScript', // 5
       'Id do JavaScript incorreto',                // 6
-      'Id do JavaScript não existe',               // 7
-      'Número incorreto de parâmetros',            // 8
-      'Tipo de parâmetro incorreto',               // 9
-      'Valor do parâmetro incorreto',              // 10
-      'Índice fora do intervalo',                  // 11
-      'Mapa não atribuído',                        // 12
-      'O arquivo não existe',                      // 13
-      'O número da coluna está errado'             // 14
+      'Id do JavaScript nÃ£o existe',               // 7
+      'NÃºmero incorreto de parÃ¢metros',            // 8
+      'Tipo de parÃ¢metro incorreto',               // 9
+      'Valor do parÃ¢metro incorreto',              // 10
+      'Ãndice fora do intervalo',                  // 11
+      'Mapa nÃ£o atribuÃ­do',                        // 12
+      'O arquivo nÃ£o existe',                      // 13
+      'O nÃºmero da coluna estÃ¡ errado'             // 14
       );
 
   {*------------------------------------------------------------------------------
     Array with messages in Danish
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Array con los mensajes en danés
+    Array con los mensajes en danÃ©s
   -------------------------------------------------------------------------------}
   Lang_DAN: array[0..14] of string = (
       'WebBrowser ikke defineret',                      // 0
-      'Første side er ikke hentet',                     // 1
+      'FÃ¸rste side er ikke hentet',                     // 1
       'Kortet er ikke dannet endnu',                    // 2
       'Ikke aktiv',                                     // 3
       'Kan ikke hente ressource',                       // 4
@@ -196,8 +202,8 @@ const
       'JavaScript Id findes ikke',                      // 7
       'Forkert antal parametre',                        // 8
       'Forkert parameter type',                         // 9
-      'Forkert værdi parameter',                        // 10
-      'Index uden for område',                          // 11
+      'Forkert vÃ¦rdi parameter',                        // 10
+      'Index uden for omrÃ¥de',                          // 11
       'Kort ikke angivet',                              // 12
       'Filen findes ikke',                              // 13
       'Antal kolonner er forkert'                       // 14
@@ -207,7 +213,7 @@ const
     Array with messages in German
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    Array con los mensajes en alemán
+    Array con los mensajes en alemÃ¡n
   -------------------------------------------------------------------------------}
   Lang_GER: array[0..14] of string = (
       'Webbrowser nicht definiert',                      // 0
@@ -216,15 +222,15 @@ const
       'Nicht aktiv',                                     // 3
       'Kann die Resourcen nicht laden',                  // 4
       'Dieses Objekt hat in JavaScript keine Zuordnung', // 5
-      'ID in JavaScript ungültig',                       // 6
+      'ID in JavaScript ungÃ¼ltig',                       // 6
       'JavaScript ID existiert nicht',                   // 7
-      'Anzahl der Parameter ungültig',                   // 8
+      'Anzahl der Parameter ungÃ¼ltig',                   // 8
       'Nicht korrketer Parametertyp',                    // 9
-      'Ungültiger Wert im Parameter',                    // 10
-      'Index ausserhalb des zulässigen Bereichs',        // 11
+      'UngÃ¼ltiger Wert im Parameter',                    // 10
+      'Index ausserhalb des zulÃ¤ssigen Bereichs',        // 11
       'Karte nich zugewiesen',                           // 12
       'Datei existiert nicht',                           // 13
-      'Die Spaltennummer ist ungültig'                   // 14
+      'Die Spaltennummer ist ungÃ¼ltig'                   // 14
       );
 
   {*------------------------------------------------------------------------------
@@ -234,21 +240,45 @@ const
     Array con los mensajes en ruso
   -------------------------------------------------------------------------------}
   Lang_RUS: array[0..14] of string = (
-      'WebBrowser íå îïğåäåëåí',                         // 0
-      'Íà÷àëüíàÿ ñòğàíèöà íå çàãğóæåíà',                 // 1
-      'Êàğòà íå ñîçäàíà',                                // 2
-      'Íå àêâèâíà',                                      // 3
-      'Íå âîçìîæíî çàãğóçèòü ğåñóğñû',                   // 4
-      'İòîò îáúåêò íå èìååò ñâÿçåé â JavaScript',        // 5
-      'Id èç JavaScript íå êîğğåêòíûé',                  // 6
-      'JavaScript Id íå ñóùåñòâóåò',                     // 7
-      'Íåêîğğåêòíîå ÷èñëî ïàğàìåòğîâ',                   // 8
-      'Íåêîğğåêòíûé òèï ïàğàìåòğà',                      // 9
-      'Íåêîğğåêòíîå çíà÷åíèå ïàğàìåòğà',                 // 10
-      'Èíäåêñ âíå äèàïàçîíà',                            // 11
-      'Êàğòà íå íàçíà÷åíà',                              // 12
-      'Ôàéë íå ñóùåñòâóåò',                              // 13
-      'Íîìåğ ñòîëáöà íåêîğğåêòíûé'                       // 14
+      'WebBrowser Ã­Ã¥ Ã®Ã¯Ã°Ã¥Ã¤Ã¥Ã«Ã¥Ã­',                         // 0
+      'ÃÃ Ã·Ã Ã«Ã¼Ã­Ã Ã¿ Ã±Ã²Ã°Ã Ã­Ã¨Ã¶Ã  Ã­Ã¥ Ã§Ã Ã£Ã°Ã³Ã¦Ã¥Ã­Ã ',                 // 1
+      'ÃŠÃ Ã°Ã²Ã  Ã­Ã¥ Ã±Ã®Ã§Ã¤Ã Ã­Ã ',                                // 2
+      'ÃÃ¥ Ã ÃªÃ¢Ã¨Ã¢Ã­Ã ',                                      // 3
+      'ÃÃ¥ Ã¢Ã®Ã§Ã¬Ã®Ã¦Ã­Ã® Ã§Ã Ã£Ã°Ã³Ã§Ã¨Ã²Ã¼ Ã°Ã¥Ã±Ã³Ã°Ã±Ã»',                   // 4
+      'ÃÃ²Ã®Ã² Ã®Ã¡ÃºÃ¥ÃªÃ² Ã­Ã¥ Ã¨Ã¬Ã¥Ã¥Ã² Ã±Ã¢Ã¿Ã§Ã¥Ã© Ã¢ JavaScript',        // 5
+      'Id Ã¨Ã§ JavaScript Ã­Ã¥ ÃªÃ®Ã°Ã°Ã¥ÃªÃ²Ã­Ã»Ã©',                  // 6
+      'JavaScript Id Ã­Ã¥ Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã³Ã¥Ã²',                     // 7
+      'ÃÃ¥ÃªÃ®Ã°Ã°Ã¥ÃªÃ²Ã­Ã®Ã¥ Ã·Ã¨Ã±Ã«Ã® Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã®Ã¢',                   // 8
+      'ÃÃ¥ÃªÃ®Ã°Ã°Ã¥ÃªÃ²Ã­Ã»Ã© Ã²Ã¨Ã¯ Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã ',                      // 9
+      'ÃÃ¥ÃªÃ®Ã°Ã°Ã¥ÃªÃ²Ã­Ã®Ã¥ Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¥ Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã ',                 // 10
+      'ÃˆÃ­Ã¤Ã¥ÃªÃ± Ã¢Ã­Ã¥ Ã¤Ã¨Ã Ã¯Ã Ã§Ã®Ã­Ã ',                            // 11
+      'ÃŠÃ Ã°Ã²Ã  Ã­Ã¥ Ã­Ã Ã§Ã­Ã Ã·Ã¥Ã­Ã ',                              // 12
+      'Ã”Ã Ã©Ã« Ã­Ã¥ Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã³Ã¥Ã²',                              // 13
+      'ÃÃ®Ã¬Ã¥Ã° Ã±Ã²Ã®Ã«Ã¡Ã¶Ã  Ã­Ã¥ÃªÃ®Ã°Ã°Ã¥ÃªÃ²Ã­Ã»Ã©'                       // 14
+      );
+
+  {*------------------------------------------------------------------------------
+    Array with messages in Hungarian
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Array con los mensajes en HÃºngaro
+  -------------------------------------------------------------------------------}
+  Lang_HUN: array[0..14] of string = (
+      'WebBrowser nincs definiÃ¡lva',                        // 0
+      'A kezdÅ‘ oldal nincs betÃ¶ltve',                       // 1
+      'A tÃ©rkÃ©p mÃ©g nem jÃ¶tt lÃ©tre',                        // 2
+      'Nem aktÃ­v',                                          // 3
+      'Nem lehet betÃ¶lteni az erÅ‘forrÃ¡st',                  // 4
+      'Ennek az objektumnak nincs JavaScript hivatkozÃ¡sa',  // 5
+      'Ã‰rvÃ©nytelen JavaScript Id',                          // 6
+      'A JavaScript Id nem lÃ©tezik',                        // 7
+      'Ã‰rvÃ©nytelen szÃ¡mÃº paramÃ©ter',                        // 8
+      'Ã‰rvÃ©nytelen paramÃ©ter tÃ­pus',                        // 9
+      'Ã‰rvÃ©nytelen paramÃ©ter Ã©rtÃ©k',                        // 10
+      'TartomÃ¡nyon kÃ­vÃ¼li index Ã©rtÃ©k',                     // 11
+      'Nincs tÃ©rkÃ©p kapcsolva',                             // 12
+      'A fÃ¡jl nem lÃ©tezik',                                 // 13
+      'HibÃ¡s oszlop szÃ¡m'                                   // 14
       );
 
   {*------------------------------------------------------------------------------
@@ -258,7 +288,7 @@ const
     @return translated string
   -------------------------------------------------------------------------------}
   {=------------------------------------------------------------------------------
-    La función GetTranslateText devuelve una cadena traducida al idioma Lang
+    La funciÃ³n GetTranslateText devuelve una cadena traducida al idioma Lang
     @param Text cadena a traducir
     @param Lang lenguaje destino
     @return cadena traducida
@@ -294,6 +324,7 @@ begin
       Danish: Result := Lang_DAN[Idx];
       German: Result := Lang_GER[Idx];
       Russian: Result := Lang_RUS[GetIndex(Text)];
+      Hungarian: Result := Lang_HUN[GetIndex(Text)];
       else Result := Text;
     end;
     if Result = '' then Result := Text;

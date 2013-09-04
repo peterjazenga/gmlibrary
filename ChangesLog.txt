@@ -14,6 +14,8 @@ For new needs, you can email me
 
 Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE, XE2, XE3
 Tested Windows Versions: XP, 2003, Vista, 7
+Requirements: 
+  - IE 8 and above
 
 If you have installed TChromium browser, you can activate it at gmlib.inc file.
 
@@ -27,6 +29,7 @@ NEW RELEASE
  - Improvement: TCustomGMMap -> added GetMaxZoom method.
  - Improvement: TCustomMarker -> added CrossOnDrag property.
  - Improvement: TCustomGMMarker -> added OnCrossOnDragChange event.
+ - Improvement: Added Hungarian language (thanks Bógáncs Sándor)
  - bug fixed: TAddressComponentsList -> fixed Memory leak on Destroy method (thanks Mike) (GC: issue 13).
 
 Juny 12, 2013
