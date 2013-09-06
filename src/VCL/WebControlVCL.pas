@@ -226,10 +226,10 @@ begin
     bitmap := Graphics.TBitmap.Create;
     {$ENDIF}
     try
-      r := Rect(0, 0, TWebBrowser(FWebBrowser).Width, TWebBrowser(FWebBrowser).Height);
+      r := Rect(-2, -2, TWebBrowser(FWebBrowser).Width, TWebBrowser(FWebBrowser).Height);
 
-      bitmap.Height := TWebBrowser(FWebBrowser).Height;
-      bitmap.Width := TWebBrowser(FWebBrowser).Width;
+      bitmap.Height := TWebBrowser(FWebBrowser).Height-4;
+      bitmap.Width := TWebBrowser(FWebBrowser).Width-4;
 
       {$IFDEF DELPHIXE2}
       viewObject.Draw(DVASPECT_CONTENT, 1, nil, nil, Vcl.Forms.Application.Handle, bitmap.Canvas.Handle, @r, nil, nil, 0);

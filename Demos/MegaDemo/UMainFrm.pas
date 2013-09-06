@@ -53,6 +53,10 @@ type
     GMElevation1: TGMElevation;
     GMGroundOverlay1: TGMGroundOverlay;
     N6GroundOverlay1: TMenuItem;
+    N1MapProperties1: TMenuItem;
+    N2PrintMap1: TMenuItem;
+    N3SaveMap1: TMenuItem;
+    SaveDialog1: TSaveDialog;
     procedure FormResize(Sender: TObject);
     procedure sbStatusDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
       const Rect: TRect);
@@ -62,7 +66,6 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure Exit1Click(Sender: TObject);
     procedure GMMap1AfterPageLoaded(Sender: TObject; First: Boolean);
-    procedure Map1Click(Sender: TObject);
     procedure GMMap1ActiveChange(Sender: TObject);
     procedure GMMap1IntervalEventsChange(Sender: TObject);
     procedure GMMap1PrecisionChange(Sender: TObject);
@@ -169,6 +172,9 @@ type
       LinkedComponent: TLinkedComponent);
     procedure GMGroundOverlay1UrlChange(Sender: TObject; Index: Integer;
       LinkedComponent: TLinkedComponent);
+    procedure N1MapProperties1Click(Sender: TObject);
+    procedure N2PrintMap1Click(Sender: TObject);
+    procedure N3SaveMap1Click(Sender: TObject);
   private
   public
     constructor Create(aOwner: TComponent); override;
@@ -797,41 +803,6 @@ begin
   sbStatus.Panels[0].Text := Format(Txt, [TGMLinkedComponent(Sender).Name]);
 end;
 
-procedure TMainFrm.Map1Click(Sender: TObject);
-var
-  MF: TMapFrm;
-  i: Integer;
-begin
-  MF := nil;
-
-  for i := 0 to Screen.FormCount - 1 do
-    if Screen.Forms[i].ClassName = TMapFrm.ClassName then
-      MF := TMapFrm(Screen.Forms[i]);
-
-  if not Assigned(MF) then
-  begin
-    MF := TMapFrm.Create(Self, GMMap1);
-
-    MF.OnBoundsChanged := GMMap1BoundsChanged;
-    MF.OnCenterChanged := GMMap1CenterChanged;
-    MF.OnClick := GMMap1Click;
-    MF.OnDblClick := GMMap1DblClick;
-    MF.OnDrag := GMMap1Drag;
-    MF.OnDragEnd := GMMap1DragEnd;
-    MF.OnDragStart := GMMap1DragStart;
-    MF.OnMapTypeIdChanged := GMMap1MapTypeIdChanged;
-    MF.OnMouseMove := GMMap1MouseMove;
-    MF.OnMouseOut := GMMap1MouseOut;
-    MF.OnMouseOver := GMMap1MouseOver;
-    MF.OnRightClick := GMMap1RightClick;
-    MF.OnZoomChanged := GMMap1ZoomChanged;
-    MF.OnIntervalEventsChange := GMMap1IntervalEventsChange;
-    MF.OnPrecisionChange := GMMap1PrecisionChange;
-  end;
-
-  MF.Show;
-end;
-
 procedure TMainFrm.Markers1Click(Sender: TObject);
 var
   MF: TMarkersFrm;
@@ -873,6 +844,52 @@ begin
   end;
 
   MF.Show;
+end;
+
+procedure TMainFrm.N1MapProperties1Click(Sender: TObject);
+var
+  MF: TMapFrm;
+  i: Integer;
+begin
+  MF := nil;
+
+  for i := 0 to Screen.FormCount - 1 do
+    if Screen.Forms[i].ClassName = TMapFrm.ClassName then
+      MF := TMapFrm(Screen.Forms[i]);
+
+  if not Assigned(MF) then
+  begin
+    MF := TMapFrm.Create(Self, GMMap1);
+
+    MF.OnBoundsChanged := GMMap1BoundsChanged;
+    MF.OnCenterChanged := GMMap1CenterChanged;
+    MF.OnClick := GMMap1Click;
+    MF.OnDblClick := GMMap1DblClick;
+    MF.OnDrag := GMMap1Drag;
+    MF.OnDragEnd := GMMap1DragEnd;
+    MF.OnDragStart := GMMap1DragStart;
+    MF.OnMapTypeIdChanged := GMMap1MapTypeIdChanged;
+    MF.OnMouseMove := GMMap1MouseMove;
+    MF.OnMouseOut := GMMap1MouseOut;
+    MF.OnMouseOver := GMMap1MouseOver;
+    MF.OnRightClick := GMMap1RightClick;
+    MF.OnZoomChanged := GMMap1ZoomChanged;
+    MF.OnIntervalEventsChange := GMMap1IntervalEventsChange;
+    MF.OnPrecisionChange := GMMap1PrecisionChange;
+  end;
+
+  MF.Show;
+end;
+
+procedure TMainFrm.N2PrintMap1Click(Sender: TObject);
+begin
+  GMMap1.PrintWithDialog;
+end;
+
+procedure TMainFrm.N3SaveMap1Click(Sender: TObject);
+begin
+  if SaveDialog1.Execute then
+    GMMap1.SaveToJPGFile(SaveDialog1.FileName);
 end;
 
 procedure TMainFrm.N6GroundOverlay1Click(Sender: TObject);

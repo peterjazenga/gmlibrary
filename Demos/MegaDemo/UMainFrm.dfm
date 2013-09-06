@@ -191,7 +191,18 @@ object MainFrm: TMainFrm
     end
     object Map1: TMenuItem
       Caption = 'Map'
-      OnClick = Map1Click
+      object N1MapProperties1: TMenuItem
+        Caption = '&1. Map Properties'
+        OnClick = N1MapProperties1Click
+      end
+      object N2PrintMap1: TMenuItem
+        Caption = '&2. Print Map'
+        OnClick = N2PrintMap1Click
+      end
+      object N3SaveMap1: TMenuItem
+        Caption = '&3. Save Map'
+        OnClick = N3SaveMap1Click
+      end
     end
     object InfoWindows1: TMenuItem
       Caption = 'InfoWindows'
@@ -702,6 +713,7 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
+        CrossOnDrag = True
         InfoWindow.HTMLContent = 
           '<h1>Camp Nou</h1>'#13#10'<p>El <b>Camp Nou</b> (nombre que en catal'#225'n ' +
           'significa "Campo Nuevo", pronunciado [kam '#39'now]), a menudo tambi' +
@@ -751,6 +763,7 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
+        CrossOnDrag = True
         InfoWindow.HTMLContent = 
           '<h1>Templo Expiatorio de la Sagrada Familia</h1>'#13#10'<p><b>El Templ' +
           'o Expiatorio de la Sagrada Familia</b> (en catal'#225'n <i>Temple Exp' +
@@ -799,6 +812,7 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
+        CrossOnDrag = True
         InfoWindow.HTMLContent = 
           '<h1>Parque G'#252'ell</h1>'#13#10'<p>El <b>Parque G'#252'ell</b> (<i>Parc G'#252'ell<' +
           '/i> en catal'#225'n y <i>Park G'#252'ell</i> en su denominaci'#243'n original) ' +
@@ -845,6 +859,7 @@ object MainFrm: TMainFrm
         Optimized = True
         RaiseOnDrag = True
         Icon = 'http://www.cadetill.com/imagenes/gallery/gmlib/marker.png'
+        CrossOnDrag = True
         InfoWindow.HTMLContent = 
           '<h1>Monumento a Col'#243'n (Barcelona)</h1>'#13#10'<p>El <b>Monumento a Col' +
           #243'n</b> es una de las m'#225's famosas estatuas de la ciudad de Barcel' +
@@ -891,6 +906,7 @@ object MainFrm: TMainFrm
         Visible = True
         Optimized = True
         RaiseOnDrag = True
+        CrossOnDrag = True
         InfoWindow.DisableAutoPan = False
         InfoWindow.MaxWidth = 0
         InfoWindow.PixelOffset.Height = 0
@@ -977,5 +993,11 @@ object MainFrm: TMainFrm
     OnVisibleChange = GMMarker1VisibleChange
     Left = 104
     Top = 328
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '*.jpg'
+    Filter = 'Jpg file|*.jpg'
+    Left = 400
+    Top = 80
   end
 end
