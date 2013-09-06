@@ -7,6 +7,12 @@ TWebControl and TWebChromium classes
 =========================================================================
 History:
 
+ver 1.2.0
+  ES:
+    error: TWebControl.SaveToJPGFile -> corregido error (GC: issue 17).
+  EN:
+    bug: TWebControl.SaveToJPGFile -> bug fixed (GC: issue 17).
+
 ver 1.0.1
   ES:
     error: TWebControl -> método WebFormFieldValue corregido (GC: issue 6).
