@@ -103,7 +103,7 @@ unit GMDirection;
 interface
 
 uses
-  {$IFNDEF DELPHI2009}Controls,{$ENDIF}
+  {$IFNDEF DELPHI2009}{$IFNDEF VER260}Controls,{$ENDIF}{$ENDIF}
   {$IFDEF DELPHIXE2}
   System.Classes, System.Contnrs,
   {$ELSE}

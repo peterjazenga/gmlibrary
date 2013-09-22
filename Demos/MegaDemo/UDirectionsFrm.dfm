@@ -21,7 +21,7 @@ object DirectionsFrm: TDirectionsFrm
     Top = 0
     Width = 564
     Height = 393
-    ActivePage = tsDirection
+    ActivePage = tsRequest
     Align = alClient
     TabOrder = 0
     object tsDirection: TTabSheet
@@ -1224,6 +1224,7 @@ object DirectionsFrm: TDirectionsFrm
               Marks.Shadow.Color = 8684676
               Marks.Shadow.Smooth = False
               Marks.Shadow.Visible = False
+              Marks.ShapeStyle = fosRoundRectangle
               Marks.Symbol.Shadow.Smooth = False
               Marks.Symbol.Shadow.Visible = False
               Marks.Visible = False

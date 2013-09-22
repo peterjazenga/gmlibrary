@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{1B2D3889-219A-4660-8146-8CCC9425EFEC}</ProjectGuid>
-        <MainSource>GMLib_DXE4.dpk</MainSource>
-        <ProjectVersion>14.6</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <ProjectGuid>{FB51646E-6C96-44A2-9387-32E57FE9CE8F}</ProjectGuid>
+        <MainSource>GMLib_DXE5_VCL.dpk</MainSource>
+        <ProjectVersion>15.1</ProjectVersion>
+        <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -11,6 +11,11 @@
         <AppType>Package</AppType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Android' and '$(Base)'=='true') or '$(Base_Android)'!=''">
+        <Base_Android>true</Base_Android>
+        <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='iOSDevice' and '$(Base)'=='true') or '$(Base_iOSDevice)'!=''">
@@ -55,12 +60,10 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_Locale>3082</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.1;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
-        <GenDll>true</GenDll>
-        <GenPackage>true</GenPackage>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <GenPackage>true</GenPackage>
+        <GenDll>true</GenDll>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
@@ -68,6 +71,10 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Android)'!=''">
+        <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_CBuilderOutput>None</DCC_CBuilderOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_iOSDevice)'!=''">
         <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
@@ -81,40 +88,42 @@
         <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <VerInfo_Release>2</VerInfo_Release>
-        <DCC_BpiOutput>..\lib\cxe4</DCC_BpiOutput>
-        <DCC_HppOutput>..\lib\cxe4</DCC_HppOutput>
-        <DCC_ObjOutput>..\lib\cxe4</DCC_ObjOutput>
-        <DCC_DcuOutput>..\lib\dxe4</DCC_DcuOutput>
-        <DCC_UnitSearchPath>..\lib\dxe4;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_DcpOutput>..\lib\dxe4</DCC_DcpOutput>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>xmlrtl;rtl;vcl;vclimg;vclie;dbrtl;GMLib_DXE5;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_DcpOutput>..\lib\DXE5\VCL</DCC_DcpOutput>
+        <DCC_DcuOutput>..\lib\DXE5\VCL</DCC_DcuOutput>
+        <DCC_BpiOutput>..\lib\CXE5\VCL</DCC_BpiOutput>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <DCC_Description>GoogleMaps Library v1.2.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Release>2</VerInfo_Release>
+        <DCC_HppOutput>..\lib\CXE5\VCL</DCC_HppOutput>
+        <DCC_UnitSearchPath>..\lib\DXE5\VCL;..\lib\DXE5;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_Description>GoogleMaps Library v1.2.0 VCL (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <DCC_ObjOutput>..\lib\CXE5\VCL</DCC_ObjOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <VerInfo_Release>2</VerInfo_Release>
-        <DCC_DcuOutput>..\lib\dxe4_64</DCC_DcuOutput>
-        <DCC_BpiOutput>..\lib\cxe4_64</DCC_BpiOutput>
-        <DCC_HppOutput>..\lib\cxe4_64</DCC_HppOutput>
-        <DCC_DcpOutput>..\lib\dxe4_64</DCC_DcpOutput>
-        <DCC_UnitSearchPath>..\lib\dxe4_64;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_ObjOutput>..\lib\cxe4_64</DCC_ObjOutput>
-        <DCC_UsePackage>xmlrtl;rtl;dbrtl;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_UsePackage>xmlrtl;rtl;vcl;vclimg;vclie;dbrtl;GMLib_DXE5;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_DcpOutput>..\lib\DXE5_64\VCL</DCC_DcpOutput>
+        <DCC_DcuOutput>..\lib\DXE5_64\VCL</DCC_DcuOutput>
+        <DCC_BpiOutput>..\lib\CXE5_64\VCL</DCC_BpiOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <DCC_Description>GoogleMaps Library v1.2.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
-        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
+        <DCC_Description>GoogleMaps Library v1.2.0 VCL (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+        <DCC_UnitSearchPath>..\lib\DXE5_64\VCL;..\lib\DXE5_64;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_HppOutput>..\lib\CXE5_64\VCL</DCC_HppOutput>
+        <DCC_ObjOutput>..\lib\CXE5_64\VCL</DCC_ObjOutput>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>3082</VerInfo_Locale>
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <DCC_Optimize>false</DCC_Optimize>
@@ -123,46 +132,38 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=www.cadetill.com;FileDescription=;FileVersion=0.1.2.0;InternalName=GMLib;LegalCopyright=Copyright © Xavier Martínez - cadetill;LegalTrademarks=;OriginalFilename=;ProductName=GoogleMaps Library;ProductVersion=0.1.2.0;Comments=</VerInfo_Keys>
-        <VerInfo_Release>2</VerInfo_Release>
-        <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <VerInfo_Build>1</VerInfo_Build>
-        <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
-        <DCC_DebugInformation>false</DCC_DebugInformation>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\Resources\gmlibres.RES"/>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
+        <DCCReference Include="vcl.dcp"/>
+        <DCCReference Include="vclimg.dcp"/>
+        <DCCReference Include="vclie.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
-        <DCCReference Include="..\src\GMCircle.pas"/>
-        <DCCReference Include="..\src\GMClasses.pas"/>
-        <DCCReference Include="..\src\GMConstants.pas"/>
-        <DCCReference Include="..\src\GMDirection.pas"/>
-        <DCCReference Include="..\src\GMElevation.pas"/>
-        <DCCReference Include="..\src\GMFunctions.pas"/>
-        <DCCReference Include="..\src\GMGeoCode.pas"/>
-        <DCCReference Include="..\src\GMGroundOverlay.pas"/>
-        <DCCReference Include="..\src\GMInfoWindow.pas"/>
-        <DCCReference Include="..\src\GMLinkedComponents.pas"/>
-        <DCCReference Include="..\src\GMMap.pas"/>
-        <DCCReference Include="..\src\GMMarker.pas"/>
-        <DCCReference Include="..\src\GMPolyline.pas"/>
-        <DCCReference Include="..\src\GMRectangle.pas"/>
-        <DCCReference Include="..\src\Lang.pas"/>
-        <DCCReference Include="..\src\RegisterComp.pas"/>
-        <DCCReference Include="..\src\WebControl.pas"/>
+        <DCCReference Include="GMLib_DXE5.dcp"/>
+        <DCCReference Include="..\src\VCL\GMCircleVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMDirectionVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMElevationVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMFunctionsVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMMapVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMMarkerVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMPolygonVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMPolylineVCL.pas"/>
+        <DCCReference Include="..\src\VCL\GMRectangleVCL.pas"/>
+        <DCCReference Include="..\src\VCL\RegisterCompVCL.pas"/>
+        <DCCReference Include="..\src\VCL\WebControlVCL.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -181,7 +182,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">GMLib_DXE4.dpk</Source>
+                    <Source Name="MainSource">GMLib_DXE5_VCL.dpk</Source>
                 </Source>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
@@ -223,16 +224,26 @@
                     <VersionInfoKeys Name="LSRequiresIPhoneOS"/>
                     <VersionInfoKeys Name="CFBundleInfoDictionaryVersion"/>
                     <VersionInfoKeys Name="CFBundleDevelopmentRegion"/>
+                    <VersionInfoKeys Name="package"/>
+                    <VersionInfoKeys Name="label"/>
+                    <VersionInfoKeys Name="versionCode"/>
+                    <VersionInfoKeys Name="versionName"/>
+                    <VersionInfoKeys Name="persistent"/>
+                    <VersionInfoKeys Name="restoreAnyVersion"/>
+                    <VersionInfoKeys Name="installLocation"/>
+                    <VersionInfoKeys Name="largeHeap"/>
+                    <VersionInfoKeys Name="theme"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k180.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp180.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k180.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp180.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k190.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp190.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k190.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp190.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment/>
             <Platforms>
+                <Platform value="Android">False</Platform>
                 <Platform value="iOSDevice">False</Platform>
                 <Platform value="iOSSimulator">False</Platform>
                 <Platform value="OSX32">False</Platform>
