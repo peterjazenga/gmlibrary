@@ -10,8 +10,10 @@ History:
 ver 1.2.0
   ES:
     nuevo: añadido el idioma Húngaro (gracias Bógáncs Sándor)
+    nuevo: añadido el idioma italiano (gracias Vincenzo Scarpellino)
   EN:
     new: added Hungarian language (thanks Bógáncs Sándor)
+    new: added Italian language (thanks Vincenzo Scarpellino)
 
 ver 1.0.0
   ES:
@@ -282,6 +284,30 @@ const
       );
 
   {*------------------------------------------------------------------------------
+    Array with messages in Italian
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Array con los mensajes en Italiano
+  -------------------------------------------------------------------------------}
+  Lang_ITA: array[0..14] of string = (
+      'WebBrowser non definito',                              // 0
+      'La pagina iniziziale non è stata caricata',            // 1
+      'La mappa non è ancora creata',                         // 2
+      'Non attivo',                                           // 3
+      'Impossibile caricare la risorsa',                      // 4
+      'Questo oggetto non ha alcuna relazione in JavaScript', // 5
+      'Id da JavaScript non corretto',                        // 6
+      'Id da JavaScript inesistente',                         // 7
+      'Numero errato di parametri',                           // 8
+      'Tipo di parametro errato',                             // 9
+      'Valore del parametro errato',                          // 10
+      'Indice fuori intervallo',                              // 11
+      'Mappa non assegnata',                                  // 12
+      'Il file non esiste',                                   // 13
+      'Il numero di colonna è errato'                         // 14
+      );
+
+  {*------------------------------------------------------------------------------
     GetTranslateText fucntion retrieves a translated string into the Lang language
     @param Text string to translate
     @param Lang destination language
@@ -325,6 +351,7 @@ begin
       German: Result := Lang_GER[Idx];
       Russian: Result := Lang_RUS[GetIndex(Text)];
       Hungarian: Result := Lang_HUN[GetIndex(Text)];
+      Italian: Result := Lang_ITA[GetIndex(Text)];
       else Result := Text;
     end;
     if Result = '' then Result := Text;

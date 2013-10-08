@@ -31,6 +31,7 @@ NEW RELEASE
  - Improvement: TCustomMarker -> added CrossOnDrag property.
  - Improvement: TCustomGMMarker -> added OnCrossOnDragChange event.
  - Improvement: Added Hungarian language (thanks Bógáncs Sándor)
+ - Improvement: Added Italian language (thanks Vincenzo Scarpellino)
  - bug fixed: TAddressComponentsList -> fixed Memory leak on Destroy method (GC: issue 13).
  - bug fixed: TWebControl.SaveToJPGFile -> save 2 extra pixels (GC: issue 17).
 
