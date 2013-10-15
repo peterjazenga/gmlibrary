@@ -893,7 +893,7 @@ type
   {=------------------------------------------------------------------------------
     Clase base para la gestión de marcadores.
   -------------------------------------------------------------------------------}
-  TCustomGMMarker  = class(TGMLinkedComponent)
+  TCustomGMMarker = class(TGMLinkedComponent)
   private
     {*------------------------------------------------------------------------------
       This event occurs when the user click a marker.
