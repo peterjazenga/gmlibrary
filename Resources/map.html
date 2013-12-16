@@ -1020,7 +1020,7 @@
           document.eventsCircle.centerChange.value = "1"; 
           document.eventsCircle.eventfired.value = "1";  
         });
-    google.maps.event.addListener(Circle, "radius_changed", function() { 
+    google.maps.event.addListener(Circle, "radius_changed", function() { //document.mapdata.kk.value = document.mapdata.kk.value + ' \n event ' + Circle.getRadius();
           document.eventsCircle.radius.value = Circle.getRadius();
           document.eventsCircle.linkCompId.value = Circle.GMLibId;
           document.eventsCircle.linkCompZIndex.value = Circle.GMLibZIndex;
@@ -1106,7 +1106,7 @@
   /* MakeCircle */
   function MakeCircle(IdObj, Click, Edit, FColor, FOpacity, StrkColor, 
             StrkOpac, StrkW, Visible, Lat, Lng, Radius, ZIndex, 
-            IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, CloseOther) { 
+            IWContent, IWDisAutopan, IWMaxW, IWPixelOffH, IWPixelOffW, CloseOther) { //document.mapdata.kk.value = document.mapdata.kk.value + ' \n make ' + Radius;
     if (map == null) throw new Error('map is null');
     var Idx = IndexOf(IdObj, ZIndex);
     if (Idx == -1) {
@@ -2602,6 +2602,7 @@
     <input type="hidden" name="lng" value="0"/> 
     <input type="hidden" name="maptype" value=""/> 
     <input type="hidden" name="zoom" value="0"/> 
+<!--	<textarea rows="4" cols="50" name="kk"></textarea>  -->
   </form> 
   <!--******************************************************************************
      Resultados para la clase LatLngBounds

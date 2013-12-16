@@ -269,22 +269,22 @@ object CirclesFrm: TCirclesFrm
           OnChange = eLatChange
         end
       end
-      object eRadius: TSpinEdit
+      object eRadius: TEdit
         Left = 271
         Top = 272
         Width = 57
-        Height = 22
-        Increment = 100
-        MaxValue = 32000000
-        MinValue = 0
+        Height = 21
         TabOrder = 10
-        Value = 1
         OnChange = eRadiusChange
       end
     end
     object tsAutoResize: TTabSheet
       Caption = 'AutoResize'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label7: TLabel
         Left = 48
         Top = 95
@@ -379,6 +379,10 @@ object CirclesFrm: TCirclesFrm
     object tsInfoWin: TTabSheet
       Caption = 'InfoWin'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label33: TLabel
         Left = 40
         Top = 112
@@ -478,6 +482,10 @@ object CirclesFrm: TCirclesFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cbOnClick: TCheckBox
         Left = 32
         Top = 48

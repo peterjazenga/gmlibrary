@@ -77,7 +77,7 @@ type
     cbOnFillColorChange: TCheckBox;
     cbOnCenterChange: TCheckBox;
     Label2: TLabel;
-    eRadius: TSpinEdit;
+    eRadius: TEdit;
     cbOnRadiusChange: TCheckBox;
     tsAutoResize: TTabSheet;
     cbCircular: TCheckBox;
@@ -510,9 +510,12 @@ begin
 end;
 
 procedure TCirclesFrm.eRadiusChange(Sender: TObject);
+var
+  Tmp: Extended;
 begin
   if lbItems.ItemIndex = -1 then Exit;
-  FGMCircle[lbItems.ItemIndex].Radius := eRadius.Value;
+  if TryStrToFloat(eRadius.Text, Tmp) then
+    FGMCircle[lbItems.ItemIndex].Radius := Tmp;
 end;
 
 procedure TCirclesFrm.eSpeedChange(Sender: TObject);
@@ -594,7 +597,7 @@ begin
   cbStrokeColor.Selected := FGMCircle[lbItems.ItemIndex].StrokeColor;
   eStrokeOpacity.Text := FloatToStr(FGMCircle[lbItems.ItemIndex].StrokeOpacity);
   eStrokeWeight.Value := FGMCircle[lbItems.ItemIndex].StrokeWeight;
-  eRadius.Value := FGMCircle[lbItems.ItemIndex].Radius;
+  eRadius.Text := FloatToStr(FGMCircle[lbItems.ItemIndex].Radius);
   eText.Text := FGMCircle[lbItems.ItemIndex].Text;
 
   cbActive.Checked := FGMCircle[lbItems.ItemIndex].AutoResize.Active;

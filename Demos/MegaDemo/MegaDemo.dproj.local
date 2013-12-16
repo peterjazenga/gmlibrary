@@ -1,18 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>2012/06/27 16:43:19.572.dfm,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMainFrm.dfm=D:\Docs\RAD Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2012/06/27 16:43:33.338.dproj,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\MegaDemo.dproj=D:\Docs\RAD Studio\Projects\Project2.dproj</Transaction>
-    <Transaction>2012/06/27 17:40:14.213.dfm,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMapFrm.dfm=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm</Transaction>
-    <Transaction>2012/07/04 18:45:57.522.dfm,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UMarkersFrm.dfm=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit2.dfm</Transaction>
-    <Transaction>2012/07/05 15:35:49.805.dfm,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UPolylinesFrm.dfm=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit2.dfm</Transaction>
-    <Transaction>2012/07/05 18:22:53.789.dfm,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UPolygonFrm.dfm=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm</Transaction>
-    <Transaction>2012/07/06 00:09:25.191.dfm,D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\URectanglesFrm.dfm=D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm</Transaction>
-    <Transaction>2012/07/10 18:55:05.155.dfm,D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UGeoCodeFrm.dfm=D:\Docs\Dropbox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm</Transaction>
-    <Transaction>2012/07/19 20:34:10.449.dfm,D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UDirectionsFrm.dfm=D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm</Transaction>
-    <Transaction>2012/08/05 10:54:37.300.dfm,D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UWaypointFrm.dfm=D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm</Transaction>
-    <Transaction>2013/03/31 20:11:40.000.863,D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.pas=D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UGroundOverlay.pas</Transaction>
-    <Transaction>2013/03/31 20:11:40.000.863,D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\Unit1.dfm=D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UGroundOverlay.dfm</Transaction>
-    <Transaction>2013/03/31 20:14:46.000.469,D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UGroundOverlay.dfm=D:\Docs\DropBox\Programacio\GoogleMaps\Components\Demos\MegaDemo\UGroundOverlayFrm.dfm</Transaction>
-  </Transactions>
-</BorlandProject>
+<BorlandProject/>

@@ -475,7 +475,7 @@ object MainFrm: TMainFrm
         Clickable = True
         Editable = False
         FillOpacity = 0.200000000000000000
-        Radius = 2400
+        Radius = 2400.000000000000000000
         StrokeOpacity = 0.200000000000000000
         StrokeWeight = 1
         Visible = True

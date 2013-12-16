@@ -16,6 +16,16 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.2.0
+  ES:
+    cambio: TCustomCircle -> la propiedad Radius pasa a ser un Real.
+    error: TCustomCircle -> el radio del círculo se hacía enorme con el cambio
+      de alguna propiedad (issue GC19).
+  EN:
+    change: TCustomCircle -> Radius property becomes a Real.
+    bug fixed: TCustomCircle -> the radius of the circle become very large with
+      changing some property (issue GC19).
+
 ver 1.0.0
   ES:
     cambio: TCustomCircle -> el método GetBounds pasa ha ser un procedure.
@@ -236,7 +246,7 @@ type
     {=------------------------------------------------------------------------------
       Radio en metros en la superficie de la Tierra.
     -------------------------------------------------------------------------------}
-    FRadius: Integer;
+    FRadius: Real;
     {*------------------------------------------------------------------------------
       Whether this circle is visible on the map.
     -------------------------------------------------------------------------------}
@@ -297,7 +307,7 @@ type
     procedure SetClickable(const Value: Boolean);
     procedure SetEditable(const Value: Boolean);
     procedure SetFillOpacity(const Value: Real);
-    procedure SetRadius(const Value: Integer);
+    procedure SetRadius(const Value: Real);
     procedure SetStrokeOpacity(const Value: Real);
     procedure SetStrokeWeight(const Value: Integer);
     procedure SetVisible(const Value: Boolean);
@@ -344,7 +354,7 @@ type
     property Clickable: Boolean read FClickable write SetClickable;
     property Editable: Boolean read FEditable write SetEditable;
     property FillOpacity: Real read FFillOpacity write SetFillOpacity; // 0 to 1
-    property Radius: Integer read FRadius write SetRadius;
+    property Radius: Real read FRadius write SetRadius;
     property StrokeOpacity: Real read FStrokeOpacity write SetStrokeOpacity; // 0 to 1
     property StrokeWeight: Integer read FStrokeWeight write SetStrokeWeight; // 1 to 10
     property Visible: Boolean read FVisible write SetVisible;
@@ -644,7 +654,7 @@ begin
     end;
 
     Items[Params[1].VInteger].FIsUpdating := True;
-    Items[Params[1].VInteger].Radius := Params[0].VInteger;
+    Items[Params[1].VInteger].Radius := Params[0].VExtended^;
     if Assigned(FOnRadiusChange) then FOnRadiusChange(Self, Params[1].VInteger, Items[Params[1].VInteger]);
     Items[Params[1].VInteger].FIsUpdating := False;
 
@@ -881,6 +891,7 @@ begin
 
   FClickable := Value;
 
+  FIsUpdating := True;
   ChangeProperties;
   if Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnClickableChange) then
     TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnClickableChange(
@@ -895,6 +906,7 @@ begin
 
   FEditable := Value;
 
+  FIsUpdating := True;
   ChangeProperties;
   if Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnEditableChange) then
     TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnEditableChange(
@@ -909,6 +921,7 @@ begin
 
   FFillOpacity := Value;
 
+  FIsUpdating := True;
   ChangeProperties;
   if Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnFillOpacityChange) then
     TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnFillOpacityChange(
@@ -917,7 +930,7 @@ begin
                   Self);
 end;
 
-procedure TCustomCircle.SetRadius(const Value: Integer);
+procedure TCustomCircle.SetRadius(const Value: Real);
 begin
   if FRadius = Value then Exit;
 
@@ -956,6 +969,7 @@ begin
 
   FStrokeOpacity := Value;
 
+  FIsUpdating := True;
   ChangeProperties;
   if Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnStrokeOpacityChange) then
     TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnStrokeOpacityChange(
@@ -970,6 +984,7 @@ begin
 
   FStrokeWeight := Value;
 
+  FIsUpdating := True;
   ChangeProperties;
   if Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnStrokeWeightChange) then
     TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnStrokeWeightChange(
@@ -984,6 +999,7 @@ begin
 
   FVisible := Value;
 
+  FIsUpdating := True;
   ChangeProperties;
   if Assigned(TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnVisibleChange) then
     TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).FOnVisibleChange(
