@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.2.0
+  ES:
+    error: TGMGroundOverlay -> corregido error al añadir por código un item (gracias Drugoi_mir).
+  EN:
+    bug: TGMGroundOverlay -> bug fixed when adding an item by code (thanks Drugoi_mir).
+
 ver 1.0.0
   ES: primera versión
   EN: first version
@@ -38,13 +44,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMGroundOverlay unit includes the classes needed to show images on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.0
+  @version 1.2.2
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMGroundOverlay contiene las clases necesarias para mostrar imágenes en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.0
+  @version 1.2.2
 -------------------------------------------------------------------------------}
 unit GMGroundOverlay;
 
@@ -343,6 +349,8 @@ begin
 
   Result := False;
 
+  if FUrl = '' then Exit;
+
   Img := FUrl;
   if FileExists(Img) then
   begin
@@ -401,7 +409,9 @@ end;
 
 procedure TGroundOverlay.OnChangeBounds(Sender: TObject);
 begin
+  Visible := False;
   ChangeProperties;
+  Visible := True;
   if Assigned(TGMGroundOverlay(TGroundOverlays(Collection).FGMLinkedComponent).FOnBoundsChanged) then
     TGMGroundOverlay(TGroundOverlays(Collection).FGMLinkedComponent).FOnBoundsChanged(
                   TGMGroundOverlay(TGroundOverlays(Collection).FGMLinkedComponent),
@@ -501,11 +511,13 @@ function TGMGroundOverlay.Add(Url: string; SWLat, SWLng, NELat,
   NELng: Real): TGroundOverlay;
 begin
   Result := TGroundOverlay(inherited Add);
-  Result.Url := Url;
+  Result.Visible := False;
   Result.Bounds.SW.Lat := SWLat;
   Result.Bounds.SW.Lng := SWLng;
   Result.Bounds.NE.Lat := NELat;
   Result.Bounds.NE.Lng := NELng;
+  Result.Url := Url;
+  Result.Visible := True;
 end;
 
 procedure TGMGroundOverlay.EventFired(EventType: TEventType;

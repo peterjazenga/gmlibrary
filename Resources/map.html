@@ -972,6 +972,11 @@
       Idx--;
     }
     
+    if (!Visible) {
+      DeleteObject(IdObj, ZIndex);
+      return;
+    }
+    
     if ((!linkedCompList[Idx].getBounds().equals(LLB)) || (Url != linkedCompList[Idx].getUrl())){
       DeleteObject(IdObj, ZIndex);
       MakeGroundOverlay(IdObj, Url, Click, Opacity, SWLat, SWLng, NELat, NELng, ZIndex, 
@@ -983,8 +988,6 @@
     
     if (Click != linkedCompList[Idx].clickable)
       linkedCompList[Idx].clickable = Click;
-    
-    if (!Visible) DeleteObject(IdObj, ZIndex);
   } 
 
   /******************************************************************************
@@ -2587,7 +2590,7 @@
       <td align=center width=90 onClick="CreateAllCircles()">do Circles</td>
       <td align=center width=90 onClick="EncodePath('}~kvHmzrr@ba\hnc@jiu@r{Zqx~@hjp@pwEhnc@zhu@zflAbxn@fhjBvqHroaAgcnAp}gAeahAtqGkngAinc@_h|@r{Zad\y|_D}_y@swg@ysg@}llBpoZqa{@xrw@~eBaaX}{uAero@uqGadY}nr@`dYs_NquNgbjAf{l@|yh@bfc@}nr@z}q@i|i@zgz@r{ZhjFr}gApob@ff}@laIsen@dgYhdPvbIren@')">Encode</td>
 	  <td align=center onClick="GetGeocoder('c\ reial, 60, tarragona', -1, -1, 'es', -1, -1, -1, -1, 'es')">Geocode</td>
-      <td align=center width=90 onClick="MakeGroundOverlay(1,'file:///D:/Docs/Dropbox/Programacio/GoogleMaps/Components/Images/mapa.png',true,1,41.31381787,2.00795937,41.41739972,2.22699927,true,0,'',false,0,0,0)">do GO</td>
+      <td align=center width=90 onClick="MakeGroundOverlay(1,'file:///D:/Docs/Dropbox/Programacio/GoogleMaps/Components/Images/mapa.png',     true,1,41.31381787,2.00795937,41.41739972,2.22699927,true,0,'',false,0,0,0)">do GO</td>
       <td align=center width=90 onClick="GetMaxZoom(41.375875,2.177757)">MaxZoom</td>
     </tr>
   </table>

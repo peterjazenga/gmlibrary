@@ -14,12 +14,12 @@
     <Transaction>2013/09/22 12:22:59.000.799,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMDirectionVCL.pas</Transaction>
     <Transaction>2013/09/22 12:22:59.000.908,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\GMPolygonVCL.pas</Transaction>
     <Transaction>2013/09/22 12:22:59.000.942,=D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\VCL\RegisterCompVCL.pas</Transaction>
-    <Transaction>2013/09/22 12:23:35.000.667,=xmlrtl.dcp</Transaction>
+    <Transaction>2013/09/22 12:23:35.000.711,=dbrtl.dcp</Transaction>
     <Transaction>2013/09/22 12:23:35.000.678,=vcl.dcp</Transaction>
     <Transaction>2013/09/22 12:23:35.000.726,=dclfmxstd.dcp</Transaction>
-    <Transaction>2013/09/22 12:23:35.000.702,=vclie.dcp</Transaction>
+    <Transaction>2013/09/22 12:23:35.000.667,=xmlrtl.dcp</Transaction>
     <Transaction>2013/09/22 12:23:35.000.690,=vclimg.dcp</Transaction>
-    <Transaction>2013/09/22 12:23:35.000.711,=dbrtl.dcp</Transaction>
+    <Transaction>2013/09/22 12:23:35.000.702,=vclie.dcp</Transaction>
     <Transaction>2013/09/22 12:29:32.000.918,=GMLib_DXE5.dcp</Transaction>
   </Transactions>
 </BorlandProject>

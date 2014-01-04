@@ -42,13 +42,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMCircleVCL unit includes the VCL classes needed to show circles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.0
+  @version 1.2.2
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMCircleVCL contiene las clases VCL necesarias para mostrar círculos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.0
+  @version 1.2.2
 -------------------------------------------------------------------------------}
 unit GMCircleVCL;
 

@@ -12,8 +12,8 @@ STRINGTABLE
 BEGIN
 END
 
-/* ..\src\..\Resources\gmmapres.RES */
-/* ..\src\UAboutFrm.dfm */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D2010.res */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\..\Resources\gmlibres.RES */
-/* D:\Docs\Dropbox\Programacio\GoogleMaps\Components\dpk\GMLib_D2010.drf */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\..\Resources\gmmapres.RES */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\src\UAboutFrm.dfm */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_D2010.res */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\..\Resources\gmlibres.RES */
+/* D:\Docs\DropBox\Programacio\GoogleMaps\Components\dpk\GMLib_D2010.drf */

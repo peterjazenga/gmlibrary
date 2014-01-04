@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{CD151334-A7D9-450C-8E22-CC8FD5A69D67}</ProjectGuid>
         <MainSource>GMLib_DXE5_FMX.dpk</MainSource>
-        <ProjectVersion>15.1</ProjectVersion>
+        <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>

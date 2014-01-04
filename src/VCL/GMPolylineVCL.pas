@@ -56,13 +56,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolylineVCL unit includes the VCL classes needed to show polylines on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.0
+  @version 1.2.2
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolylineVCL contiene las clases VCL necesarias para mostrar polilíneas en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.0
+  @version 1.2.2
 -------------------------------------------------------------------------------}
 unit GMPolylineVCL;
 
