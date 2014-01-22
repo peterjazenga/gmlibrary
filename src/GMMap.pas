@@ -10,10 +10,10 @@ History:
 ver 1.2.X
   ES:
     nuevo: TCustomGMMap -> añadido método GetMaxZoom.
-    nuevo: TCustomGMMap -> añadida propiedad GoogleAPIKey.
+    nuevo: TCustomGMMap -> añadida propiedad APIKey (gracias Zsolt).
   EN:
     new: TCustomGMMap -> added GetMaxZoom method.
-    new: TCustomGMMap -> added GoogleAPIKey property.
+    new: TCustomGMMap -> added APIKey property (thanks Zsolt).
 
 ver 1.0.1
   ES:
@@ -1993,12 +1993,14 @@ type
     -------------------------------------------------------------------------------}
     FOnCenterChanged: TLatLngEvent;
     {*------------------------------------------------------------------------------
-      GoogleAPIKey is the Key to use on Google Maps.
+      APIKey is the Key to use on Google Maps.
+      To obtaining Api Key please check https://developers.google.com/maps/documentation/javascript/tutorial
     -------------------------------------------------------------------------------}
     {=------------------------------------------------------------------------------
-      GoogleAPIKey es la Key a usar en Google Maps.
+      APIKey es la Key a usar en Google Maps.
+      PAra obtener una Api Key visita https://developers.google.com/maps/documentation/javascript/tutorial
     -------------------------------------------------------------------------------}
-    FGoogleAPIKey: string;
+    FAPIKey: string;
 
     function AddLinkedComponent(GMObject: TGMObjects): Integer;
     procedure RemoveLinkedComponent(GMObject: TGMObjects);
@@ -2008,7 +2010,7 @@ type
     procedure SetActive(const Value: Boolean);
     procedure SetIntervalEvents(const Value: Integer);
     procedure SetPrecision(const Value: Integer);
-    procedure SetGoogleAPIKey(const Value: string);
+    procedure SetAPIKey(const Value: string);
   protected
     // Internal variables accessible to descendants
     {*------------------------------------------------------------------------------
@@ -2474,6 +2476,7 @@ type
     -------------------------------------------------------------------------------}
     procedure DoMap; virtual;
   published
+    property APIKey: string read FAPIKey write SetAPIKey;
     property Active: Boolean read FActive write SetActive;
     property IntervalEvents: Integer read FIntervalEvents write SetIntervalEvents;
     property Precision: Integer read FPrecision write SetPrecision;
@@ -2481,7 +2484,6 @@ type
     property NonVisualProp: TNonVisualProp read FNonVisualProp write FNonVisualProp;
     property Layers: TLayers read FLayers write FLayers;
     property StreetView: TStreetView read FStreetView write FStreetView;
-    property GoogleAPIKey: string read FGoogleAPIKey write SetGoogleAPIKey;
 
     // eventos / Events
     property AfterPageLoaded: TAfterPageLoaded read FAfterPageLoaded write FAfterPageLoaded;
@@ -2730,6 +2732,7 @@ begin
   if Source is TCustomGMMap then
   begin
     FWebBrowser.Assign(TCustomGMMap(Source).FWebBrowser);
+    ApiKey := TCustomGMMap(Source).ApiKey;
     Active := TCustomGMMap(Source).Active;
     IntervalEvents := TCustomGMMap(Source).IntervalEvents;
     RequiredProp.Assign(TCustomGMMap(Source).RequiredProp);
@@ -2771,6 +2774,7 @@ begin
   FCountLinkedCom := 0;
   FIsUpdating := False;
 
+  FApiKey := '';
   FActive := False;
   FIntervalEvents := 200;
   FRequiredProp := TRequiredProp.Create(Self);
@@ -2879,7 +2883,7 @@ begin
       Stream := TResourceStream.Create(HInstance, RES_MAPA_CODE, RT_RCDATA);
       List.LoadFromStream(Stream);
       Result := List.Text;
-      Result := Format(Result, [FGoogleAPIKey]);
+      Result := StringReplace(Result, C_API_KEY, FApiKey, []);
     finally
       if Assigned(Stream) then FreeAndNil(Stream);
       if Assigned(List) then FreeAndNil(List);
@@ -3768,6 +3772,14 @@ begin
     FLinkedComponents.Remove(GMObject);
 end;
 
+procedure TCustomGMMap.SetAPIKey(const Value: string);
+begin
+  if FAPIKey = Value then Exit;
+
+  FAPIKey := Trim(Value);
+  if FActive then FActive := False;
+end;
+
 procedure TCustomGMMap.SetActive(const Value: Boolean);
 begin
   if FActive = Value then Exit;
@@ -3816,14 +3828,6 @@ begin
   finally
     if Assigned(LatLng) then FreeAndNil(LatLng);
   end;
-end;
-
-procedure TCustomGMMap.SetGoogleAPIKey(const Value: string);
-begin
-  if FGoogleAPIKey = Value then Exit;
-
-  FGoogleAPIKey := Trim(Value);
-  if FActive then FActive := False;
 end;
 
 procedure TCustomGMMap.SetIntervalEvents(const Value: Integer);
