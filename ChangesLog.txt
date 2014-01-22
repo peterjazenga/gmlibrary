@@ -28,7 +28,7 @@ NEW RELEASE
  - Improvement: General -> compiled under XE5.
  - Improvement: JavaScript -> Activated visual refresh view of Google Maps.
  - Improvement: TCustomGMMap -> added GetMaxZoom method.
- - Improvement: TCustomGMMap -> added GoogleAPIKey property.
+ - Improvement: TCustomGMMap -> added APIKey property (thanks Zsolt).
  - Improvement: TCustomMarker -> added CrossOnDrag property.
  - Improvement: TCustomGMMarker -> added OnCrossOnDragChange event.
  - Improvement: Added Hungarian language (thanks Bógáncs Sándor)
