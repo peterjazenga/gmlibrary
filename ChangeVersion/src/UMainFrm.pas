@@ -66,6 +66,8 @@ const
   GMLIB_VerText = 'GMLIB_VerText';
   cntGMLIB_Version = '  GMLIB_Version = ''[%d.%d.%d Final]'';';
   cntGMLIB_VerText = '  GMLIB_VerText = ''%d.%d.%d Final'';';
+  splashScreen = 'SplashScreenServices.AddPluginBitmap(''GoogleMaps Library';
+  cntsplashScreen = '      SplashScreenServices.AddPluginBitmap(''GoogleMaps Library %d.%d.%d Final'', Bmp, False, ''Licence LGPL'');';
 var
   Search: TSearchRec;
   Files: integer;
@@ -98,6 +100,11 @@ begin
                                               eRelease.Value,
                                               eBuild.Value
                                              ]);
+          if (Search.Name = 'RegisterEditors.pas') and (Pos(splashScreen, L[i]) > 0) then
+            L[i] := Format(cntsplashScreen, [eMinor.Value,
+                                             eRelease.Value,
+                                             eBuild.Value
+                                            ]);
         end;
         L.SaveToFile(Path + Search.Name);
       finally

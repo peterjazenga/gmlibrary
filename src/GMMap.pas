@@ -7,11 +7,13 @@ GMMap unit
 =========================================================================
 History:
 
-ver 1.2.0
+ver 1.2.X
   ES:
     nuevo: TCustomGMMap -> añadido método GetMaxZoom.
+    nuevo: TCustomGMMap -> añadida propiedad GoogleAPIKey.
   EN:
     new: TCustomGMMap -> added GetMaxZoom method.
+    new: TCustomGMMap -> added GoogleAPIKey property.
 
 ver 1.0.1
   ES:
@@ -169,13 +171,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.2
+  @version 1.2.3
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.2
+  @version 1.2.3
 -------------------------------------------------------------------------------}
 unit GMMap;
 
@@ -1990,6 +1992,13 @@ type
       Ver TLatLngEvent.
     -------------------------------------------------------------------------------}
     FOnCenterChanged: TLatLngEvent;
+    {*------------------------------------------------------------------------------
+      GoogleAPIKey is the Key to use on Google Maps.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      GoogleAPIKey es la Key a usar en Google Maps.
+    -------------------------------------------------------------------------------}
+    FGoogleAPIKey: string;
 
     function AddLinkedComponent(GMObject: TGMObjects): Integer;
     procedure RemoveLinkedComponent(GMObject: TGMObjects);
@@ -1999,6 +2008,7 @@ type
     procedure SetActive(const Value: Boolean);
     procedure SetIntervalEvents(const Value: Integer);
     procedure SetPrecision(const Value: Integer);
+    procedure SetGoogleAPIKey(const Value: string);
   protected
     // Internal variables accessible to descendants
     {*------------------------------------------------------------------------------
@@ -2471,6 +2481,7 @@ type
     property NonVisualProp: TNonVisualProp read FNonVisualProp write FNonVisualProp;
     property Layers: TLayers read FLayers write FLayers;
     property StreetView: TStreetView read FStreetView write FStreetView;
+    property GoogleAPIKey: string read FGoogleAPIKey write SetGoogleAPIKey;
 
     // eventos / Events
     property AfterPageLoaded: TAfterPageLoaded read FAfterPageLoaded write FAfterPageLoaded;
@@ -2868,6 +2879,7 @@ begin
       Stream := TResourceStream.Create(HInstance, RES_MAPA_CODE, RT_RCDATA);
       List.LoadFromStream(Stream);
       Result := List.Text;
+      Result := Format(Result, [FGoogleAPIKey]);
     finally
       if Assigned(Stream) then FreeAndNil(Stream);
       if Assigned(List) then FreeAndNil(List);
@@ -3804,6 +3816,14 @@ begin
   finally
     if Assigned(LatLng) then FreeAndNil(LatLng);
   end;
+end;
+
+procedure TCustomGMMap.SetGoogleAPIKey(const Value: string);
+begin
+  if FGoogleAPIKey = Value then Exit;
+
+  FGoogleAPIKey := Trim(Value);
+  if FActive then FActive := False;
 end;
 
 procedure TCustomGMMap.SetIntervalEvents(const Value: Integer);

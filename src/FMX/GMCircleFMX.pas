@@ -42,13 +42,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMCircleFMX unit includes the FMX classes needed to show circles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.2
+  @version 1.2.3
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMCircleFMX contiene las clases FMX necesarias para mostrar círculos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.2
+  @version 1.2.3
 -------------------------------------------------------------------------------}
 unit GMCircleFMX;
 

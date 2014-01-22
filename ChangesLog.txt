@@ -24,10 +24,11 @@ CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
 NEW RELEASE
- - Google Maps Library v1.2.0
+ - Google Maps Library v1.2.X
  - Improvement: General -> compiled under XE5.
  - Improvement: JavaScript -> Activated visual refresh view of Google Maps.
  - Improvement: TCustomGMMap -> added GetMaxZoom method.
+ - Improvement: TCustomGMMap -> added GoogleAPIKey property.
  - Improvement: TCustomMarker -> added CrossOnDrag property.
  - Improvement: TCustomGMMarker -> added OnCrossOnDragChange event.
  - Improvement: Added Hungarian language (thanks Bógáncs Sándor)
