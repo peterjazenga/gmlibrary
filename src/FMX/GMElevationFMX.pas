@@ -42,13 +42,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMElevationFMX unit includes the FMX classes needed for calculate a terrain elevations of a set of LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMElevationFMX contiene las clases FMX necesarias para calcular elevaciones de terreno de un conjunto de LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 unit GMElevationFMX;
 

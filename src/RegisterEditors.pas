@@ -34,7 +34,7 @@ begin
   begin
     Bmp := LoadBitmap(FindResourceHInstance(HInstance), 'TGMMap');
     try
-      SplashScreenServices.AddPluginBitmap('GoogleMaps Library 1.2.3 Final', Bmp, False, 'Licence LGPL');
+      SplashScreenServices.AddPluginBitmap('GoogleMaps Library 1.2.4 Final', Bmp, False, 'Licence LGPL');
     finally
       DeleteObject(Bmp);
     end;

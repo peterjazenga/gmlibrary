@@ -14,6 +14,18 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.2.X
+  ES:
+    cambio: TCustomMarker -> en el método LoadFromDataSet se añade el parámetro
+      opcional HTMLContentField (GC: issue 24).
+    cambio: TCustomMarker -> en el método LoadFromDataSet se añade control de la
+      existencia de los campos.
+  EN:
+    change: TCustomMarker -> added optional parameter HTMLContentField into
+      LoadFromDataSet method (GC: issue 24).
+    change: TCustomMarker -> the LoadFromDataSet method checks the existence of
+      the needed fields.
+
 ver 1.1.0
   ES:
     cambio: TCustomMarker -> el método CenterMapToMarker se marca como deprecated,
@@ -161,13 +173,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the base classes needed to show markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 unit GMMarker;
 
@@ -1102,7 +1114,8 @@ type
       @param DeleteBeforeLoad A true, borra los marcadores antes de cargar el fichero.
     -------------------------------------------------------------------------------}
     procedure LoadFromDataSet(DataSet: TDataSet; LatField, LngField: string;
-      TitleField: string = ''; IconField: string = ''; DeleteBeforeLoad: Boolean = True);
+      TitleField: string = ''; IconField: string = ''; DeleteBeforeLoad: Boolean = True;
+      HTMLContentField: string = '');
 
     {*------------------------------------------------------------------------------
       Creates a new TMarker instance and adds it to the Items array.
@@ -1281,7 +1294,24 @@ begin
 end;
 
 procedure TCustomGMMarker.LoadFromDataSet(DataSet: TDataSet; LatField, LngField,
-  TitleField, IconField: string; DeleteBeforeLoad: Boolean);
+  TitleField, IconField: string; DeleteBeforeLoad: Boolean;
+  HTMLContentField: string);
+
+  procedure CheckFields;
+  begin
+    if not Assigned(DataSet.FindField(LatField)) then
+      raise Exception.Create(Format(GetTranslateText('Campo "%s" no encontrado en la tabla.', Map.Language), [LatField]));
+    if not Assigned(DataSet.FindField(LngField)) then
+      raise Exception.Create(Format(GetTranslateText('Campo "%s" no encontrado en la tabla.', Map.Language), [LngField]));
+
+    if (TitleField <> '') and not Assigned(DataSet.FindField(TitleField)) then
+      raise Exception.Create(Format(GetTranslateText('Campo "%s" no encontrado en la tabla.', Map.Language), [TitleField]));
+    if (IconField <> '') and not Assigned(DataSet.FindField(IconField)) then
+      raise Exception.Create(Format(GetTranslateText('Campo "%s" no encontrado en la tabla.', Map.Language), [IconField]));
+    if (HTMLContentField <> '') and not Assigned(DataSet.FindField(HTMLContentField)) then
+      raise Exception.Create(Format(GetTranslateText('Campo "%s" no encontrado en la tabla.', Map.Language), [HTMLContentField]));
+  end;
+
 var
   Auto: Boolean;
   Marker: TCustomMarker;
@@ -1289,6 +1319,8 @@ var
   Bkm: TBookmark;
 begin
   if not DataSet.Active then DataSet.Open;
+
+  CheckFields;
 
   Auto := AutoUpdate;
   AutoUpdate := False;
@@ -1307,6 +1339,8 @@ begin
       Marker.Position.Lat := DataSet.FieldByName(LatField).AsFloat;
       Marker.Position.Lng := DataSet.FieldByName(LngField).AsFloat;
       if IconField <> '' then Marker.Icon := DataSet.FieldByName(IconField).AsString;
+      if HTMLContentField <> '' then
+        Marker.InfoWindow.HTMLContent := DataSet.FieldByName(HTMLContentField).AsString;
 
       Inc(i);
       DataSet.Next;

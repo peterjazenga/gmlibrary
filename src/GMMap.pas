@@ -11,9 +11,13 @@ ver 1.2.X
   ES:
     nuevo: TCustomGMMap -> añadido método GetMaxZoom.
     nuevo: TCustomGMMap -> añadida propiedad APIKey (gracias Zsolt).
+    error: JavaScript -> corregido error en las funciones GeocoderAddressComponent
+      y GeocoderParseResult (GC: issue 27).
   EN:
     new: TCustomGMMap -> added GetMaxZoom method.
     new: TCustomGMMap -> added APIKey property (thanks Zsolt).
+    bug: JavaScript -> bug fixed into GeocoderAddressComponent and
+      GeocoderParseResult functions (GC: issue 27).
 
 ver 1.0.1
   ES:
@@ -171,13 +175,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 unit GMMap;
 

@@ -33,10 +33,13 @@ NEW RELEASE
  - Improvement: TCustomGMMarker -> added OnCrossOnDragChange event.
  - Improvement: Added Hungarian language (thanks Bógáncs Sándor)
  - Improvement: Added Italian language (thanks Vincenzo Scarpellino)
+ - Improvement: TCustomMarker -> added optional parameter HTMLContentField into LoadFromDataSet method (GC: issue 24).
+ - Improvement: TCustomMarker -> the LoadFromDataSet method checks the existence of the needed fields.
  - bug fixed: TAddressComponentsList -> fixed Memory leak on Destroy method (GC: issue 13).
  - bug fixed: TWebControl.SaveToJPGFile -> save 2 extra pixels (GC: issue 17).
  - bug fixed: TCustomCircle -> the radius of the circle become very large with changing some property (GC: issue 19).
  - bug fixed: TGMGroundOverlay -> bug fixed when adding an item by code (thanks Drugoi_mir).
+ - bug fixed: JavaScript -> bug fixed into GeocoderAddressComponent and GeocoderParseResult functions (GC: issue 27).
 
 Juny 12, 2013
  - Google Maps Library v1.1.0

@@ -85,13 +85,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the VCL components.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes VCL.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 unit RegisterCompVCL;
 

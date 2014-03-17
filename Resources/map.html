@@ -240,6 +240,7 @@
   function GeocoderAddressComponent(AddrComp) {
     var Tmp = '<long_name>' + AddrComp.long_name + '</long_name>\n';
     Tmp += '<short_name>' + AddrComp.short_name + '</short_name>\n';
+	Tmp = ReplaceString(Tmp, "&", "and"); 
     for (var i = 0; i < AddrComp.types.length; i++) {
       Tmp += '<type>' + AddrComp.types[i] + '</type>\n';
     }
@@ -249,6 +250,7 @@
   /* GeocoderParseResult */
   function GeocoderParseResult(Result) {
     var Tmp = '<formatted_address>' + Result.formatted_address + '</formatted_address>\n';
+	Tmp = ReplaceString(Tmp, "&", "and"); 
     for (var i = 0; i < Result.types.length; i++) {
       Tmp += '<type>' + Result.types[i] + '</type>\n';
     }

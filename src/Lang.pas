@@ -1,4 +1,4 @@
-{
+﻿{
 unit Lang
 
   ES: unidad para facilitar el cambio de idioma en los errores
@@ -71,7 +71,7 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   - change the GetTranslateText function by adding new language
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit Lang contiene las cadenas de los mensajes de error mostrados por los componentes y una función para realizar la traducción.
@@ -81,7 +81,7 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   - modificar la función GetTranslateText añadiendo el nuevo idioma del conjunto
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 unit Lang;
 
@@ -97,7 +97,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en español
   -------------------------------------------------------------------------------}
-  Lang_ESP: array[0..14] of string = (
+  Lang_ESP: array[0..15] of string = (
       'No se ha especificado el objeto WebBrowser',    // 0
       'Página inicial aun no cargada',      // 1
       'El mapa todavía no ha sido creado',  // 2
@@ -112,7 +112,8 @@ const
       'Índice fuera de rango',              // 11
       'Mapa no asignado',                   // 12
       'El fichero no existe',               // 13
-      'El número de columna es incorrecto'  // 14
+      'El número de columna es incorrecto', // 14
+      'Campo "%s" no encontrado en la tabla.' // 15
       );
 
   {*------------------------------------------------------------------------------
@@ -121,7 +122,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en inglés
   -------------------------------------------------------------------------------}
-  Lang_ENG: array[0..14] of string = (
+  Lang_ENG: array[0..15] of string = (
       'WebBrowser not defined',             // 0
       'Initial page not loaded',            // 1
       'The map is not yet created',         // 2
@@ -136,7 +137,8 @@ const
       'Index out of range',                 // 11
       'Map not assigned',                   // 12
       'File does not exist',                // 13
-      'The col number is incorrect'         // 14
+      'The col number is incorrect',        // 14
+      'Field "%s" not found into table.'    // 15
       );
 
   {*------------------------------------------------------------------------------
@@ -145,7 +147,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en francés
   -------------------------------------------------------------------------------}
-  Lang_FRE: array[0..14] of string = (
+  Lang_FRE: array[0..15] of string = (
       'Navigateur Web non défini',          // 0
       'Page initiale non chargée',          // 1
       'La carte n''est pas encore créée',   // 2
@@ -160,7 +162,8 @@ const
       'Indice hors limites',                // 11
       'Carte non attribuée',                // 12
       'Le fichier n''existe pas',           // 13
-      'Le numéro de colonne est incorrect'  // 14
+      'Le numéro de colonne est incorrect', // 14
+      'Champ "%s" pas trouvé dans la table.'// 15
       );
 
   {*------------------------------------------------------------------------------
@@ -169,7 +172,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en portugués de Brasil
   -------------------------------------------------------------------------------}
-  Lang_PTBR: array[0..14] of string = (
+  Lang_PTBR: array[0..15] of string = (
       'Navegador Web não definido',                // 0
       'Página inicial não foi carregada',          // 1
       'O mapa ainda não foi criado',               // 2
@@ -184,7 +187,8 @@ const
       'Índice fora do intervalo',                  // 11
       'Mapa não atribuído',                        // 12
       'O arquivo não existe',                      // 13
-      'O número da coluna está errado'             // 14
+      'O número da coluna está errado',            // 14
+      ''
       );
 
   {*------------------------------------------------------------------------------
@@ -193,7 +197,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en danés
   -------------------------------------------------------------------------------}
-  Lang_DAN: array[0..14] of string = (
+  Lang_DAN: array[0..15] of string = (
       'WebBrowser ikke defineret',                      // 0
       'Første side er ikke hentet',                     // 1
       'Kortet er ikke dannet endnu',                    // 2
@@ -208,7 +212,8 @@ const
       'Index uden for område',                          // 11
       'Kort ikke angivet',                              // 12
       'Filen findes ikke',                              // 13
-      'Antal kolonner er forkert'                       // 14
+      'Antal kolonner er forkert',                      // 14
+      ''
       );
 
   {*------------------------------------------------------------------------------
@@ -217,7 +222,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en alemán
   -------------------------------------------------------------------------------}
-  Lang_GER: array[0..14] of string = (
+  Lang_GER: array[0..15] of string = (
       'Webbrowser nicht definiert',                      // 0
       'Initialisierungswebseite nicht geladen',          // 1
       'Die Karte wurde noch nicht erzeugt',              // 2
@@ -232,7 +237,8 @@ const
       'Index ausserhalb des zulässigen Bereichs',        // 11
       'Karte nich zugewiesen',                           // 12
       'Datei existiert nicht',                           // 13
-      'Die Spaltennummer ist ungültig'                   // 14
+      'Die Spaltennummer ist ungültig',                  // 14
+      ''
       );
 
   {*------------------------------------------------------------------------------
@@ -241,7 +247,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en ruso
   -------------------------------------------------------------------------------}
-  Lang_RUS: array[0..14] of string = (
+  Lang_RUS: array[0..15] of string = (
       'WebBrowser íå îïðåäåëåí',                         // 0
       'Íà÷àëüíàÿ ñòðàíèöà íå çàãðóæåíà',                 // 1
       'Êàðòà íå ñîçäàíà',                                // 2
@@ -256,7 +262,8 @@ const
       'Èíäåêñ âíå äèàïàçîíà',                            // 11
       'Êàðòà íå íàçíà÷åíà',                              // 12
       'Ôàéë íå ñóùåñòâóåò',                              // 13
-      'Íîìåð ñòîëáöà íåêîððåêòíûé'                       // 14
+      'Íîìåð ñòîëáöà íåêîððåêòíûé',                      // 14
+      ''
       );
 
   {*------------------------------------------------------------------------------
@@ -265,7 +272,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en Húngaro
   -------------------------------------------------------------------------------}
-  Lang_HUN: array[0..14] of string = (
+  Lang_HUN: array[0..15] of string = (
       'WebBrowser nincs definiálva',                        // 0
       'A kezdő oldal nincs betöltve',                       // 1
       'A térkép még nem jött létre',                        // 2
@@ -280,7 +287,8 @@ const
       'Tartományon kívüli index érték',                     // 11
       'Nincs térkép kapcsolva',                             // 12
       'A fájl nem létezik',                                 // 13
-      'Hibás oszlop szám'                                   // 14
+      'Hibás oszlop szám',                                  // 14
+      ''
       );
 
   {*------------------------------------------------------------------------------
@@ -289,7 +297,7 @@ const
   {=------------------------------------------------------------------------------
     Array con los mensajes en Italiano
   -------------------------------------------------------------------------------}
-  Lang_ITA: array[0..14] of string = (
+  Lang_ITA: array[0..15] of string = (
       'WebBrowser non definito',                              // 0
       'La pagina iniziziale non è stata caricata',            // 1
       'La mappa non è ancora creata',                         // 2
@@ -304,7 +312,8 @@ const
       'Indice fuori intervallo',                              // 11
       'Mappa non assegnata',                                  // 12
       'Il file non esiste',                                   // 13
-      'Il numero di colonna è errato'                         // 14
+      'Il numero di colonna è errato',                        // 14
+      ''
       );
 
   {*------------------------------------------------------------------------------

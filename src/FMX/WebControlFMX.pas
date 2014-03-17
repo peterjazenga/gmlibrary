@@ -36,7 +36,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   By default, only the TWebBrowser is active.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit WebControlFMX incluye las clases necesarias para encapsular el acceso a un navegador mediante el framework de la FMX.
@@ -45,7 +45,7 @@ IMPORTANT DEVELOPERS: please, if you have comments, improvements, enlargements,
   Por defecto, sólo está activo el TWebBrowser.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.3
+  @version 1.2.4
 -------------------------------------------------------------------------------}
 unit WebControlFMX;
 
