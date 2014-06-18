@@ -41,13 +41,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the components that no depend of any framework.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes que no dependen de ningún framework.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit RegisterComp;
 
@@ -76,11 +76,13 @@ uses
   Classes,
   {$ENDIF}
 
-  GMInfoWindow, GMGeoCode, GMGroundOverlay;
+  GMInfoWindow, GMGeoCode, GMGroundOverlay, GMHeatmap;
 
 procedure Register;
 begin
-  RegisterComponents('GoogleMaps', [TGMInfoWindow, TGMGeoCode, TGMGroundOverlay]);
+  RegisterComponents('GoogleMaps', [TGMInfoWindow, TGMGeoCode, TGMGroundOverlay,
+                                    TGMHeatmap
+                                    ]);
 end;
 
 end.

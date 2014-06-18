@@ -7,6 +7,12 @@ GMMapVCL unit
 =========================================================================
 History:
 
+ver 1.3.0
+  ES:
+    nuevo: nueva función GetIEVersion en la clase TGMMap
+  EN:
+    new: new function GetIEVersion into TGMMap class.
+
 ver 0.1.9
   ES:
     nuevo: documentación
@@ -34,7 +40,7 @@ web  http://www.cadetill.com
   HOW TO USE: put the component into a form, link to a browser, activate it and call DoMap method (usually when AfterPageLoaded event is fired with First parameter to True).
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMapVCL incluye las clases que gestionan el mapa especializados en un determinado navegador.
@@ -44,7 +50,7 @@ web  http://www.cadetill.com
   MODO DE USO: poner el componente en el formulario, linkarlo a un navegador, activarlo y ejecutar el método DoMap (usualmente en el evento AfterPageLoaded cuando el parámetro First es True).
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMMapVCL;
 
@@ -121,7 +127,7 @@ type
     FVisualProp: TVisualProp; // ES: evento de TWebBrowser - EN: event of TWebBrowser
 
     // internal variables
-    FTimer: TTimer;          // ES: TTimer para el control de eventos - EN: TTimer for events control
+    FTimer: TTimer;    // ES: TTimer para el control de eventos - EN: TTimer for events control
   protected
     function VisualPropToStr: string; override;
 
@@ -130,6 +136,8 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+
+    procedure Assign(Source: TPersistent); override;
 
     procedure SaveToJPGFile(FileName: TFileName = ''); override;
   published
@@ -187,6 +195,8 @@ type
     destructor Destroy; override;
 
     procedure Assign(Source: TPersistent); override;
+
+    function GetIEVersion: string;
   published
     {*------------------------------------------------------------------------------
       Browser where display the Google Maps map.
@@ -245,9 +255,9 @@ uses
   {$IFDEF WEBBROWSER}
     MSHTML,
     {$IFDEF DELPHIXE2}
-    Winapi.ActiveX,
+    Winapi.ActiveX, System.Win.Registry, Winapi.Windows,
     {$ELSE}
-    ActiveX,
+    ActiveX, Registry, Windows,
     {$ENDIF}
   {$ENDIF}
 
@@ -351,6 +361,29 @@ begin
 
   if MapIsNull then
     raise Exception.Create(GetTranslateText('El mapa todavía no ha sido creado', Language));
+end;
+
+function TGMMap.GetIEVersion: string;
+var
+  Reg: TRegistry;
+begin
+  Result := '';
+  Reg := TRegistry.Create;
+  try
+    Reg.RootKey := HKEY_LOCAL_MACHINE;
+    if Reg.OpenKeyReadOnly('Software\Microsoft\Internet Explorer') then
+    try
+      Result := Reg.ReadString('svcVersion');
+      if Result = '' then
+        Result := Reg.ReadString('Version');
+    finally
+      Reg.CloseKey;
+    end;
+  finally
+    Reg.Free;
+  end;
+  if Result = '' then
+    Result := '0';
 end;
 
 function TGMMap.GetWebBrowser: TWebBrowser;
@@ -573,6 +606,16 @@ end;
 {$ENDIF}
 
 { TCustomGMMapVCL }
+
+procedure TCustomGMMapVCL.Assign(Source: TPersistent);
+begin
+  inherited;
+
+  if Source is TCustomGMMap then
+  begin
+    VisualProp.Assign(TCustomGMMapVCL(Source).VisualProp);
+  end;
+end;
 
 constructor TCustomGMMapVCL.Create(AOwner: TComponent);
 begin

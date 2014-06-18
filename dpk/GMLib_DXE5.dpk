@@ -26,7 +26,7 @@ package GMLib_DXE5;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'GoogleMaps Library v1.2.0 (Copyright © Xavier Martínez - cadetill)'}
+{$DESCRIPTION 'GoogleMaps Library v1.3.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD ON}
 
 requires
@@ -51,6 +51,7 @@ contains
   WebControl in '..\src\WebControl.pas',
   GMMarker in '..\src\GMMarker.pas',
   GMDirection in '..\src\GMDirection.pas',
-  GMGeoCode in '..\src\GMGeoCode.pas';
+  GMGeoCode in '..\src\GMGeoCode.pas',
+  GMHeatmap in '..\src\GMHeatmap.pas';
 
 end.

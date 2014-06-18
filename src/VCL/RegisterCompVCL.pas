@@ -85,13 +85,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the VCL components.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes VCL.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit RegisterCompVCL;
 
@@ -137,7 +137,8 @@ begin
   RegisterComponents('GoogleMaps', [TGMMap, {$IFDEF CHROMIUM}TGMMapChr,{$ENDIF} TGMMarker,
                                     TGMPolyline, TGMPolygon,
                                     TGMRectangle, TGMCircle,
-                                    TGMDirection, TGMElevation]);
+                                    TGMDirection, TGMElevation
+                                    ]);
 end;
 
 end.

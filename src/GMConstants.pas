@@ -35,13 +35,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   The GMConstants unit includes constants ans sets.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMConstants incluye constantes y conjuntos.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMConstants;
 
@@ -51,8 +51,8 @@ const
   { ****************************************************************************
   ******  Version
   **************************************************************************** }
-  GMLIB_Version = '[1.2.4 Final]';
-  GMLIB_VerText = '1.2.4 Final';
+  GMLIB_Version = '[1.3.0 Final]';
+  GMLIB_VerText = '1.3.0 Final';
 
   { ****************************************************************************
   ******  Editors
@@ -493,6 +493,11 @@ type
   **************************************************************************** }
   TElevationStatus = (esINVALID_REQUEST, esOK, esOVER_QUERY_LIMIT, esREQUEST_DENIED,
           esUNKNOWN_ERROR, esNO_REQUEST);
+
+  { ****************************************************************************
+  internal set
+  **************************************************************************** }
+  TGradient = (grHot, grCool);
 
 implementation
 

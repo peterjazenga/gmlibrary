@@ -249,6 +249,10 @@ object MainFrm: TMainFrm
         Caption = 'Elevation'
         OnClick = Elevation1Click
       end
+      object ShowHideheapmap1: TMenuItem
+        Caption = 'Show/Hide heapmap'
+        OnClick = ShowHideheapmap1Click
+      end
     end
   end
   object GMMap1: TGMMap
@@ -951,7 +955,7 @@ object MainFrm: TMainFrm
     Samples = 2
     ElevationType = etForLocations
     Left = 200
-    Top = 136
+    Top = 144
   end
   object GMGroundOverlay1: TGMGroundOverlay
     Language = Espanol
@@ -999,5 +1003,17 @@ object MainFrm: TMainFrm
     Filter = 'Jpg file|*.jpg'
     Left = 400
     Top = 80
+  end
+  object GMHeatmap1: TGMHeatmap
+    Language = Espanol
+    Map = GMMap1
+    Show = False
+    Data = <>
+    Dissipating = False
+    Opacity = 0.600000000000000000
+    Radius = 0
+    Gradient = grHot
+    Left = 200
+    Top = 192
   end
 end

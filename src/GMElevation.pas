@@ -52,13 +52,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMElevation unit includes the base classes needed for calculate a terrain elevations of a set of LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMElevation contiene las clases bases necesarias para calcular elevaciones de terreno de un conjunto de LatLng.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMElevation;
 
@@ -237,6 +237,7 @@ type
     function GetItems(I: Integer): TLinePoint;
     procedure SetSamples(const Value: Integer);
   protected
+    function GetAPIUrl: string; override;
     procedure DeleteMapObjects; override;
     procedure ShowElements; override;
     procedure EventFired(EventType: TEventType; Params: array of const); override;
@@ -554,6 +555,11 @@ begin
   ElevationResult.FStatus := TCustomTransform.StrToElevationStatus('es' + Tmp);
   Tmp := GetStringField(ElevationsForm, ElevationsFormElevations);
   ElevationResult.ParseElevations(Tmp);
+end;
+
+function TCustomGMElevation.GetAPIUrl: string;
+begin
+  Result := 'https://developers.google.com/maps/documentation/javascript/reference#ElevationService';
 end;
 
 function TCustomGMElevation.GetCountLinePoints: Integer;

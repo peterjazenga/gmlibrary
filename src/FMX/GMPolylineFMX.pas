@@ -56,13 +56,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolylineFMX unit includes the FMX classes needed to show polylines on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolylineFMX contiene las clases FMX necesarias para mostrar polilíneas en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMPolylineFMX;
 

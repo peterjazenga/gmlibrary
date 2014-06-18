@@ -77,6 +77,7 @@
     <File Path="..\src\GMFunctions.pas"/>
     <File Path="..\src\GMGeoCode.pas"/>
     <File Path="..\src\GMGroundOverlay.pas"/>
+    <File Path="..\src\GMHeatmap.pas"/>
     <File Path="..\src\GMInfoWindow.pas"/>
     <File Path="..\src\GMLinkedComponents.pas"/>
     <File Path="..\src\GMMap.pas"/>

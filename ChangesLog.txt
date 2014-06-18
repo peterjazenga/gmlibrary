@@ -23,21 +23,28 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
-NEW RELEASE
- - Google Maps Library v1.2.X
+June 17, 2014
+ - Google Maps Library v1.3.0
+ - Improvement: Compiled under XE6.
+ - Improvement: new component TGMHeatmap (GC: issue 33).
+ - Improvement: TGMMap -> added new function GetIEVersion.
+ - Improvement: TCustomGMMapVCL -> added Assign method.
+
+March 26, 2014
+ - Google Maps Library v1.2.4
  - Improvement: General -> compiled under XE5.
  - Improvement: JavaScript -> Activated visual refresh view of Google Maps.
- - Improvement: TCustomGMMap -> added GetMaxZoom method.
- - Improvement: TCustomGMMap -> added APIKey property (thanks Zsolt).
- - Improvement: TCustomMarker -> added CrossOnDrag property.
- - Improvement: TCustomGMMarker -> added OnCrossOnDragChange event.
+ - Improvement: TGMMap -> added GetMaxZoom method.
+ - Improvement: TGMMap -> added APIKey property (thanks Zsolt).
+ - Improvement: TMarker -> added CrossOnDrag property.
+ - Improvement: TGMMarker -> added OnCrossOnDragChange event.
  - Improvement: Added Hungarian language (thanks Bógáncs Sándor)
  - Improvement: Added Italian language (thanks Vincenzo Scarpellino)
- - Improvement: TCustomMarker -> added optional parameter HTMLContentField into LoadFromDataSet method (GC: issue 24).
- - Improvement: TCustomMarker -> the LoadFromDataSet method checks the existence of the needed fields.
+ - Improvement: TMarker -> added optional parameter HTMLContentField into LoadFromDataSet method (GC: issue 24).
+ - Improvement: TMarker -> the LoadFromDataSet method checks the existence of the needed fields.
  - bug fixed: TAddressComponentsList -> fixed Memory leak on Destroy method (GC: issue 13).
  - bug fixed: TWebControl.SaveToJPGFile -> save 2 extra pixels (GC: issue 17).
- - bug fixed: TCustomCircle -> the radius of the circle become very large with changing some property (GC: issue 19).
+ - bug fixed: TCircle -> the radius of the circle become very large with changing some property (GC: issue 19).
  - bug fixed: TGMGroundOverlay -> bug fixed when adding an item by code (thanks Drugoi_mir).
  - bug fixed: JavaScript -> bug fixed into GeocoderAddressComponent and GeocoderParseResult functions (GC: issue 27).
 

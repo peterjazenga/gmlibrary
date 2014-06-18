@@ -88,7 +88,7 @@ RemoteSymbols=0
 MinStackSize=16384
 MaxStackSize=1048576
 ImageBase=4194304
-ExeDescription=GoogleMaps Library v1.2.4 (Copyright © Xavier Martínez - cadetill)
+ExeDescription=GoogleMaps Library v1.3.0 (Copyright © Xavier Martínez - cadetill)
 [Directories]
 OutputDir=
 UnitOutputDir=..\lib\d7
@@ -110,8 +110,8 @@ IncludeVerInfo=1
 AutoIncBuild=0
 MajorVer=0
 MinorVer=1
-Release=2
-Build=4
+Release=3
+Build=0
 Debug=0
 PreRelease=0
 Special=0
@@ -122,13 +122,13 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=www.cadetill.com
 FileDescription=
-FileVersion=0.1.2.4
+FileVersion=0.1.3.0
 InternalName=GMLib
 LegalCopyright=Copyright © Xavier Martínez - cadetill
 LegalTrademarks=
 OriginalFilename=
 ProductName=GoogleMaps Library
-ProductVersion=0.1.2.4
+ProductVersion=0.1.3.0
 Comments=
 [HistoryLists\hlUnitAliases]
 Count=1

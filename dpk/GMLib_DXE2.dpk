@@ -26,7 +26,7 @@ package GMLib_DXE2;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'GoogleMaps Library v1.2.4 (Copyright © Xavier Martínez - cadetill)'}
+{$DESCRIPTION 'GoogleMaps Library v1.3.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD ON}
 
 requires
@@ -55,6 +55,7 @@ contains
   GMElevation in '..\src\GMElevation.pas',
   RegisterComp in '..\src\RegisterComp.pas',
   GMGeoCode in '..\src\GMGeoCode.pas',
-  GMGroundOverlay in '..\src\GMGroundOverlay.pas';
+  GMGroundOverlay in '..\src\GMGroundOverlay.pas',
+  GMHeatmap in '..\src\GMHeatmap.pas';
 
 end.

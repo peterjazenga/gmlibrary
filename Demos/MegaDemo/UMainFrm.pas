@@ -9,7 +9,7 @@ uses
   GMDirectionVCL, GMGeoCode, GMPolylineVCL, GMCircle, GMCircleVCL, GMRectangle,
   GMRectangleVCL, GMPolyline, GMPolygonVCL, GMMap, GMLinkedComponents,
   GMInfoWindow, GMClasses, GMMapVCL, GMConstants, GMElevationVCL,
-  GMGroundOverlay;
+  GMGroundOverlay, GMHeatmap;
 
 type
   TMainFrm = class(TForm)
@@ -57,6 +57,8 @@ type
     N2PrintMap1: TMenuItem;
     N3SaveMap1: TMenuItem;
     SaveDialog1: TSaveDialog;
+    GMHeatmap1: TGMHeatmap;
+    ShowHideheapmap1: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure sbStatusDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
       const Rect: TRect);
@@ -175,6 +177,7 @@ type
     procedure N1MapProperties1Click(Sender: TObject);
     procedure N2PrintMap1Click(Sender: TObject);
     procedure N3SaveMap1Click(Sender: TObject);
+    procedure ShowHideheapmap1Click(Sender: TObject);
   private
   public
     constructor Create(aOwner: TComponent); override;
@@ -268,6 +271,7 @@ begin
   inherited;
 
   GMMap1.Active := True;
+  GMHeatmap1.LoadFromCSV(0, 1, 'heapmap.csv', ';', True, True);
 end;
 
 procedure TMainFrm.Elevation1Click(Sender: TObject);
@@ -1098,6 +1102,13 @@ procedure TMainFrm.sbStatusMouseUp(Sender: TObject; Button: TMouseButton;
 begin
   if (GetStatusBarPanelXY(sbStatus, X, Y) = 3) and (Button = mbLeft) then
     ShellExecute(Handle, 'open', 'http://www.cadetill.com', nil, nil, SW_SHOW);
+end;
+
+procedure TMainFrm.ShowHideheapmap1Click(Sender: TObject);
+begin
+  GMMap1.SetCenter(37.774546, -122.433523);
+  GMMap1.RequiredProp.Zoom := 13;
+  GMHeatmap1.Show := not GMHeatmap1.Show;
 end;
 
 end.

@@ -23,7 +23,7 @@ package GMLib_D2010;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DESCRIPTION 'GoogleMaps Library v1.2.4 (Copyright © Xavier Martínez - cadetill)'}
+{$DESCRIPTION 'GoogleMaps Library v1.3.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD ON}
 {$DEFINE DEBUG}
 
@@ -67,7 +67,8 @@ contains
   GMGroundOverlay in '..\src\GMGroundOverlay.pas',
   GMEditors in '..\src\GMEditors.pas',
   RegisterEditors in '..\src\RegisterEditors.pas',
-  UAboutFrm in '..\src\UAboutFrm.pas' {AboutFrm};
+  UAboutFrm in '..\src\UAboutFrm.pas' {AboutFrm},
+  GMHeatmap in '..\src\GMHeatmap.pas';
 
 end.
 

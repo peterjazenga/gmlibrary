@@ -52,13 +52,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary classes to manage routes and show it into a Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes necesarias para la manipulación de rutas y mostrarlas en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMDirectionVCL;
 

@@ -61,13 +61,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Unit with a general functions.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad con funciones de caracter general.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMFunctions;
 
@@ -674,6 +674,18 @@ type
     class function ZoomControlStyleToStr(ZoomControlStyle: TZoomControlStyle): string;
 
     {*------------------------------------------------------------------------------
+      Returns a string that represents the Gradient.
+      @param Gradient TGradient to convert to string
+      @return string with the Gradient
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve una cadena que representa el Gradient.
+      @param Gradient TGradient a convertir a cadena
+      @return cadena con el Gradient
+    -------------------------------------------------------------------------------}
+    class function GradientToStr(Gradient: TGradient): string;
+
+    {*------------------------------------------------------------------------------
       Returns the TUnitSystem represented by the string UnitSystem.
       @param UnitSystem string to convert to TUnitSystem
       @return TUnitSystem that represents the string
@@ -915,6 +927,18 @@ type
       @return TZoomControlStyle que representa la cadena
     -------------------------------------------------------------------------------}
     class function StrToZoomControlStyle(ZoomControlStyle: string): TZoomControlStyle;
+
+    {*------------------------------------------------------------------------------
+      Returns the TGradient represented by the string Gradient.
+      @param Gradient string to convert to TGradient
+      @return TGradient that represents the string
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Devuelve el TGradient representado por la cadena Gradient.
+      @param Gradient Cadena a convertir a TGradient
+      @return TGradient que representa la cadena
+    -------------------------------------------------------------------------------}
+    class function StrToGradient(Gradient: string): TGradient;
   end;
 
 implementation
@@ -1017,6 +1041,11 @@ begin
   end
   else
     Result := cSimpleBoolStrs[B];
+end;
+
+class function TCustomTransform.GradientToStr(Gradient: TGradient): string;
+begin
+  Result := GetEnumName(TypeInfo(TGradient), Ord(Gradient));
 end;
 
 class function TCustomTransform.LabelColorToStr(LabelColor: TLabelColor): string;
@@ -1431,6 +1460,11 @@ class function TCustomTransform.StrToGeocoderStatus(
   GeocoderStatus: string): TGeocoderStatus;
 begin
   Result := TGeocoderStatus(GetEnumValue(TypeInfo(TGeocoderStatus), GeocoderStatus));
+end;
+
+class function TCustomTransform.StrToGradient(Gradient: string): TGradient;
+begin
+  Result := TGradient(GetEnumValue(TypeInfo(TGradient), Gradient));
 end;
 
 class function TCustomTransform.StrToLabelColor(LabelColor: string): TLabelColor;

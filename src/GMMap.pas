@@ -7,7 +7,7 @@ GMMap unit
 =========================================================================
 History:
 
-ver 1.2.X
+ver 1.2.4
   ES:
     nuevo: TCustomGMMap -> añadido método GetMaxZoom.
     nuevo: TCustomGMMap -> añadida propiedad APIKey (gracias Zsolt).
@@ -175,13 +175,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMMap;
 
@@ -4339,10 +4339,10 @@ end;
 
 procedure TBicycling.Assign(Source: TPersistent);
 begin
-  if Source is TPanoramio then
+  if Source is TBicycling then
   begin
-    FGMMap := TPanoramio(Source).FGMMap;
-    FShow := TPanoramio(Source).FShow;
+    FGMMap := TBicycling(Source).FGMMap;
+    FShow := TBicycling(Source).FShow;
   end
   else inherited;
 end;

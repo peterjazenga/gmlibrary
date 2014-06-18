@@ -42,13 +42,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMRectangleFMX unit includes the base classes needed to show rectangles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMRectangleFMX contiene las clases bases necesarias para mostrar rectángulos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.2.4
+  @version 1.3.0
 -------------------------------------------------------------------------------}
 unit GMRectangleFMX;
 
