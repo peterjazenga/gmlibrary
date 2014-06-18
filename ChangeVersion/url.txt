@@ -1,0 +1,5 @@
+http://msdn.microsoft.com/en-us/library/aa381058.aspx
+
+http://stackoverflow.com/questions/3194649/set-delphi-7-project-version-info-from-code
+
+http://borland.newsgroups.archived.at/public.delphi.rtl.win32/200703/0703141703.html
