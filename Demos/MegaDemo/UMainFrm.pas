@@ -179,6 +179,7 @@ type
     procedure N3SaveMap1Click(Sender: TObject);
     procedure ShowHideheapmap1Click(Sender: TObject);
   private
+    procedure ControlIEVersion;
   public
     constructor Create(aOwner: TComponent); override;
   end;
@@ -191,7 +192,7 @@ implementation
 uses
   UMapFrm, UMarkersFrm, UPolylinesFrm, UPolygonFrm, URectanglesFrm, UCirclesFrm,
   UGeoCodeFrm, UDirectionsFrm, UGroundOverlayFrm, GMFunctionsVCL,
-  ShellAPI, Types;
+  ShellAPI, Types, Registry;
 
 {$R *.dfm}
 
@@ -266,12 +267,51 @@ begin
   CF.Show;
 end;
 
+procedure TMainFrm.ControlIEVersion;
+var
+  Tmp: string;
+  L: TStringList;
+  Ver: Integer;
+  Reg: TRegistry;
+begin
+  Tmp := GMMap1.GetIEVersion;
+
+  L := TStringList.Create;
+  try
+    L.Delimiter := '.';
+    L.DelimitedText := Tmp;
+    Ver := StrToInt(L[0]);
+  finally
+    FreeAndNil(L);
+  end;
+
+  if Ver < 7 then Ver := 7;
+  if Ver > 10 then Ver := 10;
+
+  Ver := Ver * 1000;
+
+  Reg := TRegistry.Create;
+  try
+    Reg.RootKey := HKEY_CURRENT_USER;
+    if Reg.OpenKey('SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION', False) then
+    try
+      Reg.WriteInteger(ExtractFileName(ParamStr(0)), Ver);
+    finally
+      Reg.CloseKey;
+    end;
+  finally
+    Reg.Free;
+  end;
+end;
+
 constructor TMainFrm.Create(aOwner: TComponent);
 begin
   inherited;
 
   GMMap1.Active := True;
   GMHeatmap1.LoadFromCSV(0, 1, 'heapmap.csv', ';', True, True);
+
+  ControlIEVersion;
 end;
 
 procedure TMainFrm.Elevation1Click(Sender: TObject);
