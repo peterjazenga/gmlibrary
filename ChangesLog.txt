@@ -23,6 +23,8 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
+ - bug fixed: Lang -> Russian translation is not read, incorrect encoding of the language resources file (GC: issue 35).
+
 June 17, 2014
  - Google Maps Library v1.3.0
  - Improvement: Compiled under XE6.
