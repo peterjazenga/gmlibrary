@@ -24,6 +24,8 @@ CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
  - bug fixed: Lang -> Russian translation is not read, incorrect encoding of the language resources file (GC: issue 35).
+ - improvement: Lang -> best translation for French language (thanks Fred).
+ - bug fixed: GMDirection -> fixed method GetWaypointOrder (GC: issue 39)
 
 June 17, 2014
  - Google Maps Library v1.3.0
