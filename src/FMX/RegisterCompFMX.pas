@@ -33,13 +33,13 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   Unit to register the FireMonkey components.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.0
+  @version 1.3.2
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad para registrar los componentes FireMonkey.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.0
+  @version 1.3.2
 -------------------------------------------------------------------------------}
 unit RegisterCompFMX;
 

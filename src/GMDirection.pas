@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.3.2
+  ES:
+    error: corregido método GetWaypointOrder (GC: issue 39)
+  EN:
+    bug: fixed method GetWaypointOrder (GC: issue 39)
+
 ver 1.0.1
   ES:
     error: JavaScript -> corregido error en función DirectionsToXMLData cuando la
@@ -88,13 +94,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Includes the necessary base classes to manage routes and show it into a Google Maps map.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.0
+  @version 1.3.2
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Contiene las classes bases necesarias para la manipulación de rutas y mostrarlas en un mapa de Google Maps.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.0
+  @version 1.3.2
 -------------------------------------------------------------------------------}
 unit GMDirection;
 
@@ -2637,8 +2643,8 @@ end;
 function TDirectionsRoute.GetWaypointOrder(Index: Integer): Integer;
 begin
   Result := -1;
-  if FWarning.Count >= Index then
-    Result := StrToInt(FWarning[Index]);
+  if FWaypointOrder.Count >= Index then
+    Result := StrToInt(FWaypointOrder[Index]);
 end;
 
 { TDirectionsRequest }

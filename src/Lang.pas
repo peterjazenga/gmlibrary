@@ -7,6 +7,12 @@ unit Lang
 =========================================================================
 History:
 
+ver 1.3.2
+  ES:
+    mejora: se mejora la traducción al francés (gracias Fred)
+  EN:
+    improvement: best translation for French language (thanks Fred)
+
 ver 1.3.1
   ES:
     error: la traducción al ruso estaba mal codificada (GC: issue 35)
@@ -77,7 +83,7 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   - change the GetTranslateText function by adding new language
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.0
+  @version 1.3.2
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit Lang contiene las cadenas de los mensajes de error mostrados por los componentes y una función para realizar la traducción.
@@ -87,7 +93,7 @@ Copyright (©) 2011, by Xavier Martinez (cadetill)
   - modificar la función GetTranslateText añadiendo el nuevo idioma del conjunto
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.0
+  @version 1.3.2
 -------------------------------------------------------------------------------}
 unit Lang;
 
@@ -157,8 +163,8 @@ const
       'Navigateur Web non défini',          // 0
       'Page initiale non chargée',          // 1
       'La carte n''est pas encore créée',   // 2
-      'Non actif',                          // 3
-      'Ne peux pas charger la ressource',   // 4
+      'Inactif',                            // 3
+      'Impossible de charger la ressource', // 4
       'Cet object n''a pas de relation dans JavaScript', // 5
       'Id JavaScript incorrect',            // 6
       'Id JavaScript inexistant',           // 7
@@ -169,7 +175,7 @@ const
       'Carte non attribuée',                // 12
       'Le fichier n''existe pas',           // 13
       'Le numéro de colonne est incorrect', // 14
-      'Champ "%s" pas trouvé dans la table.'// 15
+      'Champ "%s" introuvable dans la table.'// 15
       );
 
   {*------------------------------------------------------------------------------
