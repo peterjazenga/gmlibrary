@@ -49,13 +49,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the classes needed to show VCL markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores VCL en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 unit GMMarkerVCL;
 

@@ -305,11 +305,14 @@ begin
 end;
 
 constructor TMainFrm.Create(aOwner: TComponent);
+var
+  Tmp: string;
 begin
   inherited;
 
   GMMap1.Active := True;
-  GMHeatmap1.LoadFromCSV(0, 1, 'heapmap.csv', ';', True, True);
+  Tmp := ExtractFilePath(ParamStr(0));
+  GMHeatmap1.LoadFromCSV(0, 1, Tmp + 'heapmap.csv', ';', True, True);
 
   ControlIEVersion;
 end;

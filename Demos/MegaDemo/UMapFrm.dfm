@@ -3,7 +3,7 @@ object MapFrm: TMapFrm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Map'
-  ClientHeight = 393
+  ClientHeight = 415
   ClientWidth = 564
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -20,12 +20,14 @@ object MapFrm: TMapFrm
     Left = 0
     Top = 0
     Width = 564
-    Height = 393
-    ActivePage = tsStreetView
+    Height = 415
+    ActivePage = tsLayers
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 393
     object tsGeneral: TTabSheet
       Caption = 'General Config.'
+      ExplicitHeight = 365
       object Label33: TLabel
         Left = 24
         Top = 104
@@ -98,6 +100,7 @@ object MapFrm: TMapFrm
     object tsRequired: TTabSheet
       Caption = 'Required Prop.'
       ImageIndex = 1
+      ExplicitHeight = 365
       object lLong: TLabel
         Left = 35
         Top = 53
@@ -181,6 +184,7 @@ object MapFrm: TMapFrm
     object tsVisual: TTabSheet
       Caption = 'Visual Prop.'
       ImageIndex = 2
+      ExplicitHeight = 365
       object Label16: TLabel
         Left = 56
         Top = 25
@@ -527,6 +531,7 @@ object MapFrm: TMapFrm
     object tsNonVisual: TTabSheet
       Caption = 'Non Visual Prop'
       ImageIndex = 3
+      ExplicitHeight = 365
       object Label7: TLabel
         Left = 56
         Top = 154
@@ -640,9 +645,10 @@ object MapFrm: TMapFrm
     object tsLayers: TTabSheet
       Caption = 'Layers'
       ImageIndex = 5
+      ExplicitHeight = 365
       object cbBicycling: TCheckBox
         Left = 49
-        Top = 42
+        Top = 18
         Width = 105
         Height = 17
         Caption = 'Show Bicycling'
@@ -651,7 +657,7 @@ object MapFrm: TMapFrm
       end
       object cbPano: TCheckBox
         Left = 33
-        Top = 97
+        Top = 57
         Width = 105
         Height = 17
         Caption = 'Show Panoramio'
@@ -660,7 +666,7 @@ object MapFrm: TMapFrm
       end
       object cbTraffic: TCheckBox
         Left = 312
-        Top = 42
+        Top = 18
         Width = 105
         Height = 17
         Caption = 'Show Traffic'
@@ -669,7 +675,7 @@ object MapFrm: TMapFrm
       end
       object cbTransit: TCheckBox
         Left = 177
-        Top = 42
+        Top = 18
         Width = 105
         Height = 17
         Caption = 'Show Transit'
@@ -677,8 +683,8 @@ object MapFrm: TMapFrm
         OnClick = cbTransitClick
       end
       object cbWeather: TCheckBox
-        Left = 277
-        Top = 97
+        Left = 272
+        Top = 57
         Width = 105
         Height = 17
         Caption = 'Show Weather'
@@ -687,38 +693,38 @@ object MapFrm: TMapFrm
       end
       object GroupBox1: TGroupBox
         Left = 33
-        Top = 128
+        Top = 80
         Width = 233
-        Height = 201
+        Height = 161
         Caption = ' Panoramio Opt. '
         TabOrder = 5
         object Label1: TLabel
           Left = 24
-          Top = 96
+          Top = 56
           Width = 45
           Height = 13
           Caption = 'Filter Tag'
         end
         object Label2: TLabel
           Left = 25
-          Top = 144
+          Top = 104
           Width = 62
           Height = 13
           Caption = 'Filter User Id'
         end
         object cbPanoClickable: TCheckBox
           Left = 25
-          Top = 34
-          Width = 105
+          Top = 26
+          Width = 80
           Height = 17
           Caption = 'Clickable'
           TabOrder = 0
           OnClick = cbPanoClickableClick
         end
         object cbPanoFiltered: TCheckBox
-          Left = 25
-          Top = 65
-          Width = 105
+          Left = 129
+          Top = 26
+          Width = 80
           Height = 17
           Caption = 'Filtered'
           TabOrder = 1
@@ -726,7 +732,7 @@ object MapFrm: TMapFrm
         end
         object ePanoFilterTag: TEdit
           Left = 24
-          Top = 115
+          Top = 75
           Width = 169
           Height = 21
           TabOrder = 2
@@ -735,7 +741,7 @@ object MapFrm: TMapFrm
         end
         object ePanoFilterUserId: TEdit
           Left = 25
-          Top = 163
+          Top = 123
           Width = 169
           Height = 21
           TabOrder = 3
@@ -745,36 +751,36 @@ object MapFrm: TMapFrm
       end
       object GroupBox2: TGroupBox
         Left = 280
-        Top = 128
+        Top = 80
         Width = 249
-        Height = 201
+        Height = 161
         Caption = ' Weather Opt. '
         TabOrder = 6
         object Label3: TLabel
           Left = 25
-          Top = 97
+          Top = 57
           Width = 53
           Height = 13
           Caption = 'Label Color'
         end
         object Label4: TLabel
           Left = 119
-          Top = 97
+          Top = 57
           Width = 84
           Height = 13
           Caption = 'Temperature Unit'
         end
         object Label5: TLabel
           Left = 23
-          Top = 144
+          Top = 104
           Width = 79
           Height = 13
           Caption = 'Wind Speed Unit'
         end
         object cbWeatherSupInfoWin: TCheckBox
-          Left = 25
-          Top = 57
-          Width = 144
+          Left = 103
+          Top = 26
+          Width = 136
           Height = 17
           Caption = 'SuppressInfoWindows'
           TabOrder = 0
@@ -782,8 +788,8 @@ object MapFrm: TMapFrm
         end
         object cbWeatherClickable: TCheckBox
           Left = 25
-          Top = 34
-          Width = 105
+          Top = 26
+          Width = 72
           Height = 17
           Caption = 'Clickable'
           TabOrder = 1
@@ -791,7 +797,7 @@ object MapFrm: TMapFrm
         end
         object cbWeatherLabCol: TComboBox
           Left = 25
-          Top = 115
+          Top = 75
           Width = 88
           Height = 21
           Style = csDropDownList
@@ -803,7 +809,7 @@ object MapFrm: TMapFrm
         end
         object cbWeatherTempUnit: TComboBox
           Left = 119
-          Top = 115
+          Top = 75
           Width = 114
           Height = 21
           Style = csDropDownList
@@ -815,7 +821,7 @@ object MapFrm: TMapFrm
         end
         object cbWeatherWSUnit: TComboBox
           Left = 23
-          Top = 163
+          Top = 123
           Width = 210
           Height = 21
           Style = csDropDownList
@@ -827,10 +833,80 @@ object MapFrm: TMapFrm
             'wsMILES_PER_HOUR')
         end
       end
+      object cbKml: TCheckBox
+        Left = 33
+        Top = 247
+        Width = 105
+        Height = 17
+        Caption = 'Show Kml'
+        TabOrder = 7
+        OnClick = cbKmlClick
+      end
+      object GroupBox3: TGroupBox
+        Left = 33
+        Top = 270
+        Width = 496
+        Height = 105
+        Caption = ' Kml Opt. '
+        TabOrder = 8
+        object Label37: TLabel
+          Left = 17
+          Top = 72
+          Width = 13
+          Height = 13
+          Caption = 'Url'
+        end
+        object cbKmlClic: TCheckBox
+          Left = 17
+          Top = 34
+          Width = 68
+          Height = 17
+          Caption = 'Clickable'
+          TabOrder = 0
+          OnClick = cbKmlClicClick
+        end
+        object cbKmlPreserve: TCheckBox
+          Left = 107
+          Top = 34
+          Width = 105
+          Height = 17
+          Caption = 'PreserveViewport'
+          TabOrder = 1
+          OnClick = cbKmlPreserveClick
+        end
+        object eKmlUrl: TEdit
+          Left = 36
+          Top = 69
+          Width = 445
+          Height = 22
+          TabOrder = 2
+          Text = 'ePanoFilterTag'
+          OnChange = eKmlUrlChange
+        end
+        object cbKmlScreenOver: TCheckBox
+          Left = 242
+          Top = 33
+          Width = 92
+          Height = 17
+          Caption = 'ScreenOverlays'
+          TabOrder = 3
+          OnClick = cbKmlScreenOverClick
+        end
+        object cbKmlSupInfWin: TCheckBox
+          Left = 360
+          Top = 35
+          Width = 130
+          Height = 17
+          Caption = 'SuppressInfoWindows'
+          TabOrder = 4
+          OnClick = cbKmlSupInfWinClick
+        end
+      end
     end
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 4
+      ExplicitHeight = 365
       object cbOnBoundsChanged: TCheckBox
         Left = 64
         Top = 32
@@ -970,9 +1046,10 @@ object MapFrm: TMapFrm
     object tsFunctions: TTabSheet
       Caption = 'Functions'
       ImageIndex = 6
+      ExplicitHeight = 365
       DesignSize = (
         556
-        365)
+        387)
       object Label27: TLabel
         Left = 262
         Top = 24
@@ -1312,6 +1389,7 @@ object MapFrm: TMapFrm
     object tsStreetView: TTabSheet
       Caption = 'StreetView'
       ImageIndex = 7
+      ExplicitHeight = 365
       object cbSVVisible: TCheckBox
         Left = 64
         Top = 32

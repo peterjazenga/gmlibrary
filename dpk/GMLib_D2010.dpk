@@ -23,7 +23,7 @@ package GMLib_D2010;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DESCRIPTION 'GoogleMaps Library v1.3.2 (Copyright © Xavier Martínez - cadetill)'}
+{$DESCRIPTION 'GoogleMaps Library v1.4.0 (Copyright © Xavier Martínez - cadetill)'}
 {$IMPLICITBUILD ON}
 {$DEFINE DEBUG}
 

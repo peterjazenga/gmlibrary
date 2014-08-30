@@ -61,13 +61,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   Unit with a general functions.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   Unidad con funciones de caracter general.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 unit GMFunctions;
 

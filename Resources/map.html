@@ -41,6 +41,9 @@
   var panorama;
   var linkedCompList = [];
   
+
+  /* *** Fred : added new variable kmlLayer*/
+  var kmlLayer;
   // layers
   var trafficLayer;
   var transitLayer;
@@ -2208,6 +2211,21 @@
       document.mapdata.mapisnull.value = "1"; 
   } 
  
+  /* *** Fred : added new function MapsControlKml */
+  /* MapsControlKml */
+  function MapsControlKml(Show,Screen,SupIF,Click,PreserV,Url) {
+    kmlLayer.setMap(null);
+    kmlLayer = new google.maps.KmlLayer({
+      clickable: Click,
+      preserveViewport: PreserV,
+      screenOverlays: Screen,
+      suppressInfoWindows: SupIF,
+      url: Url
+    });
+    
+    if (Show) kmlLayer.setMap(map);
+  }
+
   /* MapsControlTraffic */
   function MapsControlTraffic(Show) {
     if (Show) trafficLayer.setMap(map);
@@ -2306,8 +2324,8 @@
       }
       Tmp += '</WeatherFeature>';
       return Tmp;
-  }
-  
+  }  
+
   /* MapsAssignEvents */
   function MapsAssignEvents() { 
     google.maps.event.addListener(map, "bounds_changed", function() { 
@@ -2444,12 +2462,14 @@
         });*/
   } 
  
+  /* *** Fred : added ShowKml and UrlKml */
   /* DoMap */
   function DoMap(Lat, Lng, MapT, Zoom, DClickZ, Drag, KeybSC, NoClear, SWheel, MaxZ, MinZ, Marker, BGColor, 
             MTCtrl, MTIds, MTPos, MTStyle, OverCtrl, OverOpen, PanCtrl, PanPos, RotCtrl, RotPos, 
-            ScaleCtrl, ScalePos, ScaleStyle, SVCtrl, SVPos, ZCtrl, ZPos, ZStyle, ShowTraffic, 
-            ShowTransit, ShowBicy, ShowPano, PanoClick, PanoFiltered, PanoTag, PanoUserId, ShowWeather,
-            WeatherClick, WeatherSupress, WeatherLabelColor, WeatherTemp, WeatherWinSpeed, SVVisible) { 
+            ScaleCtrl, ScalePos, ScaleStyle, SVCtrl, SVPos, ZCtrl, ZPos, ZStyle, ShowKml, ScreenKml, SupIFKml, 
+            ClickKml, PreserVKml, UrlKml, ShowTraffic, ShowTransit, ShowBicy, ShowPano, PanoClick, PanoFiltered, 
+            PanoTag, PanoUserId, ShowWeather, WeatherClick, WeatherSupress, WeatherLabelColor, WeatherTemp, 
+            WeatherWinSpeed, SVVisible) { 
     while (linkedCompList.length > 0) 
       DeleteObject(linkedCompList[0].GMLibId, linkedCompList[0].GMLibZIndex);
     document.mapdata.mapisnull.value = "0"; 
@@ -2510,6 +2530,15 @@
 
     directionsDisplay = new google.maps.DirectionsRenderer({map: map});
     
+    /* *** Fred : added new construction */
+    kmlLayer = new google.maps.KmlLayer({
+      clickable: ClickKml,
+      preserveViewport: PreserVKml,
+      screenOverlays: ScreenKml,
+      suppressInfoWindows: SupIFKml,
+      url: UrlKml
+    });
+
     // layers
     trafficLayer = new google.maps.TrafficLayer();
     transitLayer = new google.maps.TransitLayer();
@@ -2537,6 +2566,9 @@
         userId: PanoUserId
     });
     
+    /* *** Fred : added new call */
+    if (ShowKml) kmlLayer.setMap(map);
+
     if (ShowTraffic) trafficLayer.setMap(map);
     if (ShowTransit) transitLayer.setMap(map);
     if (ShowBicy) bikeLayer.setMap(map);

@@ -23,9 +23,13 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
+August 30, 2014
+ - Google Maps Library v1.4.0
  - bug fixed: Lang -> Russian translation is not read, incorrect encoding of the language resources file (GC: issue 35).
  - improvement: Lang -> best translation for French language (thanks Fred).
  - bug fixed: GMDirection -> fixed method GetWaypointOrder (GC: issue 39)
+ - bug fixed: TGroundOverlay -> fixed method ChangeProperties (thanks Fred).
+ - improvement: new: TKML -> new class to manage KML files (thanks Fred).
 
 June 17, 2014
  - Google Maps Library v1.3.0

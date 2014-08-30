@@ -1,3 +1,6 @@
+
+// *** Fred : modified by Fred 28/09/2014 : added KML layer features
+
 {
 GMMap unit
 
@@ -6,6 +9,12 @@ GMMap unit
 
 =========================================================================
 History:
+
+var 1.3.2
+  ES:
+    nuevo: TKML -> nueva clase para gestionar ficheros KML (gracias Fred).
+  EN:
+    new: TKML -> new class to manage KML files (thanks Fred).
 
 ver 1.2.4
   ES:
@@ -175,13 +184,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 unit GMMap;
 
@@ -1197,6 +1206,99 @@ type
     property UserId: string read FUserId;
   end;
 
+
+  {*** Fred : new class for KML layer}
+
+  {*------------------------------------------------------------------------------
+    Class that encapsulate the KML layer.
+    More information at https://developers.google.com/maps/documentation/javascript/kmllayer
+  -------------------------------------------------------------------------------}
+  {=------------------------------------------------------------------------------
+    Clase que encapsula la capa KML.
+    More information at https://developers.google.com/maps/documentation/javascript/kmllayer
+  -------------------------------------------------------------------------------}
+  TKml = class(TPersistent)
+  private
+    FGMMap: TCustomGMMap;
+    FShow: Boolean;
+    FUrl: string;
+    FScreenOverlays: Boolean;
+    FSuppressInfoWindows: Boolean;
+    FClickable: Boolean;
+    FPreserveViewport: Boolean;
+    procedure SetShow(const Value: Boolean);
+    procedure SetUrl(const Value: string);
+    procedure SetClickable(const Value: Boolean);
+    procedure SetPreserveViewport(const Value: Boolean);
+    procedure SetScreenOverlays(const Value: Boolean);
+    procedure SetSuppressInfoWindows(const Value: Boolean);
+  protected
+    procedure CallJavaScriptFunction;
+  public
+    {*------------------------------------------------------------------------------
+      Constructor class
+      @param GMMap Object owner
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Constructor de la clase
+      @param GMMap Propietario del objeto
+    -------------------------------------------------------------------------------}
+    constructor Create(GMMap: TCustomGMMap); virtual;
+
+    {*------------------------------------------------------------------------------
+      Assign method copies the contents of another similar object.
+      @param Source object to copy content
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      El método Assign copia el contenido de un objeto similar.
+      @param Source objeto a copiar el contenido
+    -------------------------------------------------------------------------------}
+    procedure Assign(Source: TPersistent); override;
+  published
+    {*------------------------------------------------------------------------------
+      If true, the layer receives mouse events.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Si en true, el layer recive los eventos del mouse
+    -------------------------------------------------------------------------------}
+    property Clickable: Boolean read FClickable write SetClickable;
+    {*------------------------------------------------------------------------------
+      By default, the input map is centered and zoomed to the bounding box of the contents of the layer. If this option is set to true, the viewport is left unchanged, unless the map's center and zoom were never set.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Por defecto, el mapa se centra y se le aplica el zoom necesario para mostrar el contenido de la capa. Si esta opción está a true, la ventana no se cambia, y el cento y zoom del mapa no cambian.
+    -------------------------------------------------------------------------------}
+    property PreserveViewport: Boolean read FPreserveViewport write SetPreserveViewport;
+    {*------------------------------------------------------------------------------
+      Whether to render the screen overlays.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Para representar las superposiciones de la pantalla.
+    -------------------------------------------------------------------------------}
+    property ScreenOverlays: Boolean read FScreenOverlays write SetScreenOverlays;
+    {*------------------------------------------------------------------------------
+      Suppress the rendering of info windows when layer features are clicked.
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Desactiva el procesamiento de la ventana de información cuando se presionan las características de la capa.
+    -------------------------------------------------------------------------------}
+    property SuppressInfoWindows: Boolean read FSuppressInfoWindows write SetSuppressInfoWindows;
+    {*------------------------------------------------------------------------------
+      Show the layer. To true, shown the layer, to false is hidden
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Muestra la capa. A true, se muestra la capa, a false se oculta
+    -------------------------------------------------------------------------------}
+    property Show: Boolean read FShow write SetShow;
+    {*------------------------------------------------------------------------------
+      Url to KML file
+    -------------------------------------------------------------------------------}
+    {=------------------------------------------------------------------------------
+      Url al archivo KML
+    -------------------------------------------------------------------------------}
+    property Url: string read FUrl write SetUrl;
+  end;
+
   {*------------------------------------------------------------------------------
     Class that encapsulate the Traffic layer.
     More information at https://developers.google.com/maps/documentation/javascript/layers?hl=en#TrafficLayer
@@ -1677,6 +1779,13 @@ type
       Objeto que contiene las propiedades del layer Panoramio.
     -------------------------------------------------------------------------------}
     FPanoramio: TPanoramio;
+
+    {*** Fred : added KML}
+    {*------------------------------------------------------------------------------
+      Object containing the properties of layer KML.
+    -------------------------------------------------------------------------------}
+    FKml : TKml;
+
     {*------------------------------------------------------------------------------
       Object containing the properties of layer Traffic.
     -------------------------------------------------------------------------------}
@@ -1734,6 +1843,8 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     property Panoramio: TPanoramio read FPanoramio write FPanoramio;
+    {*** Fred : added Kml}
+    property Kml: TKml read FKml write FKml;
     property Traffic: TTraffic read FTraffic write FTraffic;
     property Transit: TTransit read FTransit write FTransit;
     property Bicycling: TBicycling read FBicycling write FBicycling;
@@ -2802,8 +2913,9 @@ begin
 end;
 
 procedure TCustomGMMap.DoMap;
+{*** Fred : added '%s,%s,' for two more parameter (KML)}
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   i: Integer;
@@ -2827,6 +2939,13 @@ begin
              // visual property
              VisualPropToStr,
              // layers
+             {*** Fred : added two arguments (ShowKml,UrlKml)}
+             LowerCase(TCustomTransform.GMBoolToStr(Layers.Kml.Show, True)),
+             LowerCase(TCustomTransform.GMBoolToStr(Layers.Kml.ScreenOverlays, True)),
+             LowerCase(TCustomTransform.GMBoolToStr(Layers.Kml.SuppressInfoWindows, True)),
+             LowerCase(TCustomTransform.GMBoolToStr(Layers.Kml.Clickable, True)),
+             LowerCase(TCustomTransform.GMBoolToStr(Layers.Kml.PreserveViewport, True)),
+             QuotedStr(Layers.Kml.Url),
              LowerCase(TCustomTransform.GMBoolToStr(Layers.Traffic.Show, True)),
              LowerCase(TCustomTransform.GMBoolToStr(Layers.Transit.Show, True)),
              LowerCase(TCustomTransform.GMBoolToStr(Layers.Bicycling.Show, True)),
@@ -4277,6 +4396,109 @@ begin
     FGMMap.ExecuteScript('MapsControlPanoramio', LowerCase(TCustomTransform.GMBoolToStr(FShow, True)));
 end;
 
+
+{*** Fred : added Kml class}
+{ TKml }
+
+procedure TKml.Assign(Source: TPersistent);
+begin
+  if Source is TKml then
+  begin
+    FGMMap := TKml(Source).FGMMap;
+    FClickable := TKml(Source).FClickable;
+    FPreserveViewport := TKml(Source).FPreserveViewport;
+    FScreenOverlays := TKml(Source).FScreenOverlays;
+    FSuppressInfoWindows := TKml(Source).FSuppressInfoWindows;
+    FShow := TKml(Source).FShow;
+    FUrl := TKml(Source).FUrl;
+  end
+  else inherited;
+end;
+
+procedure TKml.CallJavaScriptFunction;
+const
+  StrParams = '%s,%s,%s,%s,%s,%s';
+var
+  Params: string;
+begin
+  Params := Format(StrParams, [LowerCase(TCustomTransform.GMBoolToStr(FShow, True)),
+                               LowerCase(TCustomTransform.GMBoolToStr(FScreenOverlays, True)),
+                               LowerCase(TCustomTransform.GMBoolToStr(FSuppressInfoWindows, True)),
+                               LowerCase(TCustomTransform.GMBoolToStr(FClickable, True)),
+                               LowerCase(TCustomTransform.GMBoolToStr(FPreserveViewport, True)),
+                               QuotedStr(FUrl)
+                               ]);
+
+  if Assigned(FGMMap.FWebBrowser) and FGMMap.FActive and FGMMap.FDocLoaded and
+     FGMMap.FIsDoMap then
+    FGMMap.ExecuteScript('MapsControlKml', Params);
+end;
+
+constructor TKml.Create(GMMap: TCustomGMMap);
+begin
+  FGMMap := GMMap;
+
+  FClickable := True;
+  FPreserveViewport := False;
+  FScreenOverlays := True;
+  FSuppressInfoWindows := False;
+  FUrl := '';
+  FShow := False;
+end;
+
+procedure TKml.SetClickable(const Value: Boolean);
+begin
+  if FClickable = Value then Exit;
+
+  FClickable := Value;
+  CallJavaScriptFunction;
+end;
+
+procedure TKml.SetPreserveViewport(const Value: Boolean);
+begin
+  if FPreserveViewport = Value then Exit;
+
+  FPreserveViewport := Value;
+  CallJavaScriptFunction;
+end;
+
+procedure TKml.SetScreenOverlays(const Value: Boolean);
+begin
+  if FScreenOverlays = Value then Exit;
+
+  FScreenOverlays := Value;
+  CallJavaScriptFunction;
+end;
+
+procedure TKml.SetShow(const Value: Boolean);
+begin
+  if FShow = Value then Exit;
+
+  FShow := Value;
+  if FUrl = '' then FShow := False;
+
+  CallJavaScriptFunction;
+end;
+
+
+procedure TKml.SetSuppressInfoWindows(const Value: Boolean);
+begin
+  if FSuppressInfoWindows = Value then Exit;
+
+  FSuppressInfoWindows := Value;
+  CallJavaScriptFunction;
+end;
+
+procedure TKml.SetUrl(const Value: string);
+begin
+  if FUrl = Value then Exit;
+
+  FUrl := Value;
+  if Url = '' then FShow := False;
+
+  CallJavaScriptFunction;
+end;
+
 { TTraffic }
 
 procedure TTraffic.Assign(Source: TPersistent);
@@ -4470,6 +4692,7 @@ begin
   if Source is TLayers then
   begin
     Panoramio.Assign(TLayers(Source).Panoramio);
+    Kml.Assign(TLayers(Source).Kml);  {*** Fred : added KML}
     Traffic.Assign(TLayers(Source).Traffic);
     Transit.Assign(TLayers(Source).Transit);
     Bicycling.Assign(TLayers(Source).Bicycling);
@@ -4482,6 +4705,7 @@ constructor TLayers.Create(GMMap: TCustomGMMap);
 begin
   FGMMap := GMMap;
   FPanoramio := TPanoramio.Create(FGMMap);
+  FKml := TKml.Create(FGMMap);   {*** Fred : added KML}
   FTraffic := TTraffic.Create(FGMMap);
   FTransit := TTransit.Create(FGMMap);
   FBicycling := TBicycling.Create(FGMMap);
@@ -4491,6 +4715,7 @@ end;
 destructor TLayers.Destroy;
 begin
   if Assigned(FPanoramio) then FreeAndNil(FPanoramio);
+  if Assigned(FKml) then FreeAndNil(FKml);
   if Assigned(FTraffic) then FreeAndNil(FTraffic);
   if Assigned(FTransit) then FreeAndNil(FTransit);
   if Assigned(FBicycling) then FreeAndNil(FBicycling);

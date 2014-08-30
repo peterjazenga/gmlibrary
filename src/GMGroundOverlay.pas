@@ -16,6 +16,12 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.3.2
+  ES:
+    error: TGroundOverlay -> corregido método ChangeProperties (thanks Fred).
+  EN:
+    bug: TGroundOverlay -> fixed method ChangeProperties (thanks Fred).
+
 ver 1.2.0
   ES:
     error: TGMGroundOverlay -> corregido error al añadir por código un item (gracias Drugoi_mir).
@@ -44,13 +50,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMGroundOverlay unit includes the classes needed to show images on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMGroundOverlay contiene las clases necesarias para mostrar imágenes en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.3.2
+  @version 1.4.0
 -------------------------------------------------------------------------------}
 unit GMGroundOverlay;
 
@@ -340,7 +346,7 @@ end;
 
 function TGroundOverlay.ChangeProperties: Boolean;
 const
-  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
+  StrParams = '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s';
 var
   Params: string;
   Img: string;

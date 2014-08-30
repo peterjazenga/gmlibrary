@@ -270,6 +270,14 @@ object MainFrm: TMainFrm
     Layers.Panoramio.Filtered = False
     Layers.Panoramio.Clickable = True
     Layers.Panoramio.Show = False
+    Layers.Kml.Clickable = True
+    Layers.Kml.PreserveViewport = False
+    Layers.Kml.ScreenOverlays = True
+    Layers.Kml.SuppressInfoWindows = False
+    Layers.Kml.Show = False
+    Layers.Kml.Url = 
+      'https://gmlibrary.googlecode.com/svn/trunk/Demos/bin/BarcelonaHo' +
+      'tellochTuristGuide.kml'
     Layers.Traffic.Show = False
     Layers.Transit.Show = False
     Layers.Bicycling.Show = False

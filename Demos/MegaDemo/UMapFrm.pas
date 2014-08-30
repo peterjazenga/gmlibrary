@@ -150,6 +150,14 @@ type
     Button15: TButton;
     tsStreetView: TTabSheet;
     cbSVVisible: TCheckBox;
+    cbKml: TCheckBox;
+    GroupBox3: TGroupBox;
+    Label37: TLabel;
+    cbKmlClic: TCheckBox;
+    cbKmlPreserve: TCheckBox;
+    eKmlUrl: TEdit;
+    cbKmlScreenOver: TCheckBox;
+    cbKmlSupInfWin: TCheckBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure cbActiveClick(Sender: TObject);
     procedure eIntervalChange(Sender: TObject);
@@ -229,6 +237,12 @@ type
     procedure bPanToClick(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure cbSVVisibleClick(Sender: TObject);
+    procedure cbKmlClick(Sender: TObject);
+    procedure cbKmlClicClick(Sender: TObject);
+    procedure cbKmlPreserveClick(Sender: TObject);
+    procedure cbKmlScreenOverClick(Sender: TObject);
+    procedure cbKmlSupInfWinClick(Sender: TObject);
+    procedure eKmlUrlChange(Sender: TObject);
   private
     FGMMap: TGMMap;
 
@@ -460,6 +474,31 @@ begin
     FGMMap.NonVisualProp.Options := FGMMap.NonVisualProp.Options + [KeyboardShortcuts]
   else
     FGMMap.NonVisualProp.Options := FGMMap.NonVisualProp.Options - [KeyboardShortcuts];
+end;
+
+procedure TMapFrm.cbKmlClicClick(Sender: TObject);
+begin
+  FGMMap.Layers.Kml.Clickable := cbKmlClic.Checked;
+end;
+
+procedure TMapFrm.cbKmlClick(Sender: TObject);
+begin
+  FGMMap.Layers.Kml.Show := cbKml.Checked;
+end;
+
+procedure TMapFrm.cbKmlPreserveClick(Sender: TObject);
+begin
+  FGMMap.Layers.Kml.PreserveViewport := cbKmlPreserve.Checked;
+end;
+
+procedure TMapFrm.cbKmlScreenOverClick(Sender: TObject);
+begin
+  FGMMap.Layers.Kml.ScreenOverlays := cbKmlScreenOver.Checked;
+end;
+
+procedure TMapFrm.cbKmlSupInfWinClick(Sender: TObject);
+begin
+  FGMMap.Layers.Kml.SuppressInfoWindows := cbKmlSupInfWin.Checked;
 end;
 
 procedure TMapFrm.cbLanguagesChange(Sender: TObject);
@@ -766,6 +805,11 @@ begin
   FGMMap.IntervalEvents := eInterval.Value;;
 end;
 
+procedure TMapFrm.eKmlUrlChange(Sender: TObject);
+begin
+  FGMMap.Layers.Kml.Url := eKmlUrl.Text;
+end;
+
 procedure TMapFrm.eMaxZoomChange(Sender: TObject);
 begin
   FGMMap.NonVisualProp.MaxZoom := eMaxZoom.Value;;
@@ -871,6 +915,12 @@ begin
   cbWeatherLabCol.ItemIndex := cbWeatherLabCol.Items.IndexOf(TTransform.LabelColorToStr(FGMMap.Layers.Weather.LabelColor));
   cbWeatherTempUnit.ItemIndex := cbWeatherTempUnit.Items.IndexOf(TTransform.TemperatureUnitToStr(FGMMap.Layers.Weather.TemperatureUnit));
   cbWeatherWSUnit.ItemIndex := cbWeatherWSUnit.Items.IndexOf(TTransform.WindSpeedUnitToStr(FGMMap.Layers.Weather.WindSpeedUnit));
+  cbKml.Checked := FGMMap.Layers.Kml.Show;
+  cbKmlClic.Checked := FGMMap.Layers.Kml.Clickable;
+  cbKmlPreserve.Checked := FGMMap.Layers.Kml.PreserveViewport;
+  cbKmlScreenOver.Checked := FGMMap.Layers.Kml.ScreenOverlays;
+  cbKmlSupInfWin.Checked := FGMMap.Layers.Kml.SuppressInfoWindows;
+  eKmlUrl.Text := FGMMap.Layers.Kml.Url;
 
   // StreetView
   cbSVVisible.Checked := FGMMap.StreetView.Visible;
