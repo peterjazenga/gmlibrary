@@ -192,7 +192,7 @@ implementation
 uses
   UMapFrm, UMarkersFrm, UPolylinesFrm, UPolygonFrm, URectanglesFrm, UCirclesFrm,
   UGeoCodeFrm, UDirectionsFrm, UGroundOverlayFrm, GMFunctionsVCL,
-  ShellAPI, Types, Registry;
+  ShellAPI, Types, System.Win.Registry;
 
 {$R *.dfm}
 

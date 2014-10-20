@@ -262,8 +262,8 @@ object MainFrm: TMainFrm
     Precision = 8
     RequiredProp.Center.Lat = 41.403185000000000000
     RequiredProp.Center.Lng = 2.173725000000000000
-    RequiredProp.MapType = mtTERRAIN
-    RequiredProp.Zoom = 12
+    RequiredProp.MapType = mtHYBRID
+    RequiredProp.Zoom = 17
     NonVisualProp.MaxZoom = 0
     NonVisualProp.MinZoom = 0
     NonVisualProp.MapMaker = False
@@ -487,7 +487,6 @@ object MainFrm: TMainFrm
         Clickable = True
         Editable = False
         FillOpacity = 0.200000000000000000
-        Radius = 2400.000000000000000000
         StrokeOpacity = 0.200000000000000000
         StrokeWeight = 1
         Visible = True

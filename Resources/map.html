@@ -10,9 +10,9 @@
   #map_canvas { height: 100% } 
 </style> 
 <!--
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=weather,panoramio,geometry,drawing,visualization"></script> 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.17&sensor=false&libraries=weather,panoramio,geometry,drawing,visualization"></script> 
 -->
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=API_KEY&sensor=false&libraries=weather,panoramio,geometry,drawing,visualization"></script> 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.17&key=API_KEY&sensor=false&libraries=weather,panoramio,geometry,drawing,visualization"></script> 
 <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/styledmarker/src/StyledMarker.js"></script>
 <script type="text/javascript" src="http://gmlibrary.googlecode.com/svn/trunk/Resources/MaxZoom.js"></script>
 <script language=javascript>
@@ -1675,20 +1675,10 @@
   /* función exclusiva para debug */
   function CreateAllInfoWin() {
 	var Idx = -1; 
-    DeleteObjects(2);
-    MakeInfoWindow(2, 0, 'Prova1', true, 0, 10, 10, 41.380866, 2.122579, false);
-    MakeInfoWindow(2, 1, 'Prova2', false, 0, 0, 0, 41.403185, 2.173725, false);
-    MakeInfoWindow(2, 2, 'Prova3', false, 0, 0, 0, 41.414282, 2.151847, false);
-    MakeInfoWindow(2, 3, 'Prova4', false, 0, 0, 0, 41.375875, 2.177757, false);
-    DeleteObjects(1);
-    MakeInfoWindow(1, 0, 'Prova5', true, 0, 0, 0, 41.580866, 2.122579, false);
-    MakeInfoWindow(1, 1, 'Prova6', true, 0, 0, 0, 41.603185, 2.173725, false);
-    MakeInfoWindow(1, 2, 'Prova7', true, 0, 0, 0, 41.614282, 2.151847, false);
-    MakeInfoWindow(1, 3, 'Prova8', true, 0, 0, 0, 41.575875, 2.177757, true);
-	Idx = IndexOf(2, 0); InfoWindowOpenClose(linkedCompList[Idx]);
-	Idx = IndexOf(2, 1); InfoWindowOpenClose(linkedCompList[Idx]);
-	Idx = IndexOf(2, 2); InfoWindowOpenClose(linkedCompList[Idx]);
-	Idx = IndexOf(2, 3); InfoWindowOpenClose(linkedCompList[Idx]);
+    MakeInfoWindow(1,0,'<h3>Camp Nou</h3>',true,0,0,0,41.380866,2.122579,false);
+    MakeInfoWindow(1,1,'<h3>Templo Expiatorio de la Sagrada Familia</h3>',true,0,0,0,41.403185,2.173725,false);
+    MakeInfoWindow(1,2,'another',true,0,0,0,41.300866,2.222579,false);
+    MakeInfoWindow(1,3,'moooooore',true,0,0,0,41.453185,2.103725,false);
 	Idx = IndexOf(1, 0); InfoWindowOpenClose(linkedCompList[Idx]);
 	Idx = IndexOf(1, 1); InfoWindowOpenClose(linkedCompList[Idx]);
 	Idx = IndexOf(1, 2); InfoWindowOpenClose(linkedCompList[Idx]);
@@ -2530,7 +2520,7 @@
 
     directionsDisplay = new google.maps.DirectionsRenderer({map: map});
     
-    /* *** Fred : added new construction */
+    // *** Fred : added new construction 
     kmlLayer = new google.maps.KmlLayer({
       clickable: ClickKml,
       preserveViewport: PreserVKml,
@@ -2566,7 +2556,7 @@
         userId: PanoUserId
     });
     
-    /* *** Fred : added new call */
+    //*** Fred : added new call 
     if (ShowKml) kmlLayer.setMap(map);
 
     if (ShowTraffic) trafficLayer.setMap(map);
@@ -2575,6 +2565,7 @@
     if (ShowWeather) weatherLayer.setMap(map);
     if (ShowWeather) cloudLayer.setMap(map);
     if (ShowPano) panoramioLayer.setMap(map);
+	
 	/*
     drawingManager = new google.maps.drawing.DrawingManager({
       circleOptions: {
@@ -2643,6 +2634,7 @@
       }
     });
     */
+
     MapsAssignEvents();
 	
 	
@@ -2651,12 +2643,12 @@
 </head> 
 <body>
 <!-- table for test only -->
-<!-- 41.39963248,2.16794777 -->
+<!-- 37.774546,-122.433523  -->
 <!--
   <div id="test"></div> 
   <table border=1 align=center>
     <tr>                                      
-      <td align=center width=70 onClick="DoMap(37.774546,-122.433523,'mtROADMAP',10,false,true,true,true, true,0,0,false,'#ECE9D8',true,'mtHYBRID;mtROADMAP;mtSATELLITE;mtTERRAIN','cpTOP_RIGHT','mtcDEFAULT',true,true,true,'cpTOP_LEFT',true,'cpTOP_LEFT',true,'cpBOTTOM_LEFT','scDEFAULT',true,'cpTOP_LEFT',true,'cpTOP_LEFT','zcDEFAULT',false,false,false,false,true,false,'','',false,true,false,'lcWHITE','tuCELSIUS','wsKILOMETERS_PER_HOUR')">
+      <td align=center width=70 onClick="DoMap(41.39963248,2.16794777,'mtROADMAP',10,false,true,true,true, true,0,0,false,'#ECE9D8',true,'mtHYBRID;mtROADMAP;mtSATELLITE;mtTERRAIN','cpTOP_RIGHT','mtcDEFAULT',true,true,true,'cpTOP_LEFT',true,'cpTOP_LEFT',true,'cpBOTTOM_LEFT','scDEFAULT',true,'cpTOP_LEFT',true,'cpTOP_LEFT','zcDEFAULT',false,false,false,false,true,false,'','',false,true,false,'lcWHITE','tuCELSIUS','wsKILOMETERS_PER_HOUR')">
         Map
       </td>
       <td align=center width=90 onClick="CreateAllMarker()">Do Markers</td>

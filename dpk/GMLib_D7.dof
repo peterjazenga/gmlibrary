@@ -88,7 +88,7 @@ RemoteSymbols=0
 MinStackSize=16384
 MaxStackSize=1048576
 ImageBase=4194304
-ExeDescription=GoogleMaps Library v1.4.0 (Copyright © Xavier Martínez - cadetill)
+ExeDescription=GoogleMaps Library v1.5.0 (Copyright © Xavier Martínez - cadetill)
 [Directories]
 OutputDir=
 UnitOutputDir=..\lib\d7
@@ -105,16 +105,12 @@ HostApplication=
 Launcher=
 UseLauncher=0
 DebugCWD=
-[Language]
-ActiveLang=
-ProjectLang=
-RootDir=
 [Version Info]
 IncludeVerInfo=1
 AutoIncBuild=0
 MajorVer=0
 MinorVer=1
-Release=4
+Release=5
 Build=0
 Debug=0
 PreRelease=0
@@ -126,13 +122,13 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=www.cadetill.com
 FileDescription=
-FileVersion=0.1.4.0
+FileVersion=0.1.5.0
 InternalName=GMLib
 LegalCopyright=Copyright © Xavier Martínez - cadetill
 LegalTrademarks=
 OriginalFilename=
 ProductName=GoogleMaps Library
-ProductVersion=0.1.4.0
+ProductVersion=0.1.5.0
 Comments=
 [HistoryLists\hlUnitAliases]
 Count=1
@@ -143,10 +139,3 @@ Item0=..\lib\d7
 [HistoryLists\hlDCPOutput]
 Count=1
 Item0=..\lib\d7
-[Exception Log]
-EurekaLog Version=7001
-Activate=0
-DeleteMapAfterCompile=1
-Encrypt Password=""
-
-

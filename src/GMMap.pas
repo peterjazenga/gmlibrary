@@ -10,7 +10,13 @@ GMMap unit
 =========================================================================
 History:
 
-var 1.3.2
+ver 1.4.1
+  ES:
+    error: TGMObjects -> corregido error en método IsMapActive (gracias Fred).
+  EN:
+    bug: TGMObjects -> bug fixed un method IsMapActive (thanks Fred).
+
+ver 1.3.2
   ES:
     nuevo: TKML -> nueva clase para gestionar ficheros KML (gracias Fred).
   EN:
@@ -184,13 +190,13 @@ web  http://www.cadetill.com
   The GMMap unit includes the base classes that manages the map and the objects in it are represented.
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMap incluye las clases bases que gestionan el mapa y los objetos que en él se representan.
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 unit GMMap;
 
@@ -4942,7 +4948,7 @@ function TGMObjects.IsMapActive: Boolean;
 begin
   Result := False;
   if Assigned(FMap) then
-    Result := FMap.Active;
+    Result := FMap.Active and FMap.FDocLoaded and FMap.FIsDoMap;
 end;
 
 procedure TGMObjects.Notification(AComponent: TComponent;

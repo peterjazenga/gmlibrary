@@ -23,6 +23,15 @@ If you have installed TChromium browser, you can activate it at gmlib.inc file.
 CHANGE HISTORY
 ~~~~~~~~~~~~~~
 
+October 20, 2014
+ - Google Maps Library v1.5.0
+ - Improvement: Compiled under XE7.
+ - bug fixed: Fixed problem with the Google Maps update.
+ - bug fixed: TCustomCircle -> bug fixed method SetRadius (thanks Fred).
+ - bug fixed: TCustomSizeable -> bug fixed method OnTimer (thanks Fred).
+ - bug fixed: TGMObjects -> bug fixed method IsMapActive (thanks Fred).
+ - improvement: TCustomMarker -> added Direction property (GC: issue 38)
+
 August 30, 2014
  - Google Maps Library v1.4.0
  - bug fixed: Lang -> Russian translation is not read, incorrect encoding of the language resources file (GC: issue 35).

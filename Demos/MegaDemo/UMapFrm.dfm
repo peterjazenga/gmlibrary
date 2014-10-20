@@ -21,13 +21,11 @@ object MapFrm: TMapFrm
     Top = 0
     Width = 564
     Height = 415
-    ActivePage = tsLayers
+    ActivePage = tsVisual
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 393
     object tsGeneral: TTabSheet
       Caption = 'General Config.'
-      ExplicitHeight = 365
       object Label33: TLabel
         Left = 24
         Top = 104
@@ -100,7 +98,6 @@ object MapFrm: TMapFrm
     object tsRequired: TTabSheet
       Caption = 'Required Prop.'
       ImageIndex = 1
-      ExplicitHeight = 365
       object lLong: TLabel
         Left = 35
         Top = 53
@@ -166,7 +163,7 @@ object MapFrm: TMapFrm
         Top = 168
         Width = 170
         Height = 27
-        Max = 15
+        Max = 20
         Position = 10
         TabOrder = 3
         OnChange = tbZoomChange
@@ -184,7 +181,6 @@ object MapFrm: TMapFrm
     object tsVisual: TTabSheet
       Caption = 'Visual Prop.'
       ImageIndex = 2
-      ExplicitHeight = 365
       object Label16: TLabel
         Left = 56
         Top = 25
@@ -306,12 +302,16 @@ object MapFrm: TMapFrm
         TabOrder = 11
         OnChange = cbMapTypePosChange
         Items.Strings = (
-          'cpBOTTOM'
+          'cpBOTTOM_CENTER'
           'cpBOTTOM_LEFT'
           'cpBOTTOM_RIGHT'
-          'cpLEFT'
-          'cpRIGHT'
-          'cpTOP'
+          'cpLEFT_BOTTOM'
+          'cpLEFT_CENTER'
+          'cpLEFT_TOP'
+          'cpRIGHT_BOTTOM'
+          'cpRIGHT_CENTER'
+          'cpRIGHT_TOP'
+          'cpTOP_CENTER'
           'cpTOP_LEFT'
           'cpTOP_RIGHT')
       end
@@ -370,12 +370,16 @@ object MapFrm: TMapFrm
         TabOrder = 4
         OnChange = cbPanPosChange
         Items.Strings = (
-          'cpBOTTOM'
+          'cpBOTTOM_CENTER'
           'cpBOTTOM_LEFT'
           'cpBOTTOM_RIGHT'
-          'cpLEFT'
-          'cpRIGHT'
-          'cpTOP'
+          'cpLEFT_BOTTOM'
+          'cpLEFT_CENTER'
+          'cpLEFT_TOP'
+          'cpRIGHT_BOTTOM'
+          'cpRIGHT_CENTER'
+          'cpRIGHT_TOP'
+          'cpTOP_CENTER'
           'cpTOP_LEFT'
           'cpTOP_RIGHT')
       end
@@ -399,12 +403,16 @@ object MapFrm: TMapFrm
         TabOrder = 6
         OnChange = cbRoratePosChange
         Items.Strings = (
-          'cpBOTTOM'
+          'cpBOTTOM_CENTER'
           'cpBOTTOM_LEFT'
           'cpBOTTOM_RIGHT'
-          'cpLEFT'
-          'cpRIGHT'
-          'cpTOP'
+          'cpLEFT_BOTTOM'
+          'cpLEFT_CENTER'
+          'cpLEFT_TOP'
+          'cpRIGHT_BOTTOM'
+          'cpRIGHT_CENTER'
+          'cpRIGHT_TOP'
+          'cpTOP_CENTER'
           'cpTOP_LEFT'
           'cpTOP_RIGHT')
       end
@@ -428,12 +436,16 @@ object MapFrm: TMapFrm
         TabOrder = 14
         OnChange = cbScalePosChange
         Items.Strings = (
-          'cpBOTTOM'
+          'cpBOTTOM_CENTER'
           'cpBOTTOM_LEFT'
           'cpBOTTOM_RIGHT'
-          'cpLEFT'
-          'cpRIGHT'
-          'cpTOP'
+          'cpLEFT_BOTTOM'
+          'cpLEFT_CENTER'
+          'cpLEFT_TOP'
+          'cpRIGHT_BOTTOM'
+          'cpRIGHT_CENTER'
+          'cpRIGHT_TOP'
+          'cpTOP_CENTER'
           'cpTOP_LEFT'
           'cpTOP_RIGHT')
       end
@@ -457,12 +469,16 @@ object MapFrm: TMapFrm
         TabOrder = 8
         OnChange = cbStreetViewPosChange
         Items.Strings = (
-          'cpBOTTOM'
+          'cpBOTTOM_CENTER'
           'cpBOTTOM_LEFT'
           'cpBOTTOM_RIGHT'
-          'cpLEFT'
-          'cpRIGHT'
-          'cpTOP'
+          'cpLEFT_BOTTOM'
+          'cpLEFT_CENTER'
+          'cpLEFT_TOP'
+          'cpRIGHT_BOTTOM'
+          'cpRIGHT_CENTER'
+          'cpRIGHT_TOP'
+          'cpTOP_CENTER'
           'cpTOP_LEFT'
           'cpTOP_RIGHT')
       end
@@ -496,12 +512,16 @@ object MapFrm: TMapFrm
         TabOrder = 17
         OnChange = cbZoomPosChange
         Items.Strings = (
-          'cpBOTTOM'
+          'cpBOTTOM_CENTER'
           'cpBOTTOM_LEFT'
           'cpBOTTOM_RIGHT'
-          'cpLEFT'
-          'cpRIGHT'
-          'cpTOP'
+          'cpLEFT_BOTTOM'
+          'cpLEFT_CENTER'
+          'cpLEFT_TOP'
+          'cpRIGHT_BOTTOM'
+          'cpRIGHT_CENTER'
+          'cpRIGHT_TOP'
+          'cpTOP_CENTER'
           'cpTOP_LEFT'
           'cpTOP_RIGHT')
       end
@@ -531,7 +551,6 @@ object MapFrm: TMapFrm
     object tsNonVisual: TTabSheet
       Caption = 'Non Visual Prop'
       ImageIndex = 3
-      ExplicitHeight = 365
       object Label7: TLabel
         Left = 56
         Top = 154
@@ -645,7 +664,6 @@ object MapFrm: TMapFrm
     object tsLayers: TTabSheet
       Caption = 'Layers'
       ImageIndex = 5
-      ExplicitHeight = 365
       object cbBicycling: TCheckBox
         Left = 49
         Top = 18
@@ -878,7 +896,7 @@ object MapFrm: TMapFrm
           Left = 36
           Top = 69
           Width = 445
-          Height = 22
+          Height = 21
           TabOrder = 2
           Text = 'ePanoFilterTag'
           OnChange = eKmlUrlChange
@@ -906,7 +924,6 @@ object MapFrm: TMapFrm
     object tsEvents: TTabSheet
       Caption = 'Events Fired'
       ImageIndex = 4
-      ExplicitHeight = 365
       object cbOnBoundsChanged: TCheckBox
         Left = 64
         Top = 32
@@ -1046,7 +1063,6 @@ object MapFrm: TMapFrm
     object tsFunctions: TTabSheet
       Caption = 'Functions'
       ImageIndex = 6
-      ExplicitHeight = 365
       DesignSize = (
         556
         387)
@@ -1389,7 +1405,6 @@ object MapFrm: TMapFrm
     object tsStreetView: TTabSheet
       Caption = 'StreetView'
       ImageIndex = 7
-      ExplicitHeight = 365
       object cbSVVisible: TCheckBox
         Left = 64
         Top = 32

@@ -378,7 +378,7 @@ const
 var
   i: Integer;
 begin
-  for i := 2 to 6 do
+  for i := 2 to 7 do
   begin
     ChangeVer(Format(XE, [i]), cntDesc);
     ChangeVer(Format(XEVCL, [i]), cntDescVCL);

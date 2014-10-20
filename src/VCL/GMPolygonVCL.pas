@@ -48,13 +48,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMPolygonVCL unit includes the VCL classes needed to show polygons on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMPolygonVCL contiene las clases VCL necesarias para mostrar polígonos en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 unit GMPolygonVCL;
 

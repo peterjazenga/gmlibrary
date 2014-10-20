@@ -16,6 +16,14 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.4.1
+  ES:
+    error: TCustomCircle -> corregido error en método SetRadius (gracias Fred).
+    error: TCustomSizeable -> corregido error en método OnTimer (gracias Fred).
+  EN:
+    bug: TCustomCircle -> bug fixed un method SetRadius (thanks Fred).
+    bug: TCustomSizeable -> bug fixed un method OnTimer (thanks Fred).
+
 ver 1.2.0
   ES:
     cambio: TCustomCircle -> la propiedad Radius pasa a ser un Real.
@@ -86,13 +94,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMCircle unit includes the base classes needed to show circles on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMCircle contiene las clases bases necesarias para mostrar círculos en un mapa de Google Maps mediante el componente TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 unit GMCircle;
 
@@ -933,6 +941,9 @@ end;
 procedure TCustomCircle.SetRadius(const Value: Real);
 begin
   if FRadius = Value then Exit;
+  if not TCustomGMCircle(TCustomCircles(Collection).FGMLinkedComponent).IsMapActive then
+    Exit;
+
 
   FRadius := Value;
 
@@ -1042,6 +1053,9 @@ end;
 
 procedure TCustomSizeable.OnTimer(Sender: TObject);
 begin
+  if not TCustomGMCircle(TCustomCircles(FOwner.Collection).FGMLinkedComponent).IsMapActive then
+    Exit;
+
   if (FOwner.Radius > FMax) then
     if FCircular then FOwner.Radius := FMin
     else Active := False

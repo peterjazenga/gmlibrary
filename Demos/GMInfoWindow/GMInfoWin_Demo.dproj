@@ -3,7 +3,7 @@
         <ProjectGuid>{0D87CCDE-1426-47DB-AB1F-9120A80C5D23}</ProjectGuid>
         <ProjectVersion>14.4</ProjectVersion>
         <MainSource>GMInfoWin_Demo.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>

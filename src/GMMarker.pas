@@ -14,6 +14,11 @@ MODO DE USO/HOW TO USE
 =========================================================================
 History:
 
+ver 1.5.0
+  ES:
+    cambio: TCustomMarker -> añadida propiedad Direction (GC: issue 38)
+  EN:
+    change: TCustomMarker -> addod Direction property (GC: issue 38)
 ver 1.2.X
   ES:
     cambio: TCustomMarker -> en el método LoadFromDataSet se añade el parámetro
@@ -173,13 +178,13 @@ Copyright (©) 2012, by Xavier Martinez (cadetill)
   The GMMarker unit includes the base classes needed to show markers on Google Map map using the component TGMMap.
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMarker contiene las clases bases necesarias para mostrar marcadores en un mapa de Google Maps mediante el componente TGMMap
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 unit GMMarker;
 
@@ -448,7 +453,7 @@ type
   {=------------------------------------------------------------------------------
     Estilos para las fuentes.
   -------------------------------------------------------------------------------}
-  TGMFontStyle = (fsBold, fsItalic, fsOverline, fsUnderline, fsStrikeOut);
+  TGMFontStyle = (fstBold, fstItalic, fstOverline, fstUnderline, fstStrikeOut);
   {*------------------------------------------------------------------------------
     Set of Font styles.
   -------------------------------------------------------------------------------}
@@ -750,6 +755,7 @@ type
     -------------------------------------------------------------------------------}
     FCrossOnDrag: Boolean;
     FIsUpdating: Boolean;
+    FDirection: Integer;
 
     procedure SetClickable(const Value: Boolean);
     procedure SetDraggable(const Value: Boolean);
@@ -763,6 +769,7 @@ type
     procedure OnLatLngChange(Sender: TObject);
     procedure SetMarkerType(const Value: TMarkerType);
     procedure SetCrossOnDrag(const Value: Boolean);
+    procedure SetDirection(const Value: Integer);
   protected
     procedure SetIdxList(const Value: Cardinal); override;
 
@@ -808,6 +815,7 @@ type
     procedure CenterMapToMarker; deprecated;
     procedure CenterMapTo; override;
   published
+    property Direction: Integer read FDirection write SetDirection;
     property MarkerType: TMarkerType read FMarkerType write SetMarkerType;
     property Animation: TAnimation read FAnimation write FAnimation;
     property Clickable: Boolean read FClickable write SetClickable;
@@ -1725,6 +1733,15 @@ begin
                   Self);
 end;
 
+procedure TCustomMarker.SetDirection(const Value: Integer);
+begin
+  if FDirection = Value then Exit;
+
+  FDirection := Value;
+  if FDirection > 360 then FDirection := 360;
+  if FDirection < 0 then FDirection := 0;
+end;
+
 procedure TCustomMarker.SetDraggable(const Value: Boolean);
 begin
   if FDraggable = Value then Exit;
@@ -1991,7 +2008,7 @@ end;
 constructor TCustomGMFont.Create(aOwner: TCustomMarker);
 begin
   FMarker := aOwner;
-  FStyle := [fsBold];
+  FStyle := [fstBold];
   FSize := 20;
 end;
 

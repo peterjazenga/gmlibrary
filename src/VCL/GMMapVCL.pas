@@ -40,7 +40,7 @@ web  http://www.cadetill.com
   HOW TO USE: put the component into a form, link to a browser, activate it and call DoMap method (usually when AfterPageLoaded event is fired with First parameter to True).
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 {=------------------------------------------------------------------------------
   La unit GMMapVCL incluye las clases que gestionan el mapa especializados en un determinado navegador.
@@ -50,11 +50,11 @@ web  http://www.cadetill.com
   MODO DE USO: poner el componente en el formulario, linkarlo a un navegador, activarlo y ejecutar el método DoMap (usualmente en el evento AfterPageLoaded cuando el parámetro First es True).
 
   @author Xavier Martinez (cadetill)
-  @version 1.4.0
+  @version 1.5.0
 -------------------------------------------------------------------------------}
 unit GMMapVCL;
 
-{.$DEFINE WEBBROWSER}
+{$DEFINE WEBBROWSER}
 {.$DEFINE CHROMIUM}
 {$I ..\gmlib.inc}
 
@@ -429,6 +429,7 @@ procedure TGMMap.LoadBlankPage;
 begin
   if not (FWebBrowser is TWebBrowser) then Exit;
 
+  FDocLoaded := False;
   TWebBrowser(FWebBrowser).Navigate('about:blank');
 end;
 
