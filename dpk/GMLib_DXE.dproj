@@ -24,7 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_Description>GoogleMaps Library v1.5.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+			<DCC_Description>GoogleMaps Library v1.5.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
 			<DCC_UnitSearchPath>..\lib\DXE;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<GenPackage>true</GenPackage>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
@@ -160,11 +160,3 @@
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>
 	</Project>
-
-<!-- EurekaLog First Line
-[Exception Log]
-EurekaLog Version=7007
-Activate=0
-DeleteMapAfterCompile=1
-Encrypt Password=""
-EurekaLog Last Line -->

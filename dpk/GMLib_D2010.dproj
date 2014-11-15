@@ -25,7 +25,7 @@
 			<DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\7.0\Bpl\GMLib_D2010.bpl</DCC_DependencyCheckOutputName>
 			<DesignOnlyPackage>false</DesignOnlyPackage>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-        <DCC_Description>GoogleMaps Library v1.5.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
+			<DCC_Description>GoogleMaps Library v1.5.0 (Copyright © Xavier Martínez - cadetill)</DCC_Description>
 			<DCC_DcpOutput>..\lib\D2010</DCC_DcpOutput>
 			<GenDll>true</GenDll>
 			<DCC_DcuOutput>..\lib\D2010</DCC_DcuOutput>

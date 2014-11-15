@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, ComCtrls, Spin, Buttons,
-  GMMarker, GMMarkerVCL, GMMap, GMLinkedComponents;
+  GMMarker, GMMarkerVCL, GMMap, GMLinkedComponents, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Datasnap.DBClient;
 
 type
   TMarkersFrm = class(TForm)
@@ -124,6 +125,12 @@ type
     lComDist: TLabel;
     bShowInfoW: TButton;
     bMaxZoom: TButton;
+    tsLoadCDS: TTabSheet;
+    bOpen: TButton;
+    cdsMarkers: TClientDataSet;
+    DBGrid1: TDBGrid;
+    dsoMarkers: TDataSource;
+    bLoad: TButton;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bDelClick(Sender: TObject);
@@ -192,6 +199,8 @@ type
     procedure bComDistClick(Sender: TObject);
     procedure bShowInfoWClick(Sender: TObject);
     procedure bMaxZoomClick(Sender: TObject);
+    procedure bOpenClick(Sender: TObject);
+    procedure bLoadClick(Sender: TObject);
   private
     FGMMarker: TGMMarker;
     FTime: TTime;
@@ -290,6 +299,14 @@ begin
   GetInfo;
 end;
 
+procedure TMarkersFrm.bOpenClick(Sender: TObject);
+begin
+  if not FileExists('markers.xml') then
+    ShowMessage('File "markers.xml" does not exist')
+  else
+    cdsMarkers.LoadFromFile('markers.xml');
+end;
+
 procedure TMarkersFrm.bUpClick(Sender: TObject);
 begin
   if lbItems.ItemIndex = -1 then Exit;
@@ -297,6 +314,12 @@ begin
 
   FGMMarker.Move(lbItems.ItemIndex, lbItems.ItemIndex-1);
   lbItems.Items.Move(lbItems.ItemIndex, lbItems.ItemIndex-1);
+end;
+
+procedure TMarkersFrm.bLoadClick(Sender: TObject);
+begin
+  FGMMarker.LoadFromDataSet(cdsMarkers, 'Lat', 'Lng', 'Title');
+  FGMMarker.ZoomToPoints;
 end;
 
 procedure TMarkersFrm.bLoadFromCSVClick(Sender: TObject);

@@ -21,7 +21,7 @@ object MarkersFrm: TMarkersFrm
     Top = 0
     Width = 372
     Height = 393
-    ActivePage = tsGeneral
+    ActivePage = tsLoadCDS
     Align = alClient
     TabOrder = 0
     object tsGeneral: TTabSheet
@@ -646,6 +646,41 @@ object MarkersFrm: TMarkersFrm
         Visible = False
       end
     end
+    object tsLoadCDS: TTabSheet
+      Caption = 'Load from DataSet'
+      ImageIndex = 7
+      object bOpen: TButton
+        Left = 17
+        Top = 17
+        Width = 75
+        Height = 25
+        Caption = 'Open'
+        TabOrder = 0
+        OnClick = bOpenClick
+      end
+      object DBGrid1: TDBGrid
+        Left = 16
+        Top = 56
+        Width = 337
+        Height = 261
+        DataSource = dsoMarkers
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object bLoad: TButton
+        Left = 248
+        Top = 323
+        Width = 102
+        Height = 25
+        Caption = 'Load Markers'
+        TabOrder = 2
+        OnClick = bLoadClick
+      end
+    end
     object tsColoredMarker: TTabSheet
       Caption = 'Colored Marker'
       ImageIndex = 4
@@ -967,5 +1002,16 @@ object MarkersFrm: TMarkersFrm
     Options = [ofReadOnly, ofHideReadOnly, ofEnableSizing]
     Left = 136
     Top = 8
+  end
+  object cdsMarkers: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 336
+    Top = 48
+  end
+  object dsoMarkers: TDataSource
+    DataSet = cdsMarkers
+    Left = 384
+    Top = 64
   end
 end
