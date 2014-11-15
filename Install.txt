@@ -6,11 +6,10 @@ SVN repository at http://code.google.com/p/gmlibrary/source/checkout
 Questions at http://stackoverflow.com with gmlib tag
 For new needs, you can email me to gmlib@cadetill.com 
 
-Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE, XE2, XE3, XE4
-Tested Windows Versions: XP, 2003, Vista, 7
+Supported Delphi version: Delphi 6, 7, 2007, 2009, 2010, XE, XE2, XE3, XE4, XE5, XE6, XE7
+Tested Windows Versions: XP, 2003, Vista, 7, 8
 Requirements: 
   - IE 8 and above
-
 
 If you have installed TChromium browser, you can activate it at gmlib.inc file.
 
@@ -328,17 +327,72 @@ RadStudio XE6 Installation
 7. Go to "Tools > Options > Environment Options > C++ Options > Path and Directories"
    Select "32-bit Windows" platform
      Click "Library Path > [...]" button
-     Browse to the "lib\CXE5" folder and press "OK", "Add"
-     Browse to the "lib\CXE5\VCL" folder and press "OK", "Add"
-     Browse to the "lib\CXE5\FMX" folder and press "OK", "Add"
+     Browse to the "lib\CXE6" folder and press "OK", "Add"
+     Browse to the "lib\CXE6\VCL" folder and press "OK", "Add"
+     Browse to the "lib\CXE6\FMX" folder and press "OK", "Add"
      Browse to the "src" folder and press "OK", "Add"
      Browse to the "src\VCL" folder and press "OK", "Add"
      Browse to the "src\FMX" folder and press "OK", "Add", "OK"
    Select "64-bit Windows" platform
      Click "Library Path > [...]" button
-     Browse to the "lib\CXE5_64" folder and press "OK", "Add"
-     Browse to the "lib\CXE5_64\VCL" folder and press "OK", "Add"
-     Browse to the "lib\CXE5_64\FMX" folder and press "OK", "Add"
+     Browse to the "lib\CXE6_64" folder and press "OK", "Add"
+     Browse to the "lib\CXE6_64\VCL" folder and press "OK", "Add"
+     Browse to the "lib\CXE6_64\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+
+
+RadStudio XE7 Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Open the project "GMLibProject_DXE7.groupproj"
+2. Select package (doble click) "GMLib_DXE7.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE7.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE7.bpl" and click "Compile"
+3. Select package (doble click) "GMLib_DXE7_VCL.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE7_VCL.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE7_VCL.bpl" and click "Compile"
+4. Select package (doble click) "GMLib_DXE7_FMX.bpl"
+     Select target platform "32-bit Windows"
+     Right click on "GMLib_DXE7_FMX.bpl" and click "Compile" and "Install"
+     Select target platform "64-bit Windows"
+     Right click on "GMLib_DXE7_FMX.bpl" and click "Compile"
+5. Right click on "GMLibEdit_DXE7.bpl" and click "Compile" and "Install"
+6. Go to "Tools > Options > Environment Options > Delphi Options > Library"
+   Select "32-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\DXE7" folder and press "OK", "Add"
+     Browse to the "lib\DXE7\VCL" folder and press "OK", "Add"
+     Browse to the "lib\DXE7\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+   Select "64-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\DXE7_64" folder and press "OK", "Add"
+     Browse to the "lib\DXE7_64\VCL" folder and press "OK", "Add"
+     Browse to the "lib\DXE7_64\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+7. Go to "Tools > Options > Environment Options > C++ Options > Path and Directories"
+   Select "32-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\CXE7" folder and press "OK", "Add"
+     Browse to the "lib\CXE7\VCL" folder and press "OK", "Add"
+     Browse to the "lib\CXE7\FMX" folder and press "OK", "Add"
+     Browse to the "src" folder and press "OK", "Add"
+     Browse to the "src\VCL" folder and press "OK", "Add"
+     Browse to the "src\FMX" folder and press "OK", "Add", "OK"
+   Select "64-bit Windows" platform
+     Click "Library Path > [...]" button
+     Browse to the "lib\CXE7_64" folder and press "OK", "Add"
+     Browse to the "lib\CXE7_64\VCL" folder and press "OK", "Add"
+     Browse to the "lib\CXE7_64\FMX" folder and press "OK", "Add"
      Browse to the "src" folder and press "OK", "Add"
      Browse to the "src\VCL" folder and press "OK", "Add"
      Browse to the "src\FMX" folder and press "OK", "Add", "OK"
